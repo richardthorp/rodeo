@@ -7,3 +7,32 @@
     font-style: normal;
     font-display: swap;
 }
+/***************************************** NAV BAR */
+nav {
+  background-color: #136F63;
+  min-height: 120px;
+}
+
+#logo {
+  color: #FFF;
+  font-size: 5rem;
+}
+
+.logo-font {
+  font-family: 'Young Heart';
+  letter-spacing: 5px;
+}
+
+.custom-nav-links {
+  font-family: 'Young Heart';
+  color: #FFF;
+  font-size: 4rem;
+}
+
+#bars-icon {
+    color: #FFF;
+    border: 4px solid;
+    border-radius: 50%;
+    padding: 10px;
+    font-size: 1.8rem;
+}
