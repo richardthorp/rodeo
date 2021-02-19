@@ -7,6 +7,22 @@
     font-style: normal;
     font-display: swap;
 }
+body {
+    min-width: 260px;
+}
+
+.logo-font {
+  font-family: 'Young Heart';
+  letter-spacing: 8px;
+}
+
+.header {
+    font-size: 5rem;
+    color: #000;
+    text-align: center;
+    margin-top: 20px;
+    font-weight: bolder;
+}
 
 /*------------------------------------------------------- NAV BAR */
 nav {
@@ -16,14 +32,9 @@ nav {
 
 #logo {
   color: #FFF;
-  font-size: 5rem;
+  font-size: 6rem;
   position: relative;
   top: 5px;
-}
-
-.logo-font {
-  font-family: 'Young Heart';
-  letter-spacing: 5px;
 }
 
 .custom-nav-links {
@@ -48,6 +59,106 @@ nav {
 .hero img {
     width: 100%;
     object-fit: cover;
-    min-height: 75vh;
+    height: 80vh;
+    min-height: 450px;
+}
+.about-row {
+    background-color: #F34213;
 }
 
+.about-title {
+    font-size: 6rem;
+    color: #FFF;
+    -moz-transform: translateX(-50%) translateY(-50%) rotate(-90deg);
+    -webkit-transform: translateX(-50%) translateY(-50%) rotate(-90deg);
+    transform:  translateX(-50%) translateY(-50%) rotate(-90deg);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
+.about-blurb {
+    font-family: Bevan;
+    color: #FFF;
+    text-align: right;
+    font-size: 2rem;
+    letter-spacing: 2px;
+    align-self: center;
+    padding: 20px 20px 20px 0
+}
+
+.inspiration {
+    background-color: #E0CA3C;
+}
+
+/*-----------------------------------------------------MEDIA QUERIES */
+@media screen and (max-width: 576px){
+    .header {
+        font-size: 2.5rem;
+    }
+    nav {
+        min-height: 0;
+    }
+    #logo {
+        font-size: 3rem;
+    }
+    #bars-icon {
+        font-size: 1.4rem;
+    }
+    .custom-nav-links {
+        font-size: 2rem;
+    }
+    .about-row {
+        min-height: 165px;
+    }
+    .about-title{
+        font-size: 3rem;
+    }
+    .about-blurb {
+        font-size: 0.8rem;
+    }
+}
+
+@media screen and (min-width: 576px){
+    #logo {
+        font-size: 4.5rem;
+    }
+    #bars-icon {
+        font-size: 1.6rem;
+    }
+    .custom-nav-links {
+        font-size: 2rem;
+    }
+    .about-title{
+        font-size: 4rem;
+    }
+    .about-blurb {
+        font-size: 1.2rem;
+    }
+}
+
+@media screen and (min-width: 768px){
+    .about-title{
+        left: 20%;
+    }
+}
+
+@media screen and (min-width: 992px){
+    #logo {
+        font-size: 6rem;
+    }
+    .custom-nav-links {
+        font-size: 3rem;
+    }
+    .about-title{
+        left: 10%;
+    }
+}
+
+/* 
+Extra small < 576px	
+Small       ≥ 576px	
+Medium      ≥ 768px	
+Large       ≥ 992px	
+Extra large ≥ 1200px 
+*/
