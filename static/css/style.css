@@ -7,7 +7,8 @@
     font-style: normal;
     font-display: swap;
 }
-/***************************************** NAV BAR */
+
+/*------------------------------------------------------- NAV BAR */
 nav {
   background-color: #136F63;
   min-height: 120px;
@@ -16,6 +17,8 @@ nav {
 #logo {
   color: #FFF;
   font-size: 5rem;
+  position: relative;
+  top: 5px;
 }
 
 .logo-font {
@@ -36,3 +39,15 @@ nav {
     padding: 10px;
     font-size: 1.8rem;
 }
+
+/*------------------------------------------------------- INDEX */
+.hero {
+    background-color: #E0CA3C;
+}
+
+.hero img {
+    width: 100%;
+    object-fit: cover;
+    min-height: 75vh;
+}
+
