@@ -12,7 +12,9 @@ body {
     background-color: #E0CA3C;
 }
 
-
+a:hover {
+    text-decoration: none;
+}
 
 .logo-font {
   font-family: 'Young Heart';
@@ -58,6 +60,21 @@ nav {
     border-radius: 50%;
     padding: 10px;
     font-size: 1.8rem;
+}
+/*------------------------------------------------------- FOOTER*/
+.custom-footer {
+    height: 120px;
+    margin-top: 30px;
+    background-color: #136F63;
+}
+
+.footer-links {
+    color: #FFF;
+    font-size: 2rem;
+}
+
+.copyright {
+    color: #ffffffc0;
 }
 
 /*------------------------------------------------------- RECIPE CARD */
@@ -203,7 +220,7 @@ nav {
 }
 
 @media screen and (min-width: 1200px){
-    .hero {
+    .hero img{
         max-width: 1200px;
         min-height: 580px;
     }
