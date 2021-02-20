@@ -21,6 +21,21 @@ def index():
     return render_template("index.html", test=test)
 
 
+@app.route("/all_recipes")
+def all_recipes():
+    return render_template("all_recipes.html")
+
+
+@app.route("/login")
+def login():
+    return render_template("login.html")
+
+
+@app.route("/register")
+def register():
+    return render_template("register.html")
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),

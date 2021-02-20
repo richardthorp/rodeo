@@ -18,7 +18,7 @@
 <body>
     <!-- BOOTSTRAP NAV BAR -->
     <nav class="navbar navbar-expand-md">
-        <a id="logo" class="navbar-brand logo-font" href="#">Rodeo</a>
+        <a id="logo" class="navbar-brand logo-font" href="{{ url_for('index') }}">Rodeo</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span><i class="fas fa-bars" id="bars-icon"></i></span>
@@ -26,14 +26,14 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto text-right">
                 <li class="nav-item">
-                    <a class="nav-link logo-font custom-nav-links" href="#">Recipes<span
+                    <a class="nav-link logo-font custom-nav-links" href="{{ url_for('all_recipes') }}">Recipes<span
                             class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item ml-5">
-                    <a class="nav-link logo-font custom-nav-links" href="#">Login</a>
+                    <a class="nav-link logo-font custom-nav-links" href="{{ url_for('login') }}">Login</a>
                 </li>
                 <li class="nav-item ml-5">
-                    <a class="nav-link logo-font custom-nav-links" href="#">Register</a>
+                    <a class="nav-link logo-font custom-nav-links" href="{{ url_for('all_recipes') }}">Register</a>
                 </li>
             </ul>
         </div>
@@ -44,25 +44,16 @@
     </div>
     <div class="container-fluid">
         <footer class="mt-auto">
-        <div class="row mt-5 custom-footer d-flex align-items-center">
-            <div class="col-6 logo-font copyright">Copyright 2021</div>
-            <a href="#" class="d-none d-md-inline-block col-2 logo-font footer-links">Recipes</a>
-            <a href="#" class="d-none d-md-inline-block col-2 logo-font footer-links">Login</a>
-            <a href="#" class="d-none d-md-inline-block col-2 logo-font footer-links">Register</a>
-            <a href="#" class="col-6 d-md-none logo-font footer-links">Back to top<i class="fas fa-angle-double-up ml-2"></i></a>
-        </div>
+            <div class="row mt-5 custom-footer d-flex align-items-center">
+                <div class="col-6 logo-font copyright">Copyright 2021</div>
+                <a href="{{ url_for('all_recipes') }}" class="d-none d-md-inline-block col-2 logo-font footer-links">Recipes</a>
+                <a href="{{ url_for('login') }}" class="d-none d-md-inline-block col-2 logo-font footer-links">Login</a>
+                <a href="{{ url_for('all_recipes') }}" class="d-none d-md-inline-block col-2 logo-font footer-links">Register</a>
+                <a href="#" class="col-6 d-md-none logo-font footer-links">Back to top<i
+                        class="fas fa-angle-double-up ml-2"></i></a>
+            </div>
         </footer>
     </div>
-
-
-        <!-- <div class="row mt-5 custom-footer d-flex align-items-center">
-            <div class="col-6 logo-font copyright">Copyright 2021</div>
-            <div class="d-none d-md-inline-block col-2 logo-font footer-links">Recipes</div>
-            <div class="d-none d-md-inline-block col-2 logo-font footer-links">Login</div>
-            <div class="d-none d-md-inline-block col-2 logo-font footer-links">Register</div>
-            <div class="col-6 d-md-none logo-font footer-links">Back to top<i class="fas fa-angle-double-up ml-2"></i></div>
-        </div> -->
-
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>
