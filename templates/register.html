@@ -1,18 +1,21 @@
 {% extends 'base.html' %}
 {% block content %}
-<form method="POST" action="">
-    {{ form.hidden_tag('self') }}
-    {{ form.email.label(class="testing") }}
-    {{ form.email() }}
-    {{ form.username.label() }}
-    {{ form.username() }}
-    {{ form.password.label() }}
-    {{ form.password() }}
-    {{ form.confirm_password.label() }}
-    {{ form.confirm_password() }}
-    {{ form.submit() }}
-    
-
-</form>
+<h1 class="logo-font">Register</h1>
+<div class="row">
+    <div class="col-12 col-md-8">
+        <form method="POST" action="">
+            {{ form.hidden_tag() }}
+            <label for="email" class="form-input-label">Please enter your email address :</label>
+            {{ form.email(class="form-input") }}
+            <label for="username" class="form-input-label">Please choose a username :</label>
+            {{ form.username(class="form-input") }}
+            <label for="password" class="form-input-label">Please choose a password :</label>
+            {{ form.password(class="form-input") }}
+            <label for="confirm_password" class="form-input-label">Please re-type password :</label>
+            {{ form.confirm_password(class="form-input") }}
+            {{ form.submit() }}
+        </form>
+    </div>
+</div>
 
 {% endblock %}

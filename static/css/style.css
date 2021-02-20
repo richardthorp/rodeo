@@ -109,6 +109,19 @@ nav {
     color: #000;
 }
 
+/*------------------------------------------------------- FORMS */
+.form-input{
+    display: block;
+    width: 90%;
+    max-width: 400px;
+}
+
+.form-input-label {
+    display: block;
+    font-family: Bevan;
+    text-transform: uppercase;
+    margin-top: 30px;
+}
 /*------------------------------------------------------- INDEX */
 .hero {
     background-color: #E0CA3C;
@@ -155,9 +168,6 @@ nav {
 @media screen and (max-width: 576px){
     .header {
         font-size: 2.5rem;
-    }
-    nav {
-        min-height: 0;
     }
     #logo {
         font-size: 3rem;

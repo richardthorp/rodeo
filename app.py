@@ -35,6 +35,10 @@ def login():
 @app.route("/register", methods=["GET", "POST"])
 def register():
     form = Registration_form()
+    if form.validate_on_submit():
+        print("YES")
+    else:
+        print("NO")
     return render_template("register.html", form=form)
 
 
