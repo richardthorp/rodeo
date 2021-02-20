@@ -119,8 +119,26 @@ nav {
 .form-input-label {
     display: block;
     font-family: Bevan;
+    font-size: 1.5rem;
     text-transform: uppercase;
     margin-top: 30px;
+}
+
+.custom-button {
+    font-family: Bevan;
+    color: #136F63;
+    background-color: transparent;
+    text-transform: uppercase;
+    border: 3px solid #136F63;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 20px 20px 20px 0;
+}
+
+.custom-button:hover {
+    color: #fff;
+    background-color: #136F63;
+    border-color: #136F63;
 }
 /*------------------------------------------------------- INDEX */
 .hero {
@@ -162,6 +180,15 @@ nav {
 
 .inspiration {
     background-color: #E0CA3C;
+}
+
+/*------------------------------------------------------- REGISTER */
+.register-image {
+    height: 100%;
+    max-height: 600px;
+    object-fit: cover;
+    position: absolute;
+    right: 0;
 }
 
 /*-----------------------------------------------------MEDIA QUERIES */
