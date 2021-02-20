@@ -15,7 +15,7 @@
     <title>RODEO HOT SAUCE!</title>
 </head>
 
-<body>
+<body class="d-flex flex-column h-100">
     <!-- BOOTSTRAP NAV BAR -->
     <nav class="navbar navbar-expand-md">
         <a id="logo" class="navbar-brand logo-font" href="{{ url_for('index') }}">Rodeo</a>
@@ -38,12 +38,13 @@
             </ul>
         </div>
     </nav>
+    <!-- BLOCK CONTENT -->
     <div class="container-fluid">
         {% block content %}
         {% endblock %}
     </div>
-    <div class="container-fluid">
-        <footer class="mt-auto">
+    <!-- FOOTER -->
+        <footer class="mt-auto container-fluid">
             <div class="row mt-5 custom-footer d-flex align-items-center">
                 <div class="col-6 logo-font copyright">Copyright 2021</div>
                 <a href="{{ url_for('all_recipes') }}" class="d-none d-md-inline-block col-2 logo-font footer-links">Recipes</a>
@@ -53,7 +54,7 @@
                         class="fas fa-angle-double-up ml-2"></i></a>
             </div>
         </footer>
-    </div>
+    <!-- SCRIPTS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>
