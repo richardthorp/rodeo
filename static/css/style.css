@@ -9,7 +9,10 @@
 }
 body {
     min-width: 260px;
+    background-color: #E0CA3C;
 }
+
+
 
 .logo-font {
   font-family: 'Young Heart';
@@ -24,25 +27,10 @@ body {
     font-weight: bolder;
 }
 
-.recipe-card-row {
-    justify-content: space-around;
-}
-
-.recipe-card {
-    max-width: 450px;
-    background-color: #FFF6BC;
-    padding: 20px;
-}
-
-.recipe-card img {
-    max-height: 400px;
-    width: 100%;
-    object-fit: cover;
-}
-
-.recipe-title {
-    font-size: 2.5rem;
+.sub-header {
+    font-family: Bevan;
     text-align: center;
+    text-transform: uppercase;
 }
 
 /*------------------------------------------------------- NAV BAR */
@@ -72,13 +60,47 @@ nav {
     font-size: 1.8rem;
 }
 
+/*------------------------------------------------------- RECIPE CARD */
+.recipe-card {
+    width: 95%;
+    max-width: 400px;
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #FFF6BC;
+}
+
+.recipe-image-container {
+    width: 100%;
+    padding-top: 75%;
+    position: relative
+}
+.recipe-card img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.recipe-title {
+    font-size: 2.5rem;
+    text-align: center;
+    padding-top: 20px;
+    color: #000;
+}
+
 /*------------------------------------------------------- INDEX */
 .hero {
     background-color: #E0CA3C;
+    margin: 0 auto;
 }
 
 .hero img {
     width: 100%;
+    max-width: 1600px;
     object-fit: cover;
     height: 80vh;
     min-height: 450px;
@@ -163,6 +185,9 @@ nav {
         left: 30%;
         font-size: 5rem;
     }
+    .about-row {
+        min-height: 300px;
+    }
 }
 
 @media screen and (min-width: 992px){
@@ -177,6 +202,12 @@ nav {
     }
 }
 
+@media screen and (min-width: 1200px){
+    .hero {
+        max-width: 1200px;
+        min-height: 580px;
+    }
+}
 /* 
 Extra small < 576px	
 Small       ≥ 576px	

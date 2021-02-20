@@ -1,10 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<div class="row hero">
+<div class="row hero justify-content-center">
     <img src="/static/images/hero.png" alt="">
+</div>
+<div class="row">
     <div class="col">
-        <h2 class="logo-font header">Add some kick to your cook</h2>
+        <h2 class="logo-font header mt-4 mb-4">Add some kick to your cook</h2>
     </div>
 </div>
 <div class="row about-row">
@@ -23,25 +25,44 @@
         <div class="row">
             <div class="col">
                 <h2 class="logo-font header">Some Inspiration</h2>
+                <h4 class="sub-header">Click on recipes for more info</h4>
             </div>
         </div>
-        <div class="row recipe-card-row">
-            <div class="col-12 col-md-6 col-lg-4 recipe-card">
-                <img src="/static/images/eaters-collective-pLKgCsBOiw4-unsplash.jpg" class="card-img-top" alt="...">
-                <div>
-                    <h4 class="recipe-title logo-font">Crispy Chicken Fillet Burger</h4>
+        <div class="row">
+            <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center">
+                <div class="recipe-card">
+                    <a href="#">
+                        <div class="recipe-image-container">
+                            <img src="/static/images/eaters-collective-pLKgCsBOiw4-unsplash.jpg" alt="...">
+                        </div>
+                        <div>
+                            <h4 class="recipe-title logo-font">Crispy Chicken Fillet Burger</h4>
+                        </div>
+                    </a>
                 </div>
             </div>
-            <div class="col-12 col-md-6 col-lg-4 recipe-card">
-                <img src="/static/images/alex-munsell-auIbTAcSH6E-unsplash.jpg" class="card-img-top" alt="...">
-                <div>
-                    <h4 class="recipe-title logo-font">Super Spiced Steak Marinade</h4>
+            <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center">
+                <div class="recipe-card">
+                    <a href="#">
+                        <div class="recipe-image-container">
+                            <img src="/static/images/alex-munsell-auIbTAcSH6E-unsplash.jpg" alt="...">
+                        </div>
+                        <div>
+                            <h4 class="recipe-title logo-font">Super Spiced Steak Marinade</h4>
+                        </div>
+                    </a>
                 </div>
             </div>
-            <div class="col-12 d-md-none d-lg-inline-block col-lg-4 recipe-card">
-                <img src="/static/images/cala-w6ftFbPCs9I-unsplash.jpg" class="card-img-top" alt="...">
-                <div>
-                    <h4 class="recipe-title logo-font">Spiced Carrot and Lentil Soup</h4>
+            <div class="col-12 d-md-none d-lg-inline-block col-lg-4 d-flex justify-content-center">
+                <div class="recipe-card">
+                    <a href="#">
+                        <div class="recipe-image-container">
+                            <img src="/static/images/cala-w6ftFbPCs9I-unsplash.jpg" alt="...">
+                        </div>
+                        <div>
+                            <h4 class="recipe-title logo-font">Spiced Carrot and Lentil Soup</h4>
+                        </div>
+                    </a>
                 </div>
             </div>
 
@@ -51,24 +72,3 @@
 
 
 {% endblock %}
-
-<!-- <div class="col-12 col-md-6 col-lg-4">
-                <div class="card recipe-card">
-                    <img src="/static/images/cala-w6ftFbPCs9I-unsplash.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the
-                            card's content.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 d-md-none d-lg-inline-block col-lg-4">
-                <div class="card recipe-card">
-                    <img src="/static/images/alex-munsell-auIbTAcSH6E-unsplash.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the
-                            card's content.</p>
-                    </div>
-                </div>
-            </div> -->
