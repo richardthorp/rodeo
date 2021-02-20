@@ -3,6 +3,7 @@ from flask_pymongo import PyMongo
 from flask import (Flask, flash, render_template,
                    redirect, request, session, url_for)
 from flask_paginate import Pagination, get_page_args
+from forms import Registration_form
 if os.path.exists("env.py"):
     import env
 
@@ -31,9 +32,10 @@ def login():
     return render_template("login.html")
 
 
-@app.route("/register")
+@app.route("/register", methods=["GET", "POST"])
 def register():
-    return render_template("register.html")
+    form = Registration_form()
+    return render_template("register.html", form=form)
 
 
 if __name__ == "__main__":
