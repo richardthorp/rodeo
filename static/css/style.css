@@ -153,16 +153,13 @@ nav {
 
 /*------------------------------------------------------- INDEX */
 .hero {
-    background-color: #E0CA3C;
-    margin: 0 auto;
+    min-height: 250px;
+    padding: 0;
 }
 
 .hero img {
-    width: 100%;
-    max-width: 1600px;
     object-fit: cover;
-    height: 80vh;
-    min-height: 450px;
+    width: 100%;
 }
 
 .about-row {
@@ -263,6 +260,7 @@ nav {
     }
 }
 
+
 @media screen and (min-width: 992px){
     #logo {
         font-size: 6rem;
@@ -275,9 +273,3 @@ nav {
     }
 }
 
-@media screen and (min-width: 1200px){
-    .hero img{
-        max-width: 1200px;
-        min-height: 580px;
-    }
-}
