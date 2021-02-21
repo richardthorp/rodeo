@@ -36,7 +36,7 @@ a:hover {
     text-transform: uppercase;
 }
 
-/*------------------------------------------------------- NAV BAR */
+/*------------------------------------------------------- NAV BAR AND FOOTER */
 nav {
   background-color: #136F63;
   min-height: 120px;
@@ -46,13 +46,7 @@ nav {
   color: #FFF;
   font-size: 6rem;
   position: relative;
-  bottom: 7px;
-}
-
-.custom-nav-links {
-  font-family: 'Young Heart';
-  color: #FFF;
-  font-size: 4rem;
+  bottom: 8px;
 }
 
 #bars-icon {
@@ -62,7 +56,21 @@ nav {
     padding: 10px;
     font-size: 1.8rem;
 }
-/*------------------------------------------------------- FOOTER*/
+
+.custom-nav-links, .footer-links {
+  font-family: 'Young Heart';
+  color: #FFFFFFC7;
+}
+
+.custom-nav-links {
+    font-size: 4rem;
+}
+
+.custom-nav-links:hover, .footer-links:hover {
+  color: #FFF;
+  font-weight: bolder;
+}
+
 .custom-footer {
     height: 120px;
     margin-top: 30px;
@@ -70,7 +78,6 @@ nav {
 }
 
 .footer-links {
-    color: #FFF;
     font-size: 2rem;
     text-align: center;
 }
@@ -143,6 +150,7 @@ nav {
     background-color: #136F63;
     border-color: #136F63;
 }
+
 /*------------------------------------------------------- INDEX */
 .hero {
     background-color: #E0CA3C;
