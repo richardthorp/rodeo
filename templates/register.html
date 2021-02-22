@@ -8,8 +8,10 @@
             <label for="email" class="form-input-label">Please enter your email address :</label>
             {{ form.email(class="form-input") }}
             <label for="username" class="form-input-label">Please choose a username :</label>
+            <p class="form-details">Must be between 4 and 25 characters</p>
             {{ form.username(class="form-input") }}
             <label for="password" class="form-input-label">Please choose a password :</label>
+            <p class="form-details">Must be at least 8 characters</p>
             {{ form.password(class="form-input") }}
             <label for="confirm_password" class="form-input-label">Please re-type password :</label>
             {{ form.confirm_password(class="form-input") }}
