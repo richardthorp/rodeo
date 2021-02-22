@@ -205,6 +205,25 @@ nav {
     
 }
 
+/*------------------------------------------------------- MY RECIPES */
+.my-recipe-buttons {
+    border: 4px solid #136F63;
+    border-radius: 20px;
+    max-width: 450px;
+    font-size: 1.5rem;
+    color: #000;
+}
+
+.my-recipe-buttons i {
+    display: block;
+    padding: 15px;
+    font-size: 4rem;
+}
+
+.current-button {
+    background-color: #FFF6BC;
+
+
 /*-----------------------------------------------------MEDIA QUERIES */
 @media screen and (max-width: 576px){
     .header {

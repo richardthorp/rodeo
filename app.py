@@ -19,13 +19,7 @@ mongo = PyMongo(app)
 
 @app.route("/")
 def index():
-    test = mongo.db.recipes.find()
-    return render_template("index.html", test=test)
-
-
-@app.route("/all_recipes")
-def all_recipes():
-    return render_template("all_recipes.html")
+    return render_template("index.html")
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -72,6 +66,26 @@ def login():
                 return redirect(url_for("index"))
 
     return render_template("login.html", form=form)
+
+
+@app.route("/all_recipes")
+def all_recipes():
+    return render_template("all_recipes.html")
+
+
+@app.route("/my_recipes", methods=["GET", "POST"])
+def my_recipes():
+    return render_template("my_recipes.html")
+
+
+@app.route("/added_recipes")
+def added_recipes():
+    return render_template("added_recipes.html")
+
+
+@app.route("/add_recipe")
+def add_recipe():
+    return render_template("add_recipe.html")
 
 
 if __name__ == "__main__":

@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1 class="logo-font text-center header">My Recipes</h1>
+<div class="row d-flex justify-content-around mt-5">
+    <a href="{{ url_for('my_recipes') }}"><div class="col-4 my-recipe-buttons text-center sub-header current-button"><i class="fas fa-heart"></i>View my favourite recipes</div></a>
+    <a href="{{ url_for('added_recipes') }}"><div class="col-4 my-recipe-buttons text-center sub-header"><i class="fas fa-pencil-alt"></i>View my added recipes</div></a>
+    <a href="{{ url_for('add_recipe') }}"><div class="col-4 my-recipe-buttons text-center sub-header"><i class="far fa-plus-square"></i>Add a new recipe</div></a>
+</div>
+{% endblock %}
