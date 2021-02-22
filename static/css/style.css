@@ -156,6 +156,13 @@ nav {
     margin-bottom: 5px;
 }
 
+/*------------------------------------------------------- SEARCH AND FILTER */
+.search-container {
+    background-color: #FFF6BC;
+    border-radius: 20px;
+    width: 80%;
+    margin-top: 40px;
+}
 /*------------------------------------------------------- INDEX */
 .hero {
     min-height: 250px;
