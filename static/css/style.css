@@ -155,6 +155,7 @@ nav {
     font-family: 'Bevan';
     margin-bottom: 5px;
 }
+
 /*------------------------------------------------------- INDEX */
 .hero {
     min-height: 250px;
@@ -270,6 +271,9 @@ nav {
     }
     .about-row {
         min-height: 300px;
+    }
+    .login-form {
+        height: 572.67px;
     }
 }
 
