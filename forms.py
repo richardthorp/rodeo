@@ -22,4 +22,12 @@ class Registration_form(FlaskForm):
                                      InputRequired(), EqualTo('password')],
                                      render_kw={"placeholder":
                                                 "Retype Password"})
-    submit = SubmitField("Register!")
+    submit = SubmitField("Register")
+
+
+class Login_form(FlaskForm):
+    email_or_username = StringField("Email Address",
+                                    render_kw={"placeholder": "Enter email address or username"})
+    password = PasswordField("Password",
+                             render_kw={"placeholder": "Enter password"})
+    submit = SubmitField("Log in")

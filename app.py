@@ -2,9 +2,9 @@ import os
 from flask_pymongo import PyMongo
 from flask import (Flask, flash, render_template,
                    redirect, request, session, url_for)
-from werkzeug.security import generate_password_hash
+from werkzeug.security import generate_password_hash, check_password_hash
 from flask_paginate import Pagination, get_page_args
-from forms import Registration_form
+from forms import Registration_form, Login_form
 if os.path.exists("env.py"):
     import env
 
@@ -26,11 +26,6 @@ def index():
 @app.route("/all_recipes")
 def all_recipes():
     return render_template("all_recipes.html")
-
-
-@app.route("/login")
-def login():
-    return render_template("login.html")
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -60,6 +55,23 @@ def register():
         print("NOT VALIDATED")
 
     return render_template("register.html", form=form)
+
+
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    form = Login_form()
+    if form.validate_on_submit():
+        email_or_username = request.form.get("email_or_username")
+        existing_user = mongo.db.users.find_one(
+                        {"$or": [{"username": email_or_username},
+                         {"email": email_or_username}]})
+        if existing_user:
+            if check_password_hash(existing_user["password"], request.form.get("password")):
+                session["username"] = existing_user["username"]
+                print("Login successfull")
+                return redirect(url_for("index"))
+
+    return render_template("login.html", form=form)
 
 
 if __name__ == "__main__":
