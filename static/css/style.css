@@ -160,6 +160,10 @@ nav {
     border-color: #136F63;
 }
 
+.form-header {
+    margin-top: 20px;
+}
+
 .form-details {
     font-family: 'Bevan';
     margin-bottom: 5px;
@@ -278,7 +282,7 @@ nav {
 .recipe-type-radio ul li {
     list-style: none;
     display: inline;
-    padding: 10px;
+    padding: 0 10px;
     font-family: 'Open Sans';
 }
 
@@ -316,6 +320,9 @@ nav {
         font-size: 1.5rem;
         text-align: center;
     }
+    .form-header{
+        font-size: 0.7rem;
+    }
     .form-input-label, .form-details {
         font-size: 0.7rem;
     }
@@ -328,6 +335,10 @@ nav {
     }
     .my-recipe-buttons i {
         font-size: 2rem;
+    }
+    .rounded-container {
+        margin-top: 10px;
+        width: 100%;
     }
     .search-container .custom-button {
         font-size: 0.7rem;
@@ -364,6 +375,9 @@ nav {
     .search-container .custom-button {
         font-size: 0.8rem;
         margin: 0 0 5px 0;
+    }
+    .rounded-container {
+        margin-top: 20px;
     }
 }
 
