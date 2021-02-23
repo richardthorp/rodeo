@@ -1,5 +1,6 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField
+from wtforms import (StringField, PasswordField,
+                     SubmitField, RadioField, BooleanField)
 from wtforms.validators import InputRequired, Length, Email, EqualTo
 from wtforms.fields.html5 import EmailField
 
@@ -31,3 +32,17 @@ class Login_form(FlaskForm):
     password = PasswordField("Password",
                              render_kw={"placeholder": "Enter password"})
     submit = SubmitField("Log in")
+
+
+class Search_and_filter_form(FlaskForm):
+    search = StringField("Search", render_kw={"placeholder": "Enter search terms"})
+    search_submit = SubmitField("Search")
+    recipe_type = RadioField('Type', choices=[('meat', 'Meat'),
+                                ('vegetarian', 'Vegetarian'),
+                                ('vegan', 'Vegan')])
+    cheap_checkbox = BooleanField('Cheap')
+    gluton_free_checkbox = BooleanField('Gluton Free')
+    healthy_checkbox = BooleanField('Healthy')
+    quick_checkbox = BooleanField('Quick')
+    fakeaway_checkbox = BooleanField('Fakeaway')
+

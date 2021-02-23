@@ -35,16 +35,44 @@
 <!-- SEARCH AND FILTER CONTAINER -->
 <div class="row search-container mx-auto">
     <div class="col-12">
-        <div class="row">
-            <div class="col-12 col-md-6 col-lg-4">
-                <div class="sub-header text-left">Search for a recipe or ingredient</div>
+        <form method="POST" action="">
+            <div class="row">
+                {{ form.hidden_tag() }}
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="sub-header text-left">Search for a recipe or ingredient</div>
+                    {{ form.search(class="form-input") }}
+                    {{ form.search_submit(class="custom-button") }}
+                </div>
+                <div class="d-none d-lg-block col-lg-4"></div>
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="sub-header text-right">Filter recipes</div>
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Filter
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            {{ form.recipe_type(class="dropdown-item") }}
+                            {{ form.cheap_checkbox() }}
+                            {{ form.cheap_checkbox.label() }}
+                            {{ form.gluton_free_checkbox() }}
+                            {{ form.gluton_free_checkbox.label() }}
+                            {{ form.fakeaway_checkbox() }}
+                            {{ form.fakeaway_checkbox.label() }}
+                            {{ form.healthy_checkbox() }}
+                            {{ form.healthy_checkbox.label() }}
+                            {{ form.quick_checkbox() }}
+                            {{ form.quick_checkbox.label() }}
+
+                            <!-- <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="#">Something else here</a> -->
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="d-none d-lg-block col-lg-4"></div>
-            <div class="col-12 col-md-6 col-lg-4">
-                <div class="sub-header text-right">Filter recipes</div>
-            </div>
-        </div>
+        </form>
     </div>
 </div>
 
-    {% endblock %}
+{% endblock %}
