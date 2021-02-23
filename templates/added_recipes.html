@@ -2,7 +2,8 @@
 {% block content %}
 
 <h1 class="logo-font text-center header">My Recipes</h1>
-<div class="row d-flex justify-content-around mt-5 no-gutters">
+<!-- MY RECIPES NAVIGATION BUTTONS -->
+<div class="row d-flex justify-content-around mt-3 mt-lg-5 no-gutters">
     <div class="col-4 d-flex justify-content-center">
         <div class="my-recipe-buttons">
             <a href="{{ url_for('my_recipes') }}">
@@ -29,7 +30,20 @@
                 </div>
             </a>
         </div>
-
+    </div>
+</div>
+<!-- SEARCH AND FILTER CONTAINER -->
+<div class="row search-container mx-auto">
+    <div class="col-12">
+        <div class="row">
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="sub-header text-left">Search for a recipe or ingredient</div>
+            </div>
+            <div class="d-none d-lg-block col-lg-4"></div>
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="sub-header text-right">Filter recipes</div>
+            </div>
+        </div>
     </div>
 </div>
 

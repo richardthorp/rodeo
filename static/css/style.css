@@ -26,7 +26,6 @@ a:hover {
     font-size: 5rem;
     color: #000;
     text-align: center;
-    margin-top: 20px;
     font-weight: bolder;
 }
 
@@ -39,13 +38,14 @@ a:hover {
 /*------------------------------------------------------- NAV BAR AND FOOTER */
 nav {
   background-color: #136F63;
+  height: 120px;
 }
 
 #logo {
   color: #FFF;
   font-size: 6rem;
   position: relative;
-  bottom: 8px;
+  bottom: 14px;
 }
 
 #bars-icon {
@@ -59,6 +59,8 @@ nav {
 .custom-nav-links, .footer-links {
   font-family: 'Young Heart';
   color: #FFFFFFC7;
+  position: relative;
+  bottom: 5px;
 }
 
 .custom-nav-links {
@@ -163,6 +165,11 @@ nav {
     width: 80%;
     margin-top: 40px;
 }
+
+.search-container .sub-header {
+    font-size: 0.8rem;
+}
+
 /*------------------------------------------------------- INDEX */
 .hero {
     min-height: 250px;
@@ -239,7 +246,7 @@ nav {
 /*-----------------------------------------------------MEDIA QUERIES */
 @media screen and (max-width: 576px){
     .header {
-        font-size: 3.3rem;
+        font-size: 3rem;
     }
     .sub-header {
         font-size: 1rem;
@@ -336,6 +343,9 @@ nav {
     }
     .about-row {
         min-height: 350px;
+    }
+    .header {
+        margin-top: 20px;
     }
     .my-recipe-buttons i {
         font-size: 4rem;
