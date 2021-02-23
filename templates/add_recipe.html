@@ -1,4 +1,46 @@
 {% extends 'base.html' %}
 {% block content %}
-ADD RECIPE
+<h1 class="header text-center logo-font">Add Recipe</h1>
+<div class="row rounded-container mx-auto">
+    <div class="col-12">
+        <div class="row">
+            <div class="col-12">
+                <h3 class="sub-header text-center">Recipe Type</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <h6 class="sub-header">Please select an option below :</h6>
+                <div class="recipe-type-radio d-flex justify-content-around">
+                    {{ form.recipe_type(class="dropdown-item") }}
+                </div>
+            </div>
+            <div class="col-12 col-md-6 ">
+                <h6 class="sub-header">Please tick all that apply :</h6>
+                <div class="recipe-type-options text-center">
+                    <div class="filter-option">
+                        {{ form.cheap_checkbox() }}
+                        {{ form.cheap_checkbox.label() }}
+                    </div>
+                    <div class="filter-option">
+                        {{ form.gluton_free_checkbox() }}
+                        {{ form.gluton_free_checkbox.label() }}
+                    </div>
+                    <div class="filter-option">
+                        {{ form.fakeaway_checkbox() }}
+                        {{ form.fakeaway_checkbox.label() }}
+                    </div>
+                    <div class="filter-option">
+                        {{ form.healthy_checkbox() }}
+                        {{ form.healthy_checkbox.label() }}
+                    </div>
+                    <div class="filter-option">
+                        {{ form.quick_checkbox() }}
+                        {{ form.quick_checkbox.label() }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

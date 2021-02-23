@@ -4,7 +4,8 @@ from flask import (Flask, flash, render_template,
                    redirect, request, session, url_for)
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_paginate import Pagination, get_page_args
-from forms import Registration_form, Login_form, Search_and_filter_form
+from forms import (Registration_form, Login_form,
+                   Search_and_filter_form, Add_recipe_form)
 if os.path.exists("env.py"):
     import env
 
@@ -86,7 +87,8 @@ def added_recipes():
 
 @app.route("/add_recipe")
 def add_recipe():
-    return render_template("add_recipe.html")
+    form = Add_recipe_form()
+    return render_template("add_recipe.html", form=form)
 
 
 if __name__ == "__main__":

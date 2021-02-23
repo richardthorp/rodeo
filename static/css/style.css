@@ -35,6 +35,13 @@ a:hover {
     text-transform: uppercase;
 }
 
+.rounded-container {
+    background-color: #FFF6BC;
+    border-radius: 20px;
+    width: 90%;
+    margin-top: 40px;
+}
+
 /*------------------------------------------------------- NAV BAR AND FOOTER */
 nav {
   background-color: #136F63;
@@ -159,12 +166,10 @@ nav {
 }
 
 /*------------------------------------------------------- SEARCH AND FILTER */
-.search-container {
-    background-color: #FFF6BC;
-    border-radius: 20px;
+/* .search-container {
     width: 80%;
     margin-top: 40px;
-}
+} */
 
 .search-container .sub-header {
     font-size: 0.8rem;
@@ -261,6 +266,26 @@ nav {
     background-color: #FFF6BC;
 }
 
+/*------------------------------------------------------- ADD RECIPE */
+.recipe-type-radio ul {
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    max-width: 400px;
+}
+
+.recipe-type-radio ul li {
+    list-style: none;
+    display: inline;
+    padding: 10px;
+    font-family: 'Open Sans';
+}
+
+.recipe-type-options .filter-option {
+    display: inline-block;
+    font-family: 'Open Sans';
+}
 /*-----------------------------------------------------MEDIA QUERIES */
 @media screen and (max-width: 576px){
     .header {

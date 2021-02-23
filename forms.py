@@ -8,7 +8,7 @@ from wtforms.fields.html5 import EmailField
 class Registration_form(FlaskForm):
     email = EmailField("Email Address",
                        validators=[Email(),
-                                   InputRequired()], 
+                                   InputRequired()],
                        render_kw={"placeholder": "Email Address"})
     username = StringField("Username",
                            validators=[InputRequired(), Length(min=4, max=25)],
@@ -27,19 +27,22 @@ class Registration_form(FlaskForm):
 
 
 class Login_form(FlaskForm):
-    email_or_username = StringField("Email Address",
-                                    render_kw={"placeholder": "Enter email address or username"})
+    email_or_username = StringField(
+            "Email Address",
+            render_kw={
+             "placeholder": "Enter email address or username"})
     password = PasswordField("Password",
                              render_kw={"placeholder": "Enter password"})
     submit = SubmitField("Log in")
 
 
 class Search_and_filter_form(FlaskForm):
-    search = StringField("Search", render_kw={"placeholder": "Enter search terms"})
+    search = StringField("Search",
+                         render_kw={"placeholder": "Enter search terms"})
     search_submit = SubmitField("Search")
     recipe_type = RadioField('Type', choices=[('meat', 'Meat'),
-                                ('vegetarian', 'Vegetarian'),
-                                ('vegan', 'Vegan')])
+                                              ('vegetarian', 'Vegetarian'),
+                                              ('vegan', 'Vegan')])
     cheap_checkbox = BooleanField('Cheap')
     gluton_free_checkbox = BooleanField('Gluton Free')
     healthy_checkbox = BooleanField('Healthy')
@@ -47,3 +50,26 @@ class Search_and_filter_form(FlaskForm):
     fakeaway_checkbox = BooleanField('Fakeaway')
     filter_submit = SubmitField('Filter')
 
+
+class Add_recipe_form(FlaskForm):
+    recipe_type = RadioField('Type', choices=[('meat', 'Meat'),
+                             ('vegetarian', 'Vegetarian'),
+                             ('vegan', 'Vegan')])
+    cheap_checkbox = BooleanField('Cheap')
+    gluton_free_checkbox = BooleanField('Gluton Free')
+    healthy_checkbox = BooleanField('Healthy')
+    quick_checkbox = BooleanField('Quick')
+    fakeaway_checkbox = BooleanField('Fakeaway')
+    ingredients = StringField("Ingredients",
+                              validators=[Length(max=50), InputRequired()])
+    additional_ingredients = StringField("Ingredients",
+                                         validators=[Length(max=50)])
+    quantity = StringField("Quantity",
+                           validators=[Length(max=50), InputRequired()])
+    additional_quantity = StringField("Quantity",
+                                      validators=[Length(max=50),
+                                                  InputRequired()])
+    instructions = StringField("Instructions",
+                               validators=[Length(max=150), InputRequired()])
+    additional_instructions = StringField("Instructions",
+                                          validators=[Length(max=150)])
