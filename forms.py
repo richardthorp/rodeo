@@ -45,4 +45,5 @@ class Search_and_filter_form(FlaskForm):
     healthy_checkbox = BooleanField('Healthy')
     quick_checkbox = BooleanField('Quick')
     fakeaway_checkbox = BooleanField('Fakeaway')
+    filter_submit = SubmitField('Filter')
 

@@ -170,6 +170,24 @@ nav {
     font-size: 0.8rem;
 }
 
+.search-container .custom-button {
+    margin: 10px 0;
+    padding: 5px;
+}
+
+.filter-dropdown {
+    font-family: 'Open Sans';
+    background-color: #FFF6BC;
+}
+
+.filter-dropdown ul {
+    list-style: none;
+}
+
+.filter-option {
+    padding-left: 24px;
+}
+
 /*------------------------------------------------------- INDEX */
 .hero {
     min-height: 250px;
@@ -286,6 +304,10 @@ nav {
     .my-recipe-buttons i {
         font-size: 2rem;
     }
+    .search-container .custom-button {
+        font-size: 0.7rem;
+        margin: 0 0 5px 0;
+    }
 }
 
 @media screen and (min-width: 576px){
@@ -312,8 +334,11 @@ nav {
     }
     .my-recipe-buttons p {
         font-size: 1rem;
-        /* height: 150px; */
         border-width: 3px;
+    }
+    .search-container .custom-button {
+        font-size: 0.8rem;
+        margin: 0 0 5px 0;
     }
 }
 
@@ -330,6 +355,9 @@ nav {
     }
     .login-form {
         height: 572.67px;
+    }
+    .search-container .custom-button {
+        font-size: 1rem;
     }
 }
 
