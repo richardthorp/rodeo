@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import (StringField, PasswordField,
                      SubmitField, RadioField, BooleanField, TextAreaField,
-                     IntegerField)
+                     IntegerField, FileField)
 from wtforms.validators import InputRequired, Length, Email, EqualTo
 from wtforms.fields.html5 import EmailField
 
@@ -86,5 +86,6 @@ class Add_recipe_form(FlaskForm):
     feeds = IntegerField("How many people does it feed?",
                          validators=[InputRequired()],
                          render_kw={"type": "number"})
+    picture_upload = FileField('Upload Picture')
     add_recipe_button = SubmitField(render_kw={"value": "Add Recipe"})
 

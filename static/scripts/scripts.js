@@ -1,3 +1,6 @@
+// autoResize jQuery plugin written by James Padolsey http://james.padolsey.com
+$(".auto-resize").autoResize();
+
 // Check that all the boxes have some text in them before rendering a new text input
 $("#add-ingredient-row").on('click', function () {
     ingredientItems = $(".ingredients-container .form-input").siblings('input');
@@ -30,8 +33,13 @@ $("#add-instructions-row").on('click', function () {
     $(".auto-resize").autoResize();
 });
 
-// autoResize jQuery plugin written by James Padolsey http://james.padolsey.com
-$(".auto-resize").autoResize();
+$("#picture_upload").change(function() {
+    $("#selected-file").text($("#picture_upload").val().split("\\").pop())
+}) 
+
+
+
+
 
 
 

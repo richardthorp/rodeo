@@ -89,10 +89,13 @@
         <div class="col-6 col-lg-4">
             <div class="rounded-container text-center bottom-form-containers mx-auto">
                 <h6 class="form-details">Add an image</h6>
+                {{ form.picture_upload(class="hidden-file-input") }}
+                <label for="picture_upload" class="custom-button select-file-button">Select File</label>
+                <p for="picture_upload" id="selected-file">TECT</p>
             </div>
         </div>
         <div class="col-12 col-lg-4 add-recipe-button">
-            <div class="rounded-container text-center bottom-form-containers mx-auto d-flex">
+            <div class="rounded-container text-center bottom-form-containers mx-auto d-flex align-items-center">
                 {{ form.add_recipe_button(class="custom-button mx-auto", id="add-recipe-button") }}
             </div>
         </div>
