@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import (StringField, PasswordField,
-                     SubmitField, RadioField, BooleanField)
+                     SubmitField, RadioField, BooleanField, TextAreaField)
 from wtforms.validators import InputRequired, Length, Email, EqualTo
 from wtforms.fields.html5 import EmailField
 
@@ -61,15 +61,15 @@ class Add_recipe_form(FlaskForm):
     quick_checkbox = BooleanField('Quick')
     fakeaway_checkbox = BooleanField('Fakeaway')
     ingredient_1 = StringField("Ingredient 1",
-                              validators=[Length(max=50), InputRequired()])
+                               validators=[Length(max=50), InputRequired()])
     ingredient_2 = StringField("Ingredient 2",
                                          validators=[Length(max=50)])
     quantity_1 = StringField("Quantity",
-                           validators=[Length(max=50), InputRequired()])
+                             validators=[Length(max=50), InputRequired()])
     quantity_2 = StringField("Quantity",
-                                      validators=[Length(max=50),
-                                                  InputRequired()])
-    instructions = StringField("Instructions",
-                               validators=[Length(max=150), InputRequired()])
+                             validators=[Length(max=50),
+                                         InputRequired()])
+    instruction = TextAreaField("Instruction",
+                                validators=[InputRequired()])
     additional_instructions = StringField("Instructions",
                                           validators=[Length(max=150)])

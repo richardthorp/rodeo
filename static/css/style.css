@@ -132,6 +132,7 @@ nav {
     display: block;
     width: 90%;
     max-width: 400px;
+    margin: 5px 0;
 }
 
 .form-input-label {
@@ -291,10 +292,11 @@ nav {
     font-family: 'Open Sans';
 }
 
- .ingredients-container .form-input, .quantity-container  .form-input{
-    margin: 5px 0;
-}
+.instructions-container .form-input {
+    max-width: none;
+    width: 100%
 
+}
 .add-row-btn {
     font-size: 1.5rem;
     position: relative;

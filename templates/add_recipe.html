@@ -45,7 +45,9 @@
 </div>
 <p class="sub-header mt-3 mt-lg-4">Please list your ingredients and cooking instructions here.<br>
     If you need more boxes, click the plus button.</p>
+<!-- INGREDIENTS AND INSTRUCTIONS ROW -->
 <div class="row mx-auto">
+    <!-- INGREDIENTS AND QUANTITY -->
     <div class="col-12 col-lg-6 d-flex justify-content-center">
         <div class="row rounded-container">
             <div class="col-8 ingredients-container">
@@ -63,9 +65,13 @@
             </div>
         </div>
     </div>
+    <!-- INSTRUCTIONS -->
     <div class="col-12 col-lg-6 d-flex justify-content-center">
-        <div class="rounded-container">
-            <h6 class="text-left pl-3 form-details">Instructions</h6>
+        <div class="row rounded-container">
+            <div class="col-12 instructions-container">
+                <h6 class="text-left pl-3 form-details">Instructions</h6>
+                {{ form.instruction(class="form-input auto-resize") }}
+            </div>
         </div>
     </div>
 </div>
