@@ -16,7 +16,7 @@ $("#add-ingredient-row").on('click', function () {
 
 
 $("#add-instructions-row").on('click', function () {
-    instructionItems = $(".instructions-container .form-input").siblings('textarea[name]');
+    instructionItems = $(".instructions-container .form-input").siblings('textarea[name]'); 
     for (let i = 0; i < instructionItems.length; i += 1) {
         if (instructionItems[i].value == "") {
             return;

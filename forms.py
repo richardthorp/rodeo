@@ -1,6 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import (StringField, PasswordField,
-                     SubmitField, RadioField, BooleanField, TextAreaField)
+                     SubmitField, RadioField, BooleanField, TextAreaField,
+                     IntegerField)
 from wtforms.validators import InputRequired, Length, Email, EqualTo
 from wtforms.fields.html5 import EmailField
 
@@ -77,3 +78,8 @@ class Add_recipe_form(FlaskForm):
                                   validators=[InputRequired()],
                                   render_kw={"placeholder":
                                              "Please enter step 2..."})
+    feeds = IntegerField("How many people does it feed?",
+                         validators=[InputRequired()],
+                         render_kw={"type": "number"})
+    add_recipe_button = SubmitField(render_kw={"value": "Add Recipe"})
+

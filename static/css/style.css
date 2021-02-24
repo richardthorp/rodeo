@@ -170,12 +170,12 @@ nav {
     margin-bottom: 5px;
 }
 
-/*------------------------------------------------------- SEARCH AND FILTER */
-/* .search-container {
-    width: 80%;
-    margin-top: 40px;
-} */
+.number-input {
+    width: 60px;
+}
 
+
+/*------------------------------------------------------- SEARCH AND FILTER */
 .search-container .sub-header {
     font-size: 0.8rem;
 }
@@ -272,12 +272,16 @@ nav {
 }
 
 /*------------------------------------------------------- ADD RECIPE */
+.add-recipe-form-container .form-details {
+    padding-top: 5px;
+}
 .recipe-type-radio ul {
     text-align: center;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
     max-width: 400px;
+    padding: 0;
 }
 
 .recipe-type-radio ul li {
@@ -301,6 +305,9 @@ nav {
     font-size: 1.5rem;
     position: relative;
     right: 20px;
+}
+.quantity-container {
+    padding: 0;
 }
 /*-----------------------------------------------------MEDIA QUERIES */
 @media screen and (max-width: 576px){
