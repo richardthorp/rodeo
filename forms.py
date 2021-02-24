@@ -60,13 +60,13 @@ class Add_recipe_form(FlaskForm):
     healthy_checkbox = BooleanField('Healthy')
     quick_checkbox = BooleanField('Quick')
     fakeaway_checkbox = BooleanField('Fakeaway')
-    ingredients = StringField("Ingredients",
+    ingredient_1 = StringField("Ingredient 1",
                               validators=[Length(max=50), InputRequired()])
-    additional_ingredients = StringField("Ingredients",
+    ingredient_2 = StringField("Ingredient 2",
                                          validators=[Length(max=50)])
-    quantity = StringField("Quantity",
+    quantity_1 = StringField("Quantity",
                            validators=[Length(max=50), InputRequired()])
-    additional_quantity = StringField("Quantity",
+    quantity_2 = StringField("Quantity",
                                       validators=[Length(max=50),
                                                   InputRequired()])
     instructions = StringField("Instructions",

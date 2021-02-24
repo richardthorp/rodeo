@@ -290,6 +290,16 @@ nav {
     display: inline-block;
     font-family: 'Open Sans';
 }
+
+ .ingredients-container .form-input, .quantity-container  .form-input{
+    margin: 5px 0;
+}
+
+.add-row-btn {
+    font-size: 1.5rem;
+    position: relative;
+    right: 20px;
+}
 /*-----------------------------------------------------MEDIA QUERIES */
 @media screen and (max-width: 576px){
     .header {

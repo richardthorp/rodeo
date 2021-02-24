@@ -48,11 +48,18 @@
 <div class="row mx-auto">
     <div class="col-12 col-lg-6 d-flex justify-content-center">
         <div class="row rounded-container">
-            <div class="col-8">
+            <div class="col-8 ingredients-container">
                 <h6 class="text-left form-details">Ingredients</h6>
+                {{ form.ingredient_1(class="form-input") }}
+                {{ form.ingredient_2(class="form-input") }}
             </div>
-            <div class="col-4">
+            <div class="col-4 quantity-container">
                 <h6 class="text-left form-details">Quantity</h6>
+                {{ form.quantity_1(class="form-input") }}
+                {{ form.quantity_2(class="form-input") }}
+            </div>
+            <div id="add-ingredient-row" class="add-row-btn col-12 text-right">
+                <i class="fas fa-plus-circle"></i>
             </div>
         </div>
     </div>
