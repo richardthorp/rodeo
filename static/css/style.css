@@ -38,7 +38,7 @@ a:hover {
 .rounded-container {
     background-color: #FFF6BC;
     border-radius: 20px;
-    width: 90%;
+    /* width: 90%; */
     margin-top: 40px;
 }
 
@@ -176,6 +176,9 @@ nav {
 
 
 /*------------------------------------------------------- SEARCH AND FILTER */
+.search-container {
+    width: 90%;
+}
 .search-container .sub-header {
     font-size: 0.8rem;
 }
@@ -296,6 +299,26 @@ nav {
     font-family: 'Open Sans';
 }
 
+.top-form-container {
+    max-width: 900px;
+}
+
+.middle-form-containers {
+    width: 90%;
+    min-height: 182px;
+}
+
+.bottom-form-containers {
+    width: 90%;
+    height: 100px;
+
+}
+
+.bottom-form-row {
+    width: 80%;
+    margin: 0 auto;
+}
+
 .instructions-container .form-input {
     max-width: none;
     width: 100%
@@ -309,6 +332,7 @@ nav {
 .quantity-container {
     padding: 0;
 }
+
 /*-----------------------------------------------------MEDIA QUERIES */
 @media screen and (max-width: 576px){
     .header {
@@ -363,6 +387,16 @@ nav {
         font-size: 0.7rem;
         margin: 0 0 5px 0;
     }
+    .recipe-type-options .filter-option {
+        display: block;
+        text-align: left;
+    }
+    .bottom-form-row {
+        width: 100%;
+    }
+    .bottom-form-containers {
+        height: 80px;
+    }
 }
 
 @media screen and (min-width: 576px){
@@ -397,6 +431,10 @@ nav {
     }
     .rounded-container {
         margin-top: 20px;
+    }
+    .recipe-type-options .filter-option {
+        display: inline-block;
+        text-align: center;
     }
 }
 

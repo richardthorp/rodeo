@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-12 ">
             <h4 class="sub-header text-center form-header">Recipe Type</h4>
-            <div class="row rounded-container mx-auto">
+            <div class="row rounded-container top-form-container mx-auto">
                 <div class="col-12 col-md-6">
                     <h6 class="form-details text-center">Please select an option below :</h6>
                     <div class="recipe-type-radio d-flex justify-content-around">
@@ -46,25 +46,27 @@
     <div class="row mx-auto">
         <!-- INGREDIENTS AND QUANTITY -->
         <div class="col-12 col-lg-6 d-flex  justify-content-center">
-            <div class="row d-flex align-self-start rounded-container">
+            <div class="row d-flex align-self-start rounded-container middle-form-containers">
                 <div class="col-8 ingredients-container">
                     <h6 class="text-left form-details">Ingredients</h6>
                     {{ form.ingredient_1(class="form-input") }}
                     {{ form.ingredient_2(class="form-input") }}
+                    {{ form.ingredient_3(class="form-input") }}
                 </div>
                 <div class="col-4 quantity-container">
                     <h6 class="text-left form-details">Quantity</h6>
                     {{ form.quantity_1(class="form-input") }}
                     {{ form.quantity_2(class="form-input") }}
+                    {{ form.quantity_3(class="form-input") }}
                 </div>
-                <div class="add-row-btn col-12 text-right">
+                <div id="add-ingredient-row" class="add-row-btn col-12 text-right">
                     <i class="fas fa-plus-circle"></i>
                 </div>
             </div>
         </div>
         <!-- INSTRUCTIONS -->
         <div class="col-12 col-lg-6 d-flex justify-content-center">
-            <div class="row d-flex align-self-start rounded-container">
+            <div class="row d-flex align-self-start rounded-container middle-form-containers">
                 <div class="col-12 instructions-container">
                     <h6 class="text-left form-details">Instructions</h6>
                     {{ form.instruction_1(class="form-input auto-resize") }}
@@ -77,20 +79,21 @@
         </div>
     </div>
     <!-- HOW MANY PEOPLE / IMAGE UPLOAD / ADD BUTTON ROW -->
-    <div class="row mx-auto d-flex justify-content-between">
-        <div class="col-6 col-lg-4 rounded-container text-center d-flex justify-content-center">
-            <h6 class="form-details">How many people does it feed?</h6>
-            
-            {{ form.feeds(class="number-input text-center") }}
+    <div class="row bottom-form-row">
+        <div class="col-6 col-lg-4">
+            <div class="rounded-container text-center bottom-form-containers mx-auto">
+                <h6 class="form-details">How many people does it feed?</h6>
+                {{ form.feeds(class="number-input text-center") }}
+            </div>  
         </div>
-        <div class="col-6 col-lg-4 d-flex justify-content-center">
-            <div class="rounded-container">
-                <h6 class="form-details text-center">Add an image</h6>
+        <div class="col-6 col-lg-4">
+            <div class="rounded-container text-center bottom-form-containers mx-auto">
+                <h6 class="form-details">Add an image</h6>
             </div>
         </div>
-        <div class="col-12 col-lg-4 text-center d-flex justify-content-center">
-            <div class="rounded-container">
-                {{ form.add_recipe_button(class="custom-button mx-auto") }}
+        <div class="col-12 col-lg-4 add-recipe-button">
+            <div class="rounded-container text-center bottom-form-containers mx-auto d-flex">
+                {{ form.add_recipe_button(class="custom-button mx-auto", id="add-recipe-button") }}
             </div>
         </div>
     </div>
