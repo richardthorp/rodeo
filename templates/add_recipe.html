@@ -12,7 +12,7 @@
             <div class="col-12 col-md-6">
                 <h6 class="form-details text-center">Please select an option below :</h6>
                 <div class="recipe-type-radio d-flex justify-content-around">
-                    {{ form.recipe_type(class="dropdown-item") }}
+                    {{ form.recipe_type() }}
                 </div>
             </div>
             <div class="col-12 col-md-6 ">
@@ -49,7 +49,7 @@
 <div class="row mx-auto">
     <!-- INGREDIENTS AND QUANTITY -->
     <div class="col-12 col-lg-6 d-flex justify-content-center">
-        <div class="row rounded-container">
+        <div class="row rounded-container d-flex align-self-start">
             <div class="col-8 ingredients-container">
                 <h6 class="text-left form-details">Ingredients</h6>
                 {{ form.ingredient_1(class="form-input") }}
@@ -67,10 +67,14 @@
     </div>
     <!-- INSTRUCTIONS -->
     <div class="col-12 col-lg-6 d-flex justify-content-center">
-        <div class="row rounded-container">
+        <div class="row rounded-container d-flex align-self-start">
             <div class="col-12 instructions-container">
                 <h6 class="text-left pl-3 form-details">Instructions</h6>
-                {{ form.instruction(class="form-input auto-resize") }}
+                {{ form.instruction_1(class="form-input auto-resize") }}
+                {{ form.instruction_2(class="form-input auto-resize") }}
+            </div>
+            <div id="add-instructions-row" class="add-row-btn col-12 text-right">
+                <i class="fas fa-plus-circle"></i>
             </div>
         </div>
     </div>

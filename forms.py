@@ -63,13 +63,17 @@ class Add_recipe_form(FlaskForm):
     ingredient_1 = StringField("Ingredient 1",
                                validators=[Length(max=50), InputRequired()])
     ingredient_2 = StringField("Ingredient 2",
-                                         validators=[Length(max=50)])
+                               validators=[Length(max=50)])
     quantity_1 = StringField("Quantity",
                              validators=[Length(max=50), InputRequired()])
     quantity_2 = StringField("Quantity",
                              validators=[Length(max=50),
                                          InputRequired()])
-    instruction = TextAreaField("Instruction",
-                                validators=[InputRequired()])
-    additional_instructions = StringField("Instructions",
-                                          validators=[Length(max=150)])
+    instruction_1 = TextAreaField("Instruction",
+                                  validators=[InputRequired()],
+                                  render_kw={"placeholder":
+                                             "Please enter step 1..."})
+    instruction_2 = TextAreaField("Instruction",
+                                  validators=[InputRequired()],
+                                  render_kw={"placeholder":
+                                             "Please enter step 2..."})
