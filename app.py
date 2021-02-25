@@ -86,9 +86,13 @@ def added_recipes():
     return render_template("added_recipes.html", form=form)
 
 
-@app.route("/add_recipe")
+@app.route("/add_recipe", methods=["GET", "POST"])
 def add_recipe():
     form = Add_recipe_form()
+    if form.validate_on_submit():
+        new_recipe = dict(request.form)
+        print(new_recipe)
+        mongo.db.recipes.insert_one(new_recipe)
     return render_template("add_recipe.html", form=form)
 
 

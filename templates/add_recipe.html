@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 <h1 class="logo-font text-center header">My Recipes</h1>
+<!-- MY RECIPES NAVIGATION BUTTONS -->
 <div class="row d-flex justify-content-around mt-3 mt-lg-5 no-gutters">
     <div class="col-4 d-flex justify-content-center">
         <div class="my-recipe-buttons">
@@ -30,6 +31,9 @@
         </div>
     </div>
 </div>
+<!-- ADD RECIPE FORM -->
+<form method="POST" action="{{ url_for('add_recipe')}}">
+{{ form.csrf_token }}
 <div class="row">
     <div class="col-12 ">
         <div class="row rounded-container form-container mx-auto">
@@ -123,4 +127,5 @@
         {{ form.add_recipe_button(class="custom-button mx-auto", id="add-recipe-button") }}
     </div>
 </div>
+</form>
 {% endblock %}
