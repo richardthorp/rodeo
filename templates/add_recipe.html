@@ -76,13 +76,13 @@
 <!-- INGREDIENTS AND QUANTITY -->
 <div class="rounded-container form-container mx-auto">
     <div class="row mx-auto">
-        <div class="col-8">
+        <div class="col-8 ingredients-container">
             <h6 class="text-left form-details">Ingredients</h6>
             {{ form.ingredient_1(class="form-input") }}
             {{ form.ingredient_2(class="form-input") }}
             {{ form.ingredient_3(class="form-input") }}
         </div>
-        <div class="col-4">
+        <div class="col-4 quantity-container">
             <h6 class="text-left form-details">Quantity</h6>
             {{ form.quantity_1(class="form-input") }}
             {{ form.quantity_2(class="form-input") }}
@@ -95,7 +95,7 @@
     <hr>
     <!-- INSTRUCTIONS -->
     <div class="row mx-auto">
-        <div class="col-12 ">
+        <div class="col-12 instructions-container">
             <h6 class="text-left form-details">Instructions</h6>
             {{ form.instruction_1(class="form-input auto-resize") }}
             {{ form.instruction_2(class="form-input auto-resize") }}

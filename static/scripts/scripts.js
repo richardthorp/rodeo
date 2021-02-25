@@ -1,23 +1,26 @@
-// autoResize jQuery plugin written by James Padolsey http://james.padolsey.com
+/* autoResize jQuery plugin written by James Padolsey http://james.padolsey.com 
+   autoResize() used to make textarea input expand with text input*/
 $(".auto-resize").autoResize();
 
-// Check that all the boxes have some text in them before rendering a new text input
+/* RENDER NEW ROWS IN THE ADD_RECIPE FORM WHEN PLUS BUTTON CLICKED */
 $("#add-ingredient-row").on('click', function () {
     ingredientItems = $(".ingredients-container .form-input").siblings('input');
+    /* Check that all the boxes in the ingredient container have some text in them before rendering a new text input */
     for (let i = 0; i < ingredientItems.length; i += 1) {
         if (ingredientItems[i].value == "") {
             return;
         } 
     }
-    // Get number to add to name attribute in form
+    /* Get number to add to name attribute in form */
     inputNumber = ingredientItems.length + 1;
     ingredientHTMLString = `<input class='form-input' id=ingredient_${inputNumber} name='ingredient_${inputNumber}' type='text' value=''>`;
-    quantityHTMLSting = `<input class='form-input' id=quantity_${inputNumber} name='quantity_${inputNumber}' type='text' value=''>`;
+    quantityHTMLString = `<input class='form-input' id=quantity_${inputNumber} name='quantity_${inputNumber}' type='text' value=''>`;
     $(".ingredients-container").append(ingredientHTMLString);
-    $(".quantity-container").append(quantityHTMLSting);
+    $(".quantity-container").append(quantityHTMLString);
 });
 
-
+/* This function is the same as above, but the jQuery selector needs to target textarea inputs with a name attribute
+   due to the autoResize plugin creating hidden textarea inputs when called  */
 $("#add-instructions-row").on('click', function () {
     instructionItems = $(".instructions-container .form-input").siblings('textarea[name]'); 
     for (let i = 0; i < instructionItems.length; i += 1) {
@@ -33,6 +36,7 @@ $("#add-instructions-row").on('click', function () {
     $(".auto-resize").autoResize();
 });
 
+/* Get the name of the file selcted in the file input and render to page */
 $("#picture_upload").change(function() {
     $("#selected-file").text($("#picture_upload").val().split("\\").pop())
 }) 
