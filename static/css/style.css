@@ -130,8 +130,7 @@ nav {
 /*------------------------------------------------------- FORMS */
 .form-input{
     display: block;
-    width: 90%;
-    max-width: 400px;
+    width: 100%;
     margin: 5px 0;
 }
 
@@ -275,9 +274,10 @@ nav {
 }
 
 /*------------------------------------------------------- ADD RECIPE */
-.add-recipe-form-container .form-details {
-    padding-top: 5px;
+.form-container .form-details {
+    padding: 5px 5px 0 5px;
 }
+
 .recipe-type-radio ul {
     text-align: center;
     display: flex;
@@ -299,40 +299,17 @@ nav {
     font-family: 'Open Sans';
 }
 
-.top-form-container {
-    max-width: 900px;
+.form-container {
+    max-width: 700px;
 }
 
-.middle-form-containers {
-    width: 90%;
-    min-height: 182px;
-}
-
-.bottom-form-containers {
-    width: 90%;
-    height: 100px;
-
-}
-
-.bottom-form-row {
-    width: 80%;
-    margin: 0 auto;
-}
-
-.instructions-container .form-input {
-    max-width: none;
-    width: 100%
-
-}
 .add-row-btn {
     font-size: 1.5rem;
     position: relative;
     right: 20px;
 }
-.quantity-container {
-    padding: 0;
-}
- .hidden-file-input {
+
+.hidden-file-input {
      display: none;
 }
 
@@ -341,9 +318,17 @@ nav {
     padding: 3px;
     }
  
- #add-recipe-button {
-     height: 50px;
- }
+#add-recipe-button {
+    font-size: 2.5rem;
+    margin-top: 48px;
+    border: 6px solid;
+    background-color: #FFF6BC; 
+}
+
+#add-recipe-button:hover{
+    background-color: #136F63;
+
+}
 
 /*-----------------------------------------------------MEDIA QUERIES */
 @media screen and (max-width: 576px){
@@ -403,11 +388,11 @@ nav {
         display: block;
         text-align: left;
     }
-    .bottom-form-row {
-        width: 100%;
+    .form-input {
+        font-size: 0.8rem;
     }
-    .bottom-form-containers {
-        height: 80px;
+    #add-recipe-button {
+        font-size: 1.5rem;
     }
 }
 
@@ -430,6 +415,9 @@ nav {
     .form-input-label {
         font-size: 1.2rem;
     }
+    .form-input {
+        font-size: 0.8rem;
+    }
     .my-recipe-buttons i {
         font-size: 2.5rem;
     }
@@ -449,8 +437,7 @@ nav {
         text-align: center;
     }
     .select-file-button {
-        font-size: 1rem;
-        padding: 4px;
+        padding: 5px;
     }
 }
 
@@ -469,6 +456,12 @@ nav {
         height: 572.67px;
     }
     .search-container .custom-button {
+        font-size: 1rem;
+    }
+    .select-file-button {
+        font-size: 0.8rem;
+    }
+    .form-input {
         font-size: 1rem;
     }
 }
