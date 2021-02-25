@@ -35,15 +35,53 @@
 <!-- SEARCH AND FILTER CONTAINER -->
 <div class="row search-container rounded-container mx-auto">
     <div class="col-12">
-        <div class="row">
-            <div class="col-12 col-md-6 col-lg-4">
-                <div class="sub-header text-left">Search for a recipe or ingredient</div>
+        <form method="POST" action="">
+            <div class="row">
+                {{ form.hidden_tag() }}
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="sub-header text-left mt-2 mb-1">Search for a recipe or ingredient</div>
+                    {{ form.search(class="form-input mb-2") }}
+                    {{ form.search_submit(class="custom-button") }}
+                </div>
+                <div class="d-none d-lg-block col-lg-4"></div>
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="sub-header text-right mt-1 mb-1">Filter recipes</div>
+                    <div class="dropdown text-right">
+                        <button class="btn btn-secondary dropdown-toggle custom-button" type="button" id="dropdownMenuButton"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Filter
+                        </button>
+                        <div class="dropdown-menu filter-dropdown" aria-labelledby="dropdownMenuButton">
+                            <h6 class="dropdown-header sub-header">Recipe Type</h6>
+                            {{ form.recipe_type(class="dropdown-item") }}
+                            <div class="dropdown-divider"></div>
+                            <h6 class="dropdown-header sub-header">Recipe Options</h6>
+                            <div class="filter-option">
+                                {{ form.cheap_checkbox() }}
+                                {{ form.cheap_checkbox.label() }}
+                            </div>
+                            <div class="filter-option">
+                                {{ form.gluton_free_checkbox() }}
+                                {{ form.gluton_free_checkbox.label() }}
+                            </div>
+                            <div class="filter-option">
+                                {{ form.fakeaway_checkbox() }}
+                                {{ form.fakeaway_checkbox.label() }}
+                            </div>
+                            <div class="filter-option">
+                                {{ form.healthy_checkbox() }}
+                                {{ form.healthy_checkbox.label() }}
+                            </div>
+                            <div class="filter-option">
+                                {{ form.quick_checkbox() }}
+                                {{ form.quick_checkbox.label() }}
+                            </div>
+                            {{ form.filter_submit() }}
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="d-none d-lg-block col-lg-4"></div>
-            <div class="col-12 col-md-6 col-lg-4">
-                <div class="sub-header text-right">Filter recipes</div>
-            </div>
-        </div>
+        </form>
     </div>
 </div>
 

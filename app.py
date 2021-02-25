@@ -82,7 +82,8 @@ def my_recipes():
 
 @app.route("/added_recipes")
 def added_recipes():
-    return render_template("added_recipes.html")
+    form = Search_and_filter_form()
+    return render_template("added_recipes.html", form=form)
 
 
 @app.route("/add_recipe")
