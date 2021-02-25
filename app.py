@@ -90,9 +90,24 @@ def added_recipes():
 def add_recipe():
     form = Add_recipe_form()
     if form.validate_on_submit():
-        new_recipe = dict(request.form)
-        print(new_recipe)
-        mongo.db.recipes.insert_one(new_recipe)
+        ingredients = []
+        quantities = []
+        instructions = []
+        formatted_recipe = {}
+        for item in request.form.items():
+            if "ingredient" in item[0]:
+                ingredients.append(item)
+            elif "quantity" in item[0]:
+                quantities.append(item)
+            elif "instruction" in item[0]:
+                instructions.append(item)
+            else:
+                formatted_recipe[item[0]] = item[1]
+        formatted_recipe["ingredients"] = ingredients
+        formatted_recipe["quantities"] = quantities
+        formatted_recipe["instructions"] = instructions
+
+        mongo.db.recipes.insert_one(formatted_recipe)
     return render_template("add_recipe.html", form=form)
 
 
