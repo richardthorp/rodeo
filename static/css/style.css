@@ -48,11 +48,22 @@ nav {
   height: 120px;
 }
 
+.navbar {
+    padding: 0px;;
+}
+
+.navbar-collapse {
+    background-color: #136F63;
+    padding-right: 5px;
+    z-index: 1;
+}
+
 #logo {
   color: #FFF;
   font-size: 6rem;
   position: relative;
   bottom: 14px;
+  padding-left: 10px;
 }
 
 #bars-icon {
@@ -332,6 +343,9 @@ nav {
 
 /*-----------------------------------------------------MEDIA QUERIES */
 @media screen and (max-width: 576px){
+    #logo {
+        bottom: 8px;
+    }
     .header {
         font-size: 3rem;
     }
@@ -396,7 +410,7 @@ nav {
     }
 }
 
-@media screen and (min-width: 576px){
+@media screen and (min-width: 577px){
     #logo {
         font-size: 4.5rem;
     }
