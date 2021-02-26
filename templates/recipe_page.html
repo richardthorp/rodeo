@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1 class="logo-font text-center header">{{ recipe.recipe_name }}</h1>
+<h1 class="logo-font text-center header">{{ recipe.name }}</h1>
 <ul>
-    <li></li>
+    <li>Serves {{ recipe.feeds }}</li>
 </ul>
 <ul>
 {% for item in recipe.details.values() %}

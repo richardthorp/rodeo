@@ -109,11 +109,12 @@ def add_recipe():
                 instructions.append(value)
 
         formatted_recipe = {
+            'name': recipe['recipe_name'],
+            'feeds': recipe['feeds'],
             'details': details,
             'ingredients': ingredients,
             'quantities': quantities,
-            'instructions': instructions,
-            'feeds': recipe['feeds']
+            'instructions': instructions
             }
 
         mongo.db.recipes.insert_one(formatted_recipe)
