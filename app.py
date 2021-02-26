@@ -61,7 +61,8 @@ def login():
                         {"$or": [{"username": email_or_username},
                          {"email": email_or_username}]})
         if existing_user:
-            if check_password_hash(existing_user["password"], request.form.get("password")):
+            if check_password_hash(existing_user["password"],
+                                   request.form.get("password")):
                 session["username"] = existing_user["username"]
                 print("Login successfull")
                 return redirect(url_for("index"))
@@ -109,6 +110,13 @@ def add_recipe():
 
         mongo.db.recipes.insert_one(formatted_recipe)
     return render_template("add_recipe.html", form=form)
+
+
+@app.route("/recipe_page")
+def recipe_page():
+    recipe = mongo.db.recipes.find_one({"recipe_type": "vegetarian"})
+    print(recipe)
+    return render_template("recipe_page.html", recipe=recipe)
 
 
 if __name__ == "__main__":

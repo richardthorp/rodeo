@@ -53,6 +53,8 @@ class Search_and_filter_form(FlaskForm):
 
 
 class Add_recipe_form(FlaskForm):
+    recipe_name = StringField('Recipe Name',
+                              validators=[Length(max=50), InputRequired()])
     recipe_type = RadioField('Type', choices=[('meat', 'Meat'),
                              ('vegetarian', 'Vegetarian'),
                              ('vegan', 'Vegan')])

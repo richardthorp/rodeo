@@ -289,11 +289,11 @@ nav {
     padding: 5px 5px 0 5px;
 }
 
+.name-input {
+    max-width: 400px;
+}
+
 .recipe-type-radio ul {
-    text-align: center;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
     max-width: 400px;
     padding: 0;
 }
@@ -305,7 +305,7 @@ nav {
     font-family: 'Open Sans';
 }
 
-.recipe-type-options .filter-option {
+.recipe-type-filters .filter-option {
     display: inline-block;
     font-family: 'Open Sans';
 }
@@ -398,9 +398,10 @@ nav {
         font-size: 0.7rem;
         margin: 0 0 5px 0;
     }
-    .recipe-type-options .filter-option {
+    .recipe-type-filters .filter-option, .recipe-type-radio ul li {
         display: block;
         text-align: left;
+        padding-left: 20px;
     }
     .form-input {
         font-size: 0.8rem;

@@ -40,10 +40,3 @@ $("#add-instructions-row").on('click', function () {
 $("#picture_upload").change(function() {
     $("#selected-file").text($("#picture_upload").val().split("\\").pop())
 }) 
-
-
-
-
-
-
-
