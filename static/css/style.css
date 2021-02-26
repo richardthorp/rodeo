@@ -31,7 +31,6 @@ a:hover {
 
 .sub-header {
     font-family: Bevan;
-    text-align: center;
     text-transform: uppercase;
 }
 
@@ -136,6 +135,17 @@ nav {
     text-align: center;
     padding-top: 20px;
     color: #000;
+}
+
+/*------------------------------------------------------- RECIPE PAGE */
+.recipe-details-list {
+    max-width: 600px;
+    padding: 0;
+}
+.recipe-details-list li {
+    display: inline-block;
+    padding: 20px;
+    list-style: none;
 }
 
 /*------------------------------------------------------- FORMS */

@@ -2,12 +2,11 @@
 {% block content %}
 
 <h1 class="logo-font text-center header">{{ recipe.name }}</h1>
-<ul>
+
+<ul class="sub-header recipe-details-list d-flex justify-content-around recipe-details-list mt-4 mx-auto flex-wrap">
     <li>Serves {{ recipe.feeds }}</li>
-</ul>
-<ul>
-{% for item in recipe.details.values() %}
-<li>{{ item }}</li>
-{% endfor %}
+    {% for detail in recipe.details.values() %}
+    <li>{{ detail }}</li>
+    {% endfor %}
 </ul>
 {% endblock %}
