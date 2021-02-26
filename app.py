@@ -90,34 +90,43 @@ def added_recipes():
 @app.route("/add_recipe", methods=["GET", "POST"])
 def add_recipe():
     form = Add_recipe_form()
+
     if form.validate_on_submit():
-        print("VALIDATED")
+        details = {}
         ingredients = []
         quantities = []
         instructions = []
         formatted_recipe = {}
-        for item in request.form.items():
-            if "ingredient" in item[0]:
-                ingredients.append(item)
-            elif "quantity" in item[0]:
-                quantities.append(item)
-            elif "instruction" in item[0]:
-                instructions.append(item)
-            else:
-                formatted_recipe[item[0]] = item[1]
-        formatted_recipe["ingredients"] = ingredients
-        formatted_recipe["quantities"] = quantities
-        formatted_recipe["instructions"] = instructions
+        recipe = dict(request.form)
+        details = {key: value for key, value in recipe.items() if
+                   "checkbox" in key or "recipe_type" in key}
+        for (key, value) in recipe.items():
+            if "ingredient" in key:
+                ingredients.append(value)
+            elif "quantity" in key:
+                quantities.append(value)
+            elif "instruction" in key:
+                instructions.append(value)
 
-        mongo.db.recipes.insert_one(formatted_recipe)#
+        formatted_recipe = {
+            'details': details,
+            'ingredients': ingredients,
+            'quantities': quantities,
+            'instructions': instructions,
+            'feeds': recipe['feeds']
+            }
+
+        mongo.db.recipes.insert_one(formatted_recipe)
     else:
-        print('NOPE')
+        print("NOT VALID")
+
     return render_template("add_recipe.html", form=form)
 
 
 @app.route("/recipe_page")
 def recipe_page():
-    recipe = mongo.db.recipes.find_one({"recipe_type": "vegetarian"})
+    recipe = mongo.db.recipes.find_one({})
+
     print(recipe)
     return render_template("recipe_page.html", recipe=recipe)
 

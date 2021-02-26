@@ -1,8 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
 
+<h1 class="logo-font text-center header">{{ recipe.recipe_name }}</h1>
 <ul>
-{% for item in recipe.items() %}
+    <li></li>
+</ul>
+<ul>
+{% for item in recipe.details.values() %}
 <li>{{ item }}</li>
 {% endfor %}
 </ul>
