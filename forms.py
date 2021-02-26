@@ -6,6 +6,18 @@ from wtforms.validators import InputRequired, Length, Email, EqualTo
 from wtforms.fields.html5 import EmailField
 
 
+# FieldsRequiredForm class found at
+# https://github.com/wtforms/wtforms/issues/477
+# The class is used to fix a bug whereby the required
+# attribute is not set on RadioField inputs
+class FieldsRequiredForm(FlaskForm):
+    class Meta:
+        def render_field(self, field, render_kw):
+            if field.type == "_Option":
+                render_kw.setdefault("required", True)
+            return super().render_field(field, render_kw)
+
+
 class Registration_form(FlaskForm):
     email = EmailField("Email Address",
                        validators=[Email(),
@@ -44,7 +56,7 @@ class Search_and_filter_form(FlaskForm):
     recipe_type = RadioField('Type', choices=[('meat', 'Meat'),
                                               ('vegetarian', 'Vegetarian'),
                                               ('vegan', 'Vegan')])
-    cheap_checkbox = BooleanField('Cheap')
+    cheap_checkbox = BooleanField('Cheap', render_kw={"required": False})
     gluton_free_checkbox = BooleanField('Gluton Free')
     healthy_checkbox = BooleanField('Healthy')
     quick_checkbox = BooleanField('Quick')
@@ -52,7 +64,7 @@ class Search_and_filter_form(FlaskForm):
     filter_submit = SubmitField('Filter')
 
 
-class Add_recipe_form(FlaskForm):
+class Add_recipe_form(FieldsRequiredForm):
     recipe_name = StringField('Recipe Name',
                               validators=[Length(max=50), InputRequired()])
     recipe_type = RadioField('Type', choices=[('meat', 'Meat'),
