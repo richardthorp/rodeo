@@ -134,8 +134,7 @@ def add_recipe():
 def recipe_page():
     recipe = mongo.db.recipes.find_one({})
     recipe['ingredients'] = zip(recipe['quantities'], recipe['ingredients'])
-    # print(recipe)
-    return render_template("recipe_page.html", recipe=recipe)
+    return render_template("recipe_page.html", recipe=recipe, rating=2)
 
 
 if __name__ == "__main__":
