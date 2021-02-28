@@ -1,12 +1,14 @@
 {% extends 'base.html' %}
 {% block content %}
-
-<h1 class="logo-font text-center header">{{ recipe.name }}</h1>
-
-<ul class="sub-header recipe-details-list d-flex justify-content-around recipe-details-list mt-4 mx-auto flex-wrap">
-    <li>Serves {{ recipe.feeds }}</li>
-    {% for detail in recipe.details.values() %}
-    <li>{{ detail }}</li>
-    {% endfor %}
-</ul>
+<div class="recipe-header rounded-container mx-auto">
+    <h1 class="logo-font text-center header">{{ recipe.name }}</h1>
+    <p class="recipe-added-by text-center text-muted">Recipe added by example-user</p>
+    <p class="serves-details sub-header text-center">Serves {{ recipe.feeds }}</p>
+    <ul class="sub-header recipe-details-list d-flex justify-content-center mx-auto flex-wrap">
+        {% for detail in recipe.details.values() %}
+        <li>{{ detail }} <i class="fas fa-check-circle"></i></li>
+        {% endfor %}
+    </ul>
+    <img src="{{ url_for('static', filename='/images/cala-w6ftFbPCs9I-unsplash.jpg') }}" alt="">
+</div>
 {% endblock %}
