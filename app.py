@@ -108,6 +108,12 @@ def add_recipe():
             elif "instruction" in key:
                 instructions.append(value)
 
+        if ingredients[-1] == "":
+            ingredients.pop()
+            quantities.pop()
+        if instructions[-1] == "":
+            instructions.pop()
+
         formatted_recipe = {
             'name': recipe['recipe_name'],
             'feeds': recipe['feeds'],

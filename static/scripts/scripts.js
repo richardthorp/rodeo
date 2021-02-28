@@ -31,7 +31,7 @@ $("#add-instructions-row").on('click', function () {
     inputNumber = instructionItems.length + 1
     instructionHTMLString = `<textarea class="form-input auto-resize" id="instruction_${inputNumber}" 
                         name="instruction_${inputNumber}" placeholder="Please enter step ${inputNumber}..."
-                        required="" style="resize: none; overflow-y: hidden;"></textarea>`
+                        style="resize: none; overflow-y: hidden;"></textarea>`
     $(".instructions-container").append(instructionHTMLString);
     $(".auto-resize").autoResize();
 });
