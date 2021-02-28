@@ -14,11 +14,29 @@
         <div class="d-none d-md-inline col-md-4">
             <h6 class="sub-header text-center">Average Rating</h6>
         </div>
-        <div class="col-6 col-md-4">
+        <div class="d-none d-md-inline col-6 col-md-4">
             <h6 class="sub-header  text-center">Your Rating</h6>
         </div>
-        <div class="col-6 col-md-4">
+        <div class="col-6 d-md-none text-center d-flex align-items-center">
+            <div class="dropdown">
+                <button class="custom-button ratings-button dropdown-toggle d-flex align-items-center" type="button" id="dropdownMenuButton"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    View<br>Ratings
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <div class="dropdown-item" href="#">
+                        <h6 class="sub-header text-muted">Average Rating</h6>
+                    </div>
+                    <div class="dropdown-item" href="#">
+                        <h6 class="sub-header text-muted">Your Rating</h6>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-6 col-md-4 text-center">
             <h6 class="sub-header text-center">Add to Favourites</h6>
+            <i class="far fa-heart favourite-toggle"></i>
         </div>
     </div>
 </div>
@@ -27,8 +45,8 @@
         <div class="ingredients-section rounded-container mx-auto">
             <h3 class="sub-header text-center">Ingredients</h3>
             {% for quantity, ingredient in recipe.ingredients %}
-                <li>{{ quantity }} {{ ingredient }}</li>
-                {% endfor %}
+            <li>{{ quantity }} {{ ingredient }}</li>
+            {% endfor %}
         </div>
     </div>
     <div class="col-12 col-lg-6">
