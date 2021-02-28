@@ -139,7 +139,7 @@ nav {
 
 /*------------------------------------------------------- RECIPE PAGE */
 .recipe-header {
-    width: 90%;
+    width: 95%;
     padding: 10px;
 }
 
@@ -177,8 +177,17 @@ nav {
     padding: 10px;
 }
 
-.ingredients-section li, .instructions-section li {
+.ingredients-section li {
     margin: 10px 0;
+}
+
+.instructions-section h6 {
+    margin-top: 15px;
+    margin-bottom: 0;
+}
+.instructions-section ul{
+    list-style: none;
+    padding: 0;
 }
 
 /*------------------------------------------------------- FORMS */

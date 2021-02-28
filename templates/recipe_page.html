@@ -26,8 +26,8 @@
     <div class="col-12 col-lg-6">
         <div class="ingredients-section rounded-container mx-auto">
             <h3 class="sub-header text-center">Ingredients</h3>
-            {% for ingredient in recipe.ingredients %}
-                <li>{{ ingredient }}</li>
+            {% for quantity, ingredient in recipe.ingredients %}
+                <li>{{ quantity }} {{ ingredient }}</li>
                 {% endfor %}
         </div>
     </div>
@@ -36,6 +36,7 @@
             <h3 class="sub-header text-center">Instructions</h3>
             <ul>
                 {% for instruction in recipe.instructions %}
+                <h6 class="sub-header">Step {{loop.index}}</h6>
                 <li>{{ instruction }}</li>
                 {% endfor %}
             </ul>

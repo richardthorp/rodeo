@@ -133,7 +133,7 @@ def add_recipe():
 @app.route("/recipe_page")
 def recipe_page():
     recipe = mongo.db.recipes.find_one({})
-
+    recipe['ingredients'] = zip(recipe['quantities'], recipe['ingredients'])
     print(recipe)
     return render_template("recipe_page.html", recipe=recipe)
 
