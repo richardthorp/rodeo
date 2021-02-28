@@ -10,5 +10,36 @@
         {% endfor %}
     </ul>
     <img src="{{ url_for('static', filename='/images/cala-w6ftFbPCs9I-unsplash.jpg') }}" alt="">
+    <div class="row">
+        <div class="d-none d-md-inline col-md-4">
+            <h6 class="sub-header text-center">Average Rating</h6>
+        </div>
+        <div class="col-6 col-md-4">
+            <h6 class="sub-header  text-center">Your Rating</h6>
+        </div>
+        <div class="col-6 col-md-4">
+            <h6 class="sub-header text-center">Add to Favourites</h6>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12 col-lg-6">
+        <div class="ingredients-section rounded-container mx-auto">
+            <h3 class="sub-header text-center">Ingredients</h3>
+            {% for ingredient in recipe.ingredients %}
+                <li>{{ ingredient }}</li>
+                {% endfor %}
+        </div>
+    </div>
+    <div class="col-12 col-lg-6">
+        <div class="instructions-section rounded-container mx-auto">
+            <h3 class="sub-header text-center">Instructions</h3>
+            <ul>
+                {% for instruction in recipe.instructions %}
+                <li>{{ instruction }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
 </div>
 {% endblock %}

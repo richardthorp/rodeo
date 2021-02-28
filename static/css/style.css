@@ -165,10 +165,20 @@ nav {
     max-width: 600px;
     padding: 0;
 }
+
 .recipe-details-list li {
     display: inline-block;
     margin: 10px;
     list-style: none;
+}
+
+.ingredients-section, .instructions-section {
+    width: 90%;
+    padding: 10px;
+}
+
+.ingredients-section li, .instructions-section li {
+    margin: 10px 0;
 }
 
 /*------------------------------------------------------- FORMS */
