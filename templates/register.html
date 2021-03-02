@@ -1,5 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+    {% for message in messages %}  
+        <p>{{ message }}</p>
+    {% endfor %}
+{% endif %}
+{% endwith %}
 <a href="{{ url_for('my_recipes') }}">favourite_recipes</a>
 <h1 class="logo-font text-center header">Register</h1>
 <div class="row">

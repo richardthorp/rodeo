@@ -66,6 +66,9 @@ def login():
                 session["username"] = existing_user["username"]
                 print("Login successfull")
                 return redirect(url_for("index"))
+            else:
+                flash("Login details incorrect, please try again.")
+                redirect(url_for('login'))
 
     return render_template("login.html", form=form)
 
@@ -130,10 +133,14 @@ def add_recipe():
     return render_template("add_recipe.html", form=form)
 
 
-@app.route("/recipe_page")
+@app.route("/recipe_page", methods=["GET", "POST"])
 def recipe_page():
     recipe = mongo.db.recipes.find_one({})
     recipe['ingredients'] = zip(recipe['quantities'], recipe['ingredients'])
+    # if request.method == 'POST':
+    #     if 'rate' in request.form:
+    #         rating = request.form.get("rate")
+    #         print(rating)
     return render_template("recipe_page.html", recipe=recipe, rating=2)
 
 

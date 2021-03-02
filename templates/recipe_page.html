@@ -20,11 +20,11 @@
         <div class="col-6 d-md-none text-center d-flex align-items-center justify-content-center">
 
 
-            <button type="button" class="custom-button ratings-button" data-toggle="modal" data-target="#exampleModal">
+            <button type="button" class="custom-button ratings-button" data-toggle="modal" data-target="#rating-modal">
                 View<br>Ratings
             </button>
             <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+            <div class="modal fade" id="rating-modal" tabindex="-1" aria-labelledby="rating modal"
                 aria-hidden="true">
                 <div id="ratings-modal" class="modal-dialog modal-dialog-centered">
                     <div class="modal-content text-left">                      
@@ -68,18 +68,18 @@
                             <span class="star blank-star">&#9733;</span>
                             {% endif %}
 
-                            <form>
+                            <form name="rating-form" method="POST" action="{{ url_for('recipe_page') }}">
                                 <h6 class="sub-header text-muted mt-4">Your Rating</h6>
                                 <div class="rate">
-                                    <input type="radio" id="star5" name="rate" value="5" />
+                                    <input type="radio" id="star5" name="rating" value="5" />
                                     <label for="star5" title="text">&#9733;</label>
-                                    <input type="radio" id="star4" name="rate" value="4" />
+                                    <input type="radio" id="star4" name="rating" value="4" />
                                     <label for="star4" title="text">&#9733;</label>
-                                    <input type="radio" id="star3" name="rate" value="3" />
+                                    <input type="radio" id="star3" name="rating" value="3" />
                                     <label for="star3" title="text">&#9733;</label>
-                                    <input type="radio" id="star2" name="rate" value="2" />
+                                    <input type="radio" id="star2" name="rating" value="2" />
                                     <label for="star2" title="text">&#9733;</label>
-                                    <input type="radio" id="star1" name="rate" value="1" />
+                                    <input type="radio" id="star1" name="rating" value="1" />
                                     <label for="star1" title="text">&#9733;</label>
                                 </div>
                                 <div>
