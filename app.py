@@ -2,6 +2,7 @@ import os
 from flask_pymongo import PyMongo
 from flask import (Flask, flash, render_template,
                    redirect, request, session, url_for)
+from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_paginate import Pagination, get_page_args
 from forms import (Registration_form, Login_form,
@@ -48,7 +49,7 @@ def register():
             flash("Welcome to Rodeo, " + request.form.get("username") + '!')
             session["username"] = request.form.get("username")
             return redirect(url_for('my_recipes'))
-            
+
     else:
         print("NOT VALIDATED")
 
@@ -78,7 +79,8 @@ def login():
 
 @app.route("/all_recipes")
 def all_recipes():
-    return render_template("all_recipes.html")
+    recipes = mongo.db.recipes.find()
+    return render_template("all_recipes.html", recipes=recipes)
 
 
 @app.route("/my_recipes", methods=["GET", "POST"])
@@ -136,14 +138,17 @@ def add_recipe():
     return render_template("add_recipe.html", form=form)
 
 
-@app.route("/recipe_page", methods=["GET", "POST"])
-def recipe_page():
-    recipe = mongo.db.recipes.find_one({})
+@app.route("/recipe_page/<recipe_id>")
+def recipe_page(recipe_id):
+    recipe = mongo.db.recipes.find_one({'_id': ObjectId(recipe_id)})
     recipe['ingredients'] = zip(recipe['quantities'], recipe['ingredients'])
-    # if request.method == 'POST':
-    #     if 'rate' in request.form:
-    #         rating = request.form.get("rate")
-    #         print(rating)
+    print(recipe)
+    if request.method == 'POST':
+        if 'rate' in request.form:
+            rating = request.form.get("rating")
+            user = session["username"]
+            mongo.db.ratings.insert_one({''})
+            print(rating)
     return render_template("recipe_page.html", recipe=recipe, rating=2)
 
 

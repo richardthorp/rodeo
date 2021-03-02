@@ -1,4 +1,19 @@
 {% extends 'base.html' %}
 {% block content %}
-ALL RECIPES
-{% endblock %}
+{% for recipe in recipes %}
+<div class="row">
+    <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center">
+        <div class="recipe-card">
+            <a href="{{url_for('recipe_page', recipe_id=recipe._id)}}">
+                <div class="recipe-image-container">
+                    <img src="/static/images/eaters-collective-pLKgCsBOiw4-unsplash.jpg" alt="...">
+                </div>
+                <div>
+                    <h4 class="recipe-title logo-font">{{ recipe.name }}</h4>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+    {% endfor %}
+    {% endblock %}
