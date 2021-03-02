@@ -148,15 +148,19 @@ def recipe_page(recipe_id):
     for rating in recipe_ratings:
         ratings_summed += int(rating['rating'])
     average_rating = ratings_summed / ratings_count
-    print(average_rating)
     if request.method == 'POST':
         if 'rating' in request.form:
-            rating = request.form.get("rating")
             user = session["username"]
+            # If user has already rated recipe - delete original rating,
+            # then insert new rating
+            mongo.db.ratings.delete_one(
+                {'recipe_id': recipe_id, 'user': user})
+            rating = request.form.get("rating")
             mongo.db.ratings.insert_one({'recipe_id': recipe_id,
                                          'user': user,
                                          'rating': rating})
-    return render_template("recipe_page.html", recipe=recipe, average_rating=round(average_rating))
+    return render_template("recipe_page.html", recipe=recipe,
+                           average_rating=round(average_rating))
 
 
 @app.route("/logout")
