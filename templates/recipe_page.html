@@ -13,31 +13,31 @@
     <div class="row d-flex justify-content-between">
         <div class="d-none d-md-inline col-md-4 text-center">
             <h6 class="sub-header text-center">Average Rating</h6>
-            {% if rating == 1 %}
+            {% if average_rating == 1 %}
             <span class="star coloured-star">&#9733;</span>
             <span class="star blank-star">&#9733;</span>
             <span class="star blank-star">&#9733;</span>
             <span class="star blank-star">&#9733;</span>
             <span class="star blank-star">&#9733;</span>
-            {% elif rating == 2 %}
+            {% elif average_rating == 2 %}
             <span class="star coloured-star">&#9733;</span>
             <span class="star coloured-star">&#9733;</span>
             <span class="star blank-star">&#9733;</span>
             <span class="star blank-star">&#9733;</span>
             <span class="star blank-star">&#9733;</span>
-            {% elif rating == 3 %}
+            {% elif average_rating == 3 %}
             <span class="star coloured-star">&#9733;</span>
             <span class="star coloured-star">&#9733;</span>
             <span class="star coloured-star">&#9733;</span>
             <span class="star blank-star">&#9733;</span>
             <span class="star blank-star">&#9733;</span>
-            {% elif rating == 4 %}
+            {% elif average_rating == 4 %}
             <span class="star coloured-star">&#9733;</span>
             <span class="star coloured-star">&#9733;</span>
             <span class="star coloured-star">&#9733;</span>
             <span class="star coloured-star">&#9733;</span>
             <span class="star blank-star">&#9733;</span>
-            {% elif rating == 5 %}
+            {% elif average_rating == 5 %}
             <span class="star coloured-star">&#9733;</span>
             <span class="star coloured-star">&#9733;</span>
             <span class="star coloured-star">&#9733;</span>
@@ -81,31 +81,31 @@
                     <div class="modal-content text-left">
                         <div class="modal-body">
                             <h6 class="sub-header text-muted">Average Rating</h6>
-                            {% if rating == 1 %}
+                            {% if average_rating == 1 %}
                             <span class="star coloured-star">&#9733;</span>
                             <span class="star blank-star">&#9733;</span>
                             <span class="star blank-star">&#9733;</span>
                             <span class="star blank-star">&#9733;</span>
                             <span class="star blank-star">&#9733;</span>
-                            {% elif rating == 2 %}
+                            {% elif average_rating == 2 %}
                             <span class="star coloured-star">&#9733;</span>
                             <span class="star coloured-star">&#9733;</span>
                             <span class="star blank-star">&#9733;</span>
                             <span class="star blank-star">&#9733;</span>
                             <span class="star blank-star">&#9733;</span>
-                            {% elif rating == 3 %}
+                            {% elif average_rating == 3 %}
                             <span class="star coloured-star">&#9733;</span>
                             <span class="star coloured-star">&#9733;</span>
                             <span class="star coloured-star">&#9733;</span>
                             <span class="star blank-star">&#9733;</span>
                             <span class="star blank-star">&#9733;</span>
-                            {% elif rating == 4 %}
+                            {% elif average_rating == 4 %}
                             <span class="star coloured-star">&#9733;</span>
                             <span class="star coloured-star">&#9733;</span>
                             <span class="star coloured-star">&#9733;</span>
                             <span class="star coloured-star">&#9733;</span>
                             <span class="star blank-star">&#9733;</span>
-                            {% elif rating == 5 %}
+                            {% elif average_rating == 5 %}
                             <span class="star coloured-star">&#9733;</span>
                             <span class="star coloured-star">&#9733;</span>
                             <span class="star coloured-star">&#9733;</span>
@@ -123,16 +123,16 @@
                                 action="{{ url_for('recipe_page', recipe_id=recipe._id) }}">
                                 <h6 class="sub-header text-muted mt-4">Your Rating</h6>
                                 <div class="rate">
-                                    <input type="radio" id="star5" name="rating" value="5" />
-                                    <label for="star5" title="text">&#9733;</label>
-                                    <input type="radio" id="star4" name="rating" value="4" />
-                                    <label for="star4" title="text">&#9733;</label>
-                                    <input type="radio" id="star3" name="rating" value="3" />
-                                    <label for="star3" title="text">&#9733;</label>
-                                    <input type="radio" id="star2" name="rating" value="2" />
-                                    <label for="star2" title="text">&#9733;</label>
-                                    <input type="radio" id="star1" name="rating" value="1" />
-                                    <label for="star1" title="text">&#9733;</label>
+                                    <input type="radio" id="star5-modal" name="rating" value="5" />
+                                    <label for="star5-modal" title="text">&#9733;</label>
+                                    <input type="radio" id="star4-modal" name="rating" value="4" />
+                                    <label for="star4-modal" title="text">&#9733;</label>
+                                    <input type="radio" id="star3-modal" name="rating" value="3" />
+                                    <label for="star3-modal" title="text">&#9733;</label>
+                                    <input type="radio" id="star2-modal" name="rating" value="2" />
+                                    <label for="star2-modal" title="text">&#9733;</label>
+                                    <input type="radio" id="star1-modal" name="rating" value="1" />
+                                    <label for="star1-modal" title="text">&#9733;</label>
                                 </div>
                                 <div>
                                     <input class="custom-button add-rating-btn mt-2" type="submit" value="Add Rating">

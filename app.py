@@ -142,6 +142,13 @@ def add_recipe():
 def recipe_page(recipe_id):
     recipe = mongo.db.recipes.find_one({'_id': ObjectId(recipe_id)})
     recipe['ingredients'] = zip(recipe['quantities'], recipe['ingredients'])
+    recipe_ratings = mongo.db.ratings.find({'recipe_id': recipe_id})
+    ratings_count = mongo.db.ratings.count_documents({'recipe_id': recipe_id})
+    ratings_summed = 0
+    for rating in recipe_ratings:
+        ratings_summed += int(rating['rating'])
+    average_rating = ratings_summed / ratings_count
+    print(average_rating)
     if request.method == 'POST':
         if 'rating' in request.form:
             rating = request.form.get("rating")
@@ -149,8 +156,7 @@ def recipe_page(recipe_id):
             mongo.db.ratings.insert_one({'recipe_id': recipe_id,
                                          'user': user,
                                          'rating': rating})
-            print(rating)
-    return render_template("recipe_page.html", recipe=recipe, rating=2)
+    return render_template("recipe_page.html", recipe=recipe, average_rating=round(average_rating))
 
 
 @app.route("/logout")
