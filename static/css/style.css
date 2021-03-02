@@ -172,6 +172,13 @@ nav {
 .rating-container {
     margin-left: 5px;
 }
+.your-rating {
+    max-width: 200px;
+}
+.rating-form-md {
+    display: flex;
+    flex-direction: column
+}
 
 #ratings-modal {
     width: 220px;
@@ -184,7 +191,6 @@ nav {
 
 .star {
     font-size: 2rem;
-    /* padding-right: 5px; */
 }
 
 .coloured-star {
@@ -193,12 +199,16 @@ nav {
 
 /* CSS FOR STAR RATINGS ADAPTED FROM https://codepen.io/hesguru/pen/BaybqXv */
 .rate {
-    float: left;
+    /* float: left; */
     height: 46px;
-    /* display: flex;
-    flex-direction: row-reverse; */
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
 }
 
+.rate.rate-md {
+    /* justify-content: center; */
+}
 .rate label {
   padding-right: 4.4px;
 }

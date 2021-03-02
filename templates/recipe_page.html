@@ -10,12 +10,64 @@
         {% endfor %}
     </ul>
     <img src="{{ url_for('static', filename='/images/cala-w6ftFbPCs9I-unsplash.jpg') }}" alt="">
-    <div class="row">
-        <div class="d-none d-md-inline col-md-4">
+    <div class="row d-flex justify-content-between">
+        <div class="d-none d-md-inline col-md-4 text-center">
             <h6 class="sub-header text-center">Average Rating</h6>
+            {% if rating == 1 %}
+            <span class="star coloured-star">&#9733;</span>
+            <span class="star blank-star">&#9733;</span>
+            <span class="star blank-star">&#9733;</span>
+            <span class="star blank-star">&#9733;</span>
+            <span class="star blank-star">&#9733;</span>
+            {% elif rating == 2 %}
+            <span class="star coloured-star">&#9733;</span>
+            <span class="star coloured-star">&#9733;</span>
+            <span class="star blank-star">&#9733;</span>
+            <span class="star blank-star">&#9733;</span>
+            <span class="star blank-star">&#9733;</span>
+            {% elif rating == 3 %}
+            <span class="star coloured-star">&#9733;</span>
+            <span class="star coloured-star">&#9733;</span>
+            <span class="star coloured-star">&#9733;</span>
+            <span class="star blank-star">&#9733;</span>
+            <span class="star blank-star">&#9733;</span>
+            {% elif rating == 4 %}
+            <span class="star coloured-star">&#9733;</span>
+            <span class="star coloured-star">&#9733;</span>
+            <span class="star coloured-star">&#9733;</span>
+            <span class="star coloured-star">&#9733;</span>
+            <span class="star blank-star">&#9733;</span>
+            {% elif rating == 5 %}
+            <span class="star coloured-star">&#9733;</span>
+            <span class="star coloured-star">&#9733;</span>
+            <span class="star coloured-star">&#9733;</span>
+            <span class="star coloured-star">&#9733;</span>
+            <span class="star coloured-star">&#9733;</span>
+            {% else %}
+            <span class="star blank-star">&#9733;</span>
+            <span class="star blank-star">&#9733;</span>
+            <span class="star blank-star">&#9733;</span>
+            <span class="star blank-star">&#9733;</span>
+            <span class="star blank-star">&#9733;</span>
+            {% endif %}
         </div>
-        <div class="d-none d-md-inline col-md-4">
-            <h6 class="sub-header  text-center">Your Rating</h6>
+        <div class="d-none d-md-flex col-md-4 flex-wrap justify-content-center your-rating">
+            <h6 class="sub-header text-center">Your Rating</h6>
+            <form class="rating-form-md" name="rating-form" method="POST" action="{{ url_for('recipe_page', recipe_id=recipe._id) }}">
+                <div class="rate rate-md">
+                    <input type="radio" id="star5" name="rating" value="5" />
+                    <label for="star5" title="text">&#9733;</label>
+                    <input type="radio" id="star4" name="rating" value="4" />
+                    <label for="star4" title="text">&#9733;</label>
+                    <input type="radio" id="star3" name="rating" value="3" />
+                    <label for="star3" title="text">&#9733;</label>
+                    <input type="radio" id="star2" name="rating" value="2" />
+                    <label for="star2" title="text">&#9733;</label>
+                    <input type="radio" id="star1" name="rating" value="1" />
+                    <label for="star1" title="text">&#9733;</label>
+                </div>
+                    <input class="custom-button add-rating-btn mt-2" type="submit" value="Add Rating">
+            </form>
         </div>
         <div class="col-6 d-md-none text-center d-flex align-items-center justify-content-center">
 
@@ -24,10 +76,9 @@
                 View<br>Ratings
             </button>
             <!-- Modal -->
-            <div class="modal fade" id="rating-modal" tabindex="-1" aria-labelledby="rating modal"
-                aria-hidden="true">
+            <div class="modal fade" id="rating-modal" tabindex="-1" aria-labelledby="rating modal" aria-hidden="true">
                 <div id="ratings-modal" class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content text-left">                      
+                    <div class="modal-content text-left">
                         <div class="modal-body">
                             <h6 class="sub-header text-muted">Average Rating</h6>
                             {% if rating == 1 %}
@@ -68,7 +119,8 @@
                             <span class="star blank-star">&#9733;</span>
                             {% endif %}
 
-                            <form name="rating-form" method="POST" action="{{ url_for('recipe_page', recipe_id=recipe._id) }}">
+                            <form name="rating-form" method="POST"
+                                action="{{ url_for('recipe_page', recipe_id=recipe._id) }}">
                                 <h6 class="sub-header text-muted mt-4">Your Rating</h6>
                                 <div class="rate">
                                     <input type="radio" id="star5" name="rating" value="5" />
