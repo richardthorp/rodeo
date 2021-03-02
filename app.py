@@ -45,7 +45,10 @@ def register():
                             request.form.get("password"))
             }
             mongo.db.users.insert_one(registration_info)
-            print("User added")
+            flash("Welcome to Rodeo, " + request.form.get("username") + '!')
+            session["username"] = request.form.get("username")
+            return redirect(url_for('my_recipes'))
+            
     else:
         print("NOT VALIDATED")
 
