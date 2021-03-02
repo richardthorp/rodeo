@@ -138,16 +138,17 @@ def add_recipe():
     return render_template("add_recipe.html", form=form)
 
 
-@app.route("/recipe_page/<recipe_id>")
+@app.route("/recipe_page/<recipe_id>", methods=["GET", "POST"])
 def recipe_page(recipe_id):
     recipe = mongo.db.recipes.find_one({'_id': ObjectId(recipe_id)})
     recipe['ingredients'] = zip(recipe['quantities'], recipe['ingredients'])
-    print(recipe)
     if request.method == 'POST':
-        if 'rate' in request.form:
+        if 'rating' in request.form:
             rating = request.form.get("rating")
             user = session["username"]
-            mongo.db.ratings.insert_one({''})
+            mongo.db.ratings.insert_one({'recipe_id': recipe_id,
+                                         'user': user,
+                                         'rating': rating})
             print(rating)
     return render_template("recipe_page.html", recipe=recipe, rating=2)
 
