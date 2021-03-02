@@ -31,12 +31,21 @@
                     <a class="nav-link logo-font custom-nav-links" href="{{ url_for('all_recipes') }}">Recipes<span
                             class="sr-only">(current)</span></a>
                 </li>
+                {% if session["username"] %}
+                <li class="nav-item ml-5">
+                    <a class="nav-link logo-font custom-nav-links" href="{{ url_for('my_recipes') }}">My Recipes</a>
+                </li>
+                <li class="nav-item ml-5">
+                    <a class="nav-link logo-font custom-nav-links" href="{{ url_for('log_out') }}">Log Out</a>
+                </li>
+                {% else %}
                 <li class="nav-item ml-5">
                     <a class="nav-link logo-font custom-nav-links" href="{{ url_for('login') }}">Login</a>
                 </li>
                 <li class="nav-item ml-5">
                     <a class="nav-link logo-font custom-nav-links" href="{{ url_for('register') }}">Register</a>
                 </li>
+                {% endif %}
             </ul>
         </div>
     </nav>
@@ -51,10 +60,17 @@
             <div class="col-6 col-md-3 col-lg-6 logo-font copyright">Copyright 2021</div>
             <a href="{{ url_for('all_recipes') }}"
                 class="d-none d-md-inline-block col-md-3 col-lg-2 logo-font footer-links">Recipes</a>
+            {% if session["username"] %}
+            <a href="{{ url_for('my_recipes') }}"
+                class="d-none d-md-inline-block col-md-3 col-lg-2 logo-font footer-links">My Recipes</a>
+            <a href="{{ url_for('log_out') }}"
+                class="d-none d-md-inline-block col-md-3 col-lg-2 logo-font footer-links">Log Out</a>
+            {% else %}
             <a href="{{ url_for('login') }}"
                 class="d-none d-md-inline-block col-md-3 col-lg-2 logo-font footer-links">Login</a>
-            <a href="{{ url_for('all_recipes') }}"
+            <a href="{{ url_for('register') }}"
                 class="d-none d-md-inline-block col-md-3 col-lg-2 logo-font footer-links">Register</a>
+            {% endif %}
             <a href="#" class="col-6 d-md-none logo-font footer-links">Back to top<i
                     class="fas fa-angle-double-up ml-2"></i></a>
         </div>

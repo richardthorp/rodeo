@@ -147,6 +147,12 @@ def recipe_page():
     return render_template("recipe_page.html", recipe=recipe, rating=2)
 
 
+@app.route("/logout")
+def log_out():
+    session.pop("username")
+    return redirect(url_for('index'))
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
