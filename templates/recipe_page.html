@@ -53,7 +53,8 @@
         </div>
         <div class="d-none d-md-flex col-md-4 flex-wrap justify-content-center your-rating">
             <h6 class="sub-header text-center">Your Rating</h6>
-            <form class="rating-form-md" name="rating-form" method="POST" action="{{ url_for('recipe_page', recipe_id=recipe._id) }}">
+            <form class="rating-form-md" name="rating-form" method="POST"
+                action="{{ url_for('recipe_page', recipe_id=recipe._id) }}">
                 <div class="rate rate-md">
                     <input type="radio" id="star5" name="rating" value="5" />
                     <label for="star5" title="text">&#9733;</label>
@@ -66,7 +67,7 @@
                     <input type="radio" id="star1" name="rating" value="1" />
                     <label for="star1" title="text">&#9733;</label>
                 </div>
-                    <input class="custom-button add-rating-btn mt-2" type="submit" value="Add Rating">
+                <input class="custom-button add-rating-btn mt-2" type="submit" value="Add Rating">
             </form>
         </div>
         <div class="col-6 d-md-none text-center d-flex align-items-center justify-content-center">
@@ -119,8 +120,7 @@
                             <span class="star blank-star">&#9733;</span>
                             {% endif %}
 
-                            <form name="rating-form" method="POST"
-                                action="{{ url_for('recipe_page', recipe_id=recipe._id) }}">
+                            <form method="POST" action="{{ url_for('recipe_page', recipe_id=recipe._id) }}">
                                 <h6 class="sub-header text-muted mt-4">Your Rating</h6>
                                 <div class="rate">
                                     <input type="radio" id="star5-modal" name="rating" value="5" />
@@ -148,7 +148,16 @@
         </div>
         <div class="col-6 col-md-4 text-center">
             <h6 class="sub-header text-center">Add to Favourites</h6>
-            <i class="far fa-heart favourite-toggle"></i>
+            <form id="favourite-form" method="POST" action="{{ url_for('recipe_page', recipe_id=recipe._id) }}">
+                {% if favourite %}
+                <input type="checkbox" name="favourite" id="favourite-checkbox-checked" value="delete_fav" >
+                <label class="favourite-toggle" for="favourite-checkbox-checked"><i class="fas fa-heart"></i></label>
+                {% else %}
+                <input type="checkbox" name="favourite" id="favourite-checkbox-unchecked" value="add_fav" >
+                <label class="favourite-toggle" for="favourite-checkbox-unchecked"><i class="far fa-heart"></i></label>
+                {% endif %}
+
+            </form>
         </div>
     </div>
 </div>

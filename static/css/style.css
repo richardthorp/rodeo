@@ -247,7 +247,15 @@ nav {
     clear: both;
 }
 
+#favourite-checkbox-checked, #favourite-checkbox-unchecked {
+    display: none;
+}
+
 .favourite-toggle {
+    font-size: 3rem;
+}
+
+label i {
     font-size: 3rem;
     padding: 10px;
 }

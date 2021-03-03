@@ -144,11 +144,32 @@ def recipe_page(recipe_id):
     recipe['ingredients'] = zip(recipe['quantities'], recipe['ingredients'])
     recipe_ratings = mongo.db.ratings.find({'recipe_id': recipe_id})
     ratings_count = mongo.db.ratings.count_documents({'recipe_id': recipe_id})
+    user_favourite = mongo.db.favourites.find_one({
+                                        'recipe_id': recipe_id,
+                                        'username': session['username']})
+    if user_favourite:
+        print('USER FAVOURITE', user_favourite)
+        favourite = True
+    else:
+        print('NO SUCH USER FAVOURITE')
+        favourite = False
+
     ratings_summed = 0
     for rating in recipe_ratings:
         ratings_summed += int(rating['rating'])
     average_rating = ratings_summed / ratings_count
     if request.method == 'POST':
+        print('RAW FORM', request.form)
+        if 'favourite' in request.form:
+            if request.form['favourite'] == 'delete_fav':
+                print('DELETEING')
+                mongo.db.favourites.delete_one({
+                                        'recipe_id': recipe_id,
+                                        'username': session['username']})
+            else:
+                mongo.db.favourites.insert_one({
+                                        'recipe_id': recipe_id,
+                                        'username': session['username']})
         if 'rating' in request.form:
             user = session["username"]
             # If user has already rated recipe - delete original rating,
@@ -159,9 +180,11 @@ def recipe_page(recipe_id):
             mongo.db.ratings.insert_one({'recipe_id': recipe_id,
                                          'user': user,
                                          'rating': rating})
-            return redirect(url_for('recipe_page', recipe_id=recipe_id))
+        return redirect(url_for('recipe_page', recipe_id=recipe_id))
+
     return render_template("recipe_page.html", recipe=recipe,
-                           average_rating=round(average_rating))
+                           average_rating=round(average_rating),
+                           favourite=favourite)
 
 
 @app.route("/logout")
