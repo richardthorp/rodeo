@@ -141,28 +141,33 @@ def add_recipe():
 @app.route("/recipe_page/<recipe_id>", methods=["GET", "POST"])
 def recipe_page(recipe_id):
     recipe = mongo.db.recipes.find_one({'_id': ObjectId(recipe_id)})
+    # Combine ingredients and quantities into one string for
+    # easier page rendering
     recipe['ingredients'] = zip(recipe['quantities'], recipe['ingredients'])
+    # get all the ratings documents and the number of ratings documents
     recipe_ratings = mongo.db.ratings.find({'recipe_id': recipe_id})
     ratings_count = mongo.db.ratings.count_documents({'recipe_id': recipe_id})
-    user_favourite = mongo.db.favourites.find_one({
-                                        'recipe_id': recipe_id,
-                                        'username': session['username']})
-    if user_favourite:
-        print('USER FAVOURITE', user_favourite)
-        favourite = True
-    else:
-        print('NO SUCH USER FAVOURITE')
-        favourite = False
-
+    # Add all the ratings together and then divide by
+    # number of ratings (get average)
     ratings_summed = 0
     for rating in recipe_ratings:
         ratings_summed += int(rating['rating'])
     average_rating = ratings_summed / ratings_count
+
+    # query db to see if the user has previously 'favourited' the recipe
+    user_favourite = mongo.db.favourites.find_one({
+                                        'recipe_id': recipe_id,
+                                        'username': session['username']})
+    # if user has recipe saved as a favourite, set 'favourite'
+    # variable to True to pass to template.
+    if user_favourite:
+        favourite = True
+    else:
+        favourite = False
+
     if request.method == 'POST':
-        print('RAW FORM', request.form)
         if 'favourite' in request.form:
             if request.form['favourite'] == 'delete_fav':
-                print('DELETEING')
                 mongo.db.favourites.delete_one({
                                         'recipe_id': recipe_id,
                                         'username': session['username']})

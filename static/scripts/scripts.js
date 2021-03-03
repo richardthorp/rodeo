@@ -41,24 +41,7 @@ $("#picture_upload").change(function() {
     $("#selected-file").text($("#picture_upload").val().split("\\").pop())
 }) 
 
-/* If the favourite checkbox is clicked, submit the form */
-// $(document).ready(function(){
-//     $("#favourite-checkbox-checked").on('click', function(){
-//         setTimeout(function(){
-//             console.log('value = n')
-//             $("#favourite-form").submit();
-//         }, 1000);
-//     });
-    
-//     $("#favourite-checkbox-unchecked").on('click', function(){
-//         setTimeout(function(){
-//             console.log('value = y')
-//             $("#favourite-form").submit();
-//         }, 1000)
-    
-//     });
-// });
-
+// Make 'favourite-recipe' checkbox auto submit when clicked
 $("#favourite-checkbox-checked").on('click', function(){
             $("#favourite-form").submit();
     });

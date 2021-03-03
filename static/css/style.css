@@ -199,18 +199,14 @@ nav {
 
 /* CSS FOR STAR RATINGS ADAPTED FROM https://codepen.io/hesguru/pen/BaybqXv */
 .rate {
-    /* float: left; */
     height: 46px;
     display: flex;
     flex-direction: row-reverse;
     justify-content: flex-end;
 }
 
-.rate.rate-md {
-    /* justify-content: center; */
-}
 .rate label {
-  padding-right: 4.4px;
+    padding-right: 4.4px;
 }
 
 .rate:not(:checked) > input {
