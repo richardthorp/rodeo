@@ -159,6 +159,7 @@ def recipe_page(recipe_id):
             mongo.db.ratings.insert_one({'recipe_id': recipe_id,
                                          'user': user,
                                          'rating': rating})
+            return redirect(url_for('recipe_page', recipe_id=recipe_id))
     return render_template("recipe_page.html", recipe=recipe,
                            average_rating=round(average_rating))
 
