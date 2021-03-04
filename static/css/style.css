@@ -148,11 +148,6 @@ nav {
     padding: 10px;
 }
 
-.recipe-added-by {
-    font-family: 'Open Sans';
-    color: #000000c0;
-}
-
 .recipe-header img {
     min-width: 220px;
     max-width: 800px;
@@ -167,10 +162,11 @@ nav {
 
 .rating-row {
     max-width: 800px;
+    align-items: baseline;
 }
 
 .log-in-prompt {
-    margin: 20px 0;
+    margin-bottom: 20px;
     border: 3px solid #136F63;
     border-radius: 15px;
     padding: 10px;
@@ -178,9 +174,13 @@ nav {
     background-color: rgb(255, 252, 234);
 }
 
+.log-in-prompt h6 {
+    font-size: 1.2rem;
+}
+
 .log-in-prompt p {
-    margin: 10px 0;
-    
+    margin-top: 10px;
+    margin-bottom: 5px;
 }
 
 .log-in-prompt a {

@@ -167,7 +167,7 @@
     {% else %}
     <!--IF USER NOT LOGGED IN-->
     <div class="row rating-row mx-auto">
-        <div class="col-12 text-center">
+        <div class="col-12 col-md-4 text-center">
             <h6 class="sub-header">Average Rating</h6>
             {% if average_rating == 1 %}
             <span class="star coloured-star">&#9733;</span>
@@ -207,7 +207,7 @@
             <span class="star blank-star">&#9733;</span>
             {% endif %}
         </div>
-        <div class="col-12">
+        <div class="col-12 col-md-8">
             <div class="log-in-prompt text-center">
                 <h6 class="sub-header">Join the Rodeo community!</h6>
                 <p><a href="{{ url_for('login') }}">Log in</a> or <a href="{{ url_for('register') }}">register</a> to
