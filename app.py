@@ -154,16 +154,18 @@ def recipe_page(recipe_id):
         ratings_summed += int(rating['rating'])
     average_rating = ratings_summed / ratings_count
 
-    # query db to see if the user has previously 'favourited' the recipe
-    user_favourite = mongo.db.favourites.find_one({
-                                        'recipe_id': recipe_id,
-                                        'username': session['username']})
-    # if user has recipe saved as a favourite, set 'favourite'
-    # variable to True to pass to template.
-    if user_favourite:
-        favourite = True
-    else:
-        favourite = False
+    # If a user is logged in, query db to see if the user has previously
+    # 'favourited' the recipe
+    logged_in_user = session.get('username')
+    favourite = False
+    if logged_in_user:
+        user_favourite = mongo.db.favourites.find_one({
+                                            'recipe_id': recipe_id,
+                                            'username': session['username']})
+        # if user has recipe saved as a favourite, set 'favourite'
+        # variable to True to pass to template.
+        if user_favourite:
+            favourite = True
 
     if request.method == 'POST':
         if 'favourite' in request.form:
