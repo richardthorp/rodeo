@@ -10,9 +10,12 @@
         {% endfor %}
     </ul>
     <img src="{{ url_for('static', filename='/images/cala-w6ftFbPCs9I-unsplash.jpg') }}" alt="">
-    <div class="row d-flex justify-content-between">
+
+    {% if session['username'] %}
+    <!-- IF USER LOGGED IN  -->
+    <div class="row d-flex justify-content-between rating-row mx-auto">
         <div class="d-none d-md-inline col-md-4 text-center">
-            <h6 class="sub-header text-center">Average Rating</h6>
+            <h6 class="sub-header">Average Rating</h6>
             {% if average_rating == 1 %}
             <span class="star coloured-star">&#9733;</span>
             <span class="star blank-star">&#9733;</span>
@@ -150,16 +153,70 @@
             <h6 class="sub-header text-center">Add to Favourites</h6>
             <form id="favourite-form" method="POST" action="{{ url_for('recipe_page', recipe_id=recipe._id) }}">
                 {% if favourite %}
-                <input type="checkbox" name="favourite" id="favourite-checkbox-checked" value="delete_fav" >
+                <input type="checkbox" name="favourite" id="favourite-checkbox-checked" value="delete_fav">
                 <label class="favourite-toggle" for="favourite-checkbox-checked"><i class="fas fa-heart"></i></label>
                 {% else %}
-                <input type="checkbox" name="favourite" id="favourite-checkbox-unchecked" value="add_fav" >
+                <input type="checkbox" name="favourite" id="favourite-checkbox-unchecked" value="add_fav">
                 <label class="favourite-toggle" for="favourite-checkbox-unchecked"><i class="far fa-heart"></i></label>
                 {% endif %}
 
             </form>
         </div>
     </div>
+    <!--END OF LOGGED IN USER VIEW-->
+    {% else %}
+    <!--IF USER NOT LOGGED IN-->
+    <div class="row rating-row mx-auto">
+        <div class="col-12 text-center">
+            <h6 class="sub-header">Average Rating</h6>
+            {% if average_rating == 1 %}
+            <span class="star coloured-star">&#9733;</span>
+            <span class="star blank-star">&#9733;</span>
+            <span class="star blank-star">&#9733;</span>
+            <span class="star blank-star">&#9733;</span>
+            <span class="star blank-star">&#9733;</span>
+            {% elif average_rating == 2 %}
+            <span class="star coloured-star">&#9733;</span>
+            <span class="star coloured-star">&#9733;</span>
+            <span class="star blank-star">&#9733;</span>
+            <span class="star blank-star">&#9733;</span>
+            <span class="star blank-star">&#9733;</span>
+            {% elif average_rating == 3 %}
+            <span class="star coloured-star">&#9733;</span>
+            <span class="star coloured-star">&#9733;</span>
+            <span class="star coloured-star">&#9733;</span>
+            <span class="star blank-star">&#9733;</span>
+            <span class="star blank-star">&#9733;</span>
+            {% elif average_rating == 4 %}
+            <span class="star coloured-star">&#9733;</span>
+            <span class="star coloured-star">&#9733;</span>
+            <span class="star coloured-star">&#9733;</span>
+            <span class="star coloured-star">&#9733;</span>
+            <span class="star blank-star">&#9733;</span>
+            {% elif average_rating == 5 %}
+            <span class="star coloured-star">&#9733;</span>
+            <span class="star coloured-star">&#9733;</span>
+            <span class="star coloured-star">&#9733;</span>
+            <span class="star coloured-star">&#9733;</span>
+            <span class="star coloured-star">&#9733;</span>
+            {% else %}
+            <span class="star blank-star">&#9733;</span>
+            <span class="star blank-star">&#9733;</span>
+            <span class="star blank-star">&#9733;</span>
+            <span class="star blank-star">&#9733;</span>
+            <span class="star blank-star">&#9733;</span>
+            {% endif %}
+        </div>
+        <div class="col-12">
+            <div class="log-in-prompt text-center">
+                <h6 class="sub-header">Join the Rodeo community!</h6>
+                <p><a href="{{ url_for('login') }}">Log in</a> or <a href="{{ url_for('register') }}">register</a> to
+                    rate recipes, save recipes to your own favourite recipe page and to add your own recipes </p>
+            </div>
+        </div>
+    </div>
+    <!--END OF NOT LOGGED IN USER VIEW-->
+    {% endif %}
 </div>
 
 <div class="row">

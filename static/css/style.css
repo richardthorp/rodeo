@@ -11,6 +11,7 @@
 body {
     min-width: 280px;
     background-color: #E0CA3C;
+    font-family: 'Open Sans';
 }
 
 a:hover {
@@ -162,6 +163,28 @@ nav {
 
 .recipe-header h6 {
     margin: 0;
+}
+
+.rating-row {
+    max-width: 800px;
+}
+
+.log-in-prompt {
+    margin: 20px 0;
+    border: 3px solid #136F63;
+    border-radius: 15px;
+    padding: 10px;
+    font-size: 1.2rem;
+    background-color: rgb(255, 252, 234);
+}
+
+.log-in-prompt p {
+    margin: 10px 0;
+    
+}
+
+.log-in-prompt a {
+    font-size: 1.4rem;
 }
 
 .ratings-button p {
