@@ -155,23 +155,26 @@ def get_image(image_name):
 @app.route("/recipe_page/<recipe_id>", methods=["GET", "POST"])
 def recipe_page(recipe_id):
     recipe = mongo.db.recipes.find_one({'_id': ObjectId(recipe_id)})
-    # Get all the ratings documents and the number of ratings documents
-    recipe_ratings = mongo.db.ratings.find({'recipe_id': recipe_id})
-    ratings_count = mongo.db.ratings.count_documents({'recipe_id': recipe_id})
-    # Add all the ratings together and then divide by
-    # number of ratings (get average)
-    ratings_summed = 0
+
+    # Find out how many ratings the recipe has
+    ratings_count = len(recipe['ratings'].values())
+
+    # If the recipe has ratings, add them together and divide by
+    # ratings count to find average rating
     if ratings_count:
-        for rating in recipe_ratings:
-            ratings_summed += int(rating['rating'])
+        ratings_summed = 0
+        for rating in recipe['ratings'].values():
+            ratings_summed += int(rating)
         average_rating = ratings_summed / ratings_count
     else:
         average_rating = 0
 
+    # NEED TO LOOK INTO BEST WAY TO SET DEFAULT ~~~~~~~~~~~~~~~~~~~~~
     if recipe['image_name']:
         image_name = recipe['image_name']
     else:
         image_name = url_for('static', filename='/images/hero.png')
+
     # If a user is logged in, query db to see if the user has previously
     # 'favourited' the recipe
     logged_in_user = session.get('username')
