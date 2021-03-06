@@ -13,10 +13,8 @@ $("#add-ingredient-row").on('click', function () {
     }
     /* Get number to add to name attribute in form */
     inputNumber = ingredientItems.length + 1;
-    ingredientHTMLString = `<input class='form-input' id=ingredient_${inputNumber} name='ingredient_${inputNumber}' type='text' value=''>`;
-    quantityHTMLString = `<input class='form-input' id=quantity_${inputNumber} name='quantity_${inputNumber}' type='text' value=''>`;
+    ingredientHTMLString = `<input class='form-input small-input' id=ingredient_${inputNumber} name='ingredient_${inputNumber}' type='text' value=''>`;
     $(".ingredients-container").append(ingredientHTMLString);
-    $(".quantity-container").append(quantityHTMLString);
 });
 
 /* This function is the same as above, but the jQuery selector needs to target textarea inputs with a name attribute

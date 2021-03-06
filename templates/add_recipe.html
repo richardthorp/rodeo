@@ -39,8 +39,8 @@
             <div class="row">
                 <div class="col-12">
                     <h6 class="form-details">Recipe name :</h6>
-                    <div class="col name-input">
-                        {{ form.recipe_name(class="form-input") }}
+                    <div class="col">
+                        {{ form.recipe_name(class="form-input small-input") }}
                     </div>
                 </div>
             </div>
@@ -83,24 +83,20 @@
             </div>
         </div>
     </div>
-    <p class="sub-header mt-3 mt-lg-4">Please list your ingredients and cooking instructions here.<br>
-        If you need more boxes, click the plus button.</p>
-    <!-- INGREDIENTS AND QUANTITY -->
+    <p class="sub-header mt-3 mt-lg-4 text-center">Please list your ingredients and cooking instructions here.<br>
+        If you need more boxes, click the <span class="add-row-btn col-12"><i class="fas fa-plus-circle"></i></span>
+        button.</p>
+    
     <div class="rounded-container form-container mx-auto">
+        <!-- INGREDIENTS AND QUANTITY -->
         <div class="row mx-auto pt-2">
-            <div class="col-8 ingredients-container">
+            <div class="col-12 ingredients-container">
                 <h6 class="text-left form-details">Ingredients</h6>
-                {{ form.ingredient_1(class="form-input") }}
-                {{ form.ingredient_2(class="form-input") }}
-                {{ form.ingredient_3(class="form-input") }}
+                {{ form.ingredient_1(class="form-input small-input") }}
+                {{ form.ingredient_2(class="form-input small-input") }}
+                {{ form.ingredient_3(class="form-input small-input") }}
             </div>
-            <div class="col-4 quantity-container">
-                <h6 class="text-left form-details">Quantity</h6>
-                {{ form.quantity_1(class="form-input") }}
-                {{ form.quantity_2(class="form-input") }}
-                {{ form.quantity_3(class="form-input") }}
-            </div>
-            <div id="add-ingredient-row" class="add-row-btn col-12 text-right">
+            <div id="add-ingredient-row" class="add-row-btn col-12">
                 <i class="fas fa-plus-circle"></i>
             </div>
         </div>
@@ -112,7 +108,7 @@
                 {{ form.instruction_1(class="form-input auto-resize") }}
                 {{ form.instruction_2(class="form-input auto-resize") }}
             </div>
-            <div id="add-instructions-row" class="add-row-btn col-12 text-right">
+            <div id="add-instructions-row" class="add-row-btn col-12">
                 <i class="fas fa-plus-circle"></i>
             </div>
         </div>

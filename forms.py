@@ -84,14 +84,14 @@ class Add_recipe_form(FieldsRequiredForm):
                                validators=[Length(max=50)])
     ingredient_3 = StringField("Ingredient 2",
                                validators=[Length(max=50)])
-    quantity_1 = StringField("Quantity",
-                             validators=[Length(max=50), InputRequired()])
-    quantity_2 = StringField("Quantity",
-                             validators=[Length(max=50),
-                                         InputRequired()])
-    quantity_3 = StringField("Quantity",
-                             validators=[Length(max=50),
-                                         InputRequired()])
+    # quantity_1 = StringField("Quantity",
+    #                          validators=[Length(max=50), InputRequired()])
+    # quantity_2 = StringField("Quantity",
+    #                          validators=[Length(max=50),
+    #                                      InputRequired()])
+    # quantity_3 = StringField("Quantity",
+    #                          validators=[Length(max=50),
+    #                                      InputRequired()])
     instruction_1 = TextAreaField("Instruction",
                                   validators=[InputRequired()],
                                   render_kw={"placeholder":

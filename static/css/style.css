@@ -151,7 +151,7 @@ nav {
 .recipe-header img {
     min-width: 220px;
     max-width: 800px;
-    object-fit: cover;
+    object-fit: contain;
     margin: 20px auto;
     display: flex;
 }
@@ -462,7 +462,7 @@ label i {
     padding: 5px 5px 0 5px;
 }
 
-.name-input {
+.small-input {
     max-width: 400px;
 }
 
@@ -489,8 +489,6 @@ label i {
 
 .add-row-btn {
     font-size: 1.5rem;
-    position: relative;
-    right: 20px;
 }
 
 .hidden-file-input {

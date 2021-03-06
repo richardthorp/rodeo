@@ -111,14 +111,11 @@ def add_recipe():
         for (key, value) in recipe.items():
             if "ingredient" in key:
                 ingredients.append(value)
-            elif "quantity" in key:
-                quantities.append(value)
             elif "instruction" in key:
                 instructions.append(value)
 
         if ingredients[-1] == "":
             ingredients.pop()
-            quantities.pop()
         if instructions[-1] == "":
             instructions.pop()
 
@@ -127,7 +124,6 @@ def add_recipe():
             'feeds': recipe['feeds'],
             'details': details,
             'ingredients': ingredients,
-            'quantities': quantities,
             'instructions': instructions,
             'added_by': session['username']
             }
@@ -157,10 +153,7 @@ def get_image(image_name):
 @app.route("/recipe_page/<recipe_id>", methods=["GET", "POST"])
 def recipe_page(recipe_id):
     recipe = mongo.db.recipes.find_one({'_id': ObjectId(recipe_id)})
-    # Combine ingredients and quantities into one string for
-    # easier page rendering
-    recipe['ingredients'] = zip(recipe['quantities'], recipe['ingredients'])
-    # get all the ratings documents and the number of ratings documents
+    # Get all the ratings documents and the number of ratings documents
     recipe_ratings = mongo.db.ratings.find({'recipe_id': recipe_id})
     ratings_count = mongo.db.ratings.count_documents({'recipe_id': recipe_id})
     # Add all the ratings together and then divide by
@@ -173,7 +166,7 @@ def recipe_page(recipe_id):
     if recipe['image_name']:
         image_name = recipe['image_name']
     else:
-        image_name = url_for('static', '/images/hero.png')
+        image_name = url_for('static', filename='/images/hero.png')
     # If a user is logged in, query db to see if the user has previously
     # 'favourited' the recipe
     logged_in_user = session.get('username')
