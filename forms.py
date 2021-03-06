@@ -78,20 +78,9 @@ class Add_recipe_form(FieldsRequiredForm):
     quick_checkbox = BooleanField('Quick', render_kw={"value": "Quick"})
     fakeaway_checkbox = BooleanField('Fakeaway', render_kw={"value":
                                                             "Fakeaway"})
-    ingredient_1 = StringField("Ingredient 1",
-                               validators=[Length(max=50), InputRequired()])
-    ingredient_2 = StringField("Ingredient 2",
-                               validators=[Length(max=50)])
-    ingredient_3 = StringField("Ingredient 2",
-                               validators=[Length(max=50)])
-    # quantity_1 = StringField("Quantity",
-    #                          validators=[Length(max=50), InputRequired()])
-    # quantity_2 = StringField("Quantity",
-    #                          validators=[Length(max=50),
-    #                                      InputRequired()])
-    # quantity_3 = StringField("Quantity",
-    #                          validators=[Length(max=50),
-    #                                      InputRequired()])
+    ingredient_1 = StringField("Ingredient 1", validators=[InputRequired()])
+    ingredient_2 = StringField("Ingredient 2", validators=[InputRequired()])
+    ingredient_3 = StringField("Ingredient 3", validators=[InputRequired()])
     instruction_1 = TextAreaField("Instruction",
                                   validators=[InputRequired()],
                                   render_kw={"placeholder":
