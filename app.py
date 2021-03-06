@@ -135,9 +135,11 @@ def add_recipe():
                                 request.files['picture_upload'].filename
                                 if char.isalnum()) + session['username']
 
-            formatted_recipe['image_name'] = file_name
             mongo.save_file(file_name,
                             request.files['picture_upload'])
+            formatted_recipe['image_name'] = file_name
+        else:
+            formatted_recipe['image_name'] = 'defaultrecipeimagepngRodeo'
         mongo.db.recipes.insert_one(formatted_recipe)
     else:
         print("NOT VALID")
@@ -159,9 +161,12 @@ def recipe_page(recipe_id):
     # Add all the ratings together and then divide by
     # number of ratings (get average)
     ratings_summed = 0
-    for rating in recipe_ratings:
-        ratings_summed += int(rating['rating'])
-    average_rating = ratings_summed / ratings_count
+    if ratings_count:
+        for rating in recipe_ratings:
+            ratings_summed += int(rating['rating'])
+        average_rating = ratings_summed / ratings_count
+    else:
+        average_rating = 0
 
     if recipe['image_name']:
         image_name = recipe['image_name']

@@ -2,7 +2,7 @@
 {% block content %}
 <div class="recipe-header rounded-container mx-auto">
     <h1 class="logo-font text-center header">{{ recipe.name }}</h1>
-    <p class="recipe-added-by text-center text-muted">Recipe added by example-user</p>
+    <p class="recipe-added-by text-center text-muted">Recipe added by {{ recipe.added_by }}</p>
     <p class="serves-details sub-header text-center">Serves {{ recipe.feeds }}</p>
     <ul class="sub-header recipe-details-list d-flex justify-content-center mx-auto flex-wrap">
         {% for detail in recipe.details.values() %}
@@ -223,8 +223,8 @@
     <div class="col-12 col-lg-6">
         <div class="ingredients-section rounded-container mx-auto">
             <h3 class="sub-header text-center">Ingredients</h3>
-            {% for quantity, ingredient in recipe.ingredients %}
-            <li>{{ quantity }} {{ ingredient }}</li>
+            {% for ingredient in recipe.ingredients %}
+            <li>{{ ingredient }}</li>
             {% endfor %}
         </div>
     </div>

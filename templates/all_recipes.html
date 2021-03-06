@@ -1,12 +1,13 @@
 {% extends 'base.html' %}
 {% block content %}
-{% for recipe in recipes %}
+
 <div class="row">
+    {% for recipe in recipes %}
     <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center">
         <div class="recipe-card">
             <a href="{{url_for('recipe_page', recipe_id=recipe._id)}}">
                 <div class="recipe-image-container">
-                    <img src="/static/images/eaters-collective-pLKgCsBOiw4-unsplash.jpg" alt="...">
+                    <img src="{{ url_for('get_image', image_name = recipe.image_name) }}" alt="">
                 </div>
                 <div>
                     <h4 class="recipe-title logo-font">{{ recipe.name }}</h4>
@@ -14,6 +15,7 @@
             </a>
         </div>
     </div>
-</div>
     {% endfor %}
-    {% endblock %}
+</div>
+
+{% endblock %}
