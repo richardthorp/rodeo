@@ -196,15 +196,12 @@ def recipe_page(recipe_id):
                                         'recipe_id': recipe_id,
                                         'username': session['username']})
         if 'rating' in request.form:
-            user = session["username"]
-            # If user has already rated recipe - delete original rating,
-            # then insert new rating
-            mongo.db.ratings.delete_one(
-                {'recipe_id': recipe_id, 'user': user})
-            rating = request.form.get("rating")
-            mongo.db.ratings.insert_one({'recipe_id': recipe_id,
-                                         'user': user,
-                                         'rating': rating})
+            # Find the respective recipe, and within the ratings field set
+            # username and user rating
+            mongo.db.recipes.update_one({'_id': ObjectId(recipe_id)}, {'$set':
+                                        {'ratings.' + session['username']:
+                                         request.form.get('rating')}})
+
         return redirect(url_for('recipe_page', recipe_id=recipe_id))
 
     return render_template("recipe_page.html", recipe=recipe,
