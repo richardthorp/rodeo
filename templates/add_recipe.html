@@ -32,7 +32,7 @@
     </div>
 </div>
 <!-- ADD RECIPE FORM -->
-<form method="POST" action="{{ url_for('add_recipe')}}">
+<form method="POST" action="{{ url_for('add_recipe')}}" enctype="multipart/form-data">
     {{ form.csrf_token }}
     <div class="row rounded-container form-container mx-auto pt-2">
         <div class="col-12">

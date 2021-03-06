@@ -9,7 +9,7 @@
         <li>{{ detail }} <i class="fas fa-check-circle"></i></li>
         {% endfor %}
     </ul>
-    <img src="{{ url_for('static', filename='/images/cala-w6ftFbPCs9I-unsplash.jpg') }}" alt="">
+    <img src="{{ url_for('get_image', image_name = image_name) }}" alt="">
 
     {% if session['username'] %}
     <!-- IF USER LOGGED IN  -->

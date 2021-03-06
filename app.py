@@ -128,14 +128,30 @@ def add_recipe():
             'details': details,
             'ingredients': ingredients,
             'quantities': quantities,
-            'instructions': instructions
+            'instructions': instructions,
+            'added_by': session['username']
             }
+        # If an image file has been sent with form data...
+        if request.files['picture_upload']:
+            # Remove any special characters from the file name and
+            # add username to file name to ensure name is unique
+            file_name = "".join(char for char in
+                                request.files['picture_upload'].filename
+                                if char.isalnum()) + session['username']
 
+            formatted_recipe['image_name'] = file_name
+            mongo.save_file(file_name,
+                            request.files['picture_upload'])
         mongo.db.recipes.insert_one(formatted_recipe)
     else:
         print("NOT VALID")
 
     return render_template("add_recipe.html", form=form)
+
+
+@app.route('/get_image/<image_name>')
+def get_image(image_name):
+    return mongo.send_file(image_name)
 
 
 @app.route("/recipe_page/<recipe_id>", methods=["GET", "POST"])
@@ -154,6 +170,10 @@ def recipe_page(recipe_id):
         ratings_summed += int(rating['rating'])
     average_rating = ratings_summed / ratings_count
 
+    if recipe['image_name']:
+        image_name = recipe['image_name']
+    else:
+        image_name = url_for('static', '/images/hero.png')
     # If a user is logged in, query db to see if the user has previously
     # 'favourited' the recipe
     logged_in_user = session.get('username')
@@ -191,7 +211,7 @@ def recipe_page(recipe_id):
 
     return render_template("recipe_page.html", recipe=recipe,
                            average_rating=round(average_rating),
-                           favourite=favourite)
+                           favourite=favourite, image_name=image_name)
 
 
 @app.route("/logout")
