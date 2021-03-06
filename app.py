@@ -102,7 +102,6 @@ def add_recipe():
     if form.validate_on_submit():
         details = {}
         ingredients = []
-        quantities = []
         instructions = []
         formatted_recipe = {}
         recipe = dict(request.form)
@@ -156,18 +155,9 @@ def get_image(image_name):
 def recipe_page(recipe_id):
     recipe = mongo.db.recipes.find_one({'_id': ObjectId(recipe_id)})
 
-    # Find out how many ratings the recipe has
-    ratings_count = len(recipe['ratings'].values())
-
-    # If the recipe has ratings, add them together and divide by
-    # ratings count to find average rating
-    if ratings_count:
-        ratings_summed = 0
-        for rating in recipe['ratings'].values():
-            ratings_summed += int(rating)
-        average_rating = ratings_summed / ratings_count
-    else:
-        average_rating = 0
+    average_rating = get_average_rating(recipe_id)
+    mongo.db.recipes.update_one({'_id': ObjectId(recipe_id)},
+                                {'$set': {'average_rating': average_rating}})
 
     # NEED TO LOOK INTO BEST WAY TO SET DEFAULT ~~~~~~~~~~~~~~~~~~~~~
     if recipe['image_name']:
@@ -210,6 +200,24 @@ def recipe_page(recipe_id):
     return render_template("recipe_page.html", recipe=recipe,
                            average_rating=round(average_rating),
                            favourite=favourite, image_name=image_name)
+
+
+def get_average_rating(recipe_id):
+    recipe = mongo.db.recipes.find_one({'_id': ObjectId(recipe_id)})
+    # Find out how many ratings the recipe has
+    ratings_count = len(recipe['ratings'].values())
+
+    # If the recipe has ratings, add them together and divide by
+    # ratings count to find average rating
+    if ratings_count:
+        ratings_summed = 0
+        for rating in recipe['ratings'].values():
+            ratings_summed += int(rating)
+        average_rating = ratings_summed / ratings_count
+    else:
+        average_rating = 0
+
+    return average_rating
 
 
 @app.route("/logout")
