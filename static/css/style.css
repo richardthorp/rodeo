@@ -650,6 +650,13 @@ label i {
     #logo {
         font-size: 5rem;
     }
+    .custom-nav-links {
+        font-size: 1.6rem;
+    }
+    .footer-links {
+        font-size: 1.4rem;
+        padding: 0;
+    }
     .about-title {
         left: 30%;
         font-size: 5rem;

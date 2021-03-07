@@ -9,47 +9,47 @@
                 <div class="recipe-image-container">
                     <img src="{{ url_for('get_image', image_name = recipe.image_name) }}" alt="">
                 </div>
-                <div>
-                    <h4 class="recipe-title logo-font">{{ recipe.name }}</h4>
-                    {% if recipe.average_rating == 1 %}
-                    <span class="star coloured-star">&#9733;</span>
-                    <span class="star blank-star">&#9733;</span>
-                    <span class="star blank-star">&#9733;</span>
-                    <span class="star blank-star">&#9733;</span>
-                    <span class="star blank-star">&#9733;</span>
-                    {% elif recipe.average_rating == 2 %}
-                    <span class="star coloured-star">&#9733;</span>
-                    <span class="star coloured-star">&#9733;</span>
-                    <span class="star blank-star">&#9733;</span>
-                    <span class="star blank-star">&#9733;</span>
-                    <span class="star blank-star">&#9733;</span>
-                    {% elif recipe.average_rating == 3 %}
-                    <span class="star coloured-star">&#9733;</span>
-                    <span class="star coloured-star">&#9733;</span>
-                    <span class="star coloured-star">&#9733;</span>
-                    <span class="star blank-star">&#9733;</span>
-                    <span class="star blank-star">&#9733;</span>
-                    {% elif recipe.average_rating == 4 %}
-                    <span class="star coloured-star">&#9733;</span>
-                    <span class="star coloured-star">&#9733;</span>
-                    <span class="star coloured-star">&#9733;</span>
-                    <span class="star coloured-star">&#9733;</span>
-                    <span class="star blank-star">&#9733;</span>
-                    {% elif recipe.average_rating == 5 %}
-                    <span class="star coloured-star">&#9733;</span>
-                    <span class="star coloured-star">&#9733;</span>
-                    <span class="star coloured-star">&#9733;</span>
-                    <span class="star coloured-star">&#9733;</span>
-                    <span class="star coloured-star">&#9733;</span>
-                    {% else %}
-                    <span class="star blank-star">&#9733;</span>
-                    <span class="star blank-star">&#9733;</span>
-                    <span class="star blank-star">&#9733;</span>
-                    <span class="star blank-star">&#9733;</span>
-                    <span class="star blank-star">&#9733;</span>
-                    {% endif %}
-                </div>
+                <h4 class="recipe-title logo-font">{{ recipe.name }}</h4>
             </a>
+            <div>
+                {% if recipe.average_rating == 1 %}
+                <span class="star coloured-star">&#9733;</span>
+                <span class="star blank-star">&#9733;</span>
+                <span class="star blank-star">&#9733;</span>
+                <span class="star blank-star">&#9733;</span>
+                <span class="star blank-star">&#9733;</span>
+                {% elif recipe.average_rating == 2 %}
+                <span class="star coloured-star">&#9733;</span>
+                <span class="star coloured-star">&#9733;</span>
+                <span class="star blank-star">&#9733;</span>
+                <span class="star blank-star">&#9733;</span>
+                <span class="star blank-star">&#9733;</span>
+                {% elif recipe.average_rating == 3 %}
+                <span class="star coloured-star">&#9733;</span>
+                <span class="star coloured-star">&#9733;</span>
+                <span class="star coloured-star">&#9733;</span>
+                <span class="star blank-star">&#9733;</span>
+                <span class="star blank-star">&#9733;</span>
+                {% elif recipe.average_rating == 4 %}
+                <span class="star coloured-star">&#9733;</span>
+                <span class="star coloured-star">&#9733;</span>
+                <span class="star coloured-star">&#9733;</span>
+                <span class="star coloured-star">&#9733;</span>
+                <span class="star blank-star">&#9733;</span>
+                {% elif recipe.average_rating == 5 %}
+                <span class="star coloured-star">&#9733;</span>
+                <span class="star coloured-star">&#9733;</span>
+                <span class="star coloured-star">&#9733;</span>
+                <span class="star coloured-star">&#9733;</span>
+                <span class="star coloured-star">&#9733;</span>
+                {% else %}
+                <span class="star blank-star">&#9733;</span>
+                <span class="star blank-star">&#9733;</span>
+                <span class="star blank-star">&#9733;</span>
+                <span class="star blank-star">&#9733;</span>
+                <span class="star blank-star">&#9733;</span>
+                {% endif %}
+            </div>
         </div>
     </div>
     {% endfor %}
