@@ -1,5 +1,16 @@
 {% extends 'base.html' %}
 {% block content %}
+{% if session['username'] == recipe.added_by %}
+<div class="rounded-container mx-auto text-center pt-2 pb-2">
+    <span>
+        <strong>Thank you for adding this recipe!</strong>
+    </span>
+    <span class="d-block d-sm-inline mt-2">
+        <a href="{{ url_for('edit_recipe', recipe_id=recipe._id) }}"><button class="custom-button ml-3">Edit</button></a>
+        <a href="{{ url_for('delete_recipe', recipe_id=recipe._id) }}"><button class="delete-button ml-3">Delete</button></a>
+    </span>
+</div>
+{% endif %}
 <div class="recipe-header rounded-container mx-auto">
     <h1 class="logo-font text-center header">{{ recipe.name }}</h1>
     <p class="recipe-added-by text-center text-muted">Recipe added by {{ recipe.added_by }}</p>

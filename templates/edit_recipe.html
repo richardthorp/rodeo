@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+    {% for message in messages %}  
+        <p>{{ message }}</p>
+    {% endfor %}
+{% endif %}
+{% endwith %}
+<h1 class="logo-font text-center header">Log In</h1>
+<div class="row">
+    <div class="col-12 col-md-8 justify-content-center d-flex">
+        <form class="login-form" method="POST" action="">
+            {{ form.hidden_tag() }}
+            <label for="email_or_username" class="form-input-label">Please enter your email address <br>or username :</label>
+            {{ form.email_or_username(class="form-input") }}
+            <label for="password" class="form-input-label">Please type your password :</label>
+            {{ form.password(class="form-input") }}
+            {{ form.submit(class="custom-button") }}
+            <p class="form-details">Need to sign up?</p>
+            <p class="form-details"><a href="{{ url_for('register') }}">Click here to register</a></p>
+        </form>
+    </div>
+    <div class="d-sm-none d-md-inline-block col-4">
+        <img class="register-image" src="/static/images/bottle.png" alt="">
+    </div>
+</div>
+
+{% endblock %}

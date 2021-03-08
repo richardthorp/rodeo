@@ -41,7 +41,7 @@ def register():
         else:
             registration_info = {
                 "email": request.form.get('email').lower(),
-                "username": request.form.get("username").lower(),
+                "username": request.form.get("username"),
                 "password": generate_password_hash(
                             request.form.get("password"))
             }
@@ -68,7 +68,7 @@ def login():
             if check_password_hash(existing_user["password"],
                                    request.form.get("password")):
                 session["username"] = existing_user["username"]
-                print("Login successfull")
+                print("Login successfull", session['username'])
                 return redirect(url_for("index"))
             else:
                 flash("Login details incorrect, please try again.")
@@ -144,6 +144,17 @@ def add_recipe():
         print("NOT VALID")
 
     return render_template("add_recipe.html", form=form)
+
+
+@app.route('/delete_recipe/<recipe_id>')
+def delete_recipe(recipe_id):
+    print('DELETE BUTTON CLICKED')
+    return redirect(url_for('my_recipes'))
+
+
+@app.route('/edit_recipe/<recipe_id>')
+def edit_recipe(recipe_id):
+    return url_for('edit_recipe', recipe_id=recipe_id)
 
 
 @app.route('/get_image/<image_name>')

@@ -329,13 +329,21 @@ label i {
     margin-bottom: 3px;
 }
 
-.custom-button {
+.custom-button, .delete-button {
     font-family: Bevan;
-    color: #136F63;
     background-color: transparent;
     text-transform: uppercase;
-    border: 3px solid #136F63;
     border-radius: 10px;
+}
+
+.custom-button {
+    color: #136F63;
+    border: 3px solid #136F63;
+}
+
+.delete-button {
+    color: #F34213;
+    border: 3px solid #F34213;
 }
 
 .custom-button:hover {
