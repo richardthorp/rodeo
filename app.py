@@ -6,7 +6,7 @@ from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_paginate import Pagination, get_page_args
 from forms import (Registration_form, Login_form,
-                   Search_and_filter_form, Add_recipe_form)
+                   Search_and_filter_form, Add_recipe_form, Edit_recipe_form)
 if os.path.exists("env.py"):
     import env
 
@@ -142,6 +142,7 @@ def add_recipe():
         mongo.db.recipes.insert_one(formatted_recipe)
     else:
         print("NOT VALID")
+        print(form.errors)
 
     return render_template("add_recipe.html", form=form)
 
@@ -152,11 +153,54 @@ def delete_recipe(recipe_id):
     return redirect(url_for('my_recipes'))
 
 
-@app.route('/edit_recipe/<recipe_id>')
+@app.route('/edit_recipe/<recipe_id>', methods=['GET', 'POST'])
 def edit_recipe(recipe_id):
-    form = Add_recipe_form()
+    form = Edit_recipe_form()
     recipe = mongo.db.recipes.find_one({'_id': ObjectId(recipe_id)})
-    print(recipe['details'].values())
+    if form.validate_on_submit():
+        details = {}
+        ingredients = []
+        instructions = []
+        formatted_recipe = {}
+        recipe = dict(request.form)
+        details = {key: value for key, value in recipe.items() if
+                   "checkbox" in key or "recipe_type" in key}
+        for (key, value) in recipe.items():
+            if "ingredient" in key:
+                ingredients.append(value)
+            elif "instruction" in key:
+                instructions.append(value)
+
+        if ingredients[-1] == "":
+            ingredients.pop()
+        if instructions[-1] == "":
+            instructions.pop()
+
+        formatted_recipe = {
+            'name': recipe['recipe_name'],
+            'feeds': recipe['feeds'],
+            'details': details,
+            'ingredients': ingredients,
+            'instructions': instructions,
+            'added_by': session['username']
+            }
+        # If an image file has been sent with form data...
+        if request.files['picture_upload']:
+            # Remove any special characters from the file name and
+            # add username to file name to ensure name is unique
+            file_name = "".join(char for char in
+                                request.files['picture_upload'].filename
+                                if char.isalnum()) + session['username']
+
+            mongo.save_file(file_name,
+                            request.files['picture_upload'])
+            formatted_recipe['image_name'] = file_name
+        else:
+            formatted_recipe['image_name'] = 'defaultrecipeimagepngRodeo'
+        mongo.db.recipes.update_one({'_id': recipe_id}, formatted_recipe)
+        return redirect(url_for('recipe_page', recipe_id=recipe_id))
+    else:
+        print(form.errors)
     return render_template('edit_recipe.html', form=form, recipe=recipe)
 
 

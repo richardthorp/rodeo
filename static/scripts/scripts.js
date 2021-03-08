@@ -53,10 +53,6 @@ $("#favourite-checkbox-unchecked").on('click', function(){
 $("document").ready(function(){
     let instructions = $(".edit-recipe-instruction")
     Object.values(instructions).forEach(instruction => {
-        instruction.value = (instruction.getAttribute("placeholder"));
+        instruction.innerText = (instruction.getAttribute("placeholder"));
     });
 });
-
-function test(vars){
-    console.log(vars);
-}
