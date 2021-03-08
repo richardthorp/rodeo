@@ -47,3 +47,16 @@ $("#favourite-checkbox-checked").on('click', function(){
 $("#favourite-checkbox-unchecked").on('click', function(){
             $("#favourite-form").submit();
     });
+
+/* Get the placeholder values passed to the edit_recipe template textarea inputs
+   and render it within the textarea */
+$("document").ready(function(){
+    let instructions = $(".edit-recipe-instruction")
+    Object.values(instructions).forEach(instruction => {
+        instruction.value = (instruction.getAttribute("placeholder"));
+    });
+});
+
+function test(vars){
+    console.log(vars);
+}

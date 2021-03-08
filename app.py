@@ -154,7 +154,10 @@ def delete_recipe(recipe_id):
 
 @app.route('/edit_recipe/<recipe_id>')
 def edit_recipe(recipe_id):
-    return url_for('edit_recipe', recipe_id=recipe_id)
+    form = Add_recipe_form()
+    recipe = mongo.db.recipes.find_one({'_id': ObjectId(recipe_id)})
+    print(recipe['details'].values())
+    return render_template('edit_recipe.html', form=form, recipe=recipe)
 
 
 @app.route('/get_image/<image_name>')
