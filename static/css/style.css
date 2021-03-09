@@ -499,6 +499,10 @@ label i {
     font-size: 1.5rem;
 }
 
+#add-ingredient-button:hover, #add-instruction-button:hover {
+    cursor: pointer;
+}
+
 .hidden-file-input {
      display: none;
 }

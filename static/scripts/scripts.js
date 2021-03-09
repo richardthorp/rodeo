@@ -3,7 +3,7 @@
 $(".auto-resize").autoResize();
 
 /* RENDER NEW ROWS IN THE ADD_RECIPE FORM WHEN PLUS BUTTON CLICKED */
-$("#add-ingredient-row").on('click', function () {
+$("#add-ingredient-button").on('click', function () {
     ingredientItems = $(".ingredients-container .form-input").siblings('input');
     /* Check that all the boxes in the ingredient container have some text in them before rendering a new text input */
     for (let i = 0; i < ingredientItems.length; i += 1) {
@@ -19,7 +19,7 @@ $("#add-ingredient-row").on('click', function () {
 
 /* This function is the same as above, but the jQuery selector needs to target textarea inputs with a name attribute
    due to the autoResize plugin creating hidden textarea inputs when called  */
-$("#add-instructions-row").on('click', function () {
+$("#add-instruction-button").on('click', function () {
     instructionItems = $(".instructions-container .form-input").siblings('textarea[name]'); 
     for (let i = 0; i < instructionItems.length; i += 1) {
         if (instructionItems[i].value == "") {

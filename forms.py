@@ -111,15 +111,15 @@ class Edit_recipe_form(FieldsRequiredForm):
     fakeaway_checkbox = BooleanField('Fakeaway', render_kw={"value":
                                                             "Fakeaway"})
     ingredient_required = StringField("Ingredient 1",
-                                      validators=[InputRequired()])
+                               validators=[InputRequired()])
     ingredient_optional = StringField("Ingredient 2")
-    instruction_required = TextAreaField("Instruction",
-                                         validators=[InputRequired()],
-                                         render_kw={"placeholder":
-                                                    "Please enter step 1..."})
-    instruction_optional = TextAreaField("Instruction",
-                                         render_kw={"placeholder":
-                                                    "Please enter step 2..."})
+    instruction_required = TextAreaField("Instruction 1",
+                                  validators=[InputRequired()],
+                                  render_kw={"placeholder":
+                                             "Please enter step 1..."})
+    instruction_optional = TextAreaField("Instruction 2",
+                                  render_kw={"placeholder":
+                                             "Please enter step 2..."})
     feeds = IntegerField("How many people does it feed?",
                          validators=[InputRequired()],
                          render_kw={"type": "number"})
