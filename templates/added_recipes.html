@@ -47,8 +47,8 @@
                 <div class="col-12 col-md-6 col-lg-4">
                     <div class="sub-header text-right mt-1 mb-1">Filter recipes</div>
                     <div class="dropdown text-right">
-                        <button class="btn btn-secondary dropdown-toggle custom-button" type="button" id="dropdownMenuButton"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <button class="btn btn-secondary dropdown-toggle custom-button" type="button"
+                            id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Filter
                         </button>
                         <div class="dropdown-menu filter-dropdown" aria-labelledby="dropdownMenuButton">
@@ -84,5 +84,68 @@
         </form>
     </div>
 </div>
+<div class="row">
+    {% for recipe in recipes %}
+    <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center">
+        <div class="recipe-card added-recipe-card">
+            <div class="row mb-2">
+                <div class="col-6 text-center">
+                    <a href="{{ url_for('edit_recipe', recipe_id=recipe._id) }}"><button
+                            class="custom-button mr-2">Edit</button></a>
+                </div>
+                <div class="col-6 text-center">
+                    <a href="{{ url_for('delete_recipe', recipe_id=recipe._id) }}"><button
+                            class="delete-button ml-2">Delete</button></a>
+                </div>
+            </div>
+            <a href="{{url_for('recipe_page', recipe_id=recipe._id)}}">
+                <div class="recipe-image-container">
+                    <img src="{{ url_for('get_image', image_name = recipe.image_name) }}" alt="">
+                </div>
 
+                <h4 class="recipe-title logo-font">{{ recipe.name }}</h4>
+            </a>
+            <div class="row added-recipe-card-footer">
+                {% if recipe.average_rating == 1 %}
+                <span class="star coloured-star">&#9733;</span>
+                <span class="star blank-star">&#9733;</span>
+                <span class="star blank-star">&#9733;</span>
+                <span class="star blank-star">&#9733;</span>
+                <span class="star blank-star">&#9733;</span>
+                {% elif recipe.average_rating == 2 %}
+                <span class="star coloured-star">&#9733;</span>
+                <span class="star coloured-star">&#9733;</span>
+                <span class="star blank-star">&#9733;</span>
+                <span class="star blank-star">&#9733;</span>
+                <span class="star blank-star">&#9733;</span>
+                {% elif recipe.average_rating == 3 %}
+                <span class="star coloured-star">&#9733;</span>
+                <span class="star coloured-star">&#9733;</span>
+                <span class="star coloured-star">&#9733;</span>
+                <span class="star blank-star">&#9733;</span>
+                <span class="star blank-star">&#9733;</span>
+                {% elif recipe.average_rating == 4 %}
+                <span class="star coloured-star">&#9733;</span>
+                <span class="star coloured-star">&#9733;</span>
+                <span class="star coloured-star">&#9733;</span>
+                <span class="star coloured-star">&#9733;</span>
+                <span class="star blank-star">&#9733;</span>
+                {% elif recipe.average_rating == 5 %}
+                <span class="star coloured-star">&#9733;</span>
+                <span class="star coloured-star">&#9733;</span>
+                <span class="star coloured-star">&#9733;</span>
+                <span class="star coloured-star">&#9733;</span>
+                <span class="star coloured-star">&#9733;</span>
+                {% else %}
+                <span class="star blank-star">&#9733;</span>
+                <span class="star blank-star">&#9733;</span>
+                <span class="star blank-star">&#9733;</span>
+                <span class="star blank-star">&#9733;</span>
+                <span class="star blank-star">&#9733;</span>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
 {% endblock %}

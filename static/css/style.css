@@ -118,6 +118,16 @@ nav {
     background-color: #FFF6BC;
 }
 
+.added-recipe-card {
+    height: 520px;
+}
+
+.added-recipe-card-footer {
+    position: absolute;
+    bottom: 2%;
+
+}
+
 .recipe-image-container {
     width: 100%;
     padding-top: 75%;

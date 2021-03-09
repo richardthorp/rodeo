@@ -92,7 +92,8 @@ def my_recipes():
 @app.route("/added_recipes")
 def added_recipes():
     form = Search_and_filter_form()
-    return render_template("added_recipes.html", form=form)
+    recipes = mongo.db.recipes.find({"added_by": session['username']})
+    return render_template("added_recipes.html", form=form, recipes=recipes)
 
 
 @app.route("/add_recipe", methods=["GET", "POST"])
