@@ -91,7 +91,7 @@ class Add_recipe_form(FieldsRequiredForm):
                                              "Please enter step 2..."})
     feeds = IntegerField("How many people does it feed?",
                          validators=[InputRequired()],
-                         render_kw={"type": "number"})
+                         render_kw={"type": "number", "min": "1"})
     picture_upload = FileField('Upload Picture')
     add_recipe_button = SubmitField(render_kw={"value": "Add Recipe"})
 
@@ -122,6 +122,6 @@ class Edit_recipe_form(FieldsRequiredForm):
                                              "Please enter step 2..."})
     feeds = IntegerField("How many people does it feed?",
                          validators=[InputRequired()],
-                         render_kw={"type": "number"})
+                         render_kw={"type": "number", "min": "1"})
     picture_upload = FileField('Upload Picture')
     edit_recipe_button = SubmitField(render_kw={"value": "Add Recipe"})

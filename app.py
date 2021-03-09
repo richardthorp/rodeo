@@ -109,9 +109,9 @@ def add_recipe():
                    "checkbox" in key or "recipe_type" in key}
         for (key, value) in recipe.items():
             if "ingredient" in key:
-                ingredients.append(value)
+                ingredients.append(value.strip())
             elif "instruction" in key:
-                instructions.append(value)
+                instructions.append(value.strip())
 
         if ingredients[-1] == "":
             ingredients.pop()
@@ -119,7 +119,7 @@ def add_recipe():
             instructions.pop()
 
         formatted_recipe = {
-            'name': recipe['recipe_name'],
+            'name': recipe['recipe_name'].strip(),
             'feeds': recipe['feeds'],
             'details': details,
             'ingredients': ingredients,
@@ -168,9 +168,9 @@ def edit_recipe(recipe_id):
                    "checkbox" in key or "recipe_type" in key}
         for (key, value) in recipe.items():
             if "ingredient" in key:
-                ingredients.append(value)
+                ingredients.append(value.strip())
             elif "instruction" in key:
-                instructions.append(value)
+                instructions.append(value.strip())
 
         if ingredients[-1] == "":
             ingredients.pop()
@@ -178,7 +178,7 @@ def edit_recipe(recipe_id):
             instructions.pop()
 
         formatted_recipe = {
-            'name': recipe['recipe_name'],
+            'name': recipe['recipe_name'].strip(),
             'feeds': recipe['feeds'],
             'details': details,
             'ingredients': ingredients,
