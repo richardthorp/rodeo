@@ -142,6 +142,10 @@ nav {
     color: #000;
 }
 
+.shrink-header {
+    font-size: 1.5rem;
+}
+
 /*------------------------------------------------------- RECIPE PAGE */
 .recipe-header {
     width: 95%;
@@ -216,6 +220,10 @@ nav {
     font-size: 2rem;
 }
 
+.blank-star {
+    color: #808080;;
+}
+
 .coloured-star {
     color: #FFC700;
 }
@@ -242,7 +250,7 @@ nav {
     white-space:nowrap;
     cursor:pointer;
     font-size:2rem;
-    color:#ccc;
+    color:#808080;
 }
 .rate > input:checked ~ label {
     color: #ffc700;    

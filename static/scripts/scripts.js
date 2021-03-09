@@ -50,9 +50,17 @@ $("#favourite-checkbox-unchecked").on('click', function(){
 
 /* Get the placeholder values passed to the edit_recipe template textarea inputs
    and render it within the textarea */
-$("document").ready(function(){
-    let instructions = $(".edit-recipe-instruction")
-    Object.values(instructions).forEach(instruction => {
-        instruction.innerText = (instruction.getAttribute("placeholder"));
-    });
-});
+
+// $("document").ready(function(){
+//     let instructions = $(".edit-recipe-instruction")
+//     Object.values(instructions).forEach(instruction => {
+//         instruction.innerText = (instruction.getAttribute("placeholder"));
+//     });
+// });
+
+
+$(".recipe-card h4").each(function(){
+    if ($(this).text().length >= 28){
+        $(this).addClass('shrink-header');
+    }
+})
