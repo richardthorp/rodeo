@@ -89,6 +89,7 @@
     <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center">
         <div class="recipe-card added-recipe-card">
             <div class="row mb-2">
+                <!-- <h6 class="text-center mx-auto mb-3 font-weight-bold">Thank you for adding this recipe!</h6> -->
                 <div class="col-6 text-center">
                     <a href="{{ url_for('edit_recipe', recipe_id=recipe._id) }}"><button
                             class="custom-button mr-2">Edit</button></a>
@@ -98,51 +99,59 @@
                             class="delete-button ml-2">Delete</button></a>
                 </div>
             </div>
+            <hr>
             <a href="{{url_for('recipe_page', recipe_id=recipe._id)}}">
                 <div class="recipe-image-container">
                     <img src="{{ url_for('get_image', image_name = recipe.image_name) }}" alt="">
                 </div>
 
-                <h4 class="recipe-title logo-font">{{ recipe.name }}</h4>
+                <h4 class="recipe-card-title logo-font text-center">{{ recipe.name }}</h4>
             </a>
-            <div class="row added-recipe-card-footer">
-                {% if recipe.average_rating == 1 %}
-                <span class="star coloured-star">&#9733;</span>
-                <span class="star blank-star">&#9733;</span>
-                <span class="star blank-star">&#9733;</span>
-                <span class="star blank-star">&#9733;</span>
-                <span class="star blank-star">&#9733;</span>
-                {% elif recipe.average_rating == 2 %}
-                <span class="star coloured-star">&#9733;</span>
-                <span class="star coloured-star">&#9733;</span>
-                <span class="star blank-star">&#9733;</span>
-                <span class="star blank-star">&#9733;</span>
-                <span class="star blank-star">&#9733;</span>
-                {% elif recipe.average_rating == 3 %}
-                <span class="star coloured-star">&#9733;</span>
-                <span class="star coloured-star">&#9733;</span>
-                <span class="star coloured-star">&#9733;</span>
-                <span class="star blank-star">&#9733;</span>
-                <span class="star blank-star">&#9733;</span>
-                {% elif recipe.average_rating == 4 %}
-                <span class="star coloured-star">&#9733;</span>
-                <span class="star coloured-star">&#9733;</span>
-                <span class="star coloured-star">&#9733;</span>
-                <span class="star coloured-star">&#9733;</span>
-                <span class="star blank-star">&#9733;</span>
-                {% elif recipe.average_rating == 5 %}
-                <span class="star coloured-star">&#9733;</span>
-                <span class="star coloured-star">&#9733;</span>
-                <span class="star coloured-star">&#9733;</span>
-                <span class="star coloured-star">&#9733;</span>
-                <span class="star coloured-star">&#9733;</span>
-                {% else %}
-                <span class="star blank-star">&#9733;</span>
-                <span class="star blank-star">&#9733;</span>
-                <span class="star blank-star">&#9733;</span>
-                <span class="star blank-star">&#9733;</span>
-                <span class="star blank-star">&#9733;</span>
-                {% endif %}
+            <div class="recipe-card-footer row">
+                <div class="col-6 text-center">
+                    <h6 class="sub-header">Average<br>Rating</h6>
+                    {% if recipe.average_rating == 1 %}
+                    <span class="star coloured-star">&#9733;</span>
+                    <span class="star blank-star">&#9733;</span>
+                    <span class="star blank-star">&#9733;</span>
+                    <span class="star blank-star">&#9733;</span>
+                    <span class="star blank-star">&#9733;</span>
+                    {% elif recipe.average_rating == 2 %}
+                    <span class="star coloured-star">&#9733;</span>
+                    <span class="star coloured-star">&#9733;</span>
+                    <span class="star blank-star">&#9733;</span>
+                    <span class="star blank-star">&#9733;</span>
+                    <span class="star blank-star">&#9733;</span>
+                    {% elif recipe.average_rating == 3 %}
+                    <span class="star coloured-star">&#9733;</span>
+                    <span class="star coloured-star">&#9733;</span>
+                    <span class="star coloured-star">&#9733;</span>
+                    <span class="star blank-star">&#9733;</span>
+                    <span class="star blank-star">&#9733;</span>
+                    {% elif recipe.average_rating == 4 %}
+                    <span class="star coloured-star">&#9733;</span>
+                    <span class="star coloured-star">&#9733;</span>
+                    <span class="star coloured-star">&#9733;</span>
+                    <span class="star coloured-star">&#9733;</span>
+                    <span class="star blank-star">&#9733;</span>
+                    {% elif recipe.average_rating == 5 %}
+                    <span class="star coloured-star">&#9733;</span>
+                    <span class="star coloured-star">&#9733;</span>
+                    <span class="star coloured-star">&#9733;</span>
+                    <span class="star coloured-star">&#9733;</span>
+                    <span class="star coloured-star">&#9733;</span>
+                    {% else %}
+                    <span class="star blank-star">&#9733;</span>
+                    <span class="star blank-star">&#9733;</span>
+                    <span class="star blank-star">&#9733;</span>
+                    <span class="star blank-star">&#9733;</span>
+                    <span class="star blank-star">&#9733;</span>
+                    {% endif %}
+                </div>
+                <div class="col-6 text-center">
+                    <h6 class="sub-header">Add to<br>Favourites</h6>
+                    <i class="fas fa-heart"></i>
+                </div>
             </div>
         </div>
     </div>

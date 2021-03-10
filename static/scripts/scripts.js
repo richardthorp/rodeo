@@ -59,7 +59,7 @@ $("#favourite-checkbox-unchecked").on('click', function(){
 // });
 
 
-$(".recipe-card h4").each(function(){
+$(".recipe-card-title").each(function(){
     if ($(this).text().length >= 28){
         $(this).addClass('shrink-header');
     }

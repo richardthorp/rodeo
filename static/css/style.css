@@ -9,7 +9,7 @@
 }
 
 body {
-    min-width: 280px;
+    min-width: 300px;
     background-color: #E0CA3C;
     font-family: 'Open Sans';
 }
@@ -25,6 +25,7 @@ a:hover {
 .logo-font {
   font-family: 'Young Heart';
   letter-spacing: 8px;
+  color: #000;
 }
 
 .header {
@@ -111,22 +112,38 @@ nav {
 
 /*------------------------------------------------------- RECIPE CARD */
 .recipe-card {
-    width: 95%;
+    width: 100%;
     max-width: 400px;
     margin-top: 30px;
-    padding: 20px;
+    padding: 10px;
     background-color: #FFF6BC;
+    position: relative;
+}
+.recipe-card .col-6 {
+    padding: 0 5px;
+}
+.recipe-card h6 {
+    margin-top: 20px;
 }
 
-.added-recipe-card {
-    height: 520px;
+.recipe-card hr {
+    margin-top: 0;
 }
 
-.added-recipe-card-footer {
+.recipe-card i {
+    font-size: 2rem;
+    margin-top: 8px;
+}
+
+.recipe-card-footer {
     position: absolute;
-    bottom: 2%;
-
+    width: 100%;
+    bottom: 10px;
 }
+
+/* .added-recipe-card {
+    height: 520px;
+} */
 
 .recipe-image-container {
     width: 100%;
@@ -145,15 +162,19 @@ nav {
     object-fit: cover;
 }
 
-.recipe-title {
+.recipe-card .star {
+    font-size: 1.8rem;
+}
+
+.recipe-card-title {
     font-size: 2.5rem;
-    text-align: center;
     padding-top: 20px;
-    color: #000;
+    margin-bottom: 120px;
 }
 
 .shrink-header {
     font-size: 1.5rem;
+    padding: 20px;
 }
 
 /*------------------------------------------------------- RECIPE PAGE */
@@ -227,7 +248,7 @@ nav {
 }
 
 .star {
-    font-size: 2rem;
+    font-size: 1.9rem;
 }
 
 .blank-star {
@@ -609,6 +630,22 @@ label i {
     }
     #add-recipe-button {
         font-size: 1.5rem;
+    }
+    .recipe-card {
+        padding: 10px;
+    }
+    .recipe-card .star{
+        font-size: 1.5rem;
+    }
+    .recipe-card-title {
+        font-size: 2rem;
+    }
+    .shrink-header {
+    font-size: 1.5rem;
+    padding: 10px;
+    }
+    .recipe-card h6 {
+        font-size: 0.8rem;
     }
     .recipe-header img {
         width: 90%;
