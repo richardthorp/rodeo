@@ -144,7 +144,6 @@ def add_recipe():
         mongo.db.recipes.insert_one(formatted_recipe)
     else:
         print("NOT VALID")
-        print(form.errors)
 
     return render_template("add_recipe.html", form=form)
 
@@ -186,11 +185,11 @@ def edit_recipe(recipe_id):
             'instructions': instructions,
             'added_by': session['username']
             }
-        print(ingredients)
+        print(ingredients, formatted_recipe)
         # If an image file has been sent with form data...
         # if request.files['picture_upload']:
-            # Remove any special characters from the file name and
-            # add username to file name to ensure name is unique
+        # Remove any special characters from the file name and
+        # add username to file name to ensure name is unique
         #     file_name = "".join(char for char in
         #                         request.files['picture_upload'].filename
         #                         if char.isalnum()) + session['username']
