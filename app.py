@@ -86,7 +86,8 @@ def all_recipes():
 @app.route("/my_recipes", methods=["GET", "POST"])
 def my_recipes():
     form = Search_and_filter_form()
-    return render_template("my_recipes.html", form=form)
+    recipes = mongo.db.recipes.find({"favourites": session['username']})
+    return render_template("my_recipes.html", form=form, recipes=recipes)
 
 
 @app.route("/added_recipes")
@@ -281,10 +282,9 @@ def toggle_favourite(**kwargs):
         mongo.db.recipes.update_one(
                         {'_id': ObjectId(recipe_id)},
                         {'$push': {'favourites': session['username']}})
-    if return_page == 'recipe_page':
-        return redirect(url_for('recipe_page', recipe_id=recipe_id))
-    elif return_page == 'all_recipes':
-        return redirect(url_for('all_recipes', recipe_id=recipe_id))
+
+    return redirect(url_for(return_page, recipe_id=recipe_id))
+
 
 
 @app.route("/logout")

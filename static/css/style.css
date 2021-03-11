@@ -136,6 +136,7 @@ nav {
 
 .recipe-card i {
     font-size: 2rem;
+    cursor: pointer;
 }
 
 .recipe-card-footer {

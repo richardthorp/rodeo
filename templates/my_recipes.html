@@ -2,9 +2,9 @@
 {% block content %}
 {% with messages = get_flashed_messages() %}
 {% if messages %}
-    {% for message in messages %}  
-        <p>{{ message }}</p>
-    {% endfor %}
+{% for message in messages %}
+<p>{{ message }}</p>
+{% endfor %}
 {% endif %}
 {% endwith %}
 
@@ -54,8 +54,8 @@
                 <div class="col-12 col-md-6 col-lg-4">
                     <div class="sub-header text-right mt-1 mb-1">Filter recipes</div>
                     <div class="dropdown text-right">
-                        <button class="btn btn-secondary dropdown-toggle custom-button" type="button" id="dropdownMenuButton"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <button class="btn btn-secondary dropdown-toggle custom-button" type="button"
+                            id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Filter
                         </button>
                         <div class="dropdown-menu filter-dropdown" aria-labelledby="dropdownMenuButton">
@@ -90,6 +90,81 @@
             </div>
         </form>
     </div>
+</div>
+<div class="row">
+    {% for recipe in recipes %}
+    <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center">
+        <div class="recipe-card">
+            <a href="{{url_for('recipe_page', recipe_id=recipe._id)}}">
+                <div class="recipe-image-container">
+                    <img src="{{ url_for('get_image', image_name = recipe.image_name) }}" alt="">
+                </div>
+                <h4 class="recipe-card-title logo-font text-center">{{ recipe.name }}</h4>
+            </a>
+            <div class="recipe-card-footer row">
+                <div class="col-6 text-center recipe-card-ratings">
+                    <h6 class="sub-header">Average<br>Rating</h6>
+                    {% if recipe.average_rating == 1 %}
+                    <span class="star coloured-star">&#9733;</span>
+                    <span class="star blank-star">&#9733;</span>
+                    <span class="star blank-star">&#9733;</span>
+                    <span class="star blank-star">&#9733;</span>
+                    <span class="star blank-star">&#9733;</span>
+                    {% elif recipe.average_rating == 2 %}
+                    <span class="star coloured-star">&#9733;</span>
+                    <span class="star coloured-star">&#9733;</span>
+                    <span class="star blank-star">&#9733;</span>
+                    <span class="star blank-star">&#9733;</span>
+                    <span class="star blank-star">&#9733;</span>
+                    {% elif recipe.average_rating == 3 %}
+                    <span class="star coloured-star">&#9733;</span>
+                    <span class="star coloured-star">&#9733;</span>
+                    <span class="star coloured-star">&#9733;</span>
+                    <span class="star blank-star">&#9733;</span>
+                    <span class="star blank-star">&#9733;</span>
+                    {% elif recipe.average_rating == 4 %}
+                    <span class="star coloured-star">&#9733;</span>
+                    <span class="star coloured-star">&#9733;</span>
+                    <span class="star coloured-star">&#9733;</span>
+                    <span class="star coloured-star">&#9733;</span>
+                    <span class="star blank-star">&#9733;</span>
+                    {% elif recipe.average_rating == 5 %}
+                    <span class="star coloured-star">&#9733;</span>
+                    <span class="star coloured-star">&#9733;</span>
+                    <span class="star coloured-star">&#9733;</span>
+                    <span class="star coloured-star">&#9733;</span>
+                    <span class="star coloured-star">&#9733;</span>
+                    {% else %}
+                    <span class="star blank-star">&#9733;</span>
+                    <span class="star blank-star">&#9733;</span>
+                    <span class="star blank-star">&#9733;</span>
+                    <span class="star blank-star">&#9733;</span>
+                    <span class="star blank-star">&#9733;</span>
+                    {% endif %}
+                </div>
+                <div class="col-6 text-center">
+                    <h6 class="sub-header">Add to<br>Favourites</h6>
+                    {% if session['username'] %}
+                    <form class="trigger-form-send" method="POST"
+                        action="{{ url_for('toggle_favourite', recipe_id=recipe._id, return_page='my_recipes') }}">
+                        {% if session['username'] in recipe.favourites %}
+                        <input type="checkbox" name="favourite" class="hidden-input"
+                            id="favourite-checkbox-checked-{{+ loop.index}}" value="delete_fav">
+                        <label for="favourite-checkbox-checked-{{+ loop.index}}"><i class="fas fa-heart"></i></label>
+                        {% else %}
+                        <input type="checkbox" name="favourite" class="hidden-input"
+                            id="favourite-checkbox-unchecked-{{+ loop.index}}" value="add_fav">
+                        <label for="favourite-checkbox-unchecked-{{+ loop.index}}"><i class="far fa-heart"></i></label>
+                        {% endif %}
+                    </form>
+                    {% else %}
+                    <i class="far fa-heart"></i>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
 </div>
 
 {% endblock %}
