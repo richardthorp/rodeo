@@ -221,6 +221,12 @@ def recipe_page(recipe_id):
     average_rating = get_average_rating(recipe_id)
     mongo.db.recipes.update_one({'_id': ObjectId(recipe_id)},
                                 {'$set': {'average_rating': average_rating}})
+    # If an existing user rating for the recipe exists, get the user rating
+    # to render on the page
+    if session['username'] in recipe['ratings']:
+        user_rating = int(recipe['ratings'][session['username']])
+    else:
+        user_rating = 0
 
     # NEED TO LOOK INTO BEST WAY TO SET DEFAULT ~~~~~~~~~~~~~~~~~~~~~
     if recipe['image_name']:
@@ -228,41 +234,18 @@ def recipe_page(recipe_id):
     else:
         image_name = url_for('static', filename='/images/hero.png')
 
-    # If a user is logged in, query db to see if the user has previously
-    # 'favourited' the recipe
-    logged_in_user = session.get('username')
-    favourite = False
-    if logged_in_user:
-        user_favourite = mongo.db.favourites.find_one({
-                                            'recipe_id': recipe_id,
-                                            'username': session['username']})
-        # if user has recipe saved as a favourite, set 'favourite'
-        # variable to True to pass to template.
-        if user_favourite:
-            favourite = True
-
     if request.method == 'POST':
-        if 'favourite' in request.form:
-            if request.form['favourite'] == 'delete_fav':
-                mongo.db.favourites.delete_one({
-                                        'recipe_id': recipe_id,
-                                        'username': session['username']})
-            else:
-                mongo.db.favourites.insert_one({
-                                        'recipe_id': recipe_id,
-                                        'username': session['username']})
-        if 'rating' in request.form:
-            # Find the respective recipe, and within the ratings field set
-            # username and user rating
-            mongo.db.recipes.update_one({'_id': ObjectId(recipe_id)}, {'$set':
-                                        {'ratings.' + session['username']:
-                                         request.form.get('rating')}})
+        # Find the respective recipe, and within the ratings field set
+        # username and user rating
+        mongo.db.recipes.update_one({'_id': ObjectId(recipe_id)}, {'$set':
+                                    {'ratings.' + session['username']:
+                                        request.form.get('rating')}})
 
         return redirect(url_for('recipe_page', recipe_id=recipe_id))
 
     return render_template("recipe_page.html", recipe=recipe,
                            average_rating=round(average_rating),
-                           favourite=favourite, image_name=image_name)
+                           image_name=image_name, user_rating=user_rating)
 
 
 def get_average_rating(recipe_id):
