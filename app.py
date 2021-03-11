@@ -223,10 +223,10 @@ def recipe_page(recipe_id):
                                 {'$set': {'average_rating': average_rating}})
     # If an existing user rating for the recipe exists, get the user rating
     # to render on the page
-    if session['username'] in recipe['ratings']:
-        user_rating = int(recipe['ratings'][session['username']])
-    else:
-        user_rating = 0
+    user_rating = 0
+    if 'username' in session:
+        if session['username'] in recipe['ratings']:
+            user_rating = int(recipe['ratings'][session['username']])
 
     # NEED TO LOOK INTO BEST WAY TO SET DEFAULT ~~~~~~~~~~~~~~~~~~~~~
     if recipe['image_name']:
