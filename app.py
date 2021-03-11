@@ -126,7 +126,8 @@ def add_recipe():
             'ingredients': ingredients,
             'instructions': instructions,
             'added_by': session['username'],
-            'ratings': {}
+            'ratings': {},
+            'favourites': []
             }
         # If an image file has been sent with form data...
         if request.files['picture_upload']:
@@ -280,6 +281,20 @@ def get_average_rating(recipe_id):
         average_rating = 0
 
     return average_rating
+
+
+@app.route('/toggle_favourite/<recipe_id>', methods=['GET', 'POST'])
+def toggle_favourite(recipe_id):
+    recipe = mongo.db.recipes.find_one({'_id': ObjectId(recipe_id)})
+    if session['username'] in recipe['favourites']:
+        mongo.db.recipes.update({'_id': ObjectId(recipe_id)},
+                                {'$pull': {'favourites': session['username']}})
+        print()
+        # recipe.favourites.pop(session['username'])
+    else:
+        mongo.db.recipes.update({'_id': ObjectId(recipe_id)},
+                                {'$push': {'favourites': session['username']}})
+    return redirect(url_for('all_recipes'))
 
 
 @app.route("/logout")

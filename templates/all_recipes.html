@@ -12,7 +12,7 @@
                 <h4 class="recipe-card-title logo-font text-center">{{ recipe.name }}</h4>
             </a>
             <div class="recipe-card-footer row">
-                <div class="col-6 text-center">
+                <div class="col-6 text-center recipe-card-ratings">
                     <h6 class="sub-header">Average<br>Rating</h6>
                     {% if recipe.average_rating == 1 %}
                     <span class="star coloured-star">&#9733;</span>
@@ -54,7 +54,21 @@
                 </div>
                 <div class="col-6 text-center">
                     <h6 class="sub-header">Add to<br>Favourites</h6>
-                    <i class="fas fa-heart"></i>
+                    {% if session['username'] %}
+                    <form id="favourite-form" method="POST" action="{{ url_for('toggle_favourite', recipe_id=recipe._id) }}">
+                        {% if session['username'] in recipe.favourites %}
+                        <input type="checkbox" name="favourite" id="favourite-checkbox-checked" value="delete_fav">
+                        <label for="favourite-checkbox-checked"><i
+                                class="fas fa-heart"></i></label>
+                        {% else %}
+                        <input type="checkbox" name="favourite" id="favourite-checkbox-unchecked" value="add_fav">
+                        <label for="favourite-checkbox-unchecked"><i
+                                class="far fa-heart"></i></label>
+                        {% endif %}
+                    </form>
+                    {% else %}
+                    <i class="far fa-heart"></i>
+                    {% endif %}
                 </div>
             </div>
         </div>
