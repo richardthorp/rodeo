@@ -55,14 +55,14 @@
                 <div class="col-6 text-center">
                     <h6 class="sub-header">Add to<br>Favourites</h6>
                     {% if session['username'] %}
-                    <form id="favourite-form" method="POST" action="{{ url_for('toggle_favourite', recipe_id=recipe._id) }}">
+                    <form class="trigger-form-send" method="POST" action="{{ url_for('toggle_favourite', recipe_id=recipe._id, return_page='all_recipes') }}">
                         {% if session['username'] in recipe.favourites %}
-                        <input type="checkbox" name="favourite" id="favourite-checkbox-checked" value="delete_fav">
-                        <label for="favourite-checkbox-checked"><i
+                        <input type="checkbox" name="favourite" class="hidden-input" id="favourite-checkbox-checked-{{+ loop.index}}" value="delete_fav">
+                        <label for="favourite-checkbox-checked-{{+ loop.index}}" ><i
                                 class="fas fa-heart"></i></label>
                         {% else %}
-                        <input type="checkbox" name="favourite" id="favourite-checkbox-unchecked" value="add_fav">
-                        <label for="favourite-checkbox-unchecked"><i
+                        <input type="checkbox" name="favourite" class="hidden-input" id="favourite-checkbox-unchecked-{{+ loop.index}}" value="add_fav">
+                        <label for="favourite-checkbox-unchecked-{{+ loop.index}}" ><i
                                 class="far fa-heart"></i></label>
                         {% endif %}
                     </form>

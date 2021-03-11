@@ -283,18 +283,25 @@ def get_average_rating(recipe_id):
     return average_rating
 
 
-@app.route('/toggle_favourite/<recipe_id>', methods=['GET', 'POST'])
-def toggle_favourite(recipe_id):
+@app.route('/toggle_favourite/<recipe_id>/<return_page>',
+           methods=['GET', 'POST'])
+def toggle_favourite(**kwargs):
+    recipe_id = kwargs['recipe_id']
+    return_page = kwargs['return_page']
     recipe = mongo.db.recipes.find_one({'_id': ObjectId(recipe_id)})
+
     if session['username'] in recipe['favourites']:
-        mongo.db.recipes.update({'_id': ObjectId(recipe_id)},
-                                {'$pull': {'favourites': session['username']}})
-        print()
-        # recipe.favourites.pop(session['username'])
+        mongo.db.recipes.update_one(
+                        {'_id': ObjectId(recipe_id)},
+                        {'$pull': {'favourites': session['username']}})
     else:
-        mongo.db.recipes.update({'_id': ObjectId(recipe_id)},
-                                {'$push': {'favourites': session['username']}})
-    return redirect(url_for('all_recipes'))
+        mongo.db.recipes.update_one(
+                        {'_id': ObjectId(recipe_id)},
+                        {'$push': {'favourites': session['username']}})
+    if return_page == 'recipe_page':
+        return redirect(url_for('recipe_page', recipe_id=recipe_id))
+    elif return_page == 'all_recipes':
+        return redirect(url_for('all_recipes', recipe_id=recipe_id))
 
 
 @app.route("/logout")

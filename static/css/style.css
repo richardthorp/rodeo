@@ -47,6 +47,10 @@ a:hover {
     margin-top: 40px;
 }
 
+.hidden-input {
+     display: none;
+}
+
 /*------------------------------------------------------- NAV BAR AND FOOTER */
 nav {
   background-color: #136F63;
@@ -313,9 +317,9 @@ nav {
     clear: both;
 }
 
-#favourite-checkbox-checked, #favourite-checkbox-unchecked {
+/* #favourite-checkbox-checked, #favourite-checkbox-unchecked {
     display: none;
-}
+} */
 
 .favourite-toggle {
     font-size: 3rem;
@@ -548,10 +552,6 @@ label i {
 
 #add-ingredient-button:hover, #add-instruction-button:hover {
     cursor: pointer;
-}
-
-.hidden-file-input {
-     display: none;
 }
 
 .select-file-button {

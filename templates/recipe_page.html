@@ -162,12 +162,12 @@
         </div>
         <div class="col-6 col-md-4 text-center">
             <h6 class="sub-header text-center">Add to Favourites</h6>
-            <form id="favourite-form" method="POST" action="{{ url_for('recipe_page', recipe_id=recipe._id) }}">
-                {% if favourite %}
-                <input type="checkbox" name="favourite" id="favourite-checkbox-checked" value="delete_fav">
+            <form id="favourite-form" class="trigger-form-send" method="POST" action="{{ url_for('toggle_favourite', recipe_id=recipe._id, return_page='recipe_page') }}">
+                {% if session['username'] in recipe.favourites %}
+                <input type="checkbox" class="hidden-input" name="favourite" id="favourite-checkbox-checked" value="delete_fav">
                 <label class="favourite-toggle" for="favourite-checkbox-checked"><i class="fas fa-heart"></i></label>
                 {% else %}
-                <input type="checkbox" name="favourite" id="favourite-checkbox-unchecked" value="add_fav">
+                <input type="checkbox" class="hidden-input" name="favourite" id="favourite-checkbox-unchecked" value="add_fav">
                 <label class="favourite-toggle" for="favourite-checkbox-unchecked"><i class="far fa-heart"></i></label>
                 {% endif %}
 
