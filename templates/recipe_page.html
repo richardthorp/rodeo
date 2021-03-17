@@ -241,7 +241,7 @@
         </div>
         <div class="col-6 col-md-4 text-center">
             <!-- ADD TO FAVOURITES SECTION -->
-            <h6 class="sub-header text-center">Add to Favourites</h6>
+            <h6 class="sub-header text-center">Favourite Recipe?</h6>
             <!-- If user is logged in -->
             {% if session['username'] %}
             <form id="favourite-form" class="trigger-form-send" method="POST"
@@ -250,11 +250,13 @@
                 {% if session['username'] in recipe.favourites %}
                 <input type="checkbox" class="hidden-input" name="favourite" id="favourite-checkbox-checked"
                     value="delete_fav">
-                <label class="favourite-toggle" for="favourite-checkbox-checked"><i class="fas fa-heart"></i></label>
+                <label class="favourite-toggle" for="favourite-checkbox-checked"><i class="fas fa-heart"
+                        data-toggle="tooltip" data-placement="bottom" title="Remove from favourites"></i></label>
                 {% else %}
                 <input type="checkbox" class="hidden-input" name="favourite" id="favourite-checkbox-unchecked"
                     value="add_fav">
-                <label class="favourite-toggle" for="favourite-checkbox-unchecked"><i class="far fa-heart"></i></label>
+                <label class="favourite-toggle" for="favourite-checkbox-unchecked"><i class="far fa-heart"
+                        data-toggle="tooltip" data-placement="bottom" title="Add to favourites"></i></label>
                 {% endif %}
                 {% else %}
                 <!-- User not logged in - provide popover with links to log in and register  -->

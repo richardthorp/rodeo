@@ -68,7 +68,8 @@ $(".recipe-card-title").each(function(){
 
 /* Enable bootsrap popovers and 'dismiss on next click' */
 $(function () {
-  $('[data-toggle="popover"]').popover({html: true})
+    $('[data-toggle="popover"]').popover({html: true});
+    $('[data-toggle="tooltip"]').tooltip();
 })
 
 $('.popover-dismiss').popover({

@@ -53,26 +53,29 @@
                     {% endif %}
                 </div>
                 <div class="col-6 text-center">
-                    <h6 class="sub-header">Add to<br>Favourites</h6>
+                    <h6 class="sub-header">Favourite<br>Recipe?</h6>
                     {% if session['username'] %}
                     <form class="trigger-form-send" method="POST"
                         action="{{ url_for('toggle_favourite', recipe_id=recipe._id, return_page='all_recipes') }}">
                         {% if session['username'] in recipe.favourites %}
                         <input type="checkbox" name="favourite" class="hidden-input"
                             id="favourite-checkbox-checked-{{+ loop.index}}" value="delete_fav">
-                        <label for="favourite-checkbox-checked-{{+ loop.index}}"><i class="fas fa-heart"></i></label>
+                        <label for="favourite-checkbox-checked-{{+ loop.index}}"><i class="fas fa-heart"
+                                data-toggle="tooltip" data-placement="bottom"
+                                title="Remove from favourites"></i></label>
                         {% else %}
                         <input type="checkbox" name="favourite" class="hidden-input"
                             id="favourite-checkbox-unchecked-{{+ loop.index}}" value="add_fav">
-                        <label for="favourite-checkbox-unchecked-{{+ loop.index}}"><i class="far fa-heart"></i></label>
+                        <label for="favourite-checkbox-unchecked-{{+ loop.index}}"><i class="far fa-heart"
+                                data-toggle="tooltip" data-placement="bottom"
+                                title="Add to favourites"></i></label>
                         {% endif %}
                     </form>
                     {% else %}
-                    <a tabindex="0" class="sign-in-popover" role="button" data-toggle="popover"
-                        data-trigger="focus" data-placement="bottom"
-                        data-content="<a href='{{ url_for('login') }}'><b>LOG IN</b></a> or 
+                    <a tabindex="0" class="sign-in-popover" role="button" data-toggle="popover" data-trigger="focus"
+                        data-placement="bottom" data-content="<a href='{{ url_for('login') }}'><b>LOG IN</b></a> or 
                         <a href='{{ url_for('register') }}'><b>REGISTER</b></a> to save recipes to your favourites!">
-                    <i class="far fa-heart"></i>
+                        <i class="far fa-heart"></i>
                     </a>
                     {% endif %}
                 </div>
