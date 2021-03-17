@@ -59,9 +59,18 @@ $(".trigger-form-send").on('click', function(){
 //     });
 // });
 
-
+/* If the recipe card title contains 28 characters or more, apply the shrink-header CSS class */
 $(".recipe-card-title").each(function(){
     if ($(this).text().length >= 28){
         $(this).addClass('shrink-header');
     }
+})
+
+/* Enable bootsrap popovers and 'dismiss on next click' */
+$(function () {
+  $('[data-toggle="popover"]').popover({html: true})
+})
+
+$('.popover-dismiss').popover({
+  trigger: 'focus'
 })

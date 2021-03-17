@@ -51,6 +51,23 @@ a:hover {
      display: none;
 }
 
+.sign-in-popover {
+    color: initial;
+    
+}
+
+.sign-in-popover:hover {
+    color: initial;
+}
+
+
+.popover-body {
+    font-size: 1.2em;
+    font-family: Bevan;
+    letter-spacing: 2px;
+    padding: 20px;;
+    text-align: center;
+}
 /*------------------------------------------------------- NAV BAR AND FOOTER */
 nav {
   background-color: #136F63;
@@ -323,6 +340,7 @@ nav {
 
 .favourite-toggle {
     font-size: 3rem;
+    cursor: pointer;
 }
 
 label i {
