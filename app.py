@@ -21,8 +21,9 @@ mongo = PyMongo(app)
 
 @app.route("/")
 def index():
-    recipes = recipes = mongo.db.recipes.find().limit(3)
-    print(recipes)
+    # Get top 3 recipes with highest average_rating
+    recipes = recipes = mongo.db.recipes.find().sort(
+                        'average_rating', -1).limit(3)
     return render_template("index.html", recipes=recipes)
 
 
