@@ -415,10 +415,14 @@ label i {
     border: 3px solid #F34213;
 }
 
+.delete-button:hover {
+    color: #fff;
+    background-color: #F34213;
+}
+
 .custom-button:hover {
     color: #fff;
     background-color: #136F63;
-    border-color: #136F63;
 }
 
 .form-header {
