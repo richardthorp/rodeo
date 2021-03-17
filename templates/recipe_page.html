@@ -23,10 +23,8 @@
         {% endfor %}
     </ul>
     <img src="{{ url_for('get_image', image_name = image_name) }}" alt="">
-
-    {% if session['username'] %}
-    <!-- IF USER LOGGED IN  -->
     <div class="row d-flex justify-content-between rating-row mx-auto">
+        <!-- AVERAGE RATING SECTION -->
         <div class="d-none d-md-inline col-md-4 text-center">
             <h6 class="sub-header">Average Rating</h6>
             {% if average_rating == 1 %}
@@ -67,6 +65,7 @@
             <span class="star blank-star">&#9733;</span>
             {% endif %}
         </div>
+        <!-- USER RATING SECTION -->
         <div class="d-none d-md-flex col-md-4 flex-wrap justify-content-center your-rating">
             <h6 class="sub-header text-center">Your Rating</h6>
             <form class="rating-form-md" name="rating-form" method="POST"
@@ -90,7 +89,7 @@
                     <label for="star4" title="text">&#9733;</label>
                     <input type="radio" id="star3" name="rating" value="3" />
                     <label for="star3" title="text">&#9733;</label>
-                    <input type="radio" id="star2" name="rating" value="2" checked/>
+                    <input type="radio" id="star2" name="rating" value="2" checked />
                     <label for="star2" title="text">&#9733;</label>
                     <input type="radio" id="star1" name="rating" value="1" />
                     <label for="star1" title="text">&#9733;</label>
@@ -99,7 +98,7 @@
                     <label for="star5" title="text">&#9733;</label>
                     <input type="radio" id="star4" name="rating" value="4" />
                     <label for="star4" title="text">&#9733;</label>
-                    <input type="radio" id="star3" name="rating" value="3" checked/>
+                    <input type="radio" id="star3" name="rating" value="3" checked />
                     <label for="star3" title="text">&#9733;</label>
                     <input type="radio" id="star2" name="rating" value="2" />
                     <label for="star2" title="text">&#9733;</label>
@@ -108,7 +107,7 @@
                     {% elif user_rating == 4 %}
                     <input type="radio" id="star5" name="rating" value="5" />
                     <label for="star5" title="text">&#9733;</label>
-                    <input type="radio" id="star4" name="rating" value="4" checked/>
+                    <input type="radio" id="star4" name="rating" value="4" checked />
                     <label for="star4" title="text">&#9733;</label>
                     <input type="radio" id="star3" name="rating" value="3" />
                     <label for="star3" title="text">&#9733;</label>
@@ -117,7 +116,7 @@
                     <input type="radio" id="star1" name="rating" value="1" />
                     <label for="star1" title="text">&#9733;</label>
                     {% elif user_rating == 5 %}
-                    <input type="radio" id="star5" name="rating" value="5" checked/>
+                    <input type="radio" id="star5" name="rating" value="5" checked />
                     <label for="star5" title="text">&#9733;</label>
                     <input type="radio" id="star4" name="rating" value="4" />
                     <label for="star4" title="text">&#9733;</label>
@@ -140,7 +139,16 @@
                     <label for="star1" title="text">&#9733;</label>
                     {% endif %}
                 </div>
+                <!-- If user is logged in, provide submit button - otherwise provide popover with links to log in and register -->
+                {% if session['username'] %}
                 <input class="custom-button add-rating-btn mt-2" type="submit" value="Add Rating">
+                {% else %}
+                <a tabindex="0" class="sign-in-popover mx-auto" role="button" data-toggle="popover" data-trigger="focus"
+                    data-placement="bottom" data-content="<a href='{{ url_for('login') }}'><b>LOG IN</b></a> or 
+                        <a href='{{ url_for('register') }}'><b>REGISTER</b></a> to save recipes to your favourites!">
+                    <div class="custom-button add-rating-btn mt-2 text-center p-1">Add Rating</div>
+                </a>
+                {% endif  %}
             </form>
         </div>
         <div class="col-6 d-md-none text-center d-flex align-items-center justify-content-center">
@@ -149,10 +157,14 @@
             <button type="button" class="custom-button ratings-button" data-toggle="modal" data-target="#rating-modal">
                 View<br>Ratings
             </button>
-            <!-- Modal -->
+            <!-- RATINGS MODAL -->
             <div class="modal fade" id="rating-modal" tabindex="-1" aria-labelledby="rating modal" aria-hidden="true">
                 <div id="ratings-modal" class="modal-dialog modal-dialog-centered">
                     <div class="modal-content text-left">
+                        <div class="modal-header">
+                            <button type="button" class="custom-button" data-dismiss="modal">Close</button>
+                        </div>
+                        <!-- AVERAGE RATING SECTION -->
                         <div class="modal-body">
                             <h6 class="sub-header text-muted">Average Rating</h6>
                             {% if average_rating == 1 %}
@@ -192,7 +204,7 @@
                             <span class="star blank-star">&#9733;</span>
                             <span class="star blank-star">&#9733;</span>
                             {% endif %}
-
+                            <!-- USER RATING SECTION -->
                             <form method="POST" action="{{ url_for('recipe_page', recipe_id=recipe._id) }}">
                                 <h6 class="sub-header text-muted mt-4">Your Rating</h6>
                                 <div class="rate">
@@ -208,21 +220,33 @@
                                     <label for="star1-modal" title="text">&#9733;</label>
                                 </div>
                                 <div>
+
+                                    <!-- If user is logged in, provide submit button - otherwise provide popover with links to log in and register -->
+                                    {% if session['username'] %}
                                     <input class="custom-button add-rating-btn mt-2" type="submit" value="Add Rating">
+                                    {% else %}
+                                    <a tabindex="0" class="sign-in-popover" role="button" data-toggle="popover"
+                                        data-trigger="focus" data-placement="bottom"
+                                        data-content="<a href='{{ url_for('login') }}'><b>LOG IN</b></a> or 
+                                        <a href='{{ url_for('register') }}'><b>REGISTER</b></a> to save recipes to your favourites!">
+                                        <div class="custom-button add-rating-btn mt-2 text-center p-1">Add Rating</div>
+                                    </a>
+                                    {% endif  %}
                                 </div>
                             </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="custom-button" data-dismiss="modal">Close</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-6 col-md-4 text-center">
+            <!-- ADD TO FAVOURITES SECTION -->
             <h6 class="sub-header text-center">Add to Favourites</h6>
+            <!-- If user is logged in -->
+            {% if session['username'] %}
             <form id="favourite-form" class="trigger-form-send" method="POST"
                 action="{{ url_for('toggle_favourite', recipe_id=recipe._id, return_page='recipe_page') }}">
+                <!-- If user has favourited this recipe previously -->
                 {% if session['username'] in recipe.favourites %}
                 <input type="checkbox" class="hidden-input" name="favourite" id="favourite-checkbox-checked"
                     value="delete_fav">
@@ -232,64 +256,20 @@
                     value="add_fav">
                 <label class="favourite-toggle" for="favourite-checkbox-unchecked"><i class="far fa-heart"></i></label>
                 {% endif %}
+                {% else %}
+                <!-- User not logged in - provide popover with links to log in and register  -->
+                <div class="favourite-toggle">
+                    <a tabindex="0" class="sign-in-popover" role="button" data-toggle="popover" data-trigger="focus"
+                        data-placement="bottom" data-content="<a href='{{ url_for('login') }}'><b>LOG IN</b></a> or 
+                    <a href='{{ url_for('register') }}'><b>REGISTER</b></a> to save recipes to your favourites!">
+                        <i class="far fa-heart"></i></a></div>
 
+                {% endif %}
             </form>
         </div>
     </div>
     <!--END OF LOGGED IN USER VIEW-->
-    {% else %}
-    <!--IF USER NOT LOGGED IN-->
-    <div class="row rating-row mx-auto">
-        <div class="col-12 col-md-4 text-center">
-            <h6 class="sub-header">Average Rating</h6>
-            {% if average_rating == 1 %}
-            <span class="star coloured-star">&#9733;</span>
-            <span class="star blank-star">&#9733;</span>
-            <span class="star blank-star">&#9733;</span>
-            <span class="star blank-star">&#9733;</span>
-            <span class="star blank-star">&#9733;</span>
-            {% elif average_rating == 2 %}
-            <span class="star coloured-star">&#9733;</span>
-            <span class="star coloured-star">&#9733;</span>
-            <span class="star blank-star">&#9733;</span>
-            <span class="star blank-star">&#9733;</span>
-            <span class="star blank-star">&#9733;</span>
-            {% elif average_rating == 3 %}
-            <span class="star coloured-star">&#9733;</span>
-            <span class="star coloured-star">&#9733;</span>
-            <span class="star coloured-star">&#9733;</span>
-            <span class="star blank-star">&#9733;</span>
-            <span class="star blank-star">&#9733;</span>
-            {% elif average_rating == 4 %}
-            <span class="star coloured-star">&#9733;</span>
-            <span class="star coloured-star">&#9733;</span>
-            <span class="star coloured-star">&#9733;</span>
-            <span class="star coloured-star">&#9733;</span>
-            <span class="star blank-star">&#9733;</span>
-            {% elif average_rating == 5 %}
-            <span class="star coloured-star">&#9733;</span>
-            <span class="star coloured-star">&#9733;</span>
-            <span class="star coloured-star">&#9733;</span>
-            <span class="star coloured-star">&#9733;</span>
-            <span class="star coloured-star">&#9733;</span>
-            {% else %}
-            <span class="star blank-star">&#9733;</span>
-            <span class="star blank-star">&#9733;</span>
-            <span class="star blank-star">&#9733;</span>
-            <span class="star blank-star">&#9733;</span>
-            <span class="star blank-star">&#9733;</span>
-            {% endif %}
-        </div>
-        <div class="col-12 col-md-8">
-            <div class="log-in-prompt text-center">
-                <h6 class="sub-header">Join the Rodeo community!</h6>
-                <p><a href="{{ url_for('login') }}">Log in</a> or <a href="{{ url_for('register') }}">register</a> to
-                    rate recipes, save recipes to your own favourite recipe page and to add your own recipes </p>
-            </div>
-        </div>
-    </div>
-    <!--END OF NOT LOGGED IN USER VIEW-->
-    {% endif %}
+
 </div>
 
 <div class="row">
