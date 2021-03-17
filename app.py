@@ -21,7 +21,9 @@ mongo = PyMongo(app)
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    recipes = recipes = mongo.db.recipes.find().limit(3)
+    print(recipes)
+    return render_template("index.html", recipes=recipes)
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -284,7 +286,6 @@ def toggle_favourite(**kwargs):
                         {'$push': {'favourites': session['username']}})
 
     return redirect(url_for(return_page, recipe_id=recipe_id))
-
 
 
 @app.route("/logout")
