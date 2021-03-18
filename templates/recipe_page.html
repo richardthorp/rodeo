@@ -158,7 +158,7 @@
                 {% else %}
                 <a tabindex="0" class="sign-in-popover mx-auto" role="button" data-toggle="popover" data-trigger="focus"
                     data-placement="bottom" data-content="<a href='{{ url_for('login') }}'><b>LOG IN</b></a> or 
-                        <a href='{{ url_for('register') }}'><b>REGISTER</b></a> to save recipes to your favourites!">
+                        <a href='{{ url_for('register') }}'><b>REGISTER</b></a> to rate recipes!">
                     <div class="custom-button add-rating-btn mt-2 text-center p-1">Add Rating</div>
                 </a>
                 {% endif  %}
@@ -237,11 +237,12 @@
                                     <!-- If user is logged in, provide submit button - otherwise provide popover with links to log in and register -->
                                     {% if session['username'] %}
                                     <input class="custom-button add-rating-btn mt-2" type="submit" value="Add Rating">
+                                    <!-- User not logged in - provide popover with links to log in and register  -->
                                     {% else %}
                                     <a tabindex="0" class="sign-in-popover" role="button" data-toggle="popover"
                                         data-trigger="focus" data-placement="bottom"
                                         data-content="<a href='{{ url_for('login') }}'><b>LOG IN</b></a> or 
-                                        <a href='{{ url_for('register') }}'><b>REGISTER</b></a> to save recipes to your favourites!">
+                                        <a href='{{ url_for('register') }}'><b>REGISTER</b></a> to rate recipes!">
                                         <div class="custom-button add-rating-btn mt-2 text-center p-1">Add Rating</div>
                                     </a>
                                     {% endif  %}
@@ -259,20 +260,21 @@
             {% if session['username'] %}
             <form id="favourite-form" class="trigger-form-send" method="POST"
                 action="{{ url_for('toggle_favourite', recipe_id=recipe._id, return_page='recipe_page') }}">
-                <!-- If user has favourited this recipe previously -->
+                <!-- If user has favourited this recipe previously, render solid heart icon -->
                 {% if session['username'] in recipe.favourites %}
                 <input type="checkbox" class="hidden-input" name="favourite" id="favourite-checkbox-checked"
                     value="delete_fav">
                 <label class="favourite-toggle" for="favourite-checkbox-checked"><i class="fas fa-heart"
                         data-toggle="tooltip" data-placement="bottom" title="Remove from favourites"></i></label>
+                <!-- If user has not favourited recipe, render outline heart icon -->
                 {% else %}
                 <input type="checkbox" class="hidden-input" name="favourite" id="favourite-checkbox-unchecked"
                     value="add_fav">
                 <label class="favourite-toggle" for="favourite-checkbox-unchecked"><i class="far fa-heart"
                         data-toggle="tooltip" data-placement="bottom" title="Add to favourites"></i></label>
                 {% endif %}
-                {% else %}
                 <!-- User not logged in - provide popover with links to log in and register  -->
+                {% else %}
                 <div class="favourite-toggle">
                     <a tabindex="0" class="sign-in-popover" role="button" data-toggle="popover" data-trigger="focus"
                         data-placement="bottom" data-content="<a href='{{ url_for('login') }}'><b>LOG IN</b></a> or 

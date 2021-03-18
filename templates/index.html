@@ -81,15 +81,19 @@
                             {% endif %}
                         </div>
                         <div class="col-6 text-center">
+                            <!-- ADD TO FAVOURITES SECTION -->
                             <h6 class="sub-header">Add to<br>Favourites</h6>
+                            <!-- If user is logged in -->
                             {% if session['username'] %}
                             <form class="trigger-form-send" method="POST"
-                                action="{{ url_for('toggle_favourite', recipe_id=recipe._id, return_page='all_recipes') }}">
+                                action="{{ url_for('toggle_favourite', recipe_id=recipe._id, return_page='index') }}">
+                                <!-- If user has favourited this recipe previously, render solid heart icon -->
                                 {% if session['username'] in recipe.favourites %}
                                 <input type="checkbox" name="favourite" class="hidden-input"
                                     id="favourite-checkbox-checked-{{+ loop.index}}" value="delete_fav">
                                 <label for="favourite-checkbox-checked-{{+ loop.index}}"><i
                                         class="fas fa-heart"></i></label>
+                                <!-- If user has not favourited recipe, render outline heart icon -->
                                 {% else %}
                                 <input type="checkbox" name="favourite" class="hidden-input"
                                     id="favourite-checkbox-unchecked-{{+ loop.index}}" value="add_fav">
@@ -97,8 +101,13 @@
                                         class="far fa-heart"></i></label>
                                 {% endif %}
                             </form>
+                            <!-- User not logged in - provide popover with links to log in and register  -->
                             {% else %}
-                            <i class="far fa-heart"></i>
+                            <a tabindex="0" class="sign-in-popover" role="button" data-toggle="popover"
+                                data-trigger="focus" data-placement="bottom" data-content="<a href='{{ url_for('login') }}'><b>LOG IN</b></a> or 
+                                <a href='{{ url_for('register') }}'><b>REGISTER</b></a> to save recipes to your favourites!">
+                                <i class="far fa-heart"></i>
+                            </a>
                             {% endif %}
                         </div>
                     </div>

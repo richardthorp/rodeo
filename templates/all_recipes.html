@@ -52,17 +52,21 @@
                     <span class="star blank-star">&#9733;</span>
                     {% endif %}
                 </div>
+                <!-- ADD TO FAVOURITES SECTION -->
                 <div class="col-6 text-center">
                     <h6 class="sub-header">Favourite<br>Recipe?</h6>
+                    <!-- If user is logged in -->
                     {% if session['username'] %}
                     <form class="trigger-form-send" method="POST"
                         action="{{ url_for('toggle_favourite', recipe_id=recipe._id, return_page='all_recipes') }}">
+                        <!-- If user has favourited this recipe previously, render solid heart icon -->
                         {% if session['username'] in recipe.favourites %}
                         <input type="checkbox" name="favourite" class="hidden-input"
                             id="favourite-checkbox-checked-{{+ loop.index}}" value="delete_fav">
                         <label for="favourite-checkbox-checked-{{+ loop.index}}"><i class="fas fa-heart"
                                 data-toggle="tooltip" data-placement="bottom"
                                 title="Remove from favourites"></i></label>
+                        <!-- If user has not favourited recipe, render outline heart icon -->
                         {% else %}
                         <input type="checkbox" name="favourite" class="hidden-input"
                             id="favourite-checkbox-unchecked-{{+ loop.index}}" value="add_fav">
@@ -71,6 +75,7 @@
                                 title="Add to favourites"></i></label>
                         {% endif %}
                     </form>
+                    <!-- User not logged in - provide popover with links to log in and register  -->
                     {% else %}
                     <a tabindex="0" class="sign-in-popover" role="button" data-toggle="popover" data-trigger="focus"
                         data-placement="bottom" data-content="<a href='{{ url_for('login') }}'><b>LOG IN</b></a> or 
