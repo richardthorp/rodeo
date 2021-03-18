@@ -500,7 +500,7 @@ label i {
     font-size: 2rem;
     letter-spacing: 2px;
     align-self: center;
-    padding: 20px 20px 20px 0
+    padding: 20px 20px 20px 50px;
 }
 
 .inspiration {
@@ -798,6 +798,9 @@ label i {
     #logo {
         font-size: 6rem;
     }
+    #slogan {
+        font-size: 5.5rem;
+    }
     .custom-nav-links {
         font-size: 3rem;
     }
@@ -817,3 +820,8 @@ label i {
     }
 }
 
+@media screen and (min-width: 1200px){
+    #slogan {
+        font-size: 7rem;
+    }
+}
