@@ -7,7 +7,6 @@
     {% endfor %}
 {% endif %}
 {% endwith %}
-<a href="{{ url_for('my_recipes') }}">favourite_recipes</a>
 <h1 class="logo-font text-center header">Register</h1>
 <div class="row">
     <div class="col-12 col-md-8 justify-content-center d-flex">
@@ -23,8 +22,8 @@
             {{ form.password(class="form-input") }}
             <label for="confirm_password" class="form-input-label">Please re-type password :</label>
             {{ form.confirm_password(class="form-input") }}
-            {{ form.submit(class="custom-button") }}
-            <p class="form-details">Already have an account?</p>
+            {{ form.submit(class="custom-button mt-2") }}
+            <p class="form-details mt-5">Already have an account?</p>
             <p class="form-details"><a href="{{ url_for('login') }}">Click here to log in</a></p>
         </form>
     </div>

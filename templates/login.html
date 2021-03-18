@@ -16,8 +16,8 @@
             {{ form.email_or_username(class="form-input") }}
             <label for="password" class="form-input-label">Please type your password :</label>
             {{ form.password(class="form-input") }}
-            {{ form.submit(class="custom-button") }}
-            <p class="form-details">Need to sign up?</p>
+            {{ form.submit(class="custom-button mt-2") }}
+            <p class="form-details mt-5">Need to sign up?</p>
             <p class="form-details"><a href="{{ url_for('register') }}">Click here to register</a></p>
         </form>
     </div>
