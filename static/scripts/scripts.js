@@ -2,7 +2,9 @@
    autoResize() used to make textarea input expand with text input*/
 $(".auto-resize").autoResize();
 
-/* RENDER NEW ROWS IN THE ADD_RECIPE FORM WHEN PLUS BUTTON CLICKED */
+/* ADD RECIPE AND EDIT RECIPE FORM SCRIPTS */
+
+/* RENDER NEW ROWS IN ADD_RECIPE AND EDIT RECIPE FORMS WHEN PLUS BUTTON CLICKED */
 $("#add-ingredient-button").on('click', function () {
     ingredientItems = $(".ingredients-container .form-input").siblings('input');
     /* Check that all the boxes in the ingredient container have some text in them before rendering a new text input */
@@ -17,10 +19,10 @@ $("#add-ingredient-button").on('click', function () {
     $(".ingredients-container").append(ingredientHTMLString);
 });
 
-/* This function is the same as above, but the jQuery selector needs to target textarea inputs with a name attribute
+/* This function is the same as above, but the jQuery selector needs to target textarea inputs with an id attribute
    due to the autoResize plugin creating hidden textarea inputs when called  */
 $("#add-instruction-button").on('click', function () {
-    instructionItems = $(".instructions-container .form-input").siblings('textarea[name]'); 
+    instructionItems = $(".instructions-container .form-input").siblings('textarea[id]'); 
     for (let i = 0; i < instructionItems.length; i += 1) {
         if (instructionItems[i].value == "") {
             return;
@@ -34,24 +36,13 @@ $("#add-instruction-button").on('click', function () {
     $(".auto-resize").autoResize();
 });
 
-/* Get the name of the file selcted in the file input and render to page */
-$("#picture_upload").change(function() {
-    $("#selected-file").text($("#picture_upload").val().split("\\").pop())
-}) 
-
-// Make 'favourite-recipe' checkbox auto submit when clicked
-$(".trigger-form-send").on('click', function(){
-    console.log($(this));
-    $(this).submit();
-});
-
-
 /* Edit recipe form - get value passed to the placeholder attibute in template and 
    use as inner text value. Overwrite name attribute provided by WTForms and set equal 
    to id attribute which is made unique with loop index in edit_recipe template */
+   
 $("document").ready(function(){
-    $(".edit-recipe-instruction").each((index, instruction) => {
-        console.log(instruction)
+    $(".edit-recipe-instructions .form-input").siblings('textarea[id]').each((index, instruction) => {
+        
         instruction.innerText = instruction.getAttribute("placeholder");
         instruction.setAttribute('name', instruction.getAttribute("id"));
         
@@ -66,12 +57,31 @@ $("document").ready(function(){
     });
 });
 
+$("document").ready(function(){
+    $(".edit-recipe-instructions .form-input").siblings('textarea[tabindex]').each((index, hiddenInput) => {
+    hiddenInput.removeAttribute('required');
+    })
+})
+
 /* If the recipe card title contains 28 characters or more, apply the shrink-header CSS class */
 $(".recipe-card-title").each(function(){
     if ($(this).text().length >= 28){
         $(this).addClass('shrink-header');
     }
 })
+
+/* Get the name of the file selcted in the file input and render to page */
+$("#picture_upload").change(function() {
+    $("#selected-file").text($("#picture_upload").val().split("\\").pop())
+}) 
+
+// Make 'favourite-recipe' checkbox auto submit when clicked
+$(".trigger-form-send").on('click', function(){
+    console.log($(this));
+    $(this).submit();
+});
+
+
 
 /* Enable bootsrap popovers and 'dismiss on next click' */
 $(function () {

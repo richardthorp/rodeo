@@ -81,6 +81,7 @@ class Add_recipe_form(FieldsRequiredForm):
     ingredient_1 = StringField("Ingredient 1", validators=[InputRequired()])
     ingredient_2 = StringField("Ingredient 2", validators=[InputRequired()])
     ingredient_3 = StringField("Ingredient 3", validators=[InputRequired()])
+    ingredient_optional = StringField()
     instruction_1 = TextAreaField("Instruction",
                                   validators=[InputRequired()],
                                   render_kw={"placeholder":
@@ -89,38 +90,11 @@ class Add_recipe_form(FieldsRequiredForm):
                                   validators=[InputRequired()],
                                   render_kw={"placeholder":
                                              "Please enter step 2..."})
+    instruction_optional = TextAreaField("")
     feeds = IntegerField("How many people does it feed?",
                          validators=[InputRequired()],
                          render_kw={"type": "number", "min": "1"})
     picture_upload = FileField('Upload Picture')
     add_recipe_button = SubmitField(render_kw={"value": "Add Recipe"})
+    edit_recipe_button = SubmitField(render_kw={"value": "Edit Recipe"})
 
-
-class Edit_recipe_form(FieldsRequiredForm):
-    recipe_name = StringField('Recipe Name',
-                              validators=[Length(max=50), InputRequired()])
-    recipe_type = RadioField('Type', choices=[('Meat', 'Meat'),
-                             ('Vegetarian', 'Vegetarian'),
-                             ('Vegan', 'Vegan')])
-    cheap_checkbox = BooleanField('Cheap', render_kw={"value":
-                                                      "Cheap"})
-    gluton_free_checkbox = BooleanField('Gluton Free',
-                                        render_kw={"value": "Gluton Free"})
-    healthy_checkbox = BooleanField('Healthy', render_kw={"value":  "Healthy"})
-    quick_checkbox = BooleanField('Quick', render_kw={"value": "Quick"})
-    fakeaway_checkbox = BooleanField('Fakeaway', render_kw={"value":
-                                                            "Fakeaway"})
-    ingredient_1 = StringField("Ingredient 1", validators=[InputRequired()])
-    ingredient_2 = StringField("Ingredient 2", validators=[InputRequired()])
-    ingredient_3 = StringField("Ingredient 3", validators=[InputRequired()])
-    ingredient_optional = StringField("Ingredient 2")
-    instruction_1 = TextAreaField("Ingredient 1", validators=[InputRequired()])
-    instruction_2 = TextAreaField("Ingredient 2", validators=[InputRequired()])
-    instruction_optional = TextAreaField("Instruction 2",
-                                  render_kw={"placeholder":
-                                             "Please enter step 2..."})
-    feeds = IntegerField("How many people does it feed?",
-                         validators=[InputRequired()],
-                         render_kw={"type": "number", "min": "1"})
-    picture_upload = FileField('Upload Picture')
-    edit_recipe_button = SubmitField(render_kw={"value": "Add Recipe"})

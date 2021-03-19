@@ -6,7 +6,7 @@ from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_paginate import Pagination, get_page_args
 from forms import (Registration_form, Login_form,
-                   Search_and_filter_form, Add_recipe_form, Edit_recipe_form)
+                   Search_and_filter_form, Add_recipe_form)
 if os.path.exists("env.py"):
     import env
 
@@ -161,10 +161,10 @@ def delete_recipe(recipe_id):
 
 @app.route('/edit_recipe/<recipe_id>', methods=['GET', 'POST'])
 def edit_recipe(recipe_id):
-    form = Edit_recipe_form()
+    form = Add_recipe_form()
     recipe = mongo.db.recipes.find_one({'_id': ObjectId(recipe_id)})
     if request.method == 'POST':
-        print(request.form)
+        print('TESTER', request.form)
     if form.validate_on_submit():
         print(request.form)
         details = {}
@@ -209,10 +209,10 @@ def edit_recipe(recipe_id):
             formatted_recipe['image_name'] = 'defaultrecipeimagepngRodeo'
         mongo.db.recipes.update_one({'_id': ObjectId(recipe_id)},
                                     {'$set': formatted_recipe})
-        # print(formatted_recipe)
+        print(formatted_recipe)
         return redirect(url_for('recipe_page', recipe_id=recipe_id))
     else:
-        print(form.errors)
+        print('ERROR VALIDATING', form.errors)
     return render_template('edit_recipe.html', form=form, recipe=recipe)
 
 
