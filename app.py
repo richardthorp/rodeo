@@ -175,15 +175,10 @@ def edit_recipe(recipe_id):
         details = {key: value for key, value in recipe.items() if
                    "checkbox" in key or "recipe_type" in key}
         for (key, value) in recipe.items():
-            if "ingredient" in key:
+            if "ingredient" in key and value != "":
                 ingredients.append(value.strip())
-            elif "instruction" in key:
+            elif "instruction" in key and value != "":
                 instructions.append(value.strip())
-
-        if ingredients[-1] == "":
-            ingredients.pop()
-        if instructions[-1] == "":
-            instructions.pop()
 
         formatted_recipe = {
             'name': recipe['recipe_name'].strip(),

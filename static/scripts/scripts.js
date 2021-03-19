@@ -35,33 +35,40 @@ $("#add-instruction-button").on('click', function () {
     $(".instructions-container").append(instructionHTMLString);
     $(".auto-resize").autoResize();
 });
-
-/* Edit recipe form - get value passed to the placeholder attibute in template and 
-   use as inner text value. Overwrite name attribute provided by WTForms and set equal 
-   to id attribute which is made unique with loop index in edit_recipe template */
    
 $("document").ready(function(){
+        /* Edit recipe form - get value passed to the placeholder attibute in template and 
+        use as inner text value. Overwrite name attribute provided by WTForms and set equal 
+        to id attribute which is made unique with loop index in edit_recipe template */
     $(".edit-recipe-instructions .form-input").siblings('textarea[id]').each((index, instruction) => {
-        
         instruction.innerText = instruction.getAttribute("placeholder");
-        instruction.setAttribute('name', instruction.getAttribute("id"));
-        
+        instruction.setAttribute('name', instruction.getAttribute("id")); 
     });
-});
-
-/* Same as above function, but value is set in template */
-$("document").ready(function(){
+    /* Same as above function, but value attribute is set in template and not here*/
     $(".edit-recipe-ingredient").each((index, ingredient) => {
-        ingredient.setAttribute('name', ingredient.getAttribute("id"));
+    ingredient.setAttribute('name', ingredient.getAttribute("id"));
         
     });
+    /* Remove required attribute from hidden input fields */
+    $(".edit-recipe-instructions .form-input").siblings('textarea[tabindex]').each((index, hiddenInput) => {
+        hiddenInput.removeAttribute('required');
+    })
 });
 
-$("document").ready(function(){
-    $(".edit-recipe-instructions .form-input").siblings('textarea[tabindex]').each((index, hiddenInput) => {
-    hiddenInput.removeAttribute('required');
-    })
-})
+// /* Same as above function, but value is set in template */
+// $("document").ready(function(){
+//     $(".edit-recipe-ingredient").each((index, ingredient) => {
+//         ingredient.setAttribute('name', ingredient.getAttribute("id"));
+        
+//     });
+// });
+
+// /* Remove required attribute from hidden input fields */
+// $("document").ready(function(){
+//     $(".edit-recipe-instructions .form-input").siblings('textarea[tabindex]').each((index, hiddenInput) => {
+//     hiddenInput.removeAttribute('required');
+//     })
+// })
 
 /* If the recipe card title contains 28 characters or more, apply the shrink-header CSS class */
 $(".recipe-card-title").each(function(){
@@ -80,8 +87,6 @@ $(".trigger-form-send").on('click', function(){
     console.log($(this));
     $(this).submit();
 });
-
-
 
 /* Enable bootsrap popovers and 'dismiss on next click' */
 $(function () {
