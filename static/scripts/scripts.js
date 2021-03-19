@@ -45,19 +45,26 @@ $(".trigger-form-send").on('click', function(){
     $(this).submit();
 });
 
-// $(".trigger-form-send").on('click', function(){
-//             $(this).parent().submit();
-//     });
 
-/* Get the placeholder values passed to the edit_recipe template textarea inputs
-   and render it within the textarea */
+/* Edit recipe form - get value passed to the placeholder attibute in template and 
+   use as inner text value. Overwrite name attribute provided by WTForms and set equal 
+   to id attribute which is made unique with loop index in edit_recipe template */
+$("document").ready(function(){
+    $(".edit-recipe-instruction").each((index, instruction) => {
+        console.log(instruction)
+        instruction.innerText = instruction.getAttribute("placeholder");
+        instruction.setAttribute('name', instruction.getAttribute("id"));
+        
+    });
+});
 
-// $("document").ready(function(){
-//     let instructions = $(".edit-recipe-instruction")
-//     Object.values(instructions).forEach(instruction => {
-//         instruction.innerText = (instruction.getAttribute("placeholder"));
-//     });
-// });
+/* Same as above function, but value is set in template */
+$("document").ready(function(){
+    $(".edit-recipe-ingredient").each((index, ingredient) => {
+        ingredient.setAttribute('name', ingredient.getAttribute("id"));
+        
+    });
+});
 
 /* If the recipe card title contains 28 characters or more, apply the shrink-header CSS class */
 $(".recipe-card-title").each(function(){

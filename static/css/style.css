@@ -403,7 +403,7 @@ label i {
     background-color: transparent;
     text-transform: uppercase;
     border-radius: 10px;
-    max-width: 180px;
+    width: 180px;
     
 }
 
@@ -587,7 +587,8 @@ label i {
     font-size: 2.5rem;
     margin-top: 48px;
     border: 6px solid;
-    background-color: #FFF6BC; 
+    background-color: #FFF6BC;
+    width: 330px;
 }
 
 #add-recipe-button:hover{

@@ -163,7 +163,10 @@ def delete_recipe(recipe_id):
 def edit_recipe(recipe_id):
     form = Edit_recipe_form()
     recipe = mongo.db.recipes.find_one({'_id': ObjectId(recipe_id)})
+    if request.method == 'POST':
+        print(request.form)
     if form.validate_on_submit():
+        print(request.form)
         details = {}
         ingredients = []
         instructions = []
@@ -190,26 +193,26 @@ def edit_recipe(recipe_id):
             'instructions': instructions,
             'added_by': session['username']
             }
-        print(ingredients, formatted_recipe)
+
         # If an image file has been sent with form data...
-        # if request.files['picture_upload']:
+        if request.files['picture_upload']:
         # Remove any special characters from the file name and
         # add username to file name to ensure name is unique
-        #     file_name = "".join(char for char in
-        #                         request.files['picture_upload'].filename
-        #                         if char.isalnum()) + session['username']
+            file_name = "".join(char for char in
+                                request.files['picture_upload'].filename
+                                if char.isalnum()) + session['username']
 
-        #     mongo.save_file(file_name,
-        #                     request.files['picture_upload'])
-        #     formatted_recipe['image_name'] = file_name
-        # else:
-        #     formatted_recipe['image_name'] = 'defaultrecipeimagepngRodeo'
-        # mongo.db.recipes.update_one({'_id': ObjectId(recipe_id)},
-        #                             {'$set': formatted_recipe})
+            mongo.save_file(file_name,
+                            request.files['picture_upload'])
+            formatted_recipe['image_name'] = file_name
+        else:
+            formatted_recipe['image_name'] = 'defaultrecipeimagepngRodeo'
+        mongo.db.recipes.update_one({'_id': ObjectId(recipe_id)},
+                                    {'$set': formatted_recipe})
         # print(formatted_recipe)
         return redirect(url_for('recipe_page', recipe_id=recipe_id))
-    # else:
-        # print(form.errors)
+    else:
+        print(form.errors)
     return render_template('edit_recipe.html', form=form, recipe=recipe)
 
 

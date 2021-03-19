@@ -113,10 +113,14 @@
             <div class="col-12 ingredients-container">
                 <h6 class="text-left form-details">Ingredients</h6>
                 {% for ingredient in recipe.ingredients %}
-                {% if loop.index0 < 3 %}
-                {{ form.ingredient_required(class="form-input small-input edit-recipe-ingredient", id='ingredient' + loop.index|string, value=recipe.ingredients[loop.index0]) }}
+                {% if loop.index0 == 0 %}
+                {{ form.ingredient_1(class="form-input small-input edit-recipe-ingredient", id='ingredient_1', value=recipe.ingredients[loop.index0]) }}
+                {% elif loop.index0 == 1 %}
+                {{ form.ingredient_2(class="form-input small-input edit-recipe-ingredient", id='ingredient_2', value=recipe.ingredients[loop.index0]) }}
+                {% elif loop.index0 == 2 %}
+                {{ form.ingredient_3(class="form-input small-input edit-recipe-ingredient", id='ingredient_3', value=recipe.ingredients[loop.index0]) }}
                 {% else %}
-                {{ form.ingredient_optional(class="form-input small-input edit-recipe-ingredient", id='ingredient' + loop.index|string, value=recipe.ingredients[loop.index0]) }}
+                {{ form.ingredient_optional(class="form-input small-input edit-recipe-ingredient", id='ingredient_' + loop.index|string, value=recipe.ingredients[loop.index0]) }}
                 {% endif %}
                 {% endfor %}
             </div>
@@ -130,10 +134,12 @@
             <div class="col-12 instructions-container">
                 <h6 class="text-left form-details">Instructions</h6>
                 {% for instruction in recipe.instructions %}
-                {% if loop.index0 < 2 %}
-                {{ form.instruction_required(class="form-input auto-resize edit-recipe-instruction", id='instruction' + loop.index|string, placeholder=recipe.instructions[loop.index0])}}
+                {% if loop.index0 == 0 %}
+                {{ form.instruction_1(class="form-input auto-resize edit-recipe-instruction", id='instruction_1', placeholder=recipe.instructions[loop.index0])}}
+                {% elif loop.index0 == 1 %}
+                {{ form.instruction_2(class="form-input auto-resize edit-recipe-instruction", id='instruction_2', placeholder=recipe.instructions[loop.index0])}}
                 {% else %}
-                {{ form.instruction_optional(class="form-input auto-resize edit-recipe-instruction", id='instruction' + loop.index|string, placeholder=recipe.instructions[loop.index0])}}
+                {{ form.instruction_optional(class="form-input auto-resize edit-recipe-instruction", id='instruction_' + loop.index|string, placeholder=recipe.instructions[loop.index0])}}
                 {% endif %}
                 {% endfor %}
             </div>

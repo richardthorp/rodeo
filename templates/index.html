@@ -183,7 +183,7 @@
                                 <!-- If user has favourited this recipe previously, render solid heart icon -->
                                 {% if session['username'] in recipe.favourites %}
                                 <input type="checkbox" name="favourite" class="hidden-input"
-                                    id="favourite-checkbox-checked-{{+ loop.index}}" value="delete_fav">
+                                        id="favourite-checkbox-checked-{{+ loop.index}}" value="delete_fav">
                                 <label for="favourite-checkbox-checked-{{+ loop.index}}"><i class="fas fa-heart"
                                         data-toggle="tooltip" data-placement="bottom"
                                         title="Remove from favourites"></i></label>
@@ -214,12 +214,11 @@
         </div>
         <div class="row">
             <div class="col-12">
-                <h4 class="sub-header text-center mt-5"><a href="{{ url_for('all_recipes') }}">Click here to see more
-                        recipes!</a></h4>
+                <h4 class="sub-header text-center mt-5">
+                    <a href="{{ url_for('all_recipes') }}">Click here to see more recipes!</a></h4>
             </div>
         </div>
     </div>
 </div>
-
 
 {% endblock %}
