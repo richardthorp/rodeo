@@ -6,10 +6,14 @@ $(".auto-resize").autoResize();
 
 /* RENDER NEW ROWS IN ADD_RECIPE AND EDIT RECIPE FORMS WHEN PLUS BUTTON CLICKED */
 $("#add-ingredient-button").on('click', function () {
-    ingredientItems = $(".ingredients-container .form-input").siblings('input');
+    ingredientItems = $(".ingredients-container .form-input");
     /* Check that all the boxes in the ingredient container have some text in them before rendering a new text input */
     for (let i = 0; i < ingredientItems.length; i += 1) {
         if (ingredientItems[i].value == "") {
+            $(ingredientItems[i]).tooltip({title: "Please use this input first!"}).tooltip('show');
+            setTimeout(()=>{
+                 $(ingredientItems[i]).tooltip('dispose');
+            }, 2500)
             return;
         } 
     }
@@ -25,6 +29,10 @@ $("#add-instruction-button").on('click', function () {
     instructionItems = $(".instructions-container .form-input").siblings('textarea[id]'); 
     for (let i = 0; i < instructionItems.length; i += 1) {
         if (instructionItems[i].value == "") {
+            $(instructionItems[i]).tooltip({title: "Please use this input first!"}).tooltip('show');
+            setTimeout(()=>{
+                 $(instructionItems[i]).tooltip('dispose');
+            }, 2500)
             return;
         } 
     }
@@ -90,7 +98,7 @@ $(".trigger-form-send").on('click', function(){
 
 /* Enable bootsrap popovers and 'dismiss on next click' */
 $(function () {
-    $('[data-toggle="popover"]').popover({html: true});
+    // $('[data-toggle="popover"]').popover({html: true});
     $('[data-toggle="tooltip"]').tooltip();
 })
 
