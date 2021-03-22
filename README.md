@@ -1,45 +1,82 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# Rodeo Hot Sauce
+### A website for finding and sharing hot sauce recipes
+[Click here to view live website](https://rodeo-hot-sauce.herokuapp.com/)
+## Table of Contents
 
-Welcome richardthorp,
+[User Experience - UX](#UX)
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use.
+[Design](#design)
 
-## Gitpod Reminders
+[Features](#features)
 
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
+[Languages and Technologies](#tech)
 
-`python3 -m http.server`
+[Testing](#testing)
 
-A blue button should appear to click: *Make Public*,
+[Deployment](#deployment)
 
-Another blue button should appear to click: *Open Browser*.
+[Credits](#credits)
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
+<a name="UX"></a>
+## UX
+### User Profiles
+As a user of this website, I am someone looking to find recipes, or to contribute recipes to a community. I am an English speaker with an interest in cooking with hot sauce.
 
-A blue button should appear to click: *Make Public*,
+### User Stories
+As a user of the website, I want:
+* To be able to navigate through the website in an intuitive and easy fashion
+* To discover popular recipes involving hot sauce
+* To dicover new recipes involving hot sauce
+* To be able to quickly and easily search the recipes to find specific ingredients or meal types
+* To contribute my own recipes to the website community
+* To be able to quickly edit or delete recipes that I have contibuted
+* To be able to save recipes that interest me and be able to access them quickly
+* To be able to rate recipes and have those ratings influence the information hierarchy throughout the website
+* To be able to log in and log out of the website easily and have the data presented be specific to me.
 
-Another blue button should appear to click: *Open Browser*.
 
-In Gitpod you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
+<a name="design"></a>
+## Design
 
-## Updates Since The Instructional Video
+### Design mock-ups
 
-We continually tweak and adjust this template to help give you the best experience. Here is the version history:
+### Colour Scheme
 
-**October 21 2020:** Versions of the HTMLHint, Prettier, Bootstrap4 CDN and Auto Close extensions updated. The Python extension needs to stay the same version for now.
+### Fonts
 
-**October 08 2020:** Additional large Gitpod files (`core.mongo*` and `core.python*`) are now hidden in the Explorer, and have been added to the `.gitignore` by default.
+<a name="features"></a>
+## Features
+### Implemented Features
 
-**September 22 2020:** Gitpod occasionally creates large `core.Microsoft` files. These are now hidden in the Explorer. A `.gitignore` file has been created to make sure these files will not be committed, along with other common files.
+#### index.html
+#### login.html
+#### register.html
+#### my_recipes.html
+#### all_recipes.html
+#### recipe_page.html
+#### added_recipes.html
+#### add_recipe.html
+#### edit_recipe.html
+#### 404.html
 
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
+#### Potential Future Features
 
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
+<a name="tech"></a>
+## Languages and Technologies  Used
 
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
+### Technologies Used
+    
+<a name="testing"></a>
+## Testing
 
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
+<a name="deployment"></a>
+## Deployment
 
---------
+<a name="credits"></a>
+## Credits
 
-Happy coding!
+### Code
+
+### Content
+
+### Acknowledgements
