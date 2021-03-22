@@ -63,21 +63,6 @@ $("document").ready(function(){
     })
 });
 
-// /* Same as above function, but value is set in template */
-// $("document").ready(function(){
-//     $(".edit-recipe-ingredient").each((index, ingredient) => {
-//         ingredient.setAttribute('name', ingredient.getAttribute("id"));
-        
-//     });
-// });
-
-// /* Remove required attribute from hidden input fields */
-// $("document").ready(function(){
-//     $(".edit-recipe-instructions .form-input").siblings('textarea[tabindex]').each((index, hiddenInput) => {
-//     hiddenInput.removeAttribute('required');
-//     })
-// })
-
 /* If the recipe card title contains 28 characters or more, apply the shrink-header CSS class */
 $(".recipe-card-title").each(function(){
     if ($(this).text().length >= 28){
