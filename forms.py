@@ -53,15 +53,20 @@ class Search_and_filter_form(FlaskForm):
     search = StringField("Search",
                          render_kw={"placeholder": "Enter search terms"})
     search_submit = SubmitField("Search")
-    recipe_type = RadioField('Type', choices=[('meat', 'Meat'),
-                                              ('vegetarian', 'Vegetarian'),
-                                              ('vegan', 'Vegan')])
-    cheap_checkbox = BooleanField('Cheap', render_kw={"required": False})
-    gluton_free_checkbox = BooleanField('Gluton Free')
-    healthy_checkbox = BooleanField('Healthy')
-    quick_checkbox = BooleanField('Quick')
-    fakeaway_checkbox = BooleanField('Fakeaway')
-    filter_submit = SubmitField('Filter')
+    recipe_type = RadioField('Type', choices=[('All', 'All'),
+                                              ('Meat', 'Meat'),
+                                              ('Vegetarian', 'Vegetarian'),
+                                              ('Vegan', 'Vegan')],
+                                                default='All')
+    cheap_checkbox = BooleanField('Cheap', render_kw={"value":
+                                                      "Cheap"})
+    gluton_free_checkbox = BooleanField('Gluton Free',
+                                        render_kw={"value": "Gluton Free"})
+    healthy_checkbox = BooleanField('Healthy', render_kw={"value":  "Healthy"})
+    quick_checkbox = BooleanField('Quick', render_kw={"value": "Quick"})
+    fakeaway_checkbox = BooleanField('Fakeaway', render_kw={"value":
+                                                            "Fakeaway"})
+    filter_submit = SubmitField('Add Filters')
 
 
 class Add_recipe_form(FieldsRequiredForm):
