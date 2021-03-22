@@ -402,9 +402,7 @@ label i {
     font-family: Bevan;
     background-color: transparent;
     text-transform: uppercase;
-    border-radius: 10px;
-    width: 180px;
-    
+    border-radius: 10px;    
 }
 
 .custom-button {

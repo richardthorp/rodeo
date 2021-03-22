@@ -80,10 +80,48 @@ def login():
     return render_template("login.html", form=form)
 
 
-@app.route("/all_recipes")
+@app.route("/all_recipes", methods=['GET', 'POST'])
 def all_recipes():
+    form = Search_and_filter_form()
     recipes = mongo.db.recipes.find()
-    return render_template("all_recipes.html", recipes=recipes)
+    # If user uses search or filter form
+    if form.validate_on_submit():
+        form_data = (dict(request.form))
+        
+        # Create an empty dictionary to populate with a search query
+        search_terms = {}
+
+        # Remove csrf_token, search_submit and filter_submit
+        # from the returned form data
+        form_data.pop('csrf_token')
+        if form_data.get('search_submit'):
+            form_data.pop('search_submit')
+        if form_data.get('filter_submit'):
+            form_data.pop('filter_submit')
+
+        # If user entered search terms, add text search to search_terms dict
+        if form_data['search'] != "":
+            search_terms = {"$text": {"$search": form_data['search']}}
+        # Remove 'search' item form_data dict
+        form_data.pop('search')
+
+        # If user has selected a recipe_type that isn't 'All', add recipe_type
+        # query to the search terms dict
+        if form_data['recipe_type'] != 'All':
+            search_terms['details.recipe_type'] = form_data['recipe_type']
+        # Remove 'recipe_type' item from form data dict.
+        form_data.pop('recipe_type')
+
+        # Add any selected checkboxes to the search_terms dict
+        for key, value in form_data.items():
+            search_terms['details.' + key] = value
+
+        # Finally, query the db with the formatted search_terms dict
+        recipes = mongo.db.recipes.find(search_terms)
+    else:
+        print('NOT VALID', form.errors)
+
+    return render_template("all_recipes.html", form=form, recipes=recipes)
 
 
 @app.route("/my_recipes", methods=["GET", "POST"])
@@ -148,7 +186,7 @@ def add_recipe():
             formatted_recipe['image_name'] = 'defaultrecipeimagepngRodeo'
         mongo.db.recipes.insert_one(formatted_recipe)
     else:
-        print("NOT VALID")
+        print("NOT VALID", form.errors)
 
     return render_template("add_recipe.html", form=form)
 
