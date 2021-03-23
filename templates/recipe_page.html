@@ -40,43 +40,7 @@
         <!-- AVERAGE RATING SECTION -->
         <div class="d-none d-md-inline col-md-4 text-center">
             <h6 class="sub-header">Average Rating</h6>
-            {% if average_rating == 1 %}
-            <span class="star coloured-star">&#9733;</span>
-            <span class="star blank-star">&#9733;</span>
-            <span class="star blank-star">&#9733;</span>
-            <span class="star blank-star">&#9733;</span>
-            <span class="star blank-star">&#9733;</span>
-            {% elif average_rating == 2 %}
-            <span class="star coloured-star">&#9733;</span>
-            <span class="star coloured-star">&#9733;</span>
-            <span class="star blank-star">&#9733;</span>
-            <span class="star blank-star">&#9733;</span>
-            <span class="star blank-star">&#9733;</span>
-            {% elif average_rating == 3 %}
-            <span class="star coloured-star">&#9733;</span>
-            <span class="star coloured-star">&#9733;</span>
-            <span class="star coloured-star">&#9733;</span>
-            <span class="star blank-star">&#9733;</span>
-            <span class="star blank-star">&#9733;</span>
-            {% elif average_rating == 4 %}
-            <span class="star coloured-star">&#9733;</span>
-            <span class="star coloured-star">&#9733;</span>
-            <span class="star coloured-star">&#9733;</span>
-            <span class="star coloured-star">&#9733;</span>
-            <span class="star blank-star">&#9733;</span>
-            {% elif average_rating == 5 %}
-            <span class="star coloured-star">&#9733;</span>
-            <span class="star coloured-star">&#9733;</span>
-            <span class="star coloured-star">&#9733;</span>
-            <span class="star coloured-star">&#9733;</span>
-            <span class="star coloured-star">&#9733;</span>
-            {% else %}
-            <span class="star blank-star">&#9733;</span>
-            <span class="star blank-star">&#9733;</span>
-            <span class="star blank-star">&#9733;</span>
-            <span class="star blank-star">&#9733;</span>
-            <span class="star blank-star">&#9733;</span>
-            {% endif %}
+            {{ average_rating|safe }}
         </div>
         <!-- USER RATING SECTION -->
         <div class="d-none d-md-flex col-md-4 flex-wrap justify-content-center your-rating">
@@ -86,70 +50,70 @@
                 <div class="rate rate-md">
                     {% if user_rating == 1 %}
                     <input type="radio" id="star5" name="rating" value="5" />
-                    <label for="star5" title="text">&#9733;</label>
+                    <label for="star5" title="text"><i class="fas fa-star"></i></label>
                     <input type="radio" id="star4" name="rating" value="4" />
-                    <label for="star4" title="text">&#9733;</label>
+                    <label for="star4" title="text"><i class="fas fa-star"></i></label>
                     <input type="radio" id="star3" name="rating" value="3" />
-                    <label for="star3" title="text">&#9733;</label>
+                    <label for="star3" title="text"><i class="fas fa-star"></i></label>
                     <input type="radio" id="star2" name="rating" value="2" />
-                    <label for="star2" title="text">&#9733;</label>
+                    <label for="star2" title="text"><i class="fas fa-star"></i></label>
                     <input type="radio" id="star1" name="rating" value="1" checked />
-                    <label for="star1" title="text">&#9733;</label>
+                    <label for="star1" title="text"><i class="fas fa-star"></i></label>
                     {% elif user_rating == 2 %}
                     <input type="radio" id="star5" name="rating" value="5" />
-                    <label for="star5" title="text">&#9733;</label>
+                    <label for="star5" title="text"><i class="fas fa-star"></i></label>
                     <input type="radio" id="star4" name="rating" value="4" />
-                    <label for="star4" title="text">&#9733;</label>
+                    <label for="star4" title="text"><i class="fas fa-star"></i></label>
                     <input type="radio" id="star3" name="rating" value="3" />
-                    <label for="star3" title="text">&#9733;</label>
+                    <label for="star3" title="text"><i class="fas fa-star"></i></label>
                     <input type="radio" id="star2" name="rating" value="2" checked />
-                    <label for="star2" title="text">&#9733;</label>
+                    <label for="star2" title="text"><i class="fas fa-star"></i></label>
                     <input type="radio" id="star1" name="rating" value="1" />
-                    <label for="star1" title="text">&#9733;</label>
+                    <label for="star1" title="text"><i class="fas fa-star"></i></label>
                     {% elif user_rating == 3 %}
                     <input type="radio" id="star5" name="rating" value="5" />
-                    <label for="star5" title="text">&#9733;</label>
+                    <label for="star5" title="text"><i class="fas fa-star"></i></label>
                     <input type="radio" id="star4" name="rating" value="4" />
-                    <label for="star4" title="text">&#9733;</label>
+                    <label for="star4" title="text"><i class="fas fa-star"></i></label>
                     <input type="radio" id="star3" name="rating" value="3" checked />
-                    <label for="star3" title="text">&#9733;</label>
+                    <label for="star3" title="text"><i class="fas fa-star"></i></label>
                     <input type="radio" id="star2" name="rating" value="2" />
-                    <label for="star2" title="text">&#9733;</label>
+                    <label for="star2" title="text"><i class="fas fa-star"></i></label>
                     <input type="radio" id="star1" name="rating" value="1" />
-                    <label for="star1" title="text">&#9733;</label>
+                    <label for="star1" title="text"><i class="fas fa-star"></i></label>
                     {% elif user_rating == 4 %}
                     <input type="radio" id="star5" name="rating" value="5" />
-                    <label for="star5" title="text">&#9733;</label>
+                    <label for="star5" title="text"><i class="fas fa-star"></i></label>
                     <input type="radio" id="star4" name="rating" value="4" checked />
-                    <label for="star4" title="text">&#9733;</label>
+                    <label for="star4" title="text"><i class="fas fa-star"></i></label>
                     <input type="radio" id="star3" name="rating" value="3" />
-                    <label for="star3" title="text">&#9733;</label>
+                    <label for="star3" title="text"><i class="fas fa-star"></i></label>
                     <input type="radio" id="star2" name="rating" value="2" />
-                    <label for="star2" title="text">&#9733;</label>
+                    <label for="star2" title="text"><i class="fas fa-star"></i></label>
                     <input type="radio" id="star1" name="rating" value="1" />
-                    <label for="star1" title="text">&#9733;</label>
+                    <label for="star1" title="text"><i class="fas fa-star"></i></label>
                     {% elif user_rating == 5 %}
                     <input type="radio" id="star5" name="rating" value="5" checked />
-                    <label for="star5" title="text">&#9733;</label>
+                    <label for="star5" title="text"><i class="fas fa-star"></i></label>
                     <input type="radio" id="star4" name="rating" value="4" />
-                    <label for="star4" title="text">&#9733;</label>
+                    <label for="star4" title="text"><i class="fas fa-star"></i></label>
                     <input type="radio" id="star3" name="rating" value="3" />
-                    <label for="star3" title="text">&#9733;</label>
+                    <label for="star3" title="text"><i class="fas fa-star"></i></label>
                     <input type="radio" id="star2" name="rating" value="2" />
-                    <label for="star2" title="text">&#9733;</label>
+                    <label for="star2" title="text"><i class="fas fa-star"></i></label>
                     <input type="radio" id="star1" name="rating" value="1" />
-                    <label for="star1" title="text">&#9733;</label>
+                    <label for="star1" title="text"><i class="fas fa-star"></i></label>
                     {% else %}
                     <input type="radio" id="star5" name="rating" value="5" />
-                    <label for="star5" title="text">&#9733;</label>
+                    <label for="star5" title="text"><i class="fas fa-star"></i></label>
                     <input type="radio" id="star4" name="rating" value="4" />
-                    <label for="star4" title="text">&#9733;</label>
+                    <label for="star4" title="text"><i class="fas fa-star"></i></label>
                     <input type="radio" id="star3" name="rating" value="3" />
-                    <label for="star3" title="text">&#9733;</label>
+                    <label for="star3" title="text"><i class="fas fa-star"></i></label>
                     <input type="radio" id="star2" name="rating" value="2" />
-                    <label for="star2" title="text">&#9733;</label>
+                    <label for="star2" title="text"><i class="fas fa-star"></i></label>
                     <input type="radio" id="star1" name="rating" value="1" />
-                    <label for="star1" title="text">&#9733;</label>
+                    <label for="star1" title="text"><i class="fas fa-star"></i></label>
                     {% endif %}
                 </div>
                 <!-- If user is logged in, provide submit button - otherwise provide popover with links to log in and register -->

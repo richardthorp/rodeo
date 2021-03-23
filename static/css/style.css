@@ -279,7 +279,7 @@ nav {
 }
 
 .star {
-    font-size: 1.9rem;
+    font-size: 1.5rem;
 }
 
 .blank-star {
@@ -311,7 +311,7 @@ nav {
     overflow:hidden;
     white-space:nowrap;
     cursor:pointer;
-    font-size:2rem;
+    font-size:1.5rem;
     color:#808080;
 }
 .rate > input:checked ~ label {
@@ -345,10 +345,10 @@ nav {
     cursor: pointer;
 }
 
-label i {
+/* label i {
     font-size: 3rem;
     padding: 10px;
-}
+} */
 
 .serves-details {
     font-size: 1.5rem;
