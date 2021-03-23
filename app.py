@@ -84,37 +84,45 @@ def login():
 def all_recipes():
     form = Search_and_filter_form()
     recipes = mongo.db.recipes.find()
+    filters = False
     # If user uses search and filter form
     if form.validate_on_submit():
         form_data = (dict(request.form))
         recipes = search_and_filter(form_data, 'all_recipes')
+        filters = True
     else:
         print('NOT VALID', form.errors)
 
-    return render_template("all_recipes.html", form=form, recipes=recipes)
+    return render_template("all_recipes.html", form=form, recipes=recipes,
+                           filters=filters)
 
 
 @app.route("/my_recipes", methods=["GET", "POST"])
 def my_recipes():
     form = Search_and_filter_form()
     recipes = mongo.db.recipes.find({"favourites": session['username']})
-
+    filters = False
     if form.validate_on_submit():
         form_data = (dict(request.form))
         recipes = search_and_filter(form_data, 'favourite_recipes')
+        filters = True
 
-    return render_template("my_recipes.html", form=form, recipes=recipes)
+    return render_template("my_recipes.html", form=form, recipes=recipes,
+                           filters=filters)
 
 
 @app.route("/added_recipes", methods=["GET", "POST"])
 def added_recipes():
     form = Search_and_filter_form()
     recipes = mongo.db.recipes.find({"added_by": session['username']})
+    filters = False
+
     if form.validate_on_submit():
         form_data = (dict(request.form))
         recipes = search_and_filter(form_data, 'added_recipes')
-
-    return render_template("added_recipes.html", form=form, recipes=recipes)
+        filters = True
+    return render_template("added_recipes.html", form=form, recipes=recipes,
+                           filters=filters)
 
 
 def search_and_filter(form_data, page):

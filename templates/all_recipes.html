@@ -52,6 +52,11 @@
         </form>
     </div>
 </div>
+{% if filters %}
+<div class="text-center mt-3">
+    <a class="custom-button remove-filters-button" href="{{ url_for('all_recipes') }}">Remove Search terms and Filters</a>
+</div>
+{% endif %}
 <div class="row">
     {% for recipe in recipes %}
     <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center">

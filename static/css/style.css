@@ -451,6 +451,10 @@ nav {
     width: 60px;
 }
 
+.remove-filters-button {
+    background-color: #FFF6BC;
+}
+
 
 /*------------------------------------------------------- SEARCH AND FILTER */
 .search-container {
