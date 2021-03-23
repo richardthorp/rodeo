@@ -99,30 +99,38 @@ def all_recipes():
 
 @app.route("/my_recipes", methods=["GET", "POST"])
 def my_recipes():
-    form = Search_and_filter_form()
-    recipes = mongo.db.recipes.find({"favourites": session['username']})
-    filters = False
-    if form.validate_on_submit():
-        form_data = (dict(request.form))
-        recipes = search_and_filter(form_data, 'favourite_recipes')
-        filters = True
+    if session.get('username'):
+        form = Search_and_filter_form()
+        recipes = mongo.db.recipes.find({"favourites": session['username']})
+        filters = False
+        if form.validate_on_submit():
+            form_data = (dict(request.form))
+            recipes = search_and_filter(form_data, 'favourite_recipes')
+            filters = True
 
-    return render_template("my_recipes.html", form=form, recipes=recipes,
-                           filters=filters)
+        return render_template("my_recipes.html", form=form, recipes=recipes,
+                            filters=filters)
+    else:
+        flash('Please log in to add and favourite recipes')
+        return redirect(url_for('login'))
 
 
 @app.route("/added_recipes", methods=["GET", "POST"])
 def added_recipes():
-    form = Search_and_filter_form()
-    recipes = mongo.db.recipes.find({"added_by": session['username']})
-    filters = False
+    if session.get('username'):
+        form = Search_and_filter_form()
+        recipes = mongo.db.recipes.find({"added_by": session['username']})
+        filters = False
 
-    if form.validate_on_submit():
-        form_data = (dict(request.form))
-        recipes = search_and_filter(form_data, 'added_recipes')
-        filters = True
-    return render_template("added_recipes.html", form=form, recipes=recipes,
-                           filters=filters)
+        if form.validate_on_submit():
+            form_data = (dict(request.form))
+            recipes = search_and_filter(form_data, 'added_recipes')
+            filters = True
+        return render_template("added_recipes.html", form=form,
+                               recipes=recipes, filters=filters)
+    else:
+        flash('Please log in to add and favourite recipes')
+        return redirect(url_for('login'))
 
 
 def search_and_filter(form_data, page):
@@ -164,55 +172,59 @@ def search_and_filter(form_data, page):
 
 @app.route("/add_recipe", methods=["GET", "POST"])
 def add_recipe():
-    form = Add_recipe_form()
+    if session.get('username'):
+        form = Add_recipe_form()
 
-    if form.validate_on_submit():
-        details = {}
-        ingredients = []
-        instructions = []
-        formatted_recipe = {}
-        recipe = dict(request.form)
-        details = {key: value for key, value in recipe.items() if
-                   "checkbox" in key or "recipe_type" in key}
-        for (key, value) in recipe.items():
-            if "ingredient" in key and value != "":
-                ingredients.append(value.strip())
-            elif "instruction" in key and value != "":
-                instructions.append(value.strip())
+        if form.validate_on_submit():
+            details = {}
+            ingredients = []
+            instructions = []
+            formatted_recipe = {}
+            recipe = dict(request.form)
+            details = {key: value for key, value in recipe.items() if
+                    "checkbox" in key or "recipe_type" in key}
+            for (key, value) in recipe.items():
+                if "ingredient" in key and value != "":
+                    ingredients.append(value.strip())
+                elif "instruction" in key and value != "":
+                    instructions.append(value.strip())
 
-        if ingredients[-1] == "":
-            ingredients.pop()
-        if instructions[-1] == "":
-            instructions.pop()
+            if ingredients[-1] == "":
+                ingredients.pop()
+            if instructions[-1] == "":
+                instructions.pop()
 
-        formatted_recipe = {
-            'name': recipe['recipe_name'].strip(),
-            'feeds': recipe['feeds'],
-            'details': details,
-            'ingredients': ingredients,
-            'instructions': instructions,
-            'added_by': session['username'],
-            'ratings': {},
-            'favourites': []
-            }
-        # If an image file has been sent with form data...
-        if request.files['picture_upload']:
-            # Remove any special characters from the file name and
-            # add username to file name to ensure name is unique
-            file_name = "".join(char for char in
-                                request.files['picture_upload'].filename
-                                if char.isalnum()) + session['username']
+            formatted_recipe = {
+                'name': recipe['recipe_name'].strip(),
+                'feeds': recipe['feeds'],
+                'details': details,
+                'ingredients': ingredients,
+                'instructions': instructions,
+                'added_by': session['username'],
+                'ratings': {},
+                'favourites': []
+                }
+            # If an image file has been sent with form data...
+            if request.files['picture_upload']:
+                # Remove any special characters from the file name and
+                # add username to file name to ensure name is unique
+                file_name = "".join(char for char in
+                                    request.files['picture_upload'].filename
+                                    if char.isalnum()) + session['username']
 
-            mongo.save_file(file_name,
-                            request.files['picture_upload'])
-            formatted_recipe['image_name'] = file_name
+                mongo.save_file(file_name,
+                                request.files['picture_upload'])
+                formatted_recipe['image_name'] = file_name
+            else:
+                formatted_recipe['image_name'] = 'defaultrecipeimagepngRodeo'
+            mongo.db.recipes.insert_one(formatted_recipe)
         else:
-            formatted_recipe['image_name'] = 'defaultrecipeimagepngRodeo'
-        mongo.db.recipes.insert_one(formatted_recipe)
-    else:
-        print("NOT VALID", form.errors)
+            print("NOT VALID", form.errors)
 
-    return render_template("add_recipe.html", form=form)
+        return render_template("add_recipe.html", form=form)
+    else:
+        flash('Please log in to add and favourite recipes')
+        return redirect(url_for('login'))
 
 
 @app.route('/delete_recipe/<recipe_id>')
@@ -223,54 +235,58 @@ def delete_recipe(recipe_id):
 
 @app.route('/edit_recipe/<recipe_id>', methods=['GET', 'POST'])
 def edit_recipe(recipe_id):
-    form = Add_recipe_form()
-    recipe = mongo.db.recipes.find_one({'_id': ObjectId(recipe_id)})
-    if request.method == 'POST':
-        print('TESTER', request.form)
-    if form.validate_on_submit():
-        print(request.form)
-        details = {}
-        ingredients = []
-        instructions = []
-        formatted_recipe = {}
-        recipe = dict(request.form)
-        details = {key: value for key, value in recipe.items() if
-                   "checkbox" in key or "recipe_type" in key}
-        for (key, value) in recipe.items():
-            if "ingredient" in key and value != "":
-                ingredients.append(value.strip())
-            elif "instruction" in key and value != "":
-                instructions.append(value.strip())
+    if session.get('username'):
+        form = Add_recipe_form()
+        recipe = mongo.db.recipes.find_one({'_id': ObjectId(recipe_id)})
+        if request.method == 'POST':
+            print('TESTER', request.form)
+        if form.validate_on_submit():
+            print(request.form)
+            details = {}
+            ingredients = []
+            instructions = []
+            formatted_recipe = {}
+            recipe = dict(request.form)
+            details = {key: value for key, value in recipe.items() if
+                       "checkbox" in key or "recipe_type" in key}
+            for (key, value) in recipe.items():
+                if "ingredient" in key and value != "":
+                    ingredients.append(value.strip())
+                elif "instruction" in key and value != "":
+                    instructions.append(value.strip())
 
-        formatted_recipe = {
-            'name': recipe['recipe_name'].strip(),
-            'feeds': recipe['feeds'],
-            'details': details,
-            'ingredients': ingredients,
-            'instructions': instructions,
-            'added_by': session['username']
-            }
+            formatted_recipe = {
+                'name': recipe['recipe_name'].strip(),
+                'feeds': recipe['feeds'],
+                'details': details,
+                'ingredients': ingredients,
+                'instructions': instructions,
+                'added_by': session['username']
+                }
 
-        # If an image file has been sent with form data...
-        if request.files['picture_upload']:
-        # Remove any special characters from the file name and
-        # add username to file name to ensure name is unique
-            file_name = "".join(char for char in
-                                request.files['picture_upload'].filename
-                                if char.isalnum()) + session['username']
+            # If an image file has been sent with form data...
+            if request.files['picture_upload']:
+                # Remove any special characters from the file name and
+                # add username to file name to ensure name is unique
+                file_name = "".join(char for char in
+                                    request.files['picture_upload'].filename
+                                    if char.isalnum()) + session['username']
 
-            mongo.save_file(file_name,
-                            request.files['picture_upload'])
-            formatted_recipe['image_name'] = file_name
+                mongo.save_file(file_name,
+                                request.files['picture_upload'])
+                formatted_recipe['image_name'] = file_name
+            else:
+                formatted_recipe['image_name'] = 'defaultrecipeimagepngRodeo'
+            mongo.db.recipes.update_one({'_id': ObjectId(recipe_id)},
+                                        {'$set': formatted_recipe})
+            print(formatted_recipe)
+            return redirect(url_for('recipe_page', recipe_id=recipe_id))
         else:
-            formatted_recipe['image_name'] = 'defaultrecipeimagepngRodeo'
-        mongo.db.recipes.update_one({'_id': ObjectId(recipe_id)},
-                                    {'$set': formatted_recipe})
-        print(formatted_recipe)
-        return redirect(url_for('recipe_page', recipe_id=recipe_id))
+            print('ERROR VALIDATING', form.errors)
+        return render_template('edit_recipe.html', form=form, recipe=recipe)
     else:
-        print('ERROR VALIDATING', form.errors)
-    return render_template('edit_recipe.html', form=form, recipe=recipe)
+        flash('Please log in to add and favourite recipes')
+        return redirect(url_for('login'))
 
 
 @app.route('/get_image/<image_name>')
