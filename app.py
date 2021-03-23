@@ -275,6 +275,7 @@ def recipe_page(recipe_id):
     recipe = mongo.db.recipes.find_one({'_id': ObjectId(recipe_id)})
 
     average_rating = get_average_rating(recipe_id)
+    average_rating_stars = get_average_rating_stars(average_rating)
     mongo.db.recipes.update_one({'_id': ObjectId(recipe_id)},
                                 {'$set': {'average_rating': average_rating}})
     # If an existing user rating for the recipe exists, get the user rating
@@ -300,7 +301,7 @@ def recipe_page(recipe_id):
         return redirect(url_for('recipe_page', recipe_id=recipe_id))
 
     return render_template("recipe_page.html", recipe=recipe,
-                           average_rating=get_average_rating_stars(average_rating),
+                           average_rating_stars=average_rating_stars,
                            image_name=image_name, user_rating=user_rating)
 
 
@@ -318,14 +319,15 @@ def get_average_rating(recipe_id):
         average_rating = ratings_summed / ratings_count
     else:
         average_rating = 0
-
+    # Round the rating to the nearest .5
     return round(average_rating * 2) / 2
 
 
 def get_average_rating_stars(average_rating):
     if average_rating == 0.5:
         return """
-        <span class="star coloured-star"><i class="fas fa-star-half-alt"></i></span>
+        <span class="star coloured-star"><i class="fas fa-star-half-alt"></i>
+        </span>
         <span class="star blank-star"><i class="far fa-star"></i></span>
         <span class="star blank-star"><i class="far fa-star"></i></span>
         <span class="star blank-star"><i class="far fa-star"></i></span>
@@ -337,22 +339,26 @@ def get_average_rating_stars(average_rating):
         <span class="star blank-star"><i class="far fa-star"></i></span>
         <span class="star blank-star"><i class="far fa-star"></i></span>"""
     elif average_rating == 1.5:
-        return """ 
+        return """
         <span class="star coloured-star"><i class="fas fa-star"></i></span>
-        <span class="star coloured-star"><i class="fas fa-star-half-alt"></i></span>
+        <span class="star coloured-star"><i class="fas fa-star-half-alt"></i>
+        </span>
         <span class="star blank-star"><i class="far fa-star"></i></span>
         <span class="star blank-star"><i class="far fa-star"></i></span>
         <span class="star blank-star"><i class="far fa-star"></i></span>"""
     elif average_rating == 2:
-        return """ <span class="star coloured-star"><i class="fas fa-star"></i></span>
+        return """ <span class="star coloured-star"><i class="fas fa-star"></i>
+        </span>
         <span class="star coloured-star"><i class="fas fa-star"></i></span>
         <span class="star blank-star"><i class="far fa-star"></i></span>
         <span class="star blank-star"><i class="far fa-star"></i></span>
         <span class="star blank-star"><i class="far fa-star"></i></span>"""
     elif average_rating == 2.5:
-        return """ <span class="star coloured-star"><i class="fas fa-star"></i></span>
+        return """ <span class="star coloured-star"><i class="fas fa-star"></i>
+        </span>
         <span class="star coloured-star"><i class="fas fa-star"></i></span>
-        <span class="star coloured-star"><i class="fas fa-star-half-alt"></i></span>
+        <span class="star coloured-star"><i class="fas fa-star-half-alt"></i>
+        </span>
         <span class="star blank-star"><i class="far fa-star"></i></span>
         <span class="star blank-star"><i class="far fa-star"></i></span>"""
     elif average_rating == 3:
@@ -362,10 +368,12 @@ def get_average_rating_stars(average_rating):
         <span class="star blank-star"><i class="far fa-star"></i></span>
         <span class="star blank-star"><i class="far fa-star"></i></span>"""
     elif average_rating == 3.5:
-        return """<span class="star coloured-star"><i class="fas fa-star"></i></span>
+        return """<span class="star coloured-star"><i class="fas fa-star"></i>
+        </span>
         <span class="star coloured-star"><i class="fas fa-star"></i></span>
         <span class="star coloured-star"><i class="fas fa-star"></i></span>
-        <span class="star coloured-star"><i class="fas fa-star-half-alt"></i></span>
+        <span class="star coloured-star"><i class="fas fa-star-half-alt"></i>
+        </span>
         <span class="star blank-star"><i class="far fa-star"></i></span>"""
     elif average_rating == 4:
         return """<span class="star coloured-star"><i class="fas fa-star"></i></span>
@@ -378,15 +386,18 @@ def get_average_rating_stars(average_rating):
         <span class="star coloured-star"><i class="fas fa-star"></i></span>
         <span class="star coloured-star"><i class="fas fa-star"></i></span>
         <span class="star coloured-star"><i class="fas fa-star"></i></span>
-        <span class="star coloured-star"><i class="fas fa-star-half-alt"></i></span>"""
+        <span class="star coloured-star"><i class="fas fa-star-half-alt"></i>
+        </span>"""
     elif average_rating == 5:
-        return """<span class="star coloured-star"><i class="fas fa-star"></i></span>
+        return """<span class="star coloured-star"><i class="fas fa-star"></i>
+        </span>
         <span class="star coloured-star"><i class="fas fa-star"></i></span>
         <span class="star coloured-star"><i class="fas fa-star"></i></span>
         <span class="star coloured-star"><i class="fas fa-star"></i></span>
         <span class="star coloured-star"><i class="fas fa-star"></i></span>"""
     else:
-        return """<span class="star blank-star"><i class="far fa-star"></i></span>
+        return """<span class="star blank-star"><i class="far fa-star"></i>
+        </span>
         <span class="star blank-star"><i class="far fa-star"></i></span>
         <span class="star blank-star"><i class="far fa-star"></i></span>
         <span class="star blank-star"><i class="far fa-star"></i></span>

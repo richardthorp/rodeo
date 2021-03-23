@@ -168,6 +168,12 @@ nav {
     position: relative;
     left: 5px;
 }
+
+.recipe-card-ratings .star i {
+    font-size: 1.3rem;
+    position: relative;
+    bottom: 5px;
+}
 /* .added-recipe-card {
     height: 520px;
 } */
