@@ -125,45 +125,76 @@
                 <h4 class="recipe-card-title logo-font text-center">{{ recipe.name }}</h4>
             </a>
             <div class="recipe-card-footer row">
-                <div class="col-6 text-center">
+                <div class="col-6 text-center recipe-card-ratings">
                     <h6 class="sub-header">Average<br>Rating</h6>
-                    {% if recipe.average_rating == 1 %}
-                    <span class="star coloured-star">&#9733;</span>
-                    <span class="star blank-star">&#9733;</span>
-                    <span class="star blank-star">&#9733;</span>
-                    <span class="star blank-star">&#9733;</span>
-                    <span class="star blank-star">&#9733;</span>
+                    {% if recipe.average_rating == 0.5 %}
+                    <span class="star coloured-star"><i class="fas fa-star-half-alt"></i></span>
+                    <span class="star blank-star"><i class="far fa-star"></i></span>
+                    <span class="star blank-star"><i class="far fa-star"></i></span>
+                    <span class="star blank-star"><i class="far fa-star"></i></span>
+                    <span class="star blank-star"><i class="far fa-star"></i></span>
+                    {% elif recipe.average_rating == 1 %}
+                    <span class="star coloured-star"><i class="fas fa-star"></i></span>
+                    <span class="star blank-star"><i class="far fa-star"></i></span>
+                    <span class="star blank-star"><i class="far fa-star"></i></span>
+                    <span class="star blank-star"><i class="far fa-star"></i></span>
+                    <span class="star blank-star"><i class="far fa-star"></i></span>
+                    {% elif recipe.average_rating == 1.5 %}
+                    <span class="star coloured-star"><i class="fas fa-star"></i></span>
+                    <span class="star coloured-star"><i class="fas fa-star-half-alt"></i></span>
+                    <span class="star blank-star"><i class="far fa-star"></i></span>
+                    <span class="star blank-star"><i class="far fa-star"></i></span>
+                    <span class="star blank-star"><i class="far fa-star"></i></span>
                     {% elif recipe.average_rating == 2 %}
-                    <span class="star coloured-star">&#9733;</span>
-                    <span class="star coloured-star">&#9733;</span>
-                    <span class="star blank-star">&#9733;</span>
-                    <span class="star blank-star">&#9733;</span>
-                    <span class="star blank-star">&#9733;</span>
+                    <span class="star coloured-star"><i class="fas fa-star"></i></span>
+                    <span class="star coloured-star"><i class="fas fa-star"></i></span>
+                    <span class="star blank-star"><i class="far fa-star"></i></span>
+                    <span class="star blank-star"><i class="far fa-star"></i></span>
+                    <span class="star blank-star"><i class="far fa-star"></i></span>
+                    {% elif recipe.average_rating == 2.5 %}
+                    <span class="star coloured-star"><i class="fas fa-star"></i></span>
+                    <span class="star coloured-star"><i class="fas fa-star"></i></span>
+                    <span class="star coloured-star"><i class="fas fa-star-half-alt"></i></span>
+                    <span class="star blank-star"><i class="far fa-star"></i></span>
+                    <span class="star blank-star"><i class="far fa-star"></i></span>
                     {% elif recipe.average_rating == 3 %}
-                    <span class="star coloured-star">&#9733;</span>
-                    <span class="star coloured-star">&#9733;</span>
-                    <span class="star coloured-star">&#9733;</span>
-                    <span class="star blank-star">&#9733;</span>
-                    <span class="star blank-star">&#9733;</span>
+                    <span class="star coloured-star"><i class="fas fa-star"></i></span>
+                    <span class="star coloured-star"><i class="fas fa-star"></i></span>
+                    <span class="star coloured-star"><i class="fas fa-star"></i></span>
+                    <span class="star blank-star"><i class="far fa-star"></i></span>
+                    <span class="star blank-star"><i class="far fa-star"></i></span>
+                    {% elif recipe.average_rating == 3.5 %}
+                    <span class="star coloured-star"><i class="fas fa-star"></i></span>
+                    <span class="star coloured-star"><i class="fas fa-star"></i></span>
+                    <span class="star coloured-star"><i class="fas fa-star"></i></span>
+                    <span class="star coloured-star"><i class="fas fa-star-half-alt"></i></span>
+                    <span class="star blank-star"><i class="far fa-star"></i></span>
                     {% elif recipe.average_rating == 4 %}
-                    <span class="star coloured-star">&#9733;</span>
-                    <span class="star coloured-star">&#9733;</span>
-                    <span class="star coloured-star">&#9733;</span>
-                    <span class="star coloured-star">&#9733;</span>
-                    <span class="star blank-star">&#9733;</span>
+                    <span class="star coloured-star"><i class="fas fa-star"></i></span>
+                    <span class="star coloured-star"><i class="fas fa-star"></i></span>
+                    <span class="star coloured-star"><i class="fas fa-star"></i></span>
+                    <span class="star coloured-star"><i class="fas fa-star"></i></span>
+                    <span class="star blank-star"><i class="far fa-star"></i></span>
+                    {% elif recipe.average_rating == 4.5 %}
+                    <span class="star coloured-star"><i class="fas fa-star"></i></span>
+                    <span class="star coloured-star"><i class="fas fa-star"></i></span>
+                    <span class="star coloured-star"><i class="fas fa-star"></i></span>
+                    <span class="star coloured-star"><i class="fas fa-star"></i></span>
+                    <span class="star coloured-star"><i class="fas fa-star-half-alt"></i>
+                    </span>
                     {% elif recipe.average_rating == 5 %}
-                    <span class="star coloured-star">&#9733;</span>
-                    <span class="star coloured-star">&#9733;</span>
-                    <span class="star coloured-star">&#9733;</span>
-                    <span class="star coloured-star">&#9733;</span>
-                    <span class="star coloured-star">&#9733;</span>
+                    <span class="star coloured-star"><i class="fas fa-star"></i></span>
+                    <span class="star coloured-star"><i class="fas fa-star"></i></span>
+                    <span class="star coloured-star"><i class="fas fa-star"></i></span>
+                    <span class="star coloured-star"><i class="fas fa-star"></i></span>
+                    <span class="star coloured-star"><i class="fas fa-star"></i></span>
                     {% else %}
-                    <span class="star blank-star">&#9733;</span>
-                    <span class="star blank-star">&#9733;</span>
-                    <span class="star blank-star">&#9733;</span>
-                    <span class="star blank-star">&#9733;</span>
-                    <span class="star blank-star">&#9733;</span>
-                    {% endif %}
+                    <span class="star blank-star"><i class="far fa-star"></i></span>
+                    <span class="star blank-star"><i class="far fa-star"></i></span>
+                    <span class="star blank-star"><i class="far fa-star"></i></span>
+                    <span class="star blank-star"><i class="far fa-star"></i></span>
+                    <span class="star blank-star"><i class="far fa-star"></i></span>
+                    {% endif%}
                 </div>
                 <div class="col-6 text-center">
                     <h6 class="sub-header">Add to<br>Favourites</h6>
