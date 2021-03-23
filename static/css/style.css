@@ -60,6 +60,17 @@ a:hover {
     color: initial;
 }
 
+.flashed-messages {
+    text-align: center;
+    margin: 10px auto;
+    background-color: #FFF6BC;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-weight: bold;
+    width: 80%;
+    max-width: 800px;
+    min-width: 280px;
+}
 
 .popover-body {
     font-size: 1.2em;

@@ -49,6 +49,16 @@
             </ul>
         </div>
     </nav>
+    <!-- FLASHED MESSAGES -->
+    <div class="container-fluid text-center">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for message in messages %}
+    <div class="flashed-messages">{{ message }}</div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+    </div>
     <!-- BLOCK CONTENT -->
     <div class="container-fluid">
         {% block content %}

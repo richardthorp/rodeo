@@ -90,3 +90,11 @@ $(function () {
 $('.popover-dismiss').popover({
   trigger: 'focus'
 })
+
+$("document").ready(function(){
+    $(".flashed-messages").hide().slideDown('slow', function(){
+        setTimeout(function() {
+                $(".flashed-messages").slideUp();
+            }, 4000)
+    });
+});
