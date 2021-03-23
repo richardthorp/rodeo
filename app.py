@@ -84,40 +84,10 @@ def login():
 def all_recipes():
     form = Search_and_filter_form()
     recipes = mongo.db.recipes.find()
-    # If user uses search or filter form
+    # If user uses search and filter form
     if form.validate_on_submit():
         form_data = (dict(request.form))
-        
-        # Create an empty dictionary to populate with a search query
-        search_terms = {}
-
-        # Remove csrf_token, search_submit and filter_submit
-        # from the returned form data
-        form_data.pop('csrf_token')
-        if form_data.get('search_submit'):
-            form_data.pop('search_submit')
-        if form_data.get('filter_submit'):
-            form_data.pop('filter_submit')
-
-        # If user entered search terms, add text search to search_terms dict
-        if form_data['search'] != "":
-            search_terms = {"$text": {"$search": form_data['search']}}
-        # Remove 'search' item form_data dict
-        form_data.pop('search')
-
-        # If user has selected a recipe_type that isn't 'All', add recipe_type
-        # query to the search terms dict
-        if form_data['recipe_type'] != 'All':
-            search_terms['details.recipe_type'] = form_data['recipe_type']
-        # Remove 'recipe_type' item from form data dict.
-        form_data.pop('recipe_type')
-
-        # Add any selected checkboxes to the search_terms dict
-        for key, value in form_data.items():
-            search_terms['details.' + key] = value
-
-        # Finally, query the db with the formatted search_terms dict
-        recipes = mongo.db.recipes.find(search_terms)
+        recipes = search_and_filter(form_data, 'all_recipes')
     else:
         print('NOT VALID', form.errors)
 
@@ -128,14 +98,60 @@ def all_recipes():
 def my_recipes():
     form = Search_and_filter_form()
     recipes = mongo.db.recipes.find({"favourites": session['username']})
+
+    if form.validate_on_submit():
+        form_data = (dict(request.form))
+        recipes = search_and_filter(form_data, 'favourite_recipes')
+
     return render_template("my_recipes.html", form=form, recipes=recipes)
 
 
-@app.route("/added_recipes")
+@app.route("/added_recipes", methods=["GET", "POST"])
 def added_recipes():
     form = Search_and_filter_form()
     recipes = mongo.db.recipes.find({"added_by": session['username']})
+    if form.validate_on_submit():
+        form_data = (dict(request.form))
+        recipes = search_and_filter(form_data, 'added_recipes')
+
     return render_template("added_recipes.html", form=form, recipes=recipes)
+
+
+def search_and_filter(form_data, page):
+    # Create an empty dictionary to populate with a search query
+    search_terms = {}
+
+    # Remove csrf_token, search_submit and filter_submit
+    # from the returned form data
+    form_data.pop('csrf_token')
+    if form_data.get('search_submit'):
+        form_data.pop('search_submit')
+    if form_data.get('filter_submit'):
+        form_data.pop('filter_submit')
+
+    # If user entered search terms, add text search to search_terms dict
+    if form_data['search'] != "":
+        search_terms = {"$text": {"$search": form_data['search']}}
+    # Remove 'search' item form_data dict
+    form_data.pop('search')
+
+    # If user has selected a recipe_type that isn't 'All', add recipe_type
+    # query to the search terms dict
+    if form_data['recipe_type'] != 'All':
+        search_terms['details.recipe_type'] = form_data['recipe_type']
+    # Remove 'recipe_type' item from form data dict.
+    form_data.pop('recipe_type')
+
+    # Add any selected checkboxes to the search_terms dict
+    for key, value in form_data.items():
+        search_terms['details.' + key] = value
+    if page == 'favourite_recipes':
+        search_terms.update({"favourites": session['username']})
+    if page == 'added_recipes':
+        search_terms.update({"added_by": session['username']})
+
+    # Finally, query the db with the formatted search_terms dict
+    return mongo.db.recipes.find(search_terms)
 
 
 @app.route("/add_recipe", methods=["GET", "POST"])
