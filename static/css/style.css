@@ -129,6 +129,8 @@ nav {
 
 .copyright {
     color: #ffffffc0;
+    position: relative;
+    bottom: 5px;
 }
 
 /*------------------------------------------------------- RECIPE CARD */
@@ -425,6 +427,10 @@ label i {
     background-color: #136F63;
 }
 
+.login-form .custom-button{
+    max-width: 130px;
+}
+
 .form-header {
     margin-top: 20px;
 }
@@ -624,7 +630,7 @@ label i {
         font-size: 0.8rem;
     }
     .footer-links {
-        font-size: 1.5rem;
+        font-size: 1rem;
         text-align: center;
     }
     .form-header{
