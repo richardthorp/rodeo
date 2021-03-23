@@ -521,6 +521,10 @@ nav {
     background-color: #E0CA3C;
 }
 
+.more-recipes-link {
+    background-color: #FFF6BC;
+}
+
 /*------------------------------------------------------- REGISTER */
 .register-image {
     height: 100%;
