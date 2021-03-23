@@ -137,75 +137,96 @@
             <!-- RATINGS MODAL -->
             <div class="modal fade" id="rating-modal" tabindex="-1" aria-labelledby="rating modal" aria-hidden="true">
                 <div id="ratings-modal" class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content text-left">
-                        <div class="modal-header">
-                            <button type="button" class="custom-button" data-dismiss="modal">Close</button>
-                        </div>
+                    <div class="modal-content">
+                        <button type="button" class="close text-right pr-2 pt-1" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                         <!-- AVERAGE RATING SECTION -->
                         <div class="modal-body">
                             <h6 class="sub-header text-muted">Average Rating</h6>
-                            {% if average_rating == 1 %}
-                            <span class="star coloured-star">&#9733;</span>
-                            <span class="star blank-star">&#9733;</span>
-                            <span class="star blank-star">&#9733;</span>
-                            <span class="star blank-star">&#9733;</span>
-                            <span class="star blank-star">&#9733;</span>
-                            {% elif average_rating == 2 %}
-                            <span class="star coloured-star">&#9733;</span>
-                            <span class="star coloured-star">&#9733;</span>
-                            <span class="star blank-star">&#9733;</span>
-                            <span class="star blank-star">&#9733;</span>
-                            <span class="star blank-star">&#9733;</span>
-                            {% elif average_rating == 3 %}
-                            <span class="star coloured-star">&#9733;</span>
-                            <span class="star coloured-star">&#9733;</span>
-                            <span class="star coloured-star">&#9733;</span>
-                            <span class="star blank-star">&#9733;</span>
-                            <span class="star blank-star">&#9733;</span>
-                            {% elif average_rating == 4 %}
-                            <span class="star coloured-star">&#9733;</span>
-                            <span class="star coloured-star">&#9733;</span>
-                            <span class="star coloured-star">&#9733;</span>
-                            <span class="star coloured-star">&#9733;</span>
-                            <span class="star blank-star">&#9733;</span>
-                            {% elif average_rating == 5 %}
-                            <span class="star coloured-star">&#9733;</span>
-                            <span class="star coloured-star">&#9733;</span>
-                            <span class="star coloured-star">&#9733;</span>
-                            <span class="star coloured-star">&#9733;</span>
-                            <span class="star coloured-star">&#9733;</span>
-                            {% else %}
-                            <span class="star blank-star">&#9733;</span>
-                            <span class="star blank-star">&#9733;</span>
-                            <span class="star blank-star">&#9733;</span>
-                            <span class="star blank-star">&#9733;</span>
-                            <span class="star blank-star">&#9733;</span>
-                            {% endif %}
+                            <div class="d-flex justify-content-center modal-average-rating">
+                                {{ average_rating_stars|safe }}
+                            </div>
                             <!-- USER RATING SECTION -->
                             <form method="POST" action="{{ url_for('recipe_page', recipe_id=recipe._id) }}">
                                 <h6 class="sub-header text-muted mt-4">Your Rating</h6>
                                 <div class="rate">
-                                    <input type="radio" id="star5-modal" name="rating" value="5" />
-                                    <label for="star5-modal" title="text">&#9733;</label>
-                                    <input type="radio" id="star4-modal" name="rating" value="4" />
-                                    <label for="star4-modal" title="text">&#9733;</label>
-                                    <input type="radio" id="star3-modal" name="rating" value="3" />
-                                    <label for="star3-modal" title="text">&#9733;</label>
-                                    <input type="radio" id="star2-modal" name="rating" value="2" />
-                                    <label for="star2-modal" title="text">&#9733;</label>
-                                    <input type="radio" id="star1-modal" name="rating" value="1" />
-                                    <label for="star1-modal" title="text">&#9733;</label>
+                                    {% if user_rating == 1 %}
+                                    <input type="radio" id="star5" name="rating" value="5" />
+                                    <label for="star5" title="text"><i class="fas fa-star"></i></label>
+                                    <input type="radio" id="star4" name="rating" value="4" />
+                                    <label for="star4" title="text"><i class="fas fa-star"></i></label>
+                                    <input type="radio" id="star3" name="rating" value="3" />
+                                    <label for="star3" title="text"><i class="fas fa-star"></i></label>
+                                    <input type="radio" id="star2" name="rating" value="2" />
+                                    <label for="star2" title="text"><i class="fas fa-star"></i></label>
+                                    <input type="radio" id="star1" name="rating" value="1" checked />
+                                    <label for="star1" title="text"><i class="fas fa-star"></i></label>
+                                    {% elif user_rating == 2 %}
+                                    <input type="radio" id="star5" name="rating" value="5" />
+                                    <label for="star5" title="text"><i class="fas fa-star"></i></label>
+                                    <input type="radio" id="star4" name="rating" value="4" />
+                                    <label for="star4" title="text"><i class="fas fa-star"></i></label>
+                                    <input type="radio" id="star3" name="rating" value="3" />
+                                    <label for="star3" title="text"><i class="fas fa-star"></i></label>
+                                    <input type="radio" id="star2" name="rating" value="2" checked />
+                                    <label for="star2" title="text"><i class="fas fa-star"></i></label>
+                                    <input type="radio" id="star1" name="rating" value="1" />
+                                    <label for="star1" title="text"><i class="fas fa-star"></i></label>
+                                    {% elif user_rating == 3 %}
+                                    <input type="radio" id="star5" name="rating" value="5" />
+                                    <label for="star5" title="text"><i class="fas fa-star"></i></label>
+                                    <input type="radio" id="star4" name="rating" value="4" />
+                                    <label for="star4" title="text"><i class="fas fa-star"></i></label>
+                                    <input type="radio" id="star3" name="rating" value="3" checked />
+                                    <label for="star3" title="text"><i class="fas fa-star"></i></label>
+                                    <input type="radio" id="star2" name="rating" value="2" />
+                                    <label for="star2" title="text"><i class="fas fa-star"></i></label>
+                                    <input type="radio" id="star1" name="rating" value="1" />
+                                    <label for="star1" title="text"><i class="fas fa-star"></i></label>
+                                    {% elif user_rating == 4 %}
+                                    <input type="radio" id="star5" name="rating" value="5" />
+                                    <label for="star5" title="text"><i class="fas fa-star"></i></label>
+                                    <input type="radio" id="star4" name="rating" value="4" checked />
+                                    <label for="star4" title="text"><i class="fas fa-star"></i></label>
+                                    <input type="radio" id="star3" name="rating" value="3" />
+                                    <label for="star3" title="text"><i class="fas fa-star"></i></label>
+                                    <input type="radio" id="star2" name="rating" value="2" />
+                                    <label for="star2" title="text"><i class="fas fa-star"></i></label>
+                                    <input type="radio" id="star1" name="rating" value="1" />
+                                    <label for="star1" title="text"><i class="fas fa-star"></i></label>
+                                    {% elif user_rating == 5 %}
+                                    <input type="radio" id="star5" name="rating" value="5" checked />
+                                    <label for="star5" title="text"><i class="fas fa-star"></i></label>
+                                    <input type="radio" id="star4" name="rating" value="4" />
+                                    <label for="star4" title="text"><i class="fas fa-star"></i></label>
+                                    <input type="radio" id="star3" name="rating" value="3" />
+                                    <label for="star3" title="text"><i class="fas fa-star"></i></label>
+                                    <input type="radio" id="star2" name="rating" value="2" />
+                                    <label for="star2" title="text"><i class="fas fa-star"></i></label>
+                                    <input type="radio" id="star1" name="rating" value="1" />
+                                    <label for="star1" title="text"><i class="fas fa-star"></i></label>
+                                    {% else %}
+                                    <input type="radio" id="star5" name="rating" value="5" />
+                                    <label for="star5" title="text"><i class="fas fa-star"></i></label>
+                                    <input type="radio" id="star4" name="rating" value="4" />
+                                    <label for="star4" title="text"><i class="fas fa-star"></i></label>
+                                    <input type="radio" id="star3" name="rating" value="3" />
+                                    <label for="star3" title="text"><i class="fas fa-star"></i></label>
+                                    <input type="radio" id="star2" name="rating" value="2" />
+                                    <label for="star2" title="text"><i class="fas fa-star"></i></label>
+                                    <input type="radio" id="star1" name="rating" value="1" />
+                                    <label for="star1" title="text"><i class="fas fa-star"></i></label>
+                                    {% endif %}
                                 </div>
-                                <div>
-
+                                <div class="d-flex justify-content-center">
                                     <!-- If user is logged in, provide submit button - otherwise provide popover with links to log in and register -->
                                     {% if session['username'] %}
                                     <input class="custom-button add-rating-btn mt-2" type="submit" value="Add Rating">
                                     <!-- User not logged in - provide popover with links to log in and register  -->
                                     {% else %}
                                     <a tabindex="0" class="sign-in-popover" role="button" data-toggle="popover"
-                                        data-trigger="focus" data-placement="bottom"
-                                        data-content="<a href='{{ url_for('login') }}'><b>LOG IN</b></a> or 
+                                        data-trigger="focus" data-placement="bottom" data-content="<a href='{{ url_for('login') }}'><b>LOG IN</b></a> or 
                                         <a href='{{ url_for('register') }}'><b>REGISTER</b></a> to rate recipes!">
                                         <div class="custom-button add-rating-btn mt-2 text-center p-1">Add Rating</div>
                                     </a>

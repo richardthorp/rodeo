@@ -304,8 +304,8 @@ nav {
     justify-content: center;
 }
 
-.rate label {
-    padding-right: 4.4px;
+.rate label, .modal-average-rating span {
+    padding: 0 4px;
 }
 
 .rate:not(:checked) > input {
