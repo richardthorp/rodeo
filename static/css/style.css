@@ -560,6 +560,10 @@ nav {
     padding: 5px;
 }
 
+.my-recipe-buttons:hover {
+    background-color: #FFF6BC;
+}
+
 .my-recipe-buttons i {
     display: block;
     padding: 15px;
@@ -572,6 +576,17 @@ nav {
 
 .current-button {
     background-color: #FFF6BC;
+}
+
+.add-fav-or-recipe {
+    width: 80%;
+    min-width: 280px;
+    margin: 0 auto;
+    line-height: 30px;
+}
+
+.add-fav-or-recipe i {
+    font-size: 1.5rem;
 }
 
 /*------------------------------------------------------- ADD RECIPE */

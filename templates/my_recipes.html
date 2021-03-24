@@ -39,6 +39,16 @@
         </div>
     </div>
 </div>
+<!-- IF USER HASN'T FAVOURITED ANY RECIPES -->
+{% if recipes.count() == 0 %}
+<div class="add-fav-or-recipe">
+    <h2 class="sub-header text-center mt-5">Add Favourite Recipes</h2>
+    <p class="text-center"><strong>Save your favourite recipes here by clicking on the <i class="far fa-heart"></i> symbol on recipe pages, 
+    or when browsing all the recipes <a href="{{url_for('all_recipes')}}">here!</a></strong>
+    </p>
+</div>
+{% else %}
+<!-- USER HAS FAVOURITE RECIPES -->
 <!-- SEARCH AND FILTER CONTAINER -->
 <div class="row search-container rounded-container mx-auto">
     <div class="col-12">
@@ -201,6 +211,7 @@
         </div>
     </div>
     {% endfor %}
+    {% endif %}
 </div>
 
 {% endblock %}
