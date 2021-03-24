@@ -6,13 +6,13 @@
         <form method="POST" action="">
             <div class="row">
                 {{ form.hidden_tag() }}
-                <div class="col-12 col-sm-8 col-md-6 col-lg-4">
+                <div class="col-12 col-sm-8">
                     <div class="sub-header text-left mt-2 mb-1">Search for a recipe or ingredient</div>
                     {{ form.search(class="form-input mb-2") }}
                     {{ form.search_submit(class="custom-button") }}
                 </div>
-                <div class="d-none d-lg-block col-lg-4"></div>
-                <div class="col-12 col-sm-4 col-md-6 col-lg-4">
+
+                <div class="col-12 col-sm-4">
                     <div class="sub-header text-right mt-1 mb-1">Filter recipes</div>
                     <div class="dropdown text-right">
                         <button class="btn btn-secondary dropdown-toggle custom-button" type="button"
@@ -53,8 +53,8 @@
     </div>
 </div>
 {% if filters %}
-<div class="text-center mt-3">
-    <a class="custom-button remove-filters-button" href="{{ url_for('all_recipes') }}">Remove Search terms and Filters</a>
+<div class="text-center mt-3 custom-button remove-filters-button mx-auto">
+    <a class="" href="{{ url_for('all_recipes') }}">Remove Search terms and Filters</a>
 </div>
 {% endif %}
 <div class="row">

@@ -464,6 +464,11 @@ nav {
 
 .remove-filters-button {
     background-color: #FFF6BC;
+    max-width: 400px;
+}
+
+.remove-filters-button a {
+    color: #136F63;
 }
 
 
