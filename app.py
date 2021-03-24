@@ -275,11 +275,12 @@ def toggle_favourite(**kwargs):
         mongo.db.recipes.update_one(
                         {'_id': ObjectId(recipe_id)},
                         {'$pull': {'favourites': session['username']}})
+        flash('Recipe removed from your favourites')
     else:
         mongo.db.recipes.update_one(
                         {'_id': ObjectId(recipe_id)},
                         {'$push': {'favourites': session['username']}})
-
+        flash('Recipe added to your favourites')
     return redirect(url_for(return_page, recipe_id=recipe_id))
 
 
