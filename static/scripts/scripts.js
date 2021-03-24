@@ -91,6 +91,7 @@ $('.popover-dismiss').popover({
   trigger: 'focus'
 })
 
+/* Add slide down and slide up animation to flashed messages */
 $("document").ready(function(){
     $(".flashed-messages").hide().slideDown('slow', function(){
         setTimeout(function() {

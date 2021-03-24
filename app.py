@@ -109,7 +109,7 @@ def my_recipes():
             filters = True
 
         return render_template("my_recipes.html", form=form, recipes=recipes,
-                            filters=filters)
+                               filters=filters)
     else:
         flash('Please log in to add and favourite recipes')
         return redirect(url_for('login'))
@@ -172,121 +172,89 @@ def search_and_filter(form_data, page):
 
 @app.route("/add_recipe", methods=["GET", "POST"])
 def add_recipe():
-    if session.get('username'):
-        form = Add_recipe_form()
-
-        if form.validate_on_submit():
-            details = {}
-            ingredients = []
-            instructions = []
-            formatted_recipe = {}
-            recipe = dict(request.form)
-            details = {key: value for key, value in recipe.items() if
-                    "checkbox" in key or "recipe_type" in key}
-            for (key, value) in recipe.items():
-                if "ingredient" in key and value != "":
-                    ingredients.append(value.strip())
-                elif "instruction" in key and value != "":
-                    instructions.append(value.strip())
-
-            if ingredients[-1] == "":
-                ingredients.pop()
-            if instructions[-1] == "":
-                instructions.pop()
-
-            formatted_recipe = {
-                'name': recipe['recipe_name'].strip(),
-                'feeds': recipe['feeds'],
-                'details': details,
-                'ingredients': ingredients,
-                'instructions': instructions,
-                'added_by': session['username'],
-                'ratings': {},
-                'favourites': []
-                }
-            # If an image file has been sent with form data...
-            if request.files['picture_upload']:
-                # Remove any special characters from the file name and
-                # add username to file name to ensure name is unique
-                file_name = "".join(char for char in
-                                    request.files['picture_upload'].filename
-                                    if char.isalnum()) + session['username']
-
-                mongo.save_file(file_name,
-                                request.files['picture_upload'])
-                formatted_recipe['image_name'] = file_name
-            else:
-                formatted_recipe['image_name'] = 'defaultrecipeimagepngRodeo'
-            mongo.db.recipes.insert_one(formatted_recipe)
-        else:
-            print("NOT VALID", form.errors)
-
-        return render_template("add_recipe.html", form=form)
-    else:
+    if not session.get('username'):
         flash('Please log in to add and favourite recipes')
         return redirect(url_for('login'))
+    else:
+        form = Add_recipe_form()
+        if request.method == 'POST':
+            if form.validate_on_submit():
+                form_data_dict = dict(request.form)
+                formatted_recipe = format_recipe_data(form_data_dict)
 
+                # If an image file has been sent with form data...
+                if request.files['picture_upload']:
+                    # Remove any special characters from the file name and
+                    # add username to file name to ensure name is unique
+                    file_name = "".join(char for char in
+                                        request.files['picture_upload'].filename
+                                        if char.isalnum()) + session['username']
 
-@app.route('/delete_recipe/<recipe_id>')
-def delete_recipe(recipe_id):
-    print('DELETE BUTTON CLICKED')
-    return redirect(url_for('my_recipes'))
+                    mongo.save_file(file_name,
+                                    request.files['picture_upload'])
+                    formatted_recipe['image_name'] = file_name
+                else:
+                    formatted_recipe['image_name'] = 'defaultrecipeimagepngRodeo'
+
+                # Insert recipe to DB
+                mongo.db.recipes.insert_one(formatted_recipe)
+                flash('Recipe added! Thank you!')
+                return redirect(url_for('added_recipes'))
+
+            # Invalid form...
+            else:
+                flash('''Sorry, there was an issue with the form data.
+                    Please try again''')
+                print("NOT VALID", form.errors)
+        else:
+            return render_template("add_recipe.html", form=form)
 
 
 @app.route('/edit_recipe/<recipe_id>', methods=['GET', 'POST'])
 def edit_recipe(recipe_id):
-    if session.get('username'):
+    # User not logged in...
+    if not session.get('username'):
+        flash('Please log in to add and favourite recipes')
+        return redirect(url_for('login'))
+    else:
         form = Add_recipe_form()
         recipe = mongo.db.recipes.find_one({'_id': ObjectId(recipe_id)})
         if request.method == 'POST':
-            print('TESTER', request.form)
-        if form.validate_on_submit():
-            print(request.form)
-            details = {}
-            ingredients = []
-            instructions = []
-            formatted_recipe = {}
-            recipe = dict(request.form)
-            details = {key: value for key, value in recipe.items() if
-                       "checkbox" in key or "recipe_type" in key}
-            for (key, value) in recipe.items():
-                if "ingredient" in key and value != "":
-                    ingredients.append(value.strip())
-                elif "instruction" in key and value != "":
-                    instructions.append(value.strip())
+            if form.validate_on_submit():
+                form_data_dict = dict(request.form)
+                formatted_recipe = format_recipe_data(form_data_dict)
 
-            formatted_recipe = {
-                'name': recipe['recipe_name'].strip(),
-                'feeds': recipe['feeds'],
-                'details': details,
-                'ingredients': ingredients,
-                'instructions': instructions,
-                'added_by': session['username']
-                }
+                # If an image file has been sent with form data...
+                if request.files['picture_upload']:
+                    # Remove any special characters from the file name and
+                    # add username to file name to ensure name is unique
+                    file_name = "".join(char for char in
+                                        request.files['picture_upload'].filename
+                                        if char.isalnum()) + session['username']
 
-            # If an image file has been sent with form data...
-            if request.files['picture_upload']:
-                # Remove any special characters from the file name and
-                # add username to file name to ensure name is unique
-                file_name = "".join(char for char in
-                                    request.files['picture_upload'].filename
-                                    if char.isalnum()) + session['username']
+                    mongo.save_file(file_name,
+                                    request.files['picture_upload'])
+                    formatted_recipe['image_name'] = file_name
+                else:
+                    formatted_recipe['image_name'] = 'defaultrecipeimagepngRodeo'
 
-                mongo.save_file(file_name,
-                                request.files['picture_upload'])
-                formatted_recipe['image_name'] = file_name
+                # Update recipe in DB
+                mongo.db.recipes.update_one({'_id': ObjectId(recipe_id)},
+                                            {'$set': formatted_recipe})
+                return redirect(url_for('recipe_page', recipe_id=recipe_id))
+            # Invalid form...
             else:
-                formatted_recipe['image_name'] = 'defaultrecipeimagepngRodeo'
-            mongo.db.recipes.update_one({'_id': ObjectId(recipe_id)},
-                                        {'$set': formatted_recipe})
-            print(formatted_recipe)
-            return redirect(url_for('recipe_page', recipe_id=recipe_id))
-        else:
-            print('ERROR VALIDATING', form.errors)
+                flash('''Sorry, there was an issue with the form data.
+                    Please try again''')
+                print("NOT VALID", form.errors)
         return render_template('edit_recipe.html', form=form, recipe=recipe)
-    else:
-        flash('Please log in to add and favourite recipes')
-        return redirect(url_for('login'))
+
+
+@app.route('/delete_recipe/<recipe_id>')
+def delete_recipe(recipe_id):
+    mongo.db.recipes.delete_one({'_id': ObjectId(recipe_id)})
+    flash('Recipe Deleted')
+    return redirect(url_for('added_recipes'))
 
 
 @app.route('/get_image/<image_name>')
@@ -294,6 +262,29 @@ def get_image(image_name):
     return mongo.send_file(image_name)
 
 
+@app.route('/toggle_favourite/<recipe_id>/<return_page>',
+           methods=['GET', 'POST'])
+def toggle_favourite(**kwargs):
+    recipe_id = kwargs['recipe_id']
+    return_page = kwargs['return_page']
+    recipe = mongo.db.recipes.find_one({'_id': ObjectId(recipe_id)})
+
+    if session['username'] in recipe['favourites']:
+        mongo.db.recipes.update_one(
+                        {'_id': ObjectId(recipe_id)},
+                        {'$pull': {'favourites': session['username']}})
+    else:
+        mongo.db.recipes.update_one(
+                        {'_id': ObjectId(recipe_id)},
+                        {'$push': {'favourites': session['username']}})
+
+    return redirect(url_for(return_page, recipe_id=recipe_id))
+
+
+@app.route("/logout")
+def log_out():
+    session.pop("username")
+    return redirect(url_for('index'))
 @app.route("/recipe_page/<recipe_id>", methods=["GET", "POST"])
 def recipe_page(recipe_id):
     recipe = mongo.db.recipes.find_one({'_id': ObjectId(recipe_id)})
@@ -327,6 +318,37 @@ def recipe_page(recipe_id):
     return render_template("recipe_page.html", recipe=recipe,
                            average_rating_stars=average_rating_stars,
                            image_name=image_name, user_rating=user_rating)
+
+
+def format_recipe_data(form_data_dict):
+    details = {}
+    ingredients = []
+    instructions = []
+    formatted_recipe = {}
+    details = {key: value for key, value in form_data_dict.items() if
+                "checkbox" in key or "recipe_type" in key}
+    for (key, value) in form_data_dict.items():
+        if "ingredient" in key and value != "":
+            ingredients.append(value.strip())
+        elif "instruction" in key and value != "":
+            instructions.append(value.strip())
+
+    if ingredients[-1] == "":
+        ingredients.pop()
+    if instructions[-1] == "":
+        instructions.pop()
+
+    formatted_recipe = {
+        'name': form_data_dict['recipe_name'].strip(),
+        'feeds': form_data_dict['feeds'],
+        'details': details,
+        'ingredients': ingredients,
+        'instructions': instructions,
+        'added_by': session['username'],
+        'ratings': {},
+        'favourites': []
+        }
+    return formatted_recipe
 
 
 def get_average_rating(recipe_id):
@@ -426,31 +448,6 @@ def get_average_rating_stars(average_rating):
         <span class="star blank-star"><i class="far fa-star"></i></span>
         <span class="star blank-star"><i class="far fa-star"></i></span>
         <span class="star blank-star"><i class="far fa-star"></i></span>"""
-
-
-@app.route('/toggle_favourite/<recipe_id>/<return_page>',
-           methods=['GET', 'POST'])
-def toggle_favourite(**kwargs):
-    recipe_id = kwargs['recipe_id']
-    return_page = kwargs['return_page']
-    recipe = mongo.db.recipes.find_one({'_id': ObjectId(recipe_id)})
-
-    if session['username'] in recipe['favourites']:
-        mongo.db.recipes.update_one(
-                        {'_id': ObjectId(recipe_id)},
-                        {'$pull': {'favourites': session['username']}})
-    else:
-        mongo.db.recipes.update_one(
-                        {'_id': ObjectId(recipe_id)},
-                        {'$push': {'favourites': session['username']}})
-
-    return redirect(url_for(return_page, recipe_id=recipe_id))
-
-
-@app.route("/logout")
-def log_out():
-    session.pop("username")
-    return redirect(url_for('index'))
 
 
 if __name__ == "__main__":
