@@ -606,7 +606,7 @@ nav {
 .recipe-type-radio ul li {
     list-style: none;
     display: inline;
-    padding: 0 10px;
+    padding-left: 24px;
     font-family: 'Open Sans';
 }
 
