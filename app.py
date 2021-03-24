@@ -44,7 +44,7 @@ def register():
         else:
             registration_info = {
                 "email": request.form.get('email').lower(),
-                "username": request.form.get("username"),
+                "username": request.form.get("username").lower(),
                 "password": generate_password_hash(
                             request.form.get("password"))
             }
@@ -53,8 +53,10 @@ def register():
             session["username"] = request.form.get("username")
             return redirect(url_for('my_recipes'))
 
+    elif 'confirm_password' in form.errors:
+        flash('Please make sure the password fields match')
     else:
-        print("NOT VALIDATED")
+        flash('Sorry, there has been an error. Please try again.')
 
     return render_template("register.html", form=form)
 
