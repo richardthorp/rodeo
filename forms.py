@@ -45,7 +45,8 @@ class Login_form(FlaskForm):
             render_kw={
              "placeholder": "Enter email address or username"})
     password = PasswordField("Password",
-                             render_kw={"placeholder": "Enter password"})
+                             render_kw={"placeholder": "Enter password",
+                                        "required": ""})
     submit = SubmitField("Log in")
 
 

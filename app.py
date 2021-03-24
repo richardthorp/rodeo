@@ -71,11 +71,11 @@ def login():
             if check_password_hash(existing_user["password"],
                                    request.form.get("password")):
                 session["username"] = existing_user["username"]
-                print("Login successfull", session['username'])
-                return redirect(url_for("index"))
-            else:
-                flash("Login details incorrect, please try again.")
-                redirect(url_for('login'))
+                flash('Welcome, ' + session['username'] + '!')
+                return redirect(url_for("my_recipes"))
+        else:
+            flash("Login details incorrect, please try again.")
+            return redirect(url_for('login'))
 
     return render_template("login.html", form=form)
 
@@ -284,7 +284,10 @@ def toggle_favourite(**kwargs):
 @app.route("/logout")
 def log_out():
     session.pop("username")
+    flash('Log out successful, see you soon!')
     return redirect(url_for('index'))
+
+
 @app.route("/recipe_page/<recipe_id>", methods=["GET", "POST"])
 def recipe_page(recipe_id):
     recipe = mongo.db.recipes.find_one({'_id': ObjectId(recipe_id)})
