@@ -1,8 +1,8 @@
 @font-face {
     font-family: 'Young Heart';
-    src: url('/static/fonts/YoungHeart.woff2') format('woff2'),
-        url('/static/fonts/YoungHeart.woff') format('woff'),
-        url('/static/fonts/YoungHeart.ttf') format('truetype');
+    src: url('/static/fonts/youngheart-webfont.woff2') format('woff2'),
+        url('/static/fonts/youngheart-webfont.woff') format('woff'),
+        url('/static/fonts/youngheart-webfont.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
@@ -102,8 +102,8 @@ nav {
 #logo {
   color: #FFF;
   font-size: 6rem;
-  position: relative;
-  bottom: 14px;
+  /* position: relative;
+  bottom: 14px; */
   padding-left: 10px;
 }
 
@@ -118,8 +118,8 @@ nav {
 .custom-nav-links, .footer-links {
   font-family: 'Young Heart';
   color: #FFFFFFC7;
-  position: relative;
-  bottom: 5px;
+  /* position: relative;
+  bottom: 5px; */
 }
 
 .custom-nav-links {
@@ -144,8 +144,8 @@ nav {
 
 .copyright {
     color: #ffffffc0;
-    position: relative;
-    bottom: 5px;
+    /* position: relative;
+    bottom: 5px; */
 }
 
 /*------------------------------------------------------- RECIPE CARD */
