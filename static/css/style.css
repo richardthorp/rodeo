@@ -14,6 +14,10 @@ body {
     font-family: 'Open Sans';
 }
 
+.block-content-container {
+    max-width: 2800px;
+}
+
 a:hover {
     text-decoration: none;
 }
@@ -881,5 +885,36 @@ nav {
 @media screen and (min-width: 1200px){
     #slogan {
         font-size: 7rem;
+    }
+}
+
+@media screen and (min-width: 1800px){
+    .recipe-card {
+        width: 80%;
+        max-width: none;
+    }
+    .recipe-card-title {
+    font-size: 3.5rem;
+    }
+    .shrink-header {
+    font-size: 3rem;
+    }
+    #slogan {
+    font-size: 10rem;
+    }
+    .about-title {
+    font-size: 8rem;
+    }
+    .about-blurb {
+    font-size: 2rem;
+    }
+    .about-row {
+        min-height: 500px;
+    }
+    .header {
+        font-size: 8rem;
+    }
+    .more-recipes-link {
+    font-size: 2.5rem;
     }
 }

@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
+<div class="container-fluid block-content-container">
 <h1 class="logo-font text-center header">Edit Recipe</h1>
 <!-- ADD RECIPE FORM -->
 <form method="POST" action="{{ url_for('edit_recipe', recipe_id=recipe._id)}}" enctype="multipart/form-data">
@@ -172,4 +173,5 @@
         </div>
     </div>
 </form>
+</div>
 {% endblock %}

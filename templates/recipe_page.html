@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
+<div class="container-fluid block-content-container">
 {% if session['username'] == recipe.added_by %}
 <div class="rounded-container mx-auto text-center pt-2 pb-2">
     <span>
@@ -294,5 +295,6 @@
             </ul>
         </div>
     </div>
+</div>
 </div>
 {% endblock %}
