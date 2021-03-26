@@ -30,33 +30,35 @@ def index():
 @app.route("/register", methods=["GET", "POST"])
 def register():
     form = Registration_form()
-    if form.validate_on_submit():
-        existing_user = mongo.db.users.find_one(
-                       {"username": request.form.get("username").lower()})
-        existing_email = mongo.db.users.find_one(
-                       {"email": request.form.get("email").lower()})
-        if existing_user:
-            flash("Sorry, that username is already taken")
-            print("User taken")
-        elif existing_email:
-            flash("Sorry, that email address already has an account")
-            print("Email taken")
-        else:
-            registration_info = {
-                "email": request.form.get('email').lower(),
-                "username": request.form.get("username").lower(),
-                "password": generate_password_hash(
-                            request.form.get("password"))
-            }
-            mongo.db.users.insert_one(registration_info)
-            flash("Welcome to Rodeo, " + request.form.get("username") + '!')
-            session["username"] = request.form.get("username")
-            return redirect(url_for('my_recipes'))
+    if request.method == 'POST':
+        if form.validate_on_submit():
+            existing_user = mongo.db.users.find_one(
+                        {"username": request.form.get("username").lower()})
+            existing_email = mongo.db.users.find_one(
+                        {"email": request.form.get("email").lower()})
+            if existing_user:
+                flash("Sorry, that username is already taken")
+                print("User taken")
+            elif existing_email:
+                flash("Sorry, that email address already has an account")
+                print("Email taken")
+            else:
+                registration_info = {
+                    "email": request.form.get('email').lower(),
+                    "username": request.form.get("username").lower(),
+                    "password": generate_password_hash(
+                                request.form.get("password"))
+                }
+                mongo.db.users.insert_one(registration_info)
+                flash("Welcome to Rodeo, " +
+                      request.form.get("username") + '!')
+                session["username"] = request.form.get("username")
+                return redirect(url_for('my_recipes'))
 
-    elif 'confirm_password' in form.errors:
-        flash('Please make sure the password fields match')
-    else:
-        flash('Sorry, there has been an error. Please try again.')
+        elif 'confirm_password' in form.errors:
+            flash('Please make sure the password fields match')
+        else:
+            flash('Sorry, there has been an error. Please try again.')
 
     return render_template("register.html", form=form)
 
