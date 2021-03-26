@@ -178,7 +178,11 @@ nav {
 
 .recipe-card i {
     font-size: 2rem;
+}
+
+.recipe-card form i {
     cursor: pointer;
+
 }
 
 .recipe-card-footer {
