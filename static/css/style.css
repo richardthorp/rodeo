@@ -33,7 +33,9 @@ a:hover {
 }
 
 .header {
-    font-size: 5rem;
+    font-size: 3.5rem;
+    margin: 20px 0;
+    line-height: 80px;
     color: #000;
     text-align: center;
     font-weight: bolder;
@@ -105,7 +107,7 @@ nav {
 
 #logo {
   color: #FFF;
-  font-size: 6rem;
+  font-size: 4rem;
   /* position: relative;
   bottom: 14px; */
   padding-left: 10px;
@@ -142,7 +144,7 @@ nav {
 }
 
 .footer-links {
-    font-size: 2rem;
+    font-size: 1.5rem;
     text-align: center;
 }
 
@@ -222,8 +224,9 @@ nav {
 }
 
 .recipe-card-title {
-    font-size: 2.5rem;
+    font-size: 2rem;
     padding-top: 20px;
+    line-height: 50px;
     /* margin-bottom: 120px; */
 }
 
@@ -667,7 +670,9 @@ nav {
         bottom: 8px;
     }
     .header {
-        font-size: 3rem;
+        font-size: 2rem;
+        line-height: 50px;
+        margin: 15px 0;
     }
     .sub-header {
         font-size: 1rem;
@@ -679,7 +684,8 @@ nav {
         font-size: 1.4rem;
     }
     .custom-nav-links {
-        font-size: 2rem;
+        font-size: 1.5rem;
+        padding: 20px 0;
     }
     .about-row {
         min-height: 165px;
@@ -739,8 +745,8 @@ nav {
         font-size: 2rem;
     }
     .shrink-header {
-    font-size: 1.5rem;
-    padding: 10px;
+        font-size: 1.5rem;
+        padding: 10px;
     }
     .recipe-card h6 {
         font-size: 0.8rem;
@@ -770,13 +776,17 @@ nav {
 
 @media screen and (min-width: 577px){
     #logo {
-        font-size: 4.5rem;
+        font-size: 3.5rem;
     }
     #bars-icon {
         font-size: 1.6rem;
     }
+    .header {
+        font-size: 3rem;
+    }
     .custom-nav-links {
         font-size: 2rem;
+        padding: 20px 0;
     }
     .about-title {
         font-size: 4rem;
@@ -822,10 +832,10 @@ nav {
 
 @media screen and (min-width: 768px){
     #logo {
-        font-size: 5rem;
+        font-size: 4rem;
     }
     .custom-nav-links {
-        font-size: 1.6rem;
+        font-size: 1.5rem;
     }
     .footer-links {
         font-size: 1.4rem;
@@ -833,7 +843,7 @@ nav {
     }
     .about-title {
         left: 30%;
-        font-size: 5rem;
+        font-size: 4rem;
     }
     .about-row {
         min-height: 300px;
@@ -865,19 +875,21 @@ nav {
 
 @media screen and (min-width: 992px){
     #logo {
-        font-size: 6rem;
+        font-size: 5rem;
     }
     #slogan {
         font-size: 5.5rem;
     }
     .custom-nav-links {
-        font-size: 3rem;
+        font-size: 2rem;
     }
     .about-row {
         min-height: 350px;
     }
     .header {
-        margin-top: 20px;
+        font-size: 4.5rem;
+        line-height: 100px;
+        margin: 40px 0;
     }
     .my-recipe-buttons i {
         font-size: 4rem;
@@ -891,7 +903,7 @@ nav {
 
 @media screen and (min-width: 1200px){
     #slogan {
-        font-size: 7rem;
+        font-size: 6rem;
     }
 }
 
@@ -919,7 +931,8 @@ nav {
         min-height: 500px;
     }
     .header {
-        font-size: 8rem;
+        font-size: 6rem;
+        line-height: 120px;
     }
     .more-recipes-link {
     font-size: 2.5rem;
