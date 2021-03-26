@@ -94,9 +94,11 @@
         </div>
     </div>
     {% if filters %}
-    <div class="text-center mt-3 custom-button remove-filters-button mx-auto">
-        <a class="" href="{{ url_for('all_recipes') }}">Remove Search terms and Filters</a>
-    </div>
+    <a href="{{ url_for('all_recipes') }}">
+        <div class="text-center mt-3 custom-button remove-filters-button mx-auto">
+            Remove Search terms and Filters
+        </div>
+    </a>
     {% endif %}
     <div class="row row-eq-height">
         {% for recipe in recipes %}

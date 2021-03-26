@@ -1,179 +1,182 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="container-fluid block-content-container">
-<!-- SEARCH AND FILTER CONTAINER -->
-<div class="row search-container rounded-container mx-auto">
-    <div class="col-12">
-        <form method="POST" action="">
-            <div class="row">
-                {{ form.hidden_tag() }}
-                <div class="col-12 col-sm-8">
-                    <div class="sub-header text-left mt-2 mb-1">Search for a recipe or ingredient</div>
-                    {{ form.search(class="form-input mb-2") }}
-                    {{ form.search_submit(class="custom-button") }}
-                </div>
-                <div class="col-12 col-sm-4">
-                    <div class="sub-header text-right mt-1 mb-1">Filter recipes</div>
-                    <div class="dropdown text-right">
-                        <button class="btn btn-secondary dropdown-toggle custom-button" type="button"
-                            id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Filter
-                        </button>
-                        <div class="dropdown-menu filter-dropdown" aria-labelledby="dropdownMenuButton">
-                            <h6 class="dropdown-header sub-header">Recipe Type</h6>
-                            {{ form.recipe_type(class="dropdown-item") }}
-                            <div class="dropdown-divider"></div>
-                            <h6 class="dropdown-header sub-header">Recipe Options</h6>
-                            <div class="filter-option">
-                                {{ form.cheap_checkbox() }}
-                                {{ form.cheap_checkbox.label() }}
+    <!-- SEARCH AND FILTER CONTAINER -->
+    <div class="row search-container rounded-container mx-auto">
+        <div class="col-12">
+            <form method="POST" action="">
+                <div class="row">
+                    {{ form.hidden_tag() }}
+                    <div class="col-12 col-sm-8">
+                        <div class="sub-header text-left mt-2 mb-1">Search for a recipe or ingredient</div>
+                        {{ form.search(class="form-input mb-2") }}
+                        {{ form.search_submit(class="custom-button") }}
+                    </div>
+                    <div class="col-12 col-sm-4">
+                        <div class="sub-header text-right mt-1 mb-1">Filter recipes</div>
+                        <div class="dropdown text-right">
+                            <button class="btn btn-secondary dropdown-toggle custom-button" type="button"
+                                id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                                Filter
+                            </button>
+                            <div class="dropdown-menu filter-dropdown" aria-labelledby="dropdownMenuButton">
+                                <h6 class="dropdown-header sub-header">Recipe Type</h6>
+                                {{ form.recipe_type(class="dropdown-item") }}
+                                <div class="dropdown-divider"></div>
+                                <h6 class="dropdown-header sub-header">Recipe Options</h6>
+                                <div class="filter-option">
+                                    {{ form.cheap_checkbox() }}
+                                    {{ form.cheap_checkbox.label() }}
+                                </div>
+                                <div class="filter-option">
+                                    {{ form.gluton_free_checkbox() }}
+                                    {{ form.gluton_free_checkbox.label() }}
+                                </div>
+                                <div class="filter-option">
+                                    {{ form.fakeaway_checkbox() }}
+                                    {{ form.fakeaway_checkbox.label() }}
+                                </div>
+                                <div class="filter-option">
+                                    {{ form.healthy_checkbox() }}
+                                    {{ form.healthy_checkbox.label() }}
+                                </div>
+                                <div class="filter-option">
+                                    {{ form.quick_checkbox() }}
+                                    {{ form.quick_checkbox.label() }}
+                                </div>
+                                {{ form.filter_submit(class="custom-button d-flex mx-auto") }}
                             </div>
-                            <div class="filter-option">
-                                {{ form.gluton_free_checkbox() }}
-                                {{ form.gluton_free_checkbox.label() }}
-                            </div>
-                            <div class="filter-option">
-                                {{ form.fakeaway_checkbox() }}
-                                {{ form.fakeaway_checkbox.label() }}
-                            </div>
-                            <div class="filter-option">
-                                {{ form.healthy_checkbox() }}
-                                {{ form.healthy_checkbox.label() }}
-                            </div>
-                            <div class="filter-option">
-                                {{ form.quick_checkbox() }}
-                                {{ form.quick_checkbox.label() }}
-                            </div>
-                            {{ form.filter_submit(class="custom-button d-flex mx-auto") }}
                         </div>
                     </div>
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
-</div>
-{% if filters %}
-<div class="text-center mt-3 custom-button remove-filters-button mx-auto">
-    <a class="" href="{{ url_for('all_recipes') }}">Remove Search terms and Filters</a>
-</div>
-{% endif %}
-<div class="row row-eq-height">
-    {% for recipe in recipes %}
-    <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center">
-        <div class="recipe-card">
-            <a href="{{url_for('recipe_page', recipe_id=recipe._id)}}">
-                <div class="recipe-image-container">
-                    <img src="{{ url_for('get_image', image_name = recipe.image_name) }}" alt="">
-                </div>
-                <h4 class="recipe-card-title logo-font text-center">{{ recipe.name }}</h4>
-            </a>
-            <div class="recipe-card-footer row">
-                <div class="col-6 text-center recipe-card-ratings">
-                    <h6 class="sub-header">Average<br>Rating</h6>
-                    {% if recipe.average_rating == 0.5 %}
-                    <span class="star coloured-star"><i class="fas fa-star-half-alt"></i></span>
-                    <span class="star blank-star"><i class="far fa-star"></i></span>
-                    <span class="star blank-star"><i class="far fa-star"></i></span>
-                    <span class="star blank-star"><i class="far fa-star"></i></span>
-                    <span class="star blank-star"><i class="far fa-star"></i></span>
-                    {% elif recipe.average_rating == 1 %}
-                    <span class="star coloured-star"><i class="fas fa-star"></i></span>
-                    <span class="star blank-star"><i class="far fa-star"></i></span>
-                    <span class="star blank-star"><i class="far fa-star"></i></span>
-                    <span class="star blank-star"><i class="far fa-star"></i></span>
-                    <span class="star blank-star"><i class="far fa-star"></i></span>
-                    {% elif recipe.average_rating == 1.5 %}
-                    <span class="star coloured-star"><i class="fas fa-star"></i></span>
-                    <span class="star coloured-star"><i class="fas fa-star-half-alt"></i></span>
-                    <span class="star blank-star"><i class="far fa-star"></i></span>
-                    <span class="star blank-star"><i class="far fa-star"></i></span>
-                    <span class="star blank-star"><i class="far fa-star"></i></span>
-                    {% elif recipe.average_rating == 2 %}
-                    <span class="star coloured-star"><i class="fas fa-star"></i></span>
-                    <span class="star coloured-star"><i class="fas fa-star"></i></span>
-                    <span class="star blank-star"><i class="far fa-star"></i></span>
-                    <span class="star blank-star"><i class="far fa-star"></i></span>
-                    <span class="star blank-star"><i class="far fa-star"></i></span>
-                    {% elif recipe.average_rating == 2.5 %}
-                    <span class="star coloured-star"><i class="fas fa-star"></i></span>
-                    <span class="star coloured-star"><i class="fas fa-star"></i></span>
-                    <span class="star coloured-star"><i class="fas fa-star-half-alt"></i></span>
-                    <span class="star blank-star"><i class="far fa-star"></i></span>
-                    <span class="star blank-star"><i class="far fa-star"></i></span>
-                    {% elif recipe.average_rating == 3 %}
-                    <span class="star coloured-star"><i class="fas fa-star"></i></span>
-                    <span class="star coloured-star"><i class="fas fa-star"></i></span>
-                    <span class="star coloured-star"><i class="fas fa-star"></i></span>
-                    <span class="star blank-star"><i class="far fa-star"></i></span>
-                    <span class="star blank-star"><i class="far fa-star"></i></span>
-                    {% elif recipe.average_rating == 3.5 %}
-                    <span class="star coloured-star"><i class="fas fa-star"></i></span>
-                    <span class="star coloured-star"><i class="fas fa-star"></i></span>
-                    <span class="star coloured-star"><i class="fas fa-star"></i></span>
-                    <span class="star coloured-star"><i class="fas fa-star-half-alt"></i></span>
-                    <span class="star blank-star"><i class="far fa-star"></i></span>
-                    {% elif recipe.average_rating == 4 %}
-                    <span class="star coloured-star"><i class="fas fa-star"></i></span>
-                    <span class="star coloured-star"><i class="fas fa-star"></i></span>
-                    <span class="star coloured-star"><i class="fas fa-star"></i></span>
-                    <span class="star coloured-star"><i class="fas fa-star"></i></span>
-                    <span class="star blank-star"><i class="far fa-star"></i></span>
-                    {% elif recipe.average_rating == 4.5 %}
-                    <span class="star coloured-star"><i class="fas fa-star"></i></span>
-                    <span class="star coloured-star"><i class="fas fa-star"></i></span>
-                    <span class="star coloured-star"><i class="fas fa-star"></i></span>
-                    <span class="star coloured-star"><i class="fas fa-star"></i></span>
-                    <span class="star coloured-star"><i class="fas fa-star-half-alt"></i>
-                    </span>
-                    {% elif recipe.average_rating == 5 %}
-                    <span class="star coloured-star"><i class="fas fa-star"></i></span>
-                    <span class="star coloured-star"><i class="fas fa-star"></i></span>
-                    <span class="star coloured-star"><i class="fas fa-star"></i></span>
-                    <span class="star coloured-star"><i class="fas fa-star"></i></span>
-                    <span class="star coloured-star"><i class="fas fa-star"></i></span>
-                    {% else %}
-                    <span class="star blank-star"><i class="far fa-star"></i></span>
-                    <span class="star blank-star"><i class="far fa-star"></i></span>
-                    <span class="star blank-star"><i class="far fa-star"></i></span>
-                    <span class="star blank-star"><i class="far fa-star"></i></span>
-                    <span class="star blank-star"><i class="far fa-star"></i></span>
-                    {% endif%}
-                </div>
-                <!-- ADD TO FAVOURITES SECTION -->
-                <div class="col-6 text-center">
-                    <h6 class="sub-header">Favourite<br>Recipe?</h6>
-                    <!-- If user is logged in -->
-                    {% if session['username'] %}
-                    <form class="trigger-form-send" method="POST"
-                        action="{{ url_for('toggle_favourite', recipe_id=recipe._id, return_page='all_recipes') }}">
-                        <!-- If user has favourited this recipe previously, render solid heart icon -->
-                        {% if session['username'] in recipe.favourites %}
-                        <input type="checkbox" name="favourite" class="hidden-input"
-                            id="favourite-checkbox-checked-{{+ loop.index}}" value="delete_fav">
-                        <label for="favourite-checkbox-checked-{{+ loop.index}}"><i class="fas fa-heart"
-                                data-toggle="tooltip" data-placement="bottom"
-                                title="Remove from favourites"></i></label>
-                        <!-- If user has not favourited recipe, render outline heart icon -->
+    {% if filters %}
+    <a href="{{ url_for('all_recipes') }}">
+        <div class="text-center mt-3 custom-button remove-filters-button mx-auto">
+            Remove Search terms and Filters
+        </div>
+    </a>
+    {% endif %}
+    <div class="row row-eq-height">
+        {% for recipe in recipes %}
+        <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center">
+            <div class="recipe-card">
+                <a href="{{url_for('recipe_page', recipe_id=recipe._id)}}">
+                    <div class="recipe-image-container">
+                        <img src="{{ url_for('get_image', image_name = recipe.image_name) }}" alt="">
+                    </div>
+                    <h4 class="recipe-card-title logo-font text-center">{{ recipe.name }}</h4>
+                </a>
+                <div class="recipe-card-footer row">
+                    <div class="col-6 text-center recipe-card-ratings">
+                        <h6 class="sub-header">Average<br>Rating</h6>
+                        {% if recipe.average_rating == 0.5 %}
+                        <span class="star coloured-star"><i class="fas fa-star-half-alt"></i></span>
+                        <span class="star blank-star"><i class="far fa-star"></i></span>
+                        <span class="star blank-star"><i class="far fa-star"></i></span>
+                        <span class="star blank-star"><i class="far fa-star"></i></span>
+                        <span class="star blank-star"><i class="far fa-star"></i></span>
+                        {% elif recipe.average_rating == 1 %}
+                        <span class="star coloured-star"><i class="fas fa-star"></i></span>
+                        <span class="star blank-star"><i class="far fa-star"></i></span>
+                        <span class="star blank-star"><i class="far fa-star"></i></span>
+                        <span class="star blank-star"><i class="far fa-star"></i></span>
+                        <span class="star blank-star"><i class="far fa-star"></i></span>
+                        {% elif recipe.average_rating == 1.5 %}
+                        <span class="star coloured-star"><i class="fas fa-star"></i></span>
+                        <span class="star coloured-star"><i class="fas fa-star-half-alt"></i></span>
+                        <span class="star blank-star"><i class="far fa-star"></i></span>
+                        <span class="star blank-star"><i class="far fa-star"></i></span>
+                        <span class="star blank-star"><i class="far fa-star"></i></span>
+                        {% elif recipe.average_rating == 2 %}
+                        <span class="star coloured-star"><i class="fas fa-star"></i></span>
+                        <span class="star coloured-star"><i class="fas fa-star"></i></span>
+                        <span class="star blank-star"><i class="far fa-star"></i></span>
+                        <span class="star blank-star"><i class="far fa-star"></i></span>
+                        <span class="star blank-star"><i class="far fa-star"></i></span>
+                        {% elif recipe.average_rating == 2.5 %}
+                        <span class="star coloured-star"><i class="fas fa-star"></i></span>
+                        <span class="star coloured-star"><i class="fas fa-star"></i></span>
+                        <span class="star coloured-star"><i class="fas fa-star-half-alt"></i></span>
+                        <span class="star blank-star"><i class="far fa-star"></i></span>
+                        <span class="star blank-star"><i class="far fa-star"></i></span>
+                        {% elif recipe.average_rating == 3 %}
+                        <span class="star coloured-star"><i class="fas fa-star"></i></span>
+                        <span class="star coloured-star"><i class="fas fa-star"></i></span>
+                        <span class="star coloured-star"><i class="fas fa-star"></i></span>
+                        <span class="star blank-star"><i class="far fa-star"></i></span>
+                        <span class="star blank-star"><i class="far fa-star"></i></span>
+                        {% elif recipe.average_rating == 3.5 %}
+                        <span class="star coloured-star"><i class="fas fa-star"></i></span>
+                        <span class="star coloured-star"><i class="fas fa-star"></i></span>
+                        <span class="star coloured-star"><i class="fas fa-star"></i></span>
+                        <span class="star coloured-star"><i class="fas fa-star-half-alt"></i></span>
+                        <span class="star blank-star"><i class="far fa-star"></i></span>
+                        {% elif recipe.average_rating == 4 %}
+                        <span class="star coloured-star"><i class="fas fa-star"></i></span>
+                        <span class="star coloured-star"><i class="fas fa-star"></i></span>
+                        <span class="star coloured-star"><i class="fas fa-star"></i></span>
+                        <span class="star coloured-star"><i class="fas fa-star"></i></span>
+                        <span class="star blank-star"><i class="far fa-star"></i></span>
+                        {% elif recipe.average_rating == 4.5 %}
+                        <span class="star coloured-star"><i class="fas fa-star"></i></span>
+                        <span class="star coloured-star"><i class="fas fa-star"></i></span>
+                        <span class="star coloured-star"><i class="fas fa-star"></i></span>
+                        <span class="star coloured-star"><i class="fas fa-star"></i></span>
+                        <span class="star coloured-star"><i class="fas fa-star-half-alt"></i>
+                        </span>
+                        {% elif recipe.average_rating == 5 %}
+                        <span class="star coloured-star"><i class="fas fa-star"></i></span>
+                        <span class="star coloured-star"><i class="fas fa-star"></i></span>
+                        <span class="star coloured-star"><i class="fas fa-star"></i></span>
+                        <span class="star coloured-star"><i class="fas fa-star"></i></span>
+                        <span class="star coloured-star"><i class="fas fa-star"></i></span>
                         {% else %}
-                        <input type="checkbox" name="favourite" class="hidden-input"
-                            id="favourite-checkbox-unchecked-{{+ loop.index}}" value="add_fav">
-                        <label for="favourite-checkbox-unchecked-{{+ loop.index}}"><i class="far fa-heart"
-                                data-toggle="tooltip" data-placement="bottom" title="Add to favourites"></i></label>
-                        {% endif %}
-                    </form>
-                    <!-- User not logged in - provide popover with links to log in and register  -->
-                    {% else %}
-                    <a tabindex="0" class="sign-in-popover" role="button" data-toggle="popover" data-trigger="focus"
-                        data-placement="bottom" data-content="<a href='{{ url_for('login') }}'><b>LOG IN</b></a> or 
+                        <span class="star blank-star"><i class="far fa-star"></i></span>
+                        <span class="star blank-star"><i class="far fa-star"></i></span>
+                        <span class="star blank-star"><i class="far fa-star"></i></span>
+                        <span class="star blank-star"><i class="far fa-star"></i></span>
+                        <span class="star blank-star"><i class="far fa-star"></i></span>
+                        {% endif%}
+                    </div>
+                    <!-- ADD TO FAVOURITES SECTION -->
+                    <div class="col-6 text-center">
+                        <h6 class="sub-header">Favourite<br>Recipe?</h6>
+                        <!-- If user is logged in -->
+                        {% if session['username'] %}
+                        <form class="trigger-form-send" method="POST"
+                            action="{{ url_for('toggle_favourite', recipe_id=recipe._id, return_page='all_recipes') }}">
+                            <!-- If user has favourited this recipe previously, render solid heart icon -->
+                            {% if session['username'] in recipe.favourites %}
+                            <input type="checkbox" name="favourite" class="hidden-input"
+                                id="favourite-checkbox-checked-{{+ loop.index}}" value="delete_fav">
+                            <label for="favourite-checkbox-checked-{{+ loop.index}}"><i class="fas fa-heart"
+                                    data-toggle="tooltip" data-placement="bottom"
+                                    title="Remove from favourites"></i></label>
+                            <!-- If user has not favourited recipe, render outline heart icon -->
+                            {% else %}
+                            <input type="checkbox" name="favourite" class="hidden-input"
+                                id="favourite-checkbox-unchecked-{{+ loop.index}}" value="add_fav">
+                            <label for="favourite-checkbox-unchecked-{{+ loop.index}}"><i class="far fa-heart"
+                                    data-toggle="tooltip" data-placement="bottom" title="Add to favourites"></i></label>
+                            {% endif %}
+                        </form>
+                        <!-- User not logged in - provide popover with links to log in and register  -->
+                        {% else %}
+                        <a tabindex="0" class="sign-in-popover" role="button" data-toggle="popover" data-trigger="focus"
+                            data-placement="bottom" data-content="<a href='{{ url_for('login') }}'><b>LOG IN</b></a> or 
                         <a href='{{ url_for('register') }}'><b>REGISTER</b></a> to save recipes to your favourites!">
-                        <i class="far fa-heart"></i>
-                    </a>
-                    {% endif %}
+                            <i class="far fa-heart"></i>
+                        </a>
+                        {% endif %}
+                    </div>
                 </div>
             </div>
         </div>
+        {% endfor %}
     </div>
-    {% endfor %}
-</div>
 </div>
 {% endblock %}
