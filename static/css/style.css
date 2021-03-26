@@ -156,6 +156,8 @@ nav {
     padding: 10px;
     background-color: #FFF6BC;
     position: relative;
+    display: flex;
+    flex-direction: column;
 }
 .recipe-card .col-6 {
     padding: 0 5px;
@@ -165,7 +167,7 @@ nav {
 }
 
 .recipe-card hr {
-    margin-top: 0;
+    width: 80%;
 }
 
 .recipe-card i {
@@ -174,9 +176,10 @@ nav {
 }
 
 .recipe-card-footer {
-    position: absolute;
+    margin-top: auto;
+    /* position: absolute;
     width: 100%;
-    bottom: 10px;
+    bottom: 10px; */
 }
 
 .recipe-card-ratings {
@@ -217,7 +220,7 @@ nav {
 .recipe-card-title {
     font-size: 2.5rem;
     padding-top: 20px;
-    margin-bottom: 120px;
+    /* margin-bottom: 120px; */
 }
 
 .recipe-card form {
