@@ -1,29 +1,29 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="container-fluid block-content-container">
-<h1 class="logo-font text-center header">Register</h1>
-<div class="row">
-    <div class="col-12 col-md-8 justify-content-center d-flex">
-        <form method="POST" action="">
-            {{ form.hidden_tag() }}
-            <label for="email" class="form-input-label">Please enter your email address :</label>
-            {{ form.email(class="form-input") }}
-            <label for="username" class="form-input-label">Please choose a username :</label>
-            <p class="form-details">Must be between 4 and 25 characters</p>
-            {{ form.username(class="form-input") }}
-            <label for="password" class="form-input-label">Please choose a password :</label>
-            <p class="form-details">Must be at least 8 characters</p>
-            {{ form.password(class="form-input") }}
-            <label for="confirm_password" class="form-input-label">Please re-type password :</label>
-            {{ form.confirm_password(class="form-input") }}
-            {{ form.submit(class="custom-button mt-2") }}
-            <p class="form-details mt-5">Already have an account?</p>
-            <p class="form-details"><a href="{{ url_for('login') }}">Click here to log in</a></p>
-        </form>
+    <h1 class="logo-font text-center header">Register</h1>
+    <div class="row">
+        <div class="col-12 col-md-8 justify-content-center d-flex">
+            <form method="POST" action="">
+                {{ form.hidden_tag() }}
+                <label for="email" class="form-input-label">Please enter your email address :</label>
+                {{ form.email(class="form-input") }}
+                <label for="username" class="form-input-label">Please choose a username :</label>
+                {{ form.username(class="form-input") }}
+                <p class="text-muted">Must be between 4 and 25 characters</p>
+                <label for="password" class="form-input-label">Please choose a password :</label>
+                {{ form.password(class="form-input") }}
+                <p class="text-muted">Must be at least 8 characters</p>
+                <label for="confirm_password" class="form-input-label">Please re-type password :</label>
+                {{ form.confirm_password(class="form-input") }}
+                {{ form.submit(class="custom-button mt-2") }}
+                <p class="form-details mt-5">Already have an account?</p>
+                <p class="form-details"><a href="{{ url_for('login') }}">Click here to log in</a></p>
+            </form>
+        </div>
+        <div class="d-sm-none d-md-inline-block col-4">
+            <img class="register-image" src="/static/images/bottle.png" alt="">
+        </div>
     </div>
-    <div class="d-sm-none d-md-inline-block col-4">
-        <img class="register-image" src="/static/images/bottle.png" alt="">
-    </div>
-</div>
 </div>
 {% endblock %}
