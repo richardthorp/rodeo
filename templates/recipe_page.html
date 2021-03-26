@@ -28,7 +28,7 @@
 </div>
 {% endif %}
 <div class="recipe-header rounded-container mx-auto">
-    <h1 class="logo-font text-center header mt-md-4 mb-md-4 pr-md-4 pl-md-4">{{ recipe.name }}</h1>
+    <h1 class="logo-font text-center header m-md-4 p-md-4">{{ recipe.name }}</h1>
     <p class="recipe-added-by text-center text-muted">Recipe added by {{ recipe.added_by }}</p>
     <p class="serves-details sub-header text-center">Serves {{ recipe.feeds }}</p>
     <ul class="sub-header recipe-details-list d-flex justify-content-center mx-auto flex-wrap">
@@ -278,7 +278,7 @@
 <div class="row">
     <div class="col-12 col-lg-6">
         <div class="ingredients-section rounded-container mx-auto">
-            <h3 class="sub-header text-center">Ingredients</h3>
+            <h3 class="sub-header text-center m-2 m-sm-3 m-md-4">Ingredients</h3>
             {% for ingredient in recipe.ingredients %}
             <li>{{ ingredient }}</li>
             {% endfor %}
@@ -286,7 +286,7 @@
     </div>
     <div class="col-12 col-lg-6">
         <div class="instructions-section rounded-container mx-auto">
-            <h3 class="sub-header text-center">Instructions</h3>
+            <h3 class="sub-header text-center m-2 m-sm-3 m-md-4">Instructions</h3>
             <ul>
                 {% for instruction in recipe.instructions %}
                 <h6 class="sub-header">Step {{loop.index}}</h6>

@@ -144,7 +144,7 @@ nav {
 }
 
 .footer-links {
-    font-size: 1.5rem;
+    font-size: 1rem;
     text-align: center;
 }
 
@@ -701,7 +701,6 @@ nav {
         font-size: 0.8rem;
     }
     .footer-links {
-        font-size: 1rem;
         text-align: center;
     }
     .form-header{
@@ -836,13 +835,12 @@ nav {
 
 @media screen and (min-width: 768px){
     #logo {
-        font-size: 4rem;
+        font-size: 3.5rem;
     }
     .custom-nav-links {
         font-size: 1.5rem;
     }
     .footer-links {
-        font-size: 1.4rem;
         padding: 0;
     }
     .about-title {
