@@ -354,6 +354,7 @@ def format_recipe_data(form_data_dict):
         'instructions': instructions,
         'added_by': session['username'],
         'ratings': {},
+        'average_rating': 0,
         'favourites': []
         }
     return formatted_recipe

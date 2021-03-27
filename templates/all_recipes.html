@@ -73,6 +73,9 @@
                 <div class="recipe-card-footer row">
                     <div class="col-6 text-center recipe-card-ratings">
                         <h6 class="sub-header">Average<br>Rating</h6>
+                        <div class="ratings-container">
+                            {{ recipe.average_rating }}
+                        </div>
                         {% if recipe.average_rating == 0.5 %}
                         <span class="star coloured-star"><i class="fas fa-star-half-alt"></i></span>
                         <span class="star blank-star"><i class="far fa-star"></i></span>

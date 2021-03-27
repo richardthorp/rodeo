@@ -99,3 +99,30 @@ $("document").ready(function(){
             }, 4000)
     });
 });
+
+/* Render average rating stars to page */
+$("document").ready(function(){
+    $(".ratings-container").each((index, node) => {
+        /* Get rating passed to each ratings-container in templates */
+        let rating = parseFloat(node.innerText)
+        /* Find the difference between given rating and potential rating. Round the number down, 
+        as half stars are handled in the rating while loop */
+        let remainder = Math.floor(5 - rating);
+        let ratingHtml = "";
+        /* Generate the HTML to render solid stars and half stars */
+        while(rating > 0) {
+            ratingHtml += "<span class='star coloured-star'><i class='fas fa-star'></i></span>"
+            rating--;
+            if (rating == 0.5){
+                ratingHtml += "<span class='star coloured-star'><i class='fas fa-star-half-alt'></i></span>";
+                rating = 0;
+            }
+        }
+        /* Generate the HTML to render empty stars */
+        while(remainder > 0) {
+            ratingHtml += "<span class='star blank-star'><i class='far fa-star'></i></span>"
+            remainder--;
+        }
+        node.innerHTML = ratingHtml;
+    })
+})
