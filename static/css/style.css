@@ -18,6 +18,10 @@ body {
     max-width: 2800px;
 }
 
+a {
+    color: inherit;
+}
+
 a:hover {
     text-decoration: none;
 }
@@ -584,6 +588,7 @@ nav {
 
 .more-recipes-link {
     background-color: #FFF6BC;
+    width: fit-content;
 }
 
 /*------------------------------------------------------- REGISTER */

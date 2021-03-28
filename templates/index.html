@@ -1,292 +1,166 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="container-fluid block-content-container">
-<div class="row">
-    <div class="col-12 hero d-flex justify-content-center">
-        <img src="/static/images/hero.png" alt="">
+    <div class="row">
+        <div class="col-12 hero d-flex justify-content-center">
+            <img src="/static/images/hero.png" alt="">
+        </div>
     </div>
-</div>
-<div class="row">
-    <div class="col">
-        <h2 id="slogan" class="logo-font header m-4">Add some kick to your cook</h2>
+    <div class="row">
+        <div class="col">
+            <h2 id="slogan" class="logo-font header m-4">Add some kick to your cook</h2>
+        </div>
     </div>
-</div>
 </div>
 <div class="container-fluid">
-<div class="row about-row">
-    <div class="col-2 col-md-3 col-lg-4">
-        <h2 class="about-title logo-font">Welcome</h2>
+    <div class="row about-row">
+        <div class="col-2 col-md-3 col-lg-4">
+            <h2 class="about-title logo-font">Welcome</h2>
+        </div>
+        <div class="col-10 col-md-9 col-lg-8 about-blurb">
+            <p>Welcome to the home of RODEO HOT SAUCE - the best hot sauce available on the market!</p>
+            <p>We have made this website because we love hot sauce, and we want to share that love with as many people
+                as
+                possible. So get registered and begin sharing your love of the hot stuff by adding your own recipes and
+                saving your favourite recipes by others.
+            </p>
+            <p>The only rule - it has to be hot! </p>
+        </div>
     </div>
-    <div class="col-10 col-md-9 col-lg-8 about-blurb">
-        <p>Welcome to the home of RODEO HOT SAUCE - the best hot sauce available on the market!</p>
-        <p>We have made this website because we love hot sauce, and we want to share that love with as many people as
-            possible. So get registered and begin sharing your love of the hot stuff by adding your own recipes and
-            saving your favourite recipes by others.
-        </p>
-        <p>The only rule - it has to be hot! </p>
-    </div>
-</div>
 </div>
 <div class="container-fluid block-content-container">
-<div class="row inspiration">
-    <div class="col">
-        <div class="row">
-            <div class="col">
-                <h2 class="logo-font header">Some Inspiration</h2>
-                <h4 class="sub-header mt-4 text-center">Click on recipes for more info</h4>
-            </div>
-        </div>
-        <div class="row">
-            {% for recipe in recipes %}
-            <!-- Ensure current loop isn't loop 3 so cards will be displayed on all screen sizes -->
-            {% if loop.index != 3 %}
-            <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center">
-                <div class="recipe-card">
-                    <a href="{{url_for('recipe_page', recipe_id=recipe._id)}}">
-                        <div class="recipe-image-container">
-                            <img src="{{ url_for('get_image', image_name = recipe.image_name) }}" alt="">
-                        </div>
-                        <h4 class="recipe-card-title logo-font text-center">{{ recipe.name }}</h4>
-                    </a>
-                    <div class="recipe-card-footer row">
-                        <div class="col-6 text-center recipe-card-ratings">
-                            <h6 class="sub-header">Average<br>Rating</h6>
-                            {% if recipe.average_rating == 0.5 %}
-                            <span class="star coloured-star"><i class="fas fa-star-half-alt"></i></span>
-                            <span class="star blank-star"><i class="far fa-star"></i></span>
-                            <span class="star blank-star"><i class="far fa-star"></i></span>
-                            <span class="star blank-star"><i class="far fa-star"></i></span>
-                            <span class="star blank-star"><i class="far fa-star"></i></span>
-                            {% elif recipe.average_rating == 1 %}
-                            <span class="star coloured-star"><i class="fas fa-star"></i></span>
-                            <span class="star blank-star"><i class="far fa-star"></i></span>
-                            <span class="star blank-star"><i class="far fa-star"></i></span>
-                            <span class="star blank-star"><i class="far fa-star"></i></span>
-                            <span class="star blank-star"><i class="far fa-star"></i></span>
-                            {% elif recipe.average_rating == 1.5 %}
-                            <span class="star coloured-star"><i class="fas fa-star"></i></span>
-                            <span class="star coloured-star"><i class="fas fa-star-half-alt"></i></span>
-                            <span class="star blank-star"><i class="far fa-star"></i></span>
-                            <span class="star blank-star"><i class="far fa-star"></i></span>
-                            <span class="star blank-star"><i class="far fa-star"></i></span>
-                            {% elif recipe.average_rating == 2 %}
-                            <span class="star coloured-star"><i class="fas fa-star"></i></span>
-                            <span class="star coloured-star"><i class="fas fa-star"></i></span>
-                            <span class="star blank-star"><i class="far fa-star"></i></span>
-                            <span class="star blank-star"><i class="far fa-star"></i></span>
-                            <span class="star blank-star"><i class="far fa-star"></i></span>
-                            {% elif recipe.average_rating == 2.5 %}
-                            <span class="star coloured-star"><i class="fas fa-star"></i></span>
-                            <span class="star coloured-star"><i class="fas fa-star"></i></span>
-                            <span class="star coloured-star"><i class="fas fa-star-half-alt"></i></span>
-                            <span class="star blank-star"><i class="far fa-star"></i></span>
-                            <span class="star blank-star"><i class="far fa-star"></i></span>
-                            {% elif recipe.average_rating == 3 %}
-                            <span class="star coloured-star"><i class="fas fa-star"></i></span>
-                            <span class="star coloured-star"><i class="fas fa-star"></i></span>
-                            <span class="star coloured-star"><i class="fas fa-star"></i></span>
-                            <span class="star blank-star"><i class="far fa-star"></i></span>
-                            <span class="star blank-star"><i class="far fa-star"></i></span>
-                            {% elif recipe.average_rating == 3.5 %}
-                            <span class="star coloured-star"><i class="fas fa-star"></i></span>
-                            <span class="star coloured-star"><i class="fas fa-star"></i></span>
-                            <span class="star coloured-star"><i class="fas fa-star"></i></span>
-                            <span class="star coloured-star"><i class="fas fa-star-half-alt"></i></span>
-                            <span class="star blank-star"><i class="far fa-star"></i></span>
-                            {% elif recipe.average_rating == 4 %}
-                            <span class="star coloured-star"><i class="fas fa-star"></i></span>
-                            <span class="star coloured-star"><i class="fas fa-star"></i></span>
-                            <span class="star coloured-star"><i class="fas fa-star"></i></span>
-                            <span class="star coloured-star"><i class="fas fa-star"></i></span>
-                            <span class="star blank-star"><i class="far fa-star"></i></span>
-                            {% elif recipe.average_rating == 4.5 %}
-                            <span class="star coloured-star"><i class="fas fa-star"></i></span>
-                            <span class="star coloured-star"><i class="fas fa-star"></i></span>
-                            <span class="star coloured-star"><i class="fas fa-star"></i></span>
-                            <span class="star coloured-star"><i class="fas fa-star"></i></span>
-                            <span class="star coloured-star"><i class="fas fa-star-half-alt"></i>
-                            </span>
-                            {% elif recipe.average_rating == 5 %}
-                            <span class="star coloured-star"><i class="fas fa-star"></i></span>
-                            <span class="star coloured-star"><i class="fas fa-star"></i></span>
-                            <span class="star coloured-star"><i class="fas fa-star"></i></span>
-                            <span class="star coloured-star"><i class="fas fa-star"></i></span>
-                            <span class="star coloured-star"><i class="fas fa-star"></i></span>
-                            {% else %}
-                            <span class="star blank-star"><i class="far fa-star"></i></span>
-                            <span class="star blank-star"><i class="far fa-star"></i></span>
-                            <span class="star blank-star"><i class="far fa-star"></i></span>
-                            <span class="star blank-star"><i class="far fa-star"></i></span>
-                            <span class="star blank-star"><i class="far fa-star"></i></span>
-                            {% endif%}
-                        </div>
-                        <div class="col-6 text-center">
-                            <!-- ADD TO FAVOURITES SECTION -->
-                            <h6 class="sub-header">Favourite<br>Recipe?</h6>
-                            <!-- If user is logged in -->
-                            {% if session['username'] %}
-                            <form class="trigger-form-send" method="POST"
-                                action="{{ url_for('toggle_favourite', recipe_id=recipe._id, return_page='index') }}">
-                                <!-- If user has favourited this recipe previously, render solid heart icon -->
-                                <!-- If user has favourited this recipe previously, render solid heart icon -->
-                                {% if session['username'] in recipe.favourites %}
-                                <input type="checkbox" name="favourite" class="hidden-input"
-                                    id="favourite-checkbox-checked-{{+ loop.index}}" value="delete_fav">
-                                <label for="favourite-checkbox-checked-{{+ loop.index}}"><i class="fas fa-heart"
-                                        data-toggle="tooltip" data-placement="bottom"
-                                        title="Remove from favourites"></i></label>
-                                <!-- If user has not favourited recipe, render outline heart icon -->
-                                {% else %}
-                                <input type="checkbox" name="favourite" class="hidden-input"
-                                    id="favourite-checkbox-unchecked-{{+ loop.index}}" value="add_fav">
-                                <label for="favourite-checkbox-unchecked-{{+ loop.index}}"><i class="far fa-heart"
-                                        data-toggle="tooltip" data-placement="bottom"
-                                        title="Add to favourites"></i></label>
-                                {% endif %}
-                            </form>
-                            <!-- User not logged in - provide popover with links to log in and register  -->
-                            {% else %}
-                            <a tabindex="0" class="sign-in-popover" role="button" data-toggle="popover"
-                                data-trigger="focus" data-placement="bottom"
-                                data-content="<a href='{{ url_for('login') }}'><b>LOG IN</b></a> or 
-                                <a href='{{ url_for('register') }}'><b>REGISTER</b></a> to save recipes to your favourites!">
-                                <i class="far fa-heart"></i>
-                            </a>
-                            {% endif %}
-                        </div>
-                    </div>
+    <div class="row inspiration">
+        <div class="col">
+            <div class="row">
+                <div class="col">
+                    <h2 class="logo-font header">Some Inspiration</h2>
+                    <h4 class="sub-header mt-4 text-center">Click on recipes for more info</h4>
                 </div>
             </div>
-            <!-- This is loop 3 - card is hidden on medium screen sizes -->
-            {% else %}
-            <div class="col-12 col-lg-4 d-md-none d-lg-block d-flex justify-content-center">
-                <div class="recipe-card">
-                    <a href="{{url_for('recipe_page', recipe_id=recipe._id)}}">
-                        <div class="recipe-image-container">
-                            <img src="{{ url_for('get_image', image_name = recipe.image_name) }}" alt="">
-                        </div>
-                        <h4 class="recipe-card-title logo-font text-center">{{ recipe.name }}</h4>
-                    </a>
-                    <div class="recipe-card-footer row">
-                        <div class="col-6 text-center recipe-card-ratings">
-                            <h6 class="sub-header">Average<br>Rating</h6>
-                            {% if recipe.average_rating == 0.5 %}
-                            <span class="star coloured-star"><i class="fas fa-star-half-alt"></i></span>
-                            <span class="star blank-star"><i class="far fa-star"></i></span>
-                            <span class="star blank-star"><i class="far fa-star"></i></span>
-                            <span class="star blank-star"><i class="far fa-star"></i></span>
-                            <span class="star blank-star"><i class="far fa-star"></i></span>
-                            {% elif recipe.average_rating == 1 %}
-                            <span class="star coloured-star"><i class="fas fa-star"></i></span>
-                            <span class="star blank-star"><i class="far fa-star"></i></span>
-                            <span class="star blank-star"><i class="far fa-star"></i></span>
-                            <span class="star blank-star"><i class="far fa-star"></i></span>
-                            <span class="star blank-star"><i class="far fa-star"></i></span>
-                            {% elif recipe.average_rating == 1.5 %}
-                            <span class="star coloured-star"><i class="fas fa-star"></i></span>
-                            <span class="star coloured-star"><i class="fas fa-star-half-alt"></i></span>
-                            <span class="star blank-star"><i class="far fa-star"></i></span>
-                            <span class="star blank-star"><i class="far fa-star"></i></span>
-                            <span class="star blank-star"><i class="far fa-star"></i></span>
-                            {% elif recipe.average_rating == 2 %}
-                            <span class="star coloured-star"><i class="fas fa-star"></i></span>
-                            <span class="star coloured-star"><i class="fas fa-star"></i></span>
-                            <span class="star blank-star"><i class="far fa-star"></i></span>
-                            <span class="star blank-star"><i class="far fa-star"></i></span>
-                            <span class="star blank-star"><i class="far fa-star"></i></span>
-                            {% elif recipe.average_rating == 2.5 %}
-                            <span class="star coloured-star"><i class="fas fa-star"></i></span>
-                            <span class="star coloured-star"><i class="fas fa-star"></i></span>
-                            <span class="star coloured-star"><i class="fas fa-star-half-alt"></i></span>
-                            <span class="star blank-star"><i class="far fa-star"></i></span>
-                            <span class="star blank-star"><i class="far fa-star"></i></span>
-                            {% elif recipe.average_rating == 3 %}
-                            <span class="star coloured-star"><i class="fas fa-star"></i></span>
-                            <span class="star coloured-star"><i class="fas fa-star"></i></span>
-                            <span class="star coloured-star"><i class="fas fa-star"></i></span>
-                            <span class="star blank-star"><i class="far fa-star"></i></span>
-                            <span class="star blank-star"><i class="far fa-star"></i></span>
-                            {% elif recipe.average_rating == 3.5 %}
-                            <span class="star coloured-star"><i class="fas fa-star"></i></span>
-                            <span class="star coloured-star"><i class="fas fa-star"></i></span>
-                            <span class="star coloured-star"><i class="fas fa-star"></i></span>
-                            <span class="star coloured-star"><i class="fas fa-star-half-alt"></i></span>
-                            <span class="star blank-star"><i class="far fa-star"></i></span>
-                            {% elif recipe.average_rating == 4 %}
-                            <span class="star coloured-star"><i class="fas fa-star"></i></span>
-                            <span class="star coloured-star"><i class="fas fa-star"></i></span>
-                            <span class="star coloured-star"><i class="fas fa-star"></i></span>
-                            <span class="star coloured-star"><i class="fas fa-star"></i></span>
-                            <span class="star blank-star"><i class="far fa-star"></i></span>
-                            {% elif recipe.average_rating == 4.5 %}
-                            <span class="star coloured-star"><i class="fas fa-star"></i></span>
-                            <span class="star coloured-star"><i class="fas fa-star"></i></span>
-                            <span class="star coloured-star"><i class="fas fa-star"></i></span>
-                            <span class="star coloured-star"><i class="fas fa-star"></i></span>
-                            <span class="star coloured-star"><i class="fas fa-star-half-alt"></i>
-                            </span>
-                            {% elif recipe.average_rating == 5 %}
-                            <span class="star coloured-star"><i class="fas fa-star"></i></span>
-                            <span class="star coloured-star"><i class="fas fa-star"></i></span>
-                            <span class="star coloured-star"><i class="fas fa-star"></i></span>
-                            <span class="star coloured-star"><i class="fas fa-star"></i></span>
-                            <span class="star coloured-star"><i class="fas fa-star"></i></span>
-                            {% else %}
-                            <span class="star blank-star"><i class="far fa-star"></i></span>
-                            <span class="star blank-star"><i class="far fa-star"></i></span>
-                            <span class="star blank-star"><i class="far fa-star"></i></span>
-                            <span class="star blank-star"><i class="far fa-star"></i></span>
-                            <span class="star blank-star"><i class="far fa-star"></i></span>
-                            {% endif%}
-                        </div>
-                        <div class="col-6 text-center">
-                            <!-- ADD TO FAVOURITES SECTION -->
-                            <h6 class="sub-header">Favourite<br>Recipe?</h6>
-                            <!-- If user is logged in -->
-                            {% if session['username'] %}
-                            <form class="trigger-form-send" method="POST"
-                                action="{{ url_for('toggle_favourite', recipe_id=recipe._id, return_page='index') }}">
-                                <!-- If user has favourited this recipe previously, render solid heart icon -->
-                                <!-- If user has favourited this recipe previously, render solid heart icon -->
-                                {% if session['username'] in recipe.favourites %}
-                                <input type="checkbox" name="favourite" class="hidden-input"
+            <div class="row">
+                {% for recipe in recipes %}
+                <!-- Ensure current loop isn't loop 3 so cards will be displayed on all screen sizes -->
+                {% if loop.index != 3 %}
+                <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center">
+                    <div class="recipe-card">
+                        <a href="{{url_for('recipe_page', recipe_id=recipe._id)}}">
+                            <div class="recipe-image-container">
+                                <img src="{{ url_for('get_image', image_name = recipe.image_name) }}" alt="">
+                            </div>
+                            <h4 class="recipe-card-title logo-font text-center">{{ recipe.name }}</h4>
+                        </a>
+                        <div class="recipe-card-footer row">
+                            <div class="col-6 text-center recipe-card-ratings">
+                                <h6 class="sub-header">Average<br>Rating</h6>
+                                <div class="ratings-container">
+                                    {{ recipe.average_rating }}
+                                </div>
+                            </div>
+                            <div class="col-6 text-center">
+                                <!-- ADD TO FAVOURITES SECTION -->
+                                <h6 class="sub-header">Favourite<br>Recipe?</h6>
+                                <!-- If user is logged in -->
+                                {% if session['username'] %}
+                                <form class="trigger-form-send" method="POST"
+                                    action="{{ url_for('toggle_favourite', recipe_id=recipe._id, return_page='index') }}">
+                                    <!-- If user has favourited this recipe previously, render solid heart icon -->
+                                    <!-- If user has favourited this recipe previously, render solid heart icon -->
+                                    {% if session['username'] in recipe.favourites %}
+                                    <input type="checkbox" name="favourite" class="hidden-input"
                                         id="favourite-checkbox-checked-{{+ loop.index}}" value="delete_fav">
-                                <label for="favourite-checkbox-checked-{{+ loop.index}}"><i class="fas fa-heart"
-                                        data-toggle="tooltip" data-placement="bottom"
-                                        title="Remove from favourites"></i></label>
-                                <!-- If user has not favourited recipe, render outline heart icon -->
+                                    <label for="favourite-checkbox-checked-{{+ loop.index}}"><i class="fas fa-heart"
+                                            data-toggle="tooltip" data-placement="bottom"
+                                            title="Remove from favourites"></i></label>
+                                    <!-- If user has not favourited recipe, render outline heart icon -->
+                                    {% else %}
+                                    <input type="checkbox" name="favourite" class="hidden-input"
+                                        id="favourite-checkbox-unchecked-{{+ loop.index}}" value="add_fav">
+                                    <label for="favourite-checkbox-unchecked-{{+ loop.index}}"><i class="far fa-heart"
+                                            data-toggle="tooltip" data-placement="bottom"
+                                            title="Add to favourites"></i></label>
+                                    {% endif %}
+                                </form>
+                                <!-- User not logged in - provide popover with links to log in and register  -->
                                 {% else %}
-                                <input type="checkbox" name="favourite" class="hidden-input"
-                                    id="favourite-checkbox-unchecked-{{+ loop.index}}" value="add_fav">
-                                <label for="favourite-checkbox-unchecked-{{+ loop.index}}"><i class="far fa-heart"
-                                        data-toggle="tooltip" data-placement="bottom"
-                                        title="Add to favourites"></i></label>
-                                {% endif %}
-                            </form>
-                            <!-- User not logged in - provide popover with links to log in and register  -->
-                            {% else %}
-                            <a tabindex="0" class="sign-in-popover" role="button" data-toggle="popover"
-                                data-trigger="focus" data-placement="bottom"
-                                data-content="<a href='{{ url_for('login') }}'><b>LOG IN</b></a> or 
+                                <a tabindex="0" class="sign-in-popover" role="button" data-toggle="popover"
+                                    data-trigger="focus" data-placement="bottom"
+                                    data-content="<a href='{{ url_for('login') }}'><b>LOG IN</b></a> or 
                                 <a href='{{ url_for('register') }}'><b>REGISTER</b></a> to save recipes to your favourites!">
-                                <i class="far fa-heart"></i>
-                            </a>
-                            {% endif %}
+                                    <i class="far fa-heart"></i>
+                                </a>
+                                {% endif %}
+                            </div>
                         </div>
                     </div>
                 </div>
+                <!-- This is loop 3 - card is hidden on medium screen sizes -->
+                {% else %}
+                <div class="col-12 col-lg-4 d-md-none d-lg-block d-flex justify-content-center">
+                    <div class="recipe-card">
+                        <a href="{{url_for('recipe_page', recipe_id=recipe._id)}}">
+                            <div class="recipe-image-container">
+                                <img src="{{ url_for('get_image', image_name = recipe.image_name) }}" alt="">
+                            </div>
+                            <h4 class="recipe-card-title logo-font text-center">{{ recipe.name }}</h4>
+                        </a>
+                        <div class="recipe-card-footer row">
+                            <div class="col-6 text-center recipe-card-ratings">
+                                <h6 class="sub-header">Average<br>Rating</h6>
+                                <div class="ratings-container">
+                                    {{ recipe.average_rating }}
+                                </div>
+                            </div>
+                            <div class="col-6 text-center">
+                                <!-- ADD TO FAVOURITES SECTION -->
+                                <h6 class="sub-header">Favourite<br>Recipe?</h6>
+                                <!-- If user is logged in -->
+                                {% if session['username'] %}
+                                <form class="trigger-form-send" method="POST"
+                                    action="{{ url_for('toggle_favourite', recipe_id=recipe._id, return_page='index') }}">
+                                    <!-- If user has favourited this recipe previously, render solid heart icon -->
+                                    <!-- If user has favourited this recipe previously, render solid heart icon -->
+                                    {% if session['username'] in recipe.favourites %}
+                                    <input type="checkbox" name="favourite" class="hidden-input"
+                                        id="favourite-checkbox-checked-{{+ loop.index}}" value="delete_fav">
+                                    <label for="favourite-checkbox-checked-{{+ loop.index}}"><i class="fas fa-heart"
+                                            data-toggle="tooltip" data-placement="bottom"
+                                            title="Remove from favourites"></i></label>
+                                    <!-- If user has not favourited recipe, render outline heart icon -->
+                                    {% else %}
+                                    <input type="checkbox" name="favourite" class="hidden-input"
+                                        id="favourite-checkbox-unchecked-{{+ loop.index}}" value="add_fav">
+                                    <label for="favourite-checkbox-unchecked-{{+ loop.index}}"><i class="far fa-heart"
+                                            data-toggle="tooltip" data-placement="bottom"
+                                            title="Add to favourites"></i></label>
+                                    {% endif %}
+                                </form>
+                                <!-- User not logged in - provide popover with links to log in and register  -->
+                                {% else %}
+                                <a tabindex="0" class="sign-in-popover" role="button" data-toggle="popover"
+                                    data-trigger="focus" data-placement="bottom"
+                                    data-content="<a href='{{ url_for('login') }}'><b>LOG IN</b></a> or 
+                                <a href='{{ url_for('register') }}'><b>REGISTER</b></a> to save recipes to your favourites!">
+                                    <i class="far fa-heart"></i>
+                                </a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
             </div>
-            {% endif %}
-            {% endfor %}
-        </div>
-        <div class="row">
-            <div class="col-12">
-                <h4 class="sub-header text-center mt-5">
-                    <a class="more-recipes-link custom-button" href="{{ url_for('all_recipes') }}">Click here to see more recipes!</a></h4>
+            <div class="row">
+                <div class="col-12">
+                    <a href="{{ url_for('all_recipes') }}">
+                        <h4 class="sub-header text-center more-recipes-link custom-button mt-5 p-2 mx-auto">
+                            Click here to see more recipes!
+                        </h4>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
-</div>
 </div>
 
 {% endblock %}
