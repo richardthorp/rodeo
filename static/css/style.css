@@ -506,6 +506,33 @@ nav {
     max-width: 400px;
 }
 
+.search-container ul {
+    padding: 0;
+}
+.search-container li {
+    padding: 0 5px;
+}
+
+.search-container .filter-option {
+    display: inline-block;
+}
+
+#search {
+    width: 70%;
+    max-width: 400px;
+}
+
+.search-container-radio ul li {
+    list-style: none;
+    display: inline;
+    padding: 0 10px;
+}
+
+.recipe-type-filters {
+    list-style: none;
+
+}
+
 .filter-dropdown {
     font-family: 'Open Sans';
     background-color: #FFF6BC;
@@ -513,10 +540,6 @@ nav {
 
 .filter-dropdown ul {
     list-style: none;
-}
-
-.filter-option {
-    padding-left: 24px;
 }
 
 /*------------------------------------------------------- INDEX */
@@ -627,15 +650,17 @@ nav {
 }
 
 .recipe-type-radio ul li {
+    padding-left: 24px;
+
+}
+
+.recipe-type-radio ul li, .search-container-radio ul li {
     list-style: none;
     display: inline;
-    padding-left: 24px;
-    font-family: 'Open Sans';
 }
 
 .recipe-type-filters .filter-option {
     display: inline-block;
-    font-family: 'Open Sans';
 }
 
 .form-container {
