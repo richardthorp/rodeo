@@ -296,11 +296,6 @@ def log_out():
 @app.route("/recipe_page/<recipe_id>", methods=["GET", "POST"])
 def recipe_page(recipe_id):
     recipe = mongo.db.recipes.find_one({'_id': ObjectId(recipe_id)})
-
-    average_rating = get_average_rating(recipe_id)
-    average_rating_stars = get_average_rating_stars(average_rating)
-    mongo.db.recipes.update_one({'_id': ObjectId(recipe_id)},
-                                {'$set': {'average_rating': average_rating}})
     # If an existing user rating for the recipe exists, get the user rating
     # to render on the page
     user_rating = 0
@@ -320,11 +315,14 @@ def recipe_page(recipe_id):
         mongo.db.recipes.update_one({'_id': ObjectId(recipe_id)}, {'$set':
                                     {'ratings.' + session['username']:
                                         request.form.get('rating')}})
+        # Calculate new average_rating and update in the db
+        average_rating = get_average_rating(recipe_id)
+        mongo.db.recipes.update_one({'_id': ObjectId(recipe_id)},
+                                    {'$set': {'average_rating': average_rating}})
 
         return redirect(url_for('recipe_page', recipe_id=recipe_id))
 
     return render_template("recipe_page.html", recipe=recipe,
-                           average_rating_stars=average_rating_stars,
                            image_name=image_name, user_rating=user_rating)
 
 
@@ -354,7 +352,6 @@ def format_recipe_data(form_data_dict):
         'instructions': instructions,
         'added_by': session['username'],
         'ratings': {},
-        'average_rating': 0,
         'favourites': []
         }
     return formatted_recipe
@@ -376,87 +373,6 @@ def get_average_rating(recipe_id):
         average_rating = 0
     # Round the rating to the nearest .5
     return round(average_rating * 2) / 2
-
-
-def get_average_rating_stars(average_rating):
-    if average_rating == 0.5:
-        return """
-        <span class="star coloured-star"><i class="fas fa-star-half-alt"></i>
-        </span>
-        <span class="star blank-star"><i class="far fa-star"></i></span>
-        <span class="star blank-star"><i class="far fa-star"></i></span>
-        <span class="star blank-star"><i class="far fa-star"></i></span>
-        <span class="star blank-star"><i class="far fa-star"></i></span>"""
-    elif average_rating == 1:
-        return """ <span class="star coloured-star"><i class="fas fa-star"></i></span>
-        <span class="star blank-star"><i class="far fa-star"></i></span>
-        <span class="star blank-star"><i class="far fa-star"></i></span>
-        <span class="star blank-star"><i class="far fa-star"></i></span>
-        <span class="star blank-star"><i class="far fa-star"></i></span>"""
-    elif average_rating == 1.5:
-        return """
-        <span class="star coloured-star"><i class="fas fa-star"></i></span>
-        <span class="star coloured-star"><i class="fas fa-star-half-alt"></i>
-        </span>
-        <span class="star blank-star"><i class="far fa-star"></i></span>
-        <span class="star blank-star"><i class="far fa-star"></i></span>
-        <span class="star blank-star"><i class="far fa-star"></i></span>"""
-    elif average_rating == 2:
-        return """ <span class="star coloured-star"><i class="fas fa-star"></i>
-        </span>
-        <span class="star coloured-star"><i class="fas fa-star"></i></span>
-        <span class="star blank-star"><i class="far fa-star"></i></span>
-        <span class="star blank-star"><i class="far fa-star"></i></span>
-        <span class="star blank-star"><i class="far fa-star"></i></span>"""
-    elif average_rating == 2.5:
-        return """ <span class="star coloured-star"><i class="fas fa-star"></i>
-        </span>
-        <span class="star coloured-star"><i class="fas fa-star"></i></span>
-        <span class="star coloured-star"><i class="fas fa-star-half-alt"></i>
-        </span>
-        <span class="star blank-star"><i class="far fa-star"></i></span>
-        <span class="star blank-star"><i class="far fa-star"></i></span>"""
-    elif average_rating == 3:
-        return """<span class="star coloured-star"><i class="fas fa-star"></i></span>
-        <span class="star coloured-star"><i class="fas fa-star"></i></span>
-        <span class="star coloured-star"><i class="fas fa-star"></i></span>
-        <span class="star blank-star"><i class="far fa-star"></i></span>
-        <span class="star blank-star"><i class="far fa-star"></i></span>"""
-    elif average_rating == 3.5:
-        return """<span class="star coloured-star"><i class="fas fa-star"></i>
-        </span>
-        <span class="star coloured-star"><i class="fas fa-star"></i></span>
-        <span class="star coloured-star"><i class="fas fa-star"></i></span>
-        <span class="star coloured-star"><i class="fas fa-star-half-alt"></i>
-        </span>
-        <span class="star blank-star"><i class="far fa-star"></i></span>"""
-    elif average_rating == 4:
-        return """<span class="star coloured-star"><i class="fas fa-star"></i></span>
-        <span class="star coloured-star"><i class="fas fa-star"></i></span>
-        <span class="star coloured-star"><i class="fas fa-star"></i></span>
-        <span class="star coloured-star"><i class="fas fa-star"></i></span>
-        <span class="star blank-star"><i class="far fa-star"></i></span>"""
-    elif average_rating == 4.5:
-        return """<span class="star coloured-star"><i class="fas fa-star"></i></span>
-        <span class="star coloured-star"><i class="fas fa-star"></i></span>
-        <span class="star coloured-star"><i class="fas fa-star"></i></span>
-        <span class="star coloured-star"><i class="fas fa-star"></i></span>
-        <span class="star coloured-star"><i class="fas fa-star-half-alt"></i>
-        </span>"""
-    elif average_rating == 5:
-        return """<span class="star coloured-star"><i class="fas fa-star"></i>
-        </span>
-        <span class="star coloured-star"><i class="fas fa-star"></i></span>
-        <span class="star coloured-star"><i class="fas fa-star"></i></span>
-        <span class="star coloured-star"><i class="fas fa-star"></i></span>
-        <span class="star coloured-star"><i class="fas fa-star"></i></span>"""
-    else:
-        return """<span class="star blank-star"><i class="far fa-star"></i>
-        </span>
-        <span class="star blank-star"><i class="far fa-star"></i></span>
-        <span class="star blank-star"><i class="far fa-star"></i></span>
-        <span class="star blank-star"><i class="far fa-star"></i></span>
-        <span class="star blank-star"><i class="far fa-star"></i></span>"""
 
 
 if __name__ == "__main__":
