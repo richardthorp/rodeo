@@ -189,10 +189,12 @@ def add_recipe():
                 # If an image file has been sent with form data...
                 if request.files['picture_upload']:
                     # Remove any special characters from the file name and
-                    # add username to file name to ensure name is unique
+                    # add user _id to file name to ensure name is unique
+                    user = mongo.db.users.find_one({'username': session['username']})
+                    user_id = str(user['_id'])
                     file_name = "".join(char for char in
                                         request.files['picture_upload'].filename
-                                        if char.isalnum()) + session['username']
+                                        if char.isalnum()) + user_id
 
                     mongo.save_file(file_name,
                                     request.files['picture_upload'])
