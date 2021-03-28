@@ -258,9 +258,28 @@ def edit_recipe(recipe_id):
 
 @app.route('/delete_recipe/<recipe_id>')
 def delete_recipe(recipe_id):
-    mongo.db.recipes.delete_one({'_id': ObjectId(recipe_id)})
-    flash('Recipe Deleted')
-    return redirect(url_for('added_recipes'))
+    recipe = mongo.db.recipes.find_one({'_id': ObjectId(recipe_id)})
+    # If recipe image is default, just delete recipe info from db
+    if recipe['image_name'] == 'defaultrecipeimagepngRodeo':
+        mongo.db.recipes.delete_one({'_id': ObjectId(recipe_id)})
+        flash('Recipe Deleted')
+        return redirect(url_for('added_recipes'))
+    else:
+        # Find image data in fs.files using recipe image_name
+        db_image = mongo.db.fs.files.find_one({
+                        'filename': recipe['image_name']})
+
+        # Find the image data in the fs.chunks collection and delete
+        # using _id of file found in query above
+        mongo.db.fs.chunks.delete_one({'files_id': ObjectId(db_image['_id'])})
+
+        # Then delete image file meta data from fs.files
+        mongo.db.fs.files.delete_one({'filename': recipe['image_name']})
+
+        # Then delete recipe data
+        mongo.db.recipes.delete_one({'_id': ObjectId(recipe_id)})
+        flash('Recipe Deleted')
+        return redirect(url_for('added_recipes'))
 
 
 @app.route('/get_image/<image_name>')
