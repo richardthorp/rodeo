@@ -51,74 +51,8 @@
                 <h6 class="sub-header text-center">Your Rating</h6>
                 <form class="rating-form-md" name="rating-form" method="POST"
                     action="{{ url_for('recipe_page', recipe_id=recipe._id) }}">
-                    <div class="rate rate-md">
-                        {% if user_rating == 1 %}
-                        <input type="radio" id="star5" name="rating" value="5" />
-                        <label for="star5" title="text"><i class="fas fa-star"></i></label>
-                        <input type="radio" id="star4" name="rating" value="4" />
-                        <label for="star4" title="text"><i class="fas fa-star"></i></label>
-                        <input type="radio" id="star3" name="rating" value="3" />
-                        <label for="star3" title="text"><i class="fas fa-star"></i></label>
-                        <input type="radio" id="star2" name="rating" value="2" />
-                        <label for="star2" title="text"><i class="fas fa-star"></i></label>
-                        <input type="radio" id="star1" name="rating" value="1" checked />
-                        <label for="star1" title="text"><i class="fas fa-star"></i></label>
-                        {% elif user_rating == 2 %}
-                        <input type="radio" id="star5" name="rating" value="5" />
-                        <label for="star5" title="text"><i class="fas fa-star"></i></label>
-                        <input type="radio" id="star4" name="rating" value="4" />
-                        <label for="star4" title="text"><i class="fas fa-star"></i></label>
-                        <input type="radio" id="star3" name="rating" value="3" />
-                        <label for="star3" title="text"><i class="fas fa-star"></i></label>
-                        <input type="radio" id="star2" name="rating" value="2" checked />
-                        <label for="star2" title="text"><i class="fas fa-star"></i></label>
-                        <input type="radio" id="star1" name="rating" value="1" />
-                        <label for="star1" title="text"><i class="fas fa-star"></i></label>
-                        {% elif user_rating == 3 %}
-                        <input type="radio" id="star5" name="rating" value="5" />
-                        <label for="star5" title="text"><i class="fas fa-star"></i></label>
-                        <input type="radio" id="star4" name="rating" value="4" />
-                        <label for="star4" title="text"><i class="fas fa-star"></i></label>
-                        <input type="radio" id="star3" name="rating" value="3" checked />
-                        <label for="star3" title="text"><i class="fas fa-star"></i></label>
-                        <input type="radio" id="star2" name="rating" value="2" />
-                        <label for="star2" title="text"><i class="fas fa-star"></i></label>
-                        <input type="radio" id="star1" name="rating" value="1" />
-                        <label for="star1" title="text"><i class="fas fa-star"></i></label>
-                        {% elif user_rating == 4 %}
-                        <input type="radio" id="star5" name="rating" value="5" />
-                        <label for="star5" title="text"><i class="fas fa-star"></i></label>
-                        <input type="radio" id="star4" name="rating" value="4" checked />
-                        <label for="star4" title="text"><i class="fas fa-star"></i></label>
-                        <input type="radio" id="star3" name="rating" value="3" />
-                        <label for="star3" title="text"><i class="fas fa-star"></i></label>
-                        <input type="radio" id="star2" name="rating" value="2" />
-                        <label for="star2" title="text"><i class="fas fa-star"></i></label>
-                        <input type="radio" id="star1" name="rating" value="1" />
-                        <label for="star1" title="text"><i class="fas fa-star"></i></label>
-                        {% elif user_rating == 5 %}
-                        <input type="radio" id="star5" name="rating" value="5" checked />
-                        <label for="star5" title="text"><i class="fas fa-star"></i></label>
-                        <input type="radio" id="star4" name="rating" value="4" />
-                        <label for="star4" title="text"><i class="fas fa-star"></i></label>
-                        <input type="radio" id="star3" name="rating" value="3" />
-                        <label for="star3" title="text"><i class="fas fa-star"></i></label>
-                        <input type="radio" id="star2" name="rating" value="2" />
-                        <label for="star2" title="text"><i class="fas fa-star"></i></label>
-                        <input type="radio" id="star1" name="rating" value="1" />
-                        <label for="star1" title="text"><i class="fas fa-star"></i></label>
-                        {% else %}
-                        <input type="radio" id="star5" name="rating" value="5" />
-                        <label for="star5" title="text"><i class="fas fa-star"></i></label>
-                        <input type="radio" id="star4" name="rating" value="4" />
-                        <label for="star4" title="text"><i class="fas fa-star"></i></label>
-                        <input type="radio" id="star3" name="rating" value="3" />
-                        <label for="star3" title="text"><i class="fas fa-star"></i></label>
-                        <input type="radio" id="star2" name="rating" value="2" />
-                        <label for="star2" title="text"><i class="fas fa-star"></i></label>
-                        <input type="radio" id="star1" name="rating" value="1" />
-                        <label for="star1" title="text"><i class="fas fa-star"></i></label>
-                        {% endif %}
+                    <div class="user-rating">
+                        {{ user_rating }}
                     </div>
                     <!-- If user is logged in, provide submit button - otherwise provide popover with links to log in and register -->
                     {% if session['username'] %}

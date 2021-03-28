@@ -126,3 +126,21 @@ $("document").ready(function(){
         node.innerHTML = ratingHtml;
     })
 })
+
+/* Render user rating stars (radio form inputs) */
+$("document").ready(function(){
+    let userRating = parseInt($(".user-rating").text());
+    let userRatingHtml = "";
+    for (let i = 1; i < 6; i++){
+        /* Add checked attribute to the input that is equal to the users rating */
+        if(i == userRating){
+            userRatingHtml += `<input type="radio" id="star${i}" name="rating" value="${i}" checked/>
+                           <label for="star${i}" title="text"><i class="fas fa-star"></i></label>`
+        }else {
+            userRatingHtml += `<input type="radio" id="star${i}" name="rating" value="${i}" />
+                           <label for="star${i}" title="text"><i class="fas fa-star"></i></label>`
+        }
+    }
+    
+    $(".user-rating").html(userRatingHtml);
+})
