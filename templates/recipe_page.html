@@ -37,7 +37,11 @@
             <li>{{ detail }} <i class="fas fa-check-circle"></i></li>
             {% endfor %}
         </ul>
-        <img src="{{ url_for('get_image', image_name = image_name) }}" alt="">
+        {% if recipe.image_name == 'default-image' %}
+        <img src="/static/images/default-image.jpg" alt="Illustration of Rodeo Hot Sauce bottle">
+        {% else %}
+        <img src="{{ url_for('get_image', image_name = recipe.image_name) }}" alt="">
+        {% endif %}
         <div class="row d-flex justify-content-between rating-row mx-auto">
             <!-- AVERAGE RATING SECTION -->
             <div class="d-none d-md-inline col-md-4 text-center">

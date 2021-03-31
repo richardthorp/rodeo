@@ -200,7 +200,7 @@ def add_recipe():
                                     request.files['picture_upload'])
                     formatted_recipe['image_name'] = file_name
                 else:
-                    formatted_recipe['image_name'] = 'defaultrecipeimagepngRodeo'
+                    formatted_recipe['image_name'] = 'default-image'
 
                 # Insert recipe to DB
                 mongo.db.recipes.insert_one(formatted_recipe)
@@ -269,9 +269,7 @@ def edit_recipe(recipe_id):
                     # Call delete_image to remove image data from db
                     delete_image(recipe['image_name'])
                     # Set recipe image name to default image
-                    formatted_recipe['image_name'] = 'defaultrecipeimagepngRodeo'
-
-                print(formatted_recipe)
+                    formatted_recipe['image_name'] = 'default-image'
                 # Update recipe in DB
                 mongo.db.recipes.update_one({'_id': ObjectId(recipe_id)},
                                             {'$set': formatted_recipe})
@@ -288,7 +286,7 @@ def edit_recipe(recipe_id):
 def delete_recipe(recipe_id):
     recipe = mongo.db.recipes.find_one({'_id': ObjectId(recipe_id)})
     # If recipe image is default, just delete recipe info from db
-    if recipe['image_name'] == 'defaultrecipeimagepngRodeo':
+    if recipe['image_name'] == 'default-image':
         mongo.db.recipes.delete_one({'_id': ObjectId(recipe_id)})
         flash('Recipe Deleted')
         return redirect(url_for('added_recipes'))

@@ -85,7 +85,11 @@
             <div class="recipe-card">
                 <a href="{{url_for('recipe_page', recipe_id=recipe._id)}}">
                     <div class="recipe-image-container">
+                        {% if recipe.image_name == 'default-image' %}
+                        <img src="/static/images/default-image.jpg" alt="Illustration of Rodeo Hot Sauce bottle">
+                        {% else %}
                         <img src="{{ url_for('get_image', image_name = recipe.image_name) }}" alt="">
+                        {% endif %}
                     </div>
                     <h4 class="recipe-card-title logo-font text-center">{{ recipe.name }}</h4>
                 </a>
