@@ -190,7 +190,8 @@ def add_recipe():
                 if request.files['picture_upload']:
                     # Remove any special characters from the file name and
                     # add user _id to file name to ensure name is unique
-                    user = mongo.db.users.find_one({'username': session['username']})
+                    user = mongo.db.users.find_one({
+                                    'username': session['username']})
                     user_id = str(user['_id'])
                     file_name = "".join(char for char in
                                         request.files['picture_upload'].filename
@@ -210,8 +211,8 @@ def add_recipe():
             # Invalid form...
             else:
                 flash('''Sorry, there was an issue with the form data.
-                    Please try again''')
-                print("NOT VALID", form.errors)
+                      Please try again''')
+                return render_template("add_recipe.html", form=form)
         else:
             return render_template("add_recipe.html", form=form)
 
@@ -263,7 +264,7 @@ def edit_recipe(recipe_id):
                     mongo.save_file(file_name, request.files['new_picture_upload'])
                     formatted_recipe['image_name'] = file_name
 
-                # User had uploaded an image but now wants to use the default image - 
+                # User had uploaded an image but now wants to use the default image -
                 # Delete existing image data from db and set new image to default
                 elif form_data_dict['image_options'] == 'default_image':
                     # Call delete_image to remove image data from db
