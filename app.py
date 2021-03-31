@@ -252,17 +252,8 @@ def edit_recipe(recipe_id):
                 # the original image and delete before formatting new image
                 # name and uploading to db
                 elif request.files.get('new_picture_upload') and form_data_dict['image_options'] == 'new_image':
-                    # Find image data in fs.files using recipe image_name
-                    db_image = mongo.db.fs.files.find_one({
-                        'filename': recipe['image_name']})
-
-                    # Find the image data in the fs.chunks collection and delete
-                    # using _id of file found in query above
-                    mongo.db.fs.chunks.delete_one({'files_id': ObjectId(db_image['_id'])})
-
-                    # Then delete image file meta data from fs.files
-                    mongo.db.fs.files.delete_one({'filename': recipe['image_name']})
-
+                    # Call delete_image to remove image data from db
+                    delete_image(recipe['image_name'])
                     user = mongo.db.users.find_one({
                                         'username': session['username']})
                     user_id = str(user['_id'])
@@ -275,15 +266,9 @@ def edit_recipe(recipe_id):
                 # User had uploaded an image but now wants to use the default image - 
                 # Delete existing image data from db and set new image to default
                 elif form_data_dict['image_options'] == 'default_image':
-                    db_image = mongo.db.fs.files.find_one({
-                        'filename': recipe['image_name']})
-
-                    # Find the image data in the fs.chunks collection and delete
-                    # using _id of file found in query above
-                    mongo.db.fs.chunks.delete_many({'files_id': ObjectId(db_image['_id'])})
-
-                    # Then delete image file meta data from fs.files
-                    mongo.db.fs.files.delete_one({'filename': recipe['image_name']})
+                    # Call delete_image to remove image data from db
+                    delete_image(recipe['image_name'])
+                    # Set recipe image name to default image
                     formatted_recipe['image_name'] = 'defaultrecipeimagepngRodeo'
 
                 print(formatted_recipe)
@@ -308,17 +293,8 @@ def delete_recipe(recipe_id):
         flash('Recipe Deleted')
         return redirect(url_for('added_recipes'))
     else:
-        # Find image data in fs.files using recipe image_name
-        db_image = mongo.db.fs.files.find_one({
-                        'filename': recipe['image_name']})
-
-        # Find the image data in the fs.chunks collection and delete
-        # using _id of file found in query above
-        mongo.db.fs.chunks.delete_one({'files_id': ObjectId(db_image['_id'])})
-
-        # Then delete image file meta data from fs.files
-        mongo.db.fs.files.delete_one({'filename': recipe['image_name']})
-
+        # Call delete_image to remove image data from db
+        delete_image(recipe['image_name'])
         # Then delete recipe data
         mongo.db.recipes.delete_one({'_id': ObjectId(recipe_id)})
         flash('Recipe Deleted')
@@ -420,6 +396,19 @@ def format_recipe_data(form_data_dict):
         'favourites': []
         }
     return formatted_recipe
+
+
+def delete_image(image_name):
+    # Find image data in fs.files using recipe image_name
+    db_image = mongo.db.fs.files.find_one({
+                    'filename': image_name})
+
+    # Find the image data in the fs.chunks collection and delete
+    # using _id of file found in query above
+    mongo.db.fs.chunks.delete_one({'files_id': ObjectId(db_image['_id'])})
+
+    # Then delete image file meta data from fs.files
+    mongo.db.fs.files.delete_one({'filename': image_name})
 
 
 def get_average_rating(recipe_id):
