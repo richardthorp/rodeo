@@ -229,21 +229,64 @@ def edit_recipe(recipe_id):
             if form.validate_on_submit():
                 form_data_dict = dict(request.form)
                 formatted_recipe = format_recipe_data(form_data_dict)
-
-                # If an image file has been sent with form data...
-                if request.files['picture_upload']:
+                # If the 'picture_upload' input has been used, there is no
+                # existing image in the database to remove, so just format the
+                # name upload to db
+                print(form_data_dict)
+                if request.files.get('picture_upload'):
                     # Remove any special characters from the file name and
-                    # add username to file name to ensure name is unique
+                    # add user _id to file name to ensure name is unique
+                    user = mongo.db.users.find_one({
+                                        'username': session['username']})
+                    user_id = str(user['_id'])
                     file_name = "".join(char for char in
                                         request.files['picture_upload'].filename
-                                        if char.isalnum()) + session['username']
+                                        if char.isalnum()) + user_id
 
                     mongo.save_file(file_name,
                                     request.files['picture_upload'])
                     formatted_recipe['image_name'] = file_name
-                else:
+
+                # If the new_picture_upload input has been used, this means the
+                # image is to replace an existing user uploaded image, so find
+                # the original image and delete before formatting new image
+                # name and uploading to db
+                elif request.files.get('new_picture_upload') and form_data_dict['image_options'] == 'new_image':
+                    # Find image data in fs.files using recipe image_name
+                    db_image = mongo.db.fs.files.find_one({
+                        'filename': recipe['image_name']})
+
+                    # Find the image data in the fs.chunks collection and delete
+                    # using _id of file found in query above
+                    mongo.db.fs.chunks.delete_one({'files_id': ObjectId(db_image['_id'])})
+
+                    # Then delete image file meta data from fs.files
+                    mongo.db.fs.files.delete_one({'filename': recipe['image_name']})
+
+                    user = mongo.db.users.find_one({
+                                        'username': session['username']})
+                    user_id = str(user['_id'])
+                    file_name = "".join(char for char in
+                                        request.files['new_picture_upload'].filename
+                                        if char.isalnum()) + user_id
+                    mongo.save_file(file_name, request.files['new_picture_upload'])
+                    formatted_recipe['image_name'] = file_name
+
+                # User had uploaded an image but now wants to use the default image - 
+                # Delete existing image data from db and set new image to default
+                elif form_data_dict['image_options'] == 'default_image':
+                    db_image = mongo.db.fs.files.find_one({
+                        'filename': recipe['image_name']})
+
+                    # Find the image data in the fs.chunks collection and delete
+                    # using _id of file found in query above
+                    mongo.db.fs.chunks.delete_many({'files_id': ObjectId(db_image['_id'])})
+
+                    # Then delete image file meta data from fs.files
+                    mongo.db.fs.files.delete_one({'filename': recipe['image_name']})
                     formatted_recipe['image_name'] = 'defaultrecipeimagepngRodeo'
 
+                print(formatted_recipe)
                 # Update recipe in DB
                 mongo.db.recipes.update_one({'_id': ObjectId(recipe_id)},
                                             {'$set': formatted_recipe})
@@ -373,6 +416,7 @@ def format_recipe_data(form_data_dict):
         'instructions': instructions,
         'added_by': session['username'],
         'ratings': {},
+        'average_rating': 0,
         'favourites': []
         }
     return formatted_recipe

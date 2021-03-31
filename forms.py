@@ -58,7 +58,7 @@ class Search_and_filter_form(FlaskForm):
                                               ('Meat', 'Meat'),
                                               ('Vegetarian', 'Vegetarian'),
                                               ('Vegan', 'Vegan')],
-                                                default='All')
+                                              default='All')
     cheap_checkbox = BooleanField('Cheap', render_kw={"value":
                                                       "Cheap"})
     gluton_free_checkbox = BooleanField('Gluton Free',
@@ -101,6 +101,6 @@ class Add_recipe_form(FieldsRequiredForm):
                          validators=[InputRequired()],
                          render_kw={"type": "number", "min": "1"})
     picture_upload = FileField('Upload Picture')
+    new_picture_upload = FileField('New Picture Upload')
     add_recipe_button = SubmitField(render_kw={"value": "Add Recipe"})
     edit_recipe_button = SubmitField(render_kw={"value": "Edit Recipe"})
-

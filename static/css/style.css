@@ -683,7 +683,8 @@ nav {
 .select-file-button {
     font-size: 0.6rem;
     padding: 3px;
-    }
+    cursor: pointer;
+}
  
 #add-recipe-button {
     font-size: 2.5rem;

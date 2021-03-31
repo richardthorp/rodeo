@@ -70,10 +70,14 @@ $(".recipe-card-title").each(function () {
     }
 })
 
-/* Get the name of the file selcted in the file input and render to page */
+/* Get the name of the file selcted in the file input on add and edit recipe page and render to page */
 $("#picture_upload").change(function () {
     $("#selected-file").text($("#picture_upload").val().split("\\").pop())
 })
+$("#new_picture_upload").change(function () {
+    $("#selected-file").text($("#new_picture_upload").val().split("\\").pop())
+})
+
 
 // Make 'favourite-recipe' checkbox auto submit when clicked
 $(".trigger-form-send").on('click', function () {
@@ -149,6 +153,7 @@ $(".copyright span").text(function() {
     return year;
 })
 
+/* Render appropriate image or file input on edit_recipe */
 $("input[name='image_options']").change(function () {
     if ($("#keep_image")[0].checked === true) {
         $("#keep-image-preview").show();

@@ -165,27 +165,28 @@
                 <div class="col-12 mb-2">
                     {% if recipe.image_name == 'defaultrecipeimagepngRodeo' %}
                     <h6 class="form-details">Add an image (optional)</h6>
+                    {{ form.picture_upload(class="hidden-input") }}
                     <label for="picture_upload" class="custom-button select-file-button mt-1 mb-2">Select File</label>
                     <span id="selected-file"></span>
                     {% else %}
                     <h6 class="form-details">Add an image</h6>
                     <div>
-                        <input type="radio" name="image_options" id="keep_image" checked>
+                        <input type="radio" name="image_options" id="keep_image" value="keep_image" checked>
                         <label for="keep_image">Keep existing image</label>
                         <img id="keep-image-preview" class="image-preview" src="{{ url_for('get_image', image_name = recipe.image_name) }}" alt="">
                     </div>
                     <div>
-                        <input type="radio" name="image_options" id="default_image">
+                        <input type="radio" name="image_options" id="default_image" value="default_image">
                         <label for="default_image">Use default image</label>
                         <img id="default-image-preview" class="image-preview" src="/static/images/defaultrecipeimagepngRodeo.jpg" alt="">
                     </div>
                     <div>
-                        <input type="radio" name="image_options" id="new_image">
+                        <input type="radio" name="image_options" id="new_image" value="new_image">
                         <label for="new_image">Add new image</label>
                     </div>
                     <div class="add-image-div">
-                        {{ form.picture_upload(class="hidden-input") }}
-                        <label for="picture_upload" class="custom-button select-file-button mt-1 mb-2">Select
+                        {{ form.new_picture_upload(class="hidden-input") }}
+                        <label for="new_picture_upload" class="custom-button select-file-button mt-1 mb-2">Select
                             File</label>
                         <span id="selected-file"></span>
                     </div>
