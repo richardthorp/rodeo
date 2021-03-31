@@ -148,3 +148,20 @@ $(".copyright span").text(function() {
     let year = y.getFullYear();
     return year;
 })
+
+$("input[name='image_options']").change(function () {
+    if ($("#keep_image")[0].checked === true) {
+        $("#keep-image-preview").show();
+        $("#default-image-preview").hide();
+        $(".add-image-div").hide();
+    } else if ($("#default_image")[0].checked === true){
+        $("#default-image-preview").show();
+        $("#keep-image-preview").hide();
+        $(".add-image-div").hide();
+    }
+    else {
+        $(".add-image-div").show();
+        $("#keep-image-preview").hide();
+        $("#default-image-preview").hide();
+    }
+})

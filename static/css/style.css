@@ -698,6 +698,17 @@ nav {
 
 }
 
+#keep-image-preview {
+    display: block;
+}
+.add-image-div, #default-image-preview{
+    display: none;
+}
+
+.image-preview {
+    width: 100px;
+}
+
 /*-----------------------------------------------------MEDIA QUERIES */
 @media screen and (max-width: 576px){
     #logo {

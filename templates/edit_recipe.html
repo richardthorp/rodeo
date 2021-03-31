@@ -1,177 +1,206 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="container-fluid block-content-container">
-<h1 class="logo-font text-center header">Edit Recipe</h1>
-<!-- ADD RECIPE FORM -->
-<form method="POST" action="{{ url_for('edit_recipe', recipe_id=recipe._id)}}" enctype="multipart/form-data">
-    {{ form.csrf_token }}
-    <div class="row rounded-container form-container mx-auto pt-2">
-        <div class="col-12">
-            <div class="row">
-                <div class="col-12">
-                    <h6 class="form-details">Recipe name :</h6>
-                    <div class="col">
-                        {{ form.recipe_name(class="form-input small-input", value=recipe.name) }}
-                    </div>
-                </div>
-            </div>
-            <hr>
-            <div class="row">
-                <div class="col-12">
-                    <h6 class="form-details">Please select an option below :</h6>
-                    <div class="recipe-type-radio">
-                        <ul id="recipe_type">
-                            {% if recipe.details.recipe_type == 'Meat' %}
-                            <li><input id="recipe_type-0" name="recipe_type" required type="radio" value="Meat" checked>
-                                <label for="recipe_type-0">Meat</label></li>
-                            <li><input id="recipe_type-1" name="recipe_type" required type="radio" value="Vegetarian">
-                                <label for="recipe_type-1">Vegetarian</label></li>
-                            <li><input id="recipe_type-2" name="recipe_type" required type="radio" value="Vegan">
-                                <label for="recipe_type-2">Vegan</label></li>
-                            {% elif recipe.details.recipe_type == 'Vegetarian' %}
-                            <li><input id="recipe_type-0" name="recipe_type" required type="radio" value="Meat">
-                                <label for="recipe_type-0">Meat</label></li>
-                            <li><input id="recipe_type-1" name="recipe_type" required type="radio" value="Vegetarian"
-                                    checked>
-                                <label for="recipe_type-1">Vegetarian</label></li>
-                            <li><input id="recipe_type-2" name="recipe_type" required type="radio" value="Vegan">
-                                <label for="recipe_type-2">Vegan</label></li>
-                            {% elif recipe.details.recipe_type == 'Vegan' %}
-                            <li><input id="recipe_type-0" name="recipe_type" required type="radio" value="Meat">
-                                <label for="recipe_type-0">Meat</label></li>
-                            <li><input id="recipe_type-1" name="recipe_type" required type="radio" value="Vegetarian">
-                                <label for="recipe_type-1">Vegetarian</label></li>
-                            <li><input id="recipe_type-2" name="recipe_type" required type="radio" value="Vegan"
-                                    checked>
-                                <label for="recipe_type-2">Vegan</label></li>
-                            {% endif %}
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <hr>
-            <div class="row">
-                <div class="col-12 mb-2">
-                    <h6 class="form-details">Please tick all that apply :</h6>
-                    <div class="recipe-type-filters">
-                        <div class="filter-option">
-                            {% if 'Cheap' in recipe.details.values() %}
-                            {{ form.cheap_checkbox(checked="") }}
-                            {{ form.cheap_checkbox.label() }}
-                            {% else %}
-                            {{ form.cheap_checkbox() }}
-                            {{ form.cheap_checkbox.label() }}
-                            {% endif %}
-                        </div>
-                        <div class="filter-option">
-                            {% if 'Gluton Free' in recipe.details.values() %}
-                            {{ form.gluton_free_checkbox(checked="") }}
-                            {{ form.gluton_free_checkbox.label() }}
-                            {% else %}
-                            {{ form.gluton_free_checkbox() }}
-                            {{ form.gluton_free_checkbox.label() }}
-                            {% endif %}
-                        </div>
-                        <div class="filter-option">
-                            {% if 'Fakeaway' in recipe.details.values() %}
-                            {{ form.fakeaway_checkbox(checked="") }}
-                            {{ form.fakeaway_checkbox.label() }}
-                            {% else %}
-                            {{ form.fakeaway_checkbox() }}
-                            {{ form.fakeaway_checkbox.label() }}
-                            {% endif %}
-                        </div>
-                        <div class="filter-option">
-                            {% if 'Healthy' in recipe.details.values() %}
-                            {{ form.healthy_checkbox(checked="") }}
-                            {{ form.healthy_checkbox.label() }}
-                            {% else %}
-                            {{ form.healthy_checkbox() }}
-                            {{ form.healthy_checkbox.label() }}
-                            {% endif %}
-                        </div>
-                        <div class="filter-option">
-                            {% if 'Quick' in recipe.details.values() %}
-                            {{ form.quick_checkbox(checked="") }}
-                            {{ form.quick_checkbox.label() }}
-                            {% else %}
-                            {{ form.quick_checkbox() }}
-                            {{ form.quick_checkbox.label() }}
-                            {% endif %}
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <p class="sub-header mt-3 mt-lg-4 text-center">Please list your ingredients and cooking instructions here.<br>
-        If you need more boxes, click the <span class="add-row-btn col-12"><i class="fas fa-plus-circle"></i></span>
-        button.</p>
-
-    <div class="rounded-container form-container mx-auto">
-        <!-- INGREDIENTS AND QUANTITY -->
-        <div class="row mx-auto pt-2">
-            <div class="col-12 ingredients-container">
-                <h6 class="text-left form-details">Ingredients</h6>
-                {% for ingredient in recipe.ingredients %}
-                {% if loop.index0 == 0 %}
-                {{ form.ingredient_1(class="form-input small-input edit-recipe-ingredient", id='ingredient_1', value=recipe.ingredients[loop.index0]) }}
-                {% elif loop.index0 == 1 %}
-                {{ form.ingredient_2(class="form-input small-input edit-recipe-ingredient", id='ingredient_2', value=recipe.ingredients[loop.index0]) }}
-                {% elif loop.index0 == 2 %}
-                {{ form.ingredient_3(class="form-input small-input edit-recipe-ingredient", id='ingredient_3', value=recipe.ingredients[loop.index0]) }}
-                {% else %}
-                {{ form.ingredient_optional(class="form-input small-input edit-recipe-ingredient", id='ingredient_' + loop.index|string, value=recipe.ingredients[loop.index0]) }}
-                {% endif %}
-                {% endfor %}
-            </div>
-            <div id="add-ingredient-row" class="add-row-btn col-12">
-                <i id="add-ingredient-button" class="fas fa-plus-circle"></i>
-            </div>
-        </div>
-        <hr>
-        <!-- INSTRUCTIONS -->
-        <div class="row mx-auto">
-            <div class="col-12 instructions-container edit-recipe-instructions">
-                <h6 class="text-left form-details">Instructions</h6>
-                {% for instruction in recipe.instructions %}
-                {% if loop.index0 == 0 %}
-                {{ form.instruction_1(class="form-input auto-resize edit-recipe-instruction", placeholder=recipe.instructions[loop.index0])}}
-                {% elif loop.index0 == 1 %}
-                {{ form.instruction_2(class="form-input auto-resize edit-recipe-instruction", placeholder=recipe.instructions[loop.index0])}}
-                {% else %}
-                {{ form.instruction_optional(class="form-input auto-resize edit-recipe-instruction", 
-                                             id="instruction_" + loop.index|string, placeholder=recipe.instructions[loop.index0])}}
-                {% endif %}
-                {% endfor %}
-            </div>
-            <div id="add-instructions-row" class="add-row-btn col-12">
-                <i id="add-instruction-button" class="fas fa-plus-circle"></i>
-            </div>
-        </div>
-        <hr>
-        <!-- HOW MANY PEOPLE / IMAGE UPLOAD / ADD BUTTON ROW -->
-        <div class="row mx-auto">
+    <h1 class="logo-font text-center header">Edit Recipe</h1>
+    <!-- ADD RECIPE FORM -->
+    <form method="POST" action="{{ url_for('edit_recipe', recipe_id=recipe._id)}}" enctype="multipart/form-data">
+        {{ form.csrf_token }}
+        <div class="row rounded-container form-container mx-auto pt-2">
             <div class="col-12">
-                <h6 class="form-details">How many people does it feed?</h6>
-                {{ form.feeds(class="number-input text-center", value=recipe.feeds) }}
+                <div class="row">
+                    <div class="col-12">
+                        <h6 class="form-details">Recipe name :</h6>
+                        <div class="col">
+                            {{ form.recipe_name(class="form-input small-input", value=recipe.name) }}
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-12">
+                        <h6 class="form-details">Please select an option below :</h6>
+                        <div class="recipe-type-radio">
+                            <ul id="recipe_type">
+                                {% if recipe.details.recipe_type == 'Meat' %}
+                                <li><input id="recipe_type-0" name="recipe_type" required type="radio" value="Meat"
+                                        checked>
+                                    <label for="recipe_type-0">Meat</label></li>
+                                <li><input id="recipe_type-1" name="recipe_type" required type="radio"
+                                        value="Vegetarian">
+                                    <label for="recipe_type-1">Vegetarian</label></li>
+                                <li><input id="recipe_type-2" name="recipe_type" required type="radio" value="Vegan">
+                                    <label for="recipe_type-2">Vegan</label></li>
+                                {% elif recipe.details.recipe_type == 'Vegetarian' %}
+                                <li><input id="recipe_type-0" name="recipe_type" required type="radio" value="Meat">
+                                    <label for="recipe_type-0">Meat</label></li>
+                                <li><input id="recipe_type-1" name="recipe_type" required type="radio"
+                                        value="Vegetarian" checked>
+                                    <label for="recipe_type-1">Vegetarian</label></li>
+                                <li><input id="recipe_type-2" name="recipe_type" required type="radio" value="Vegan">
+                                    <label for="recipe_type-2">Vegan</label></li>
+                                {% elif recipe.details.recipe_type == 'Vegan' %}
+                                <li><input id="recipe_type-0" name="recipe_type" required type="radio" value="Meat">
+                                    <label for="recipe_type-0">Meat</label></li>
+                                <li><input id="recipe_type-1" name="recipe_type" required type="radio"
+                                        value="Vegetarian">
+                                    <label for="recipe_type-1">Vegetarian</label></li>
+                                <li><input id="recipe_type-2" name="recipe_type" required type="radio" value="Vegan"
+                                        checked>
+                                    <label for="recipe_type-2">Vegan</label></li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-12 mb-2">
+                        <h6 class="form-details">Please tick all that apply :</h6>
+                        <div class="recipe-type-filters">
+                            <div class="filter-option">
+                                {% if 'Cheap' in recipe.details.values() %}
+                                {{ form.cheap_checkbox(checked="") }}
+                                {{ form.cheap_checkbox.label() }}
+                                {% else %}
+                                {{ form.cheap_checkbox() }}
+                                {{ form.cheap_checkbox.label() }}
+                                {% endif %}
+                            </div>
+                            <div class="filter-option">
+                                {% if 'Gluton Free' in recipe.details.values() %}
+                                {{ form.gluton_free_checkbox(checked="") }}
+                                {{ form.gluton_free_checkbox.label() }}
+                                {% else %}
+                                {{ form.gluton_free_checkbox() }}
+                                {{ form.gluton_free_checkbox.label() }}
+                                {% endif %}
+                            </div>
+                            <div class="filter-option">
+                                {% if 'Fakeaway' in recipe.details.values() %}
+                                {{ form.fakeaway_checkbox(checked="") }}
+                                {{ form.fakeaway_checkbox.label() }}
+                                {% else %}
+                                {{ form.fakeaway_checkbox() }}
+                                {{ form.fakeaway_checkbox.label() }}
+                                {% endif %}
+                            </div>
+                            <div class="filter-option">
+                                {% if 'Healthy' in recipe.details.values() %}
+                                {{ form.healthy_checkbox(checked="") }}
+                                {{ form.healthy_checkbox.label() }}
+                                {% else %}
+                                {{ form.healthy_checkbox() }}
+                                {{ form.healthy_checkbox.label() }}
+                                {% endif %}
+                            </div>
+                            <div class="filter-option">
+                                {% if 'Quick' in recipe.details.values() %}
+                                {{ form.quick_checkbox(checked="") }}
+                                {{ form.quick_checkbox.label() }}
+                                {% else %}
+                                {{ form.quick_checkbox() }}
+                                {{ form.quick_checkbox.label() }}
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <hr>
+        <p class="sub-header mt-3 mt-lg-4 text-center">Please list your ingredients and cooking instructions here.<br>
+            If you need more boxes, click the <span class="add-row-btn col-12"><i class="fas fa-plus-circle"></i></span>
+            button.</p>
+
+        <div class="rounded-container form-container mx-auto">
+            <!-- INGREDIENTS AND QUANTITY -->
+            <div class="row mx-auto pt-2">
+                <div class="col-12 ingredients-container">
+                    <h6 class="text-left form-details">Ingredients</h6>
+                    {% for ingredient in recipe.ingredients %}
+                    {% if loop.index0 == 0 %}
+                    {{ form.ingredient_1(class="form-input small-input edit-recipe-ingredient", id='ingredient_1', value=recipe.ingredients[loop.index0]) }}
+                    {% elif loop.index0 == 1 %}
+                    {{ form.ingredient_2(class="form-input small-input edit-recipe-ingredient", id='ingredient_2', value=recipe.ingredients[loop.index0]) }}
+                    {% elif loop.index0 == 2 %}
+                    {{ form.ingredient_3(class="form-input small-input edit-recipe-ingredient", id='ingredient_3', value=recipe.ingredients[loop.index0]) }}
+                    {% else %}
+                    {{ form.ingredient_optional(class="form-input small-input edit-recipe-ingredient", id='ingredient_' + loop.index|string, value=recipe.ingredients[loop.index0]) }}
+                    {% endif %}
+                    {% endfor %}
+                </div>
+                <div id="add-ingredient-row" class="add-row-btn col-12">
+                    <i id="add-ingredient-button" class="fas fa-plus-circle"></i>
+                </div>
+            </div>
+            <hr>
+            <!-- INSTRUCTIONS -->
+            <div class="row mx-auto">
+                <div class="col-12 instructions-container edit-recipe-instructions">
+                    <h6 class="text-left form-details">Instructions</h6>
+                    {% for instruction in recipe.instructions %}
+                    {% if loop.index0 == 0 %}
+                    {{ form.instruction_1(class="form-input auto-resize edit-recipe-instruction", placeholder=recipe.instructions[loop.index0])}}
+                    {% elif loop.index0 == 1 %}
+                    {{ form.instruction_2(class="form-input auto-resize edit-recipe-instruction", placeholder=recipe.instructions[loop.index0])}}
+                    {% else %}
+                    {{ form.instruction_optional(class="form-input auto-resize edit-recipe-instruction", 
+                                             id="instruction_" + loop.index|string, placeholder=recipe.instructions[loop.index0])}}
+                    {% endif %}
+                    {% endfor %}
+                </div>
+                <div id="add-instructions-row" class="add-row-btn col-12">
+                    <i id="add-instruction-button" class="fas fa-plus-circle"></i>
+                </div>
+            </div>
+            <hr>
+            <!-- HOW MANY PEOPLE / IMAGE UPLOAD / ADD BUTTON ROW -->
+            <div class="row mx-auto">
+                <div class="col-12">
+                    <h6 class="form-details">How many people does it feed?</h6>
+                    {{ form.feeds(class="number-input text-center", value=recipe.feeds) }}
+                </div>
+            </div>
+            <hr>
+            <div class="row mx-auto">
+                <div class="col-12 mb-2">
+                    {% if recipe.image_name == 'defaultrecipeimagepngRodeo' %}
+                    <h6 class="form-details">Add an image (optional)</h6>
+                    <label for="picture_upload" class="custom-button select-file-button mt-1 mb-2">Select File</label>
+                    <span id="selected-file"></span>
+                    {% else %}
+                    <h6 class="form-details">Add an image</h6>
+                    <div>
+                        <input type="radio" name="image_options" id="keep_image" checked>
+                        <label for="keep_image">Keep existing image</label>
+                        <img id="keep-image-preview" class="image-preview" src="{{ url_for('get_image', image_name = recipe.image_name) }}" alt="">
+                    </div>
+                    <div>
+                        <input type="radio" name="image_options" id="default_image">
+                        <label for="default_image">Use default image</label>
+                        <img id="default-image-preview" class="image-preview" src="/static/images/defaultrecipeimagepngRodeo.jpg" alt="">
+                    </div>
+                    <div>
+                        <input type="radio" name="image_options" id="new_image">
+                        <label for="new_image">Add new image</label>
+                    </div>
+                    <div class="add-image-div">
+                        {{ form.picture_upload(class="hidden-input") }}
+                        <label for="picture_upload" class="custom-button select-file-button mt-1 mb-2">Select
+                            File</label>
+                        <span id="selected-file"></span>
+                    </div>
+                    {% endif %}
+
+
+                </div>
+            </div>
+        </div>
         <div class="row mx-auto">
-            <div class="col-12 mb-2">
-                <h6 class="form-details">Add an image (optional)</h6>
-                {{ form.picture_upload(class="hidden-input") }}
-                <label for="picture_upload" class="custom-button select-file-button mt-1 mb-2">Select File</label>
-                <span id="selected-file">{{ recipe.image_name }}</span>
+            <div class="col d-flex ">
+                {{ form.edit_recipe_button(class="custom-button mx-auto", id="add-recipe-button") }}
             </div>
         </div>
-    </div>
-    <div class="row mx-auto">
-        <div class="col d-flex ">
-            {{ form.edit_recipe_button(class="custom-button mx-auto", id="add-recipe-button") }}
-        </div>
-    </div>
-</form>
+
+    </form>
 </div>
 {% endblock %}
