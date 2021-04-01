@@ -18,9 +18,9 @@ body {
     max-width: 2800px;
 }
 
-a {
+/* a {
     color: inherit;
-}
+} */
 
 a:hover {
     text-decoration: none;
@@ -310,6 +310,7 @@ nav {
 
 .star {
     font-size: 1.5rem;
+    padding: 0 3px;
 }
 
 .blank-star {
@@ -329,7 +330,7 @@ nav {
 }
 
 .user-rating label, .modal-average-rating span {
-    padding: 0 4px;
+    padding: 0 3px;
 }
 
 .user-rating:not(:checked) > input {
