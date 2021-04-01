@@ -10,7 +10,7 @@
 
 body {
     min-width: 300px;
-    background-color: #E0CA3C;
+    background-color: #e0ca3c;
     font-family: 'Open Sans';
 }
 
@@ -421,6 +421,10 @@ nav {
     display: block;
     width: 100%;
     margin: 5px 0;
+}
+
+.form-input:focus {
+    outline: none;
 }
 
 .form-input-label {
