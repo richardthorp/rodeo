@@ -29,6 +29,8 @@ def index():
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
+    if session['username']:
+        return redirect(url_for('my_recipes'))
     form = Registration_form()
     if request.method == 'POST':
         if form.validate_on_submit():
@@ -65,6 +67,8 @@ def register():
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
+    if session['username']:
+        return redirect(url_for('my_recipes'))
     form = Login_form()
     if form.validate_on_submit():
         email_or_username = request.form.get("email_or_username")
