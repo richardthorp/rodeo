@@ -95,14 +95,14 @@
                 </a>
                 <div class="recipe-card-footer row">
                     <div class="col-6 text-center recipe-card-ratings">
-                        <h6 class="sub-header">Average<br>Rating</h6>
+                        <h6 class="sub-header mt-3">Average<br>Rating</h6>
                         <div class="ratings-container">
                             {{ recipe.average_rating }}
                         </div>
                     </div>
                     <!-- ADD TO FAVOURITES SECTION -->
                     <div class="col-6 text-center">
-                        <h6 class="sub-header">Favourite<br>Recipe?</h6>
+                        <h6 class="sub-header mt-3">Favourite<br>Recipe?</h6>
                         <!-- If user is logged in -->
                         {% if session['username'] %}
                         <form class="trigger-form-send" method="POST"

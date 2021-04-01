@@ -118,13 +118,13 @@
                 </a>
                 <div class="recipe-card-footer row">
                     <div class="col-6 text-center recipe-card-ratings">
-                        <h6 class="sub-header">Average<br>Rating</h6>
+                        <h6 class="sub-header mt-3">Average<br>Rating</h6>
                         <div class="ratings-container">
                             {{ recipe.average_rating }}
                         </div>
                     </div>
                     <div class="col-6 text-center">
-                        <h6 class="sub-header">Add to<br>Favourites</h6>
+                        <h6 class="sub-header mt-3">Add to<br>Favourites</h6>
                         {% if session['username'] %}
                         <form class="trigger-form-send" method="POST"
                             action="{{ url_for('toggle_favourite', recipe_id=recipe._id, return_page='my_recipes') }}">

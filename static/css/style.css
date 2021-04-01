@@ -61,12 +61,7 @@ a:hover {
      display: none;
 }
 
-.sign-in-popover {
-    color: initial;
-    
-}
-
-.sign-in-popover:hover {
+.sign-in-popover, .sign-in-popover:hover {
     color: initial;
 }
 
@@ -100,7 +95,7 @@ nav {
 }
 
 .navbar {
-    padding: 0px;;
+    padding: 0px;
 }
 
 .navbar-collapse {
@@ -112,8 +107,6 @@ nav {
 #logo {
   color: #FFF;
   font-size: 4rem;
-  /* position: relative;
-  bottom: 14px; */
   padding-left: 10px;
 }
 
@@ -128,8 +121,6 @@ nav {
 .custom-nav-links, .footer-links {
   font-family: 'Young Heart';
   color: #FFFFFFC7;
-  /* position: relative;
-  bottom: 5px; */
 }
 
 .custom-nav-links {
@@ -154,8 +145,6 @@ nav {
 
 .copyright {
     color: #ffffffc0;
-    /* position: relative;
-    bottom: 5px; */
 }
 
 /*------------------------------------------------------- RECIPE CARD */
@@ -169,12 +158,12 @@ nav {
     display: flex;
     flex-direction: column;
 }
-.recipe-card .col-6 {
+/* .recipe-card .col-6 {
     padding: 0 5px;
-}
-.recipe-card h6 {
+} */
+/* .recipe-card h6 {
     margin-top: 20px;
-}
+} */
 
 .recipe-card hr {
     width: 80%;
@@ -186,7 +175,6 @@ nav {
 
 .recipe-card form i {
     cursor: pointer;
-
 }
 
 .recipe-card-footer {
@@ -196,10 +184,10 @@ nav {
     bottom: 10px; */
 }
 
-.recipe-card-ratings {
+/* .recipe-card-ratings {
     position: relative;
     left: 5px;
-}
+} */
 
 .recipe-card-ratings .star i {
     font-size: 1.3rem;
@@ -219,9 +207,9 @@ nav {
 .recipe-card img {
     position: absolute;
     top: 0;
-    left: 0;
+    /* left: 0;
     bottom: 0;
-    right: 0;
+    right: 0; */
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -238,9 +226,9 @@ nav {
     /* margin-bottom: 120px; */
 }
 
-.recipe-card form {
+/* .recipe-card form {
     height: 55px;;
-}
+} */
 
 .shrink-header {
     font-size: 1.5rem;
@@ -267,10 +255,10 @@ nav {
 
 .rating-row {
     max-width: 800px;
-    align-items: baseline;
+    /* align-items: baseline; */
 }
 
-.log-in-prompt {
+/* .log-in-prompt {
     margin-bottom: 20px;
     border: 3px solid #136F63;
     border-radius: 15px;
@@ -289,20 +277,23 @@ nav {
 }
 
 .log-in-prompt a {
+    color: #0077cc;
     font-size: 1.4rem;
-}
+} */
 
-.ratings-button p {
+/* .ratings-button p {
     margin: 0;
     font-size: 0.8rem;
-}
+} */
 
-.rating-container {
+/* .rating-container {
     margin-left: 5px;
-}
-.your-rating {
+} */
+
+/* .your-rating {
     max-width: 200px;
-}
+} */
+
 .rating-form-md {
     display: flex;
     flex-direction: column
@@ -370,10 +361,11 @@ nav {
 }
 
 /* END OF COPIED CSS */
-.add-rating-btn {
+
+/* .add-rating-btn {
     float: left;
     clear: both;
-}
+} */
 
 /* #favourite-checkbox-checked, #favourite-checkbox-unchecked {
     display: none;
@@ -471,9 +463,9 @@ nav {
     max-width: 130px;
 }
 
-.form-header {
+/* .form-header {
     margin-top: 20px;
-}
+} */
 
 .form-details {
     font-family: 'Bevan';
@@ -506,7 +498,7 @@ nav {
     margin-bottom: 8px;
 }
 
-.search-container .form-input {
+.search-container .form-input, .small-input {
     max-width: 400px;
 }
 
@@ -532,10 +524,10 @@ nav {
     padding: 0 10px;
 }
 
-.recipe-type-filters {
+/* .recipe-type-filters {
     list-style: none;
 
-}
+} */
 
 .filter-dropdown {
     font-family: 'Open Sans';
@@ -582,9 +574,9 @@ nav {
     padding: 20px 20px 20px 50px;
 }
 
-.inspiration {
+/* .inspiration {
     background-color: #E0CA3C;
-}
+} */
 
 .more-recipes-link {
     background-color: #FFF6BC;
@@ -645,12 +637,12 @@ nav {
     padding: 5px 5px 0 5px;
 }
 
-.small-input {
+/* .small-input {
     max-width: 400px;
-}
+} */
 
 .recipe-type-radio ul {
-    max-width: 400px;
+    /* max-width: 400px; */
     padding: 0;
 }
 
@@ -666,6 +658,7 @@ nav {
 
 .recipe-type-filters .filter-option {
     display: inline-block;
+    padding-left: 24px;
 }
 
 .form-container {
@@ -712,9 +705,9 @@ nav {
 
 /*-----------------------------------------------------MEDIA QUERIES */
 @media screen and (max-width: 576px){
-    #logo {
+    /* #logo {
         bottom: 8px;
-    }
+    } */
     .header {
         font-size: 2rem;
         line-height: 50px;
@@ -812,7 +805,7 @@ nav {
         margin: 20px 0;
     }
     .rating-row {
-    align-items: center;
+        align-items: center;
     }
     .recipe-card-ratings .star i {
         font-size: 1.2rem;
@@ -957,19 +950,19 @@ nav {
         max-width: none;
     }
     .recipe-card-title {
-    font-size: 3.5rem;
+        font-size: 3.5rem;
     }
     .shrink-header {
-    font-size: 3rem;
+        font-size: 3rem;
     }
     #slogan {
-    font-size: 10rem;
+        font-size: 10rem;
     }
     .about-title {
-    font-size: 8rem;
+        font-size: 8rem;
     }
     .about-blurb {
-    font-size: 2rem;
+        font-size: 2rem;
     }
     .about-row {
         min-height: 500px;
@@ -979,6 +972,6 @@ nav {
         line-height: 120px;
     }
     .more-recipes-link {
-    font-size: 2.5rem;
+        font-size: 2.5rem;
     }
 }
