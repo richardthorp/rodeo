@@ -33,6 +33,7 @@
         </div>
     </div>
     {% if recipes.count() == 0 %}
+    <!-- User has no added recipes -->
     <div class="add-fav-or-recipe">
         <h2 class="sub-header text-center mt-5">Add Your Recipes</h2>
         <p class="text-center"><strong>Save your recipes with the community by clicking the <a
@@ -94,6 +95,7 @@
         </div>
     </div>
     {% if filters %}
+    <!-- User has used search or filter - provide 'remove searchand filter' button -->
     <a href="{{ url_for('all_recipes') }}">
         <div class="text-center mt-3 custom-button remove-filters-button mx-auto">
             Remove Search terms and Filters
@@ -101,10 +103,12 @@
     </a>
     {% endif %}
     <div class="row row-eq-height">
+        <!-- RECIPE CARDS -->
         {% for recipe in recipes %}
         <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center">
             <div class="recipe-card added-recipe-card">
                 <a href="{{url_for('recipe_page', recipe_id=recipe._id)}}">
+                    <!-- RECIPE CARD IMAGE -->
                     <div class="recipe-image-container">
                         {% if recipe.image_name == 'default-image' %}
                         <img src="/static/images/default-image.jpg" alt="Illustration of Rodeo Hot Sauce bottle">
@@ -112,45 +116,68 @@
                         <img src="{{ url_for('get_image', image_name = recipe.image_name) }}" alt="">
                         {% endif %}
                     </div>
-
+                    <!-- RECIPE TITLE -->
                     <h4 class="recipe-card-title logo-font text-center">{{ recipe.name }}</h4>
                 </a>
                 <div class="recipe-card-footer row">
+                    <!-- AVERAGE RATING SECTION -->
                     <div class="col-6 text-center recipe-card-ratings">
                         <h6 class="sub-header mt-3">Average<br>Rating</h6>
                         <div class="ratings-container">
+                            <!-- Stars rendered in scripts.js -->
                             {{ recipe.average_rating }}
                         </div>
                     </div>
+                    <!-- ADD TO FAVOURITES SECTION -->
                     <div class="col-6 text-center">
-                        <h6 class="sub-header mt-3">Add to<br>Favourites</h6>
-                        <i class="fas fa-heart"></i>
+                        <h6 class="sub-header mt-3">Favourite<br>Recipe?</h6>
+                        <!-- If user is logged in -->
+                        {% if session['username'] %}
+                        <form class="trigger-form-send" method="POST"
+                            action="{{ url_for('toggle_favourite', recipe_id=recipe._id, return_page='added_recipes') }}">
+                            <!-- If user has favourited this recipe previously, render solid heart icon -->
+                            {% if session['username'] in recipe.favourites %}
+                            <input type="checkbox" name="favourite" class="hidden-input"
+                                id="favourite-checkbox-checked-{{+ loop.index}}" value="delete_fav">
+                            <label for="favourite-checkbox-checked-{{+ loop.index}}"><i class="fas fa-heart"
+                                    data-toggle="tooltip" data-placement="bottom"
+                                    title="Remove from favourites"></i></label>
+                            <!-- If user has not favourited recipe, render outline heart icon -->
+                            {% else %}
+                            <input type="checkbox" name="favourite" class="hidden-input"
+                                id="favourite-checkbox-unchecked-{{+ loop.index}}" value="add_fav">
+                            <label for="favourite-checkbox-unchecked-{{+ loop.index}}"><i class="far fa-heart"
+                                    data-toggle="tooltip" data-placement="bottom" title="Add to favourites"></i></label>
+                            {% endif %}
+                        </form>
+                        <!-- User not logged in - provide popover with links to log in and register  -->
+                        {% else %}
+                        <a tabindex="0" class="sign-in-popover" role="button" data-toggle="popover" data-trigger="focus"
+                            data-placement="bottom" data-content="<a href='{{ url_for('login') }}'><b>LOG IN</b></a> or 
+                        <a href='{{ url_for('register') }}'><b>REGISTER</b></a> to save recipes to your favourites!">
+                            <i class="far fa-heart"></i>
+                        </a>
+                        {% endif %}
                     </div>
-                    <hr>
-                    <div class="col-12 text-center mb-1">
-                        <a href="{{ url_for('edit_recipe', recipe_id=recipe._id) }}"><button
-                                class="custom-button mr-3">Edit</button></a>
-                        <button class="delete-button ml-3" data-toggle="modal"
-                            data-target="#delete-recipe-modal-{{+loop.index}}">Delete</button>
-                    </div>
-                    <!-- DELETE RECIPE MODAL -->
-                    <div class="modal fade" id="delete-recipe-modal-{{+loop.index}}" tabindex="-1"
-                        aria-labelledby="delete-recipe-modal" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered">
-                            <div class="modal-content">
-                                <div class="modal-body text-center">
-                                    <strong>Are you sure you want to delete this recipe?<br>This cannot be
-                                        undone!</strong>
-                                </div>
-                                <div class="modal-footer justify-content-center">
-                                    <button type="button" class="custom-button" data-dismiss="modal">Close</button>
-                                    <a href="{{ url_for('delete_recipe', recipe_id=recipe._id) }}"><button type="button"
-                                            class="delete-button">Delete Recipe</button></a>
-                                </div>
+                </div>
+                <!-- DELETE RECIPE MODAL -->
+                <div class="modal fade" id="delete-recipe-modal-{{+loop.index}}" tabindex="-1"
+                    aria-labelledby="delete-recipe-modal" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-body text-center">
+                                <strong>Are you sure you want to delete this recipe?<br>This cannot be
+                                    undone!</strong>
+                            </div>
+                            <div class="modal-footer justify-content-center">
+                                <button type="button" class="custom-button" data-dismiss="modal">Close</button>
+                                <a href="{{ url_for('delete_recipe', recipe_id=recipe._id) }}"><button type="button"
+                                        class="delete-button">Delete Recipe</button></a>
                             </div>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
         {% endfor %}
