@@ -204,9 +204,10 @@ def add_recipe():
                     formatted_recipe['image_name'] = 'default-image'
 
                 # Insert recipe to DB
-                mongo.db.recipes.insert_one(formatted_recipe)
+                recipe_id = mongo.db.recipes.insert_one(formatted_recipe)
                 flash('Recipe added! Thank you!')
-                return redirect(url_for('added_recipes'))
+                return redirect(url_for('recipe_page',
+                                        recipe_id=recipe_id.inserted_id))
 
             # Invalid form...
             else:
