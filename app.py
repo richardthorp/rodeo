@@ -30,7 +30,7 @@ def index():
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
-    if session['username']:
+    if session.get('username'):
         return redirect(url_for('my_recipes'))
     form = Registration_form()
     if request.method == 'POST':
@@ -68,7 +68,7 @@ def register():
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
-    if session['username']:
+    if session.get('username'):
         return redirect(url_for('my_recipes'))
     form = Login_form()
     if form.validate_on_submit():
@@ -93,92 +93,108 @@ def login():
 def all_recipes():
     form = Search_and_filter_form()
     recipes = mongo.db.recipes.find()
-    if session.get('search_terms'):
-        filters = True
-        print(session['search_terms'])
-    else:
-        filters = False
     page = request.args.get('page', 1, type=int)
-    # If user uses search and filter form
-    if request.method != 'POST':
-        if page > 1:
-            recipes = mongo.db.recipes.find(session['search_terms']).skip((page - 1) * 9).limit(9)
-        else:
-            recipes = mongo.db.recipes.find(session['search_terms']).limit(9)
-
-    elif form.validate_on_submit():
-        page = 1
-        form_data = (dict(request.form))
-        session['search_terms'] = search_and_filter(form_data, 'all_recipes')
-        if page > 1:
-            recipes = mongo.db.recipes.find(session['search_terms']).skip((page - 1) * 9).limit(9)
-
-        else:
-            recipes = mongo.db.recipes.find(session['search_terms']).limit(9)
-        filters = True
+    session['search_terms'] = {}
+    if page > 1:
+        recipes = mongo.db.recipes.find(session['search_terms']).skip((page - 1) * 9).limit(9)
     else:
-        print('NOT VALID', form.errors)
+        recipes = mongo.db.recipes.find(session['search_terms']).limit(9)
 
     next_page = url_for('all_recipes', page=str(page + 1))
     prev_page = url_for('all_recipes', page=str(page - 1))
-    # max_page = math.ceil(mongo.db.recipes.count_documents({}) / 9 + 1)
-    max_page = math.ceil(recipes.count() / 9 + 1)
-    print(max_page)
+    max_page = math.ceil(recipes.count() / 9)
     return render_template("all_recipes.html", form=form, recipes=recipes,
                            next_page=next_page, prev_page=prev_page,
-                           max_page=max_page, page=page,
-                           filters=filters, clear_search=clear_search)
+                           max_page=max_page, page=page)
 
 
-@app.route('/clear_search')
-def clear_search():
+@app.route('/search_results/<return_page>', methods=["GET", "POST"])
+def search_results(return_page):
+    filters = True
+    form = Search_and_filter_form()
+    page = request.args.get('page', 1, type=int)
+    next_page = url_for('search_results',
+                        return_page=return_page, page=str(page + 1))
+    prev_page = url_for('search_results',
+                        return_page=return_page, page=str(page - 1))
+    if request.method == 'POST':
+        form_data = (dict(request.form))
+        session['search_terms'] = search_and_filter(form_data, return_page)
+
+    if page > 1:
+        recipes = mongo.db.recipes.find(
+                        session['search_terms']).skip((page - 1) * 9).limit(9)
+    else:
+        recipes = mongo.db.recipes.find(
+                        session['search_terms']).limit(9)
+
+    max_page = math.ceil(recipes.count() / 9)
+
+    return render_template(return_page + ".html", recipes=recipes, form=form,
+                           page=page, next_page=next_page, prev_page=prev_page,
+                           max_page=max_page, filters=filters)
+
+
+@app.route('/clear_search/<return_page>')
+def clear_search(return_page):
     session['search_terms'] = {}
-    return redirect(url_for('all_recipes'))
+    return redirect(url_for(return_page))
 
-
-# page = request.args.get('page', 1, type=int)
-# if page > 1:
-#     recipes = mongo.db.recipes.find().skip((page - 1) * 9).limit(9)
-# else:
-#     recipes = mongo.db.recipes.find().limit(9)
-# next_page = url_for('all_recipes', page=str(page + 1))
-# prev_page = url_for('all_recipes', page=str(page - 1))
-# pages = [*range(1, math.ceil(mongo.db.recipes.count() / 9) + 1)]                    
 
 @app.route("/my_recipes", methods=["GET", "POST"])
 def my_recipes():
-    if session.get('username'):
-        form = Search_and_filter_form()
-        recipes = mongo.db.recipes.find({"favourites": session['username']})
-        filters = False
-        if form.validate_on_submit():
-            form_data = (dict(request.form))
-            recipes = search_and_filter(form_data, 'favourite_recipes')
-            filters = True
-
-        return render_template("my_recipes.html", form=form, recipes=recipes,
-                               filters=filters)
-    else:
+    session['search_terms'] = {}
+    if not session.get('username'):
         flash('Please log in to add and favourite recipes')
         return redirect(url_for('login'))
+
+    form = Search_and_filter_form()
+    page = request.args.get('page', 1, type=int)
+    if page > 1:
+        recipes = mongo.db.recipes.find(
+            {'favourites': session['username']}).skip((page - 1) * 9).limit(9)
+    else:
+        recipes = mongo.db.recipes.find(
+            {'favourites': session['username']}).limit(9)
+
+    # page = request.args.get('page', 1, type=int)
+    next_page = url_for('all_recipes', page=str(page + 1))
+    prev_page = url_for('all_recipes', page=str(page - 1))
+    max_page = math.ceil(recipes.count() / 9)
+
+    return render_template("my_recipes.html", form=form, recipes=recipes,
+                           next_page=next_page, prev_page=prev_page,
+                           max_page=max_page)
 
 
 @app.route("/added_recipes", methods=["GET", "POST"])
 def added_recipes():
-    if session.get('username'):
-        form = Search_and_filter_form()
-        recipes = mongo.db.recipes.find({"added_by": session['username']})
-        filters = False
-
-        if form.validate_on_submit():
-            form_data = (dict(request.form))
-            recipes = search_and_filter(form_data, 'added_recipes')
-            filters = True
-        return render_template("added_recipes.html", form=form,
-                               recipes=recipes, filters=filters)
-    else:
+    session['search_terms'] = {}
+    if not session.get('username'):
         flash('Please log in to add and favourite recipes')
         return redirect(url_for('login'))
+
+    page = request.args.get('page', 1, type=int)
+    if page > 1:
+        recipes = mongo.db.recipes.find(
+            {'added_by': session['username']}).skip((page - 1) * 9).limit(9)
+    else:
+        recipes = mongo.db.recipes.find(
+            {'added_by': session['username']}).limit(9)
+    form = Search_and_filter_form()
+    next_page = url_for('added_recipes', page=str(page + 1))
+    prev_page = url_for('added_recipes', page=str(page - 1))
+    max_page = math.ceil(recipes.count() / 9)
+    # recipes = mongo.db.recipes.find({"added_by": session['username']})
+    # filters = False
+
+    # if form.validate_on_submit():
+    #     form_data = (dict(request.form))
+    #     recipes = search_and_filter(form_data, 'added_recipes')
+    #     filters = True
+    return render_template("added_recipes.html", form=form, recipes=recipes,
+                           next_page=next_page, prev_page=prev_page,
+                           max_page=max_page, page=page)
 
 
 def search_and_filter(form_data, page):

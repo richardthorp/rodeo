@@ -46,7 +46,7 @@
     <!-- SEARCH AND FILTER CONTAINER -->
     <div class="row search-container rounded-container mx-auto">
         <div class="col-12">
-            <form method="POST" action="">
+            <form method="POST" action="{{ url_for('search_results', return_page='my_recipes')}}">
                 <div class="row">
                     {{ form.hidden_tag() }}
                     <div class="col-12 col-sm-8">
@@ -96,7 +96,7 @@
         </div>
     </div>
     {% if filters %}
-    <a href="{{ url_for('all_recipes') }}">
+    <a href="{{ url_for('clear_search', return_page='my_recipes') }}">
         <div class="text-center mt-3 custom-button remove-filters-button mx-auto">
             Remove Search terms and Filters
         </div>
