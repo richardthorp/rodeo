@@ -610,6 +610,7 @@ nav {
 
 .my-recipe-buttons:hover {
     background-color: #FFF6BC;
+    color: #000;
 }
 
 .my-recipe-buttons i {

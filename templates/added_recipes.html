@@ -5,31 +5,25 @@
     <!-- MY RECIPES NAVIGATION BUTTONS -->
     <div class="row d-flex justify-content-around mt-3 mt-lg-5 no-gutters">
         <div class="col-4 d-flex justify-content-center">
-            <div class="my-recipe-buttons">
-                <a href="{{ url_for('my_recipes') }}">
-                    <div class="text-center sub-header">
-                        <p><i class="fas fa-heart"></i>View my favourite recipes</p>
-                    </div>
-                </a>
-            </div>
+            <a href="{{ url_for('my_recipes') }}" class="my-recipe-buttons">
+                <div class="text-center sub-header">
+                    <p><i class="fas fa-heart"></i>View my favourite recipes</p>
+                </div>
+            </a>
         </div>
         <div class="col-4 d-flex justify-content-center">
-            <div class="my-recipe-buttons current-button">
-                <a href="{{ url_for('added_recipes') }}">
-                    <div class="text-center sub-header">
-                        <p><i class="fas fa-pencil-alt"></i>View my added recipes</p>
-                    </div>
-                </a>
-            </div>
+            <a href="{{ url_for('added_recipes') }}" class="my-recipe-buttons current-button">
+                <div class="text-center sub-header">
+                    <p><i class="fas fa-pencil-alt"></i>View my added recipes</p>
+                </div>
+            </a>
         </div>
         <div class="col-4 d-flex justify-content-center">
-            <div class="my-recipe-buttons">
-                <a href="{{ url_for('add_recipe') }}">
-                    <div class="text-center sub-header">
-                        <p><i class="far fa-plus-square"></i>Add a new recipe</p>
-                    </div>
-                </a>
-            </div>
+            <a href="{{ url_for('add_recipe') }}" class="my-recipe-buttons">
+                <div class="text-center sub-header">
+                    <p><i class="far fa-plus-square"></i>Add a new recipe</p>
+                </div>
+            </a>
         </div>
     </div>
     {% if recipes.count() == 0 %}
