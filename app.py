@@ -1,4 +1,5 @@
 import os
+import math
 from flask_pymongo import PyMongo
 from flask import (Flask, flash, render_template,
                    redirect, request, session, url_for)
@@ -92,18 +93,57 @@ def login():
 def all_recipes():
     form = Search_and_filter_form()
     recipes = mongo.db.recipes.find()
-    filters = False
+    if session.get('search_terms'):
+        filters = True
+        print(session['search_terms'])
+    else:
+        filters = False
+    page = request.args.get('page', 1, type=int)
     # If user uses search and filter form
-    if form.validate_on_submit():
+    if request.method != 'POST':
+        if page > 1:
+            recipes = mongo.db.recipes.find(session['search_terms']).skip((page - 1) * 9).limit(9)
+        else:
+            recipes = mongo.db.recipes.find(session['search_terms']).limit(9)
+
+    elif form.validate_on_submit():
+        page = 1
         form_data = (dict(request.form))
-        recipes = search_and_filter(form_data, 'all_recipes')
+        session['search_terms'] = search_and_filter(form_data, 'all_recipes')
+        if page > 1:
+            recipes = mongo.db.recipes.find(session['search_terms']).skip((page - 1) * 9).limit(9)
+
+        else:
+            recipes = mongo.db.recipes.find(session['search_terms']).limit(9)
         filters = True
     else:
         print('NOT VALID', form.errors)
 
+    next_page = url_for('all_recipes', page=str(page + 1))
+    prev_page = url_for('all_recipes', page=str(page - 1))
+    # max_page = math.ceil(mongo.db.recipes.count_documents({}) / 9 + 1)
+    max_page = math.ceil(recipes.count() / 9 + 1)
+    print(max_page)
     return render_template("all_recipes.html", form=form, recipes=recipes,
-                           filters=filters)
+                           next_page=next_page, prev_page=prev_page,
+                           max_page=max_page, page=page,
+                           filters=filters, clear_search=clear_search)
 
+
+@app.route('/clear_search')
+def clear_search():
+    session['search_terms'] = {}
+    return redirect(url_for('all_recipes'))
+
+
+# page = request.args.get('page', 1, type=int)
+# if page > 1:
+#     recipes = mongo.db.recipes.find().skip((page - 1) * 9).limit(9)
+# else:
+#     recipes = mongo.db.recipes.find().limit(9)
+# next_page = url_for('all_recipes', page=str(page + 1))
+# prev_page = url_for('all_recipes', page=str(page - 1))
+# pages = [*range(1, math.ceil(mongo.db.recipes.count() / 9) + 1)]                    
 
 @app.route("/my_recipes", methods=["GET", "POST"])
 def my_recipes():
@@ -144,9 +184,6 @@ def added_recipes():
 def search_and_filter(form_data, page):
     # Create an empty dictionary to populate with a search query
     search_terms = {}
-
-    # Remove csrf_token, search_submit and filter_submit
-    # from the returned form data
     form_data.pop('csrf_token')
     if form_data.get('search_submit'):
         form_data.pop('search_submit')
@@ -175,7 +212,8 @@ def search_and_filter(form_data, page):
         search_terms.update({"added_by": session['username']})
 
     # Finally, query the db with the formatted search_terms dict
-    return mongo.db.recipes.find(search_terms)
+    return search_terms
+    # return mongo.db.recipes.find(search_terms)
 
 
 @app.route("/add_recipe", methods=["GET", "POST"])
