@@ -88,6 +88,13 @@ a:hover {
     padding: 20px;;
     text-align: center;
 }
+
+.pagination-link {
+    width: 200px;
+    display: inline-block;
+    text-align: center;
+}
+
 /*------------------------------------------------------- NAV BAR AND FOOTER */
 nav {
   background-color: #136F63;

@@ -64,16 +64,17 @@
 
     {% block content %}
     {% endblock %}
-    {% if page %}
+    <!-- PAGINATION LINKS -->
+    {% if page and max_page != 1 %}
     <div class="row mt-4">
         <div class="col-6 text-right">
             {% if page > 1 %}
-            <a href="{{ prev_page }}" class="custom-button">Previous Page</a>
+            <a href="{{ prev_page }}" class="custom-button pagination-link"><i class="fas fa-arrow-circle-left"></i> Previous Page</a>
             {% endif %}
         </div>
         <div class="col-6 text-left">
-            {% if page < max_page and max_page != 1 %}
-            <a href="{{ next_page }}" class="custom-button">Next Page</a>
+            {% if page < max_page %}
+            <a href="{{ next_page }}" class="custom-button pagination-link">Next Page <i class="fas fa-arrow-circle-right"></i></a>
             {% endif %}
         </div>
     </div>

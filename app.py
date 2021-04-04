@@ -119,7 +119,7 @@ def search_results(return_page):
                         return_page=return_page, page=str(page - 1))
     if request.method == 'POST':
         form_data = (dict(request.form))
-        session['search_terms'] = search_and_filter(form_data, return_page)
+        session['search_terms'] = create_query_dict(form_data, return_page)
 
     if page > 1:
         recipes = mongo.db.recipes.find(
@@ -187,6 +187,7 @@ def added_recipes():
     next_page = url_for('added_recipes', page=str(page + 1))
     prev_page = url_for('added_recipes', page=str(page - 1))
     max_page = math.ceil(recipes.count() / 9)
+    print(page)
     # recipes = mongo.db.recipes.find({"added_by": session['username']})
     # filters = False
 
@@ -200,7 +201,7 @@ def added_recipes():
                            max_page=max_page, page=page)
 
 
-def search_and_filter(form_data, page):
+def create_query_dict(form_data, page):
     # Create an empty dictionary to populate with a search query
     search_terms = {}
     form_data.pop('csrf_token')
@@ -230,9 +231,8 @@ def search_and_filter(form_data, page):
     if page == 'added_recipes':
         search_terms.update({"added_by": session['username']})
 
-    # Finally, query the db with the formatted search_terms dict
+    # Return dictionary of search terms
     return search_terms
-    # return mongo.db.recipes.find(search_terms)
 
 
 @app.route("/add_recipe", methods=["GET", "POST"])
