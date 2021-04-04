@@ -95,6 +95,13 @@
             Remove Search terms and Filters
         </div>
     </a>
+    <!-- User has used search or filter - but the query returned no results -->
+    {% if recipe_count == 0 %}
+    <div class="m-5 text-center">
+        <h2 class="sub-header text-center mt-5">No recipes found!</h2>
+        <p><strong>Please adjust your search term or filters and try again.</strong></p>
+    </div>
+    {% endif %}
     {% endif %}
     <div class="row row-eq-height">
         {% for recipe in recipes %}
@@ -121,7 +128,7 @@
                         <h6 class="sub-header mt-3">Add to<br>Favourites</h6>
                         {% if session['username'] %}
                         <form class="trigger-form-send" method="POST"
-                            action="{{ url_for('toggle_favourite', recipe_id=recipe._id, return_page='my_recipes') }}">
+                            action="{{ url_for('toggle_favourite', recipe_id=recipe._id, page=page, return_page='my_recipes') }}">
                             {% if session['username'] in recipe.favourites %}
                             <input type="checkbox" name="favourite" class="hidden-input"
                                 id="favourite-checkbox-checked-{{+ loop.index}}" value="delete_fav">
@@ -143,6 +150,18 @@
         </div>
         {% endfor %}
         {% endif %}
+    </div>
+    <div class="row mt-4">
+        <div class="col-6 text-right">
+            {% if page > 1 %}
+            <a href="{{ prev_page }}" class="custom-button">Previous Page</a>
+            {% endif %}
+        </div>
+        <div class="col-6 text-left">
+            {% if page < max_page and max_page != 1 %}
+            <a href="{{ next_page }}" class="custom-button">Next Page</a>
+            {% endif %}
+        </div>
     </div>
 </div>
 {% endblock %}

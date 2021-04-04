@@ -26,7 +26,7 @@
             </a>
         </div>
     </div>
-    {% if recipes.count() == 0 %}
+    {% if recipes_count == 0 %}
     <!-- User has no added recipes -->
     <div class="add-fav-or-recipe">
         <h2 class="sub-header text-center mt-5">Add Your Recipes</h2>
@@ -95,9 +95,16 @@
             Remove Search terms and Filters
         </div>
     </a>
+        <!-- User has used search or filter - but the query returned no results -->
+        {% if recipe_count == 0 %}
+        <div class="m-5 text-center">
+            <h2 class="sub-header text-center mt-5">No recipes found!</h2>
+            <p><strong>Please adjust your search term or filters and try again.</strong></p>
+        </div>
+        {% endif %}
     {% endif %}
-    <div class="row row-eq-height">
         <!-- RECIPE CARDS -->
+    <div class="row row-eq-height">
         {% for recipe in recipes %}
         <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center">
             <div class="recipe-card added-recipe-card">
@@ -128,7 +135,7 @@
                         <!-- If user is logged in -->
                         {% if session['username'] %}
                         <form class="trigger-form-send" method="POST"
-                            action="{{ url_for('toggle_favourite', recipe_id=recipe._id, return_page='added_recipes') }}">
+                            action="{{ url_for('toggle_favourite', recipe_id=recipe._id, return_page='added_recipes', page=page) }}">
                             <!-- If user has favourited this recipe previously, render solid heart icon -->
                             {% if session['username'] in recipe.favourites %}
                             <input type="checkbox" name="favourite" class="hidden-input"

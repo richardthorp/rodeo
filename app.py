@@ -127,12 +127,14 @@ def search_results(return_page):
     else:
         recipes = mongo.db.recipes.find(
                         session['search_terms']).limit(9)
-
-    max_page = math.ceil(recipes.count() / 9)
+    recipe_count = mongo.db.recipes.count_documents(
+                        session['search_terms'])
+    max_page = math.ceil(recipe_count / 9)
 
     return render_template(return_page + ".html", recipes=recipes, form=form,
                            page=page, next_page=next_page, prev_page=prev_page,
-                           max_page=max_page, filters=filters)
+                           max_page=max_page, filters=filters,
+                           recipe_count=recipe_count)
 
 
 @app.route('/clear_search/<return_page>')
@@ -158,13 +160,13 @@ def my_recipes():
             {'favourites': session['username']}).limit(9)
 
     # page = request.args.get('page', 1, type=int)
-    next_page = url_for('all_recipes', page=str(page + 1))
-    prev_page = url_for('all_recipes', page=str(page - 1))
+    next_page = url_for('my_recipes', page=str(page + 1))
+    prev_page = url_for('my_recipes', page=str(page - 1))
     max_page = math.ceil(recipes.count() / 9)
 
     return render_template("my_recipes.html", form=form, recipes=recipes,
                            next_page=next_page, prev_page=prev_page,
-                           max_page=max_page)
+                           max_page=max_page, page=page)
 
 
 @app.route("/added_recipes", methods=["GET", "POST"])
@@ -192,6 +194,7 @@ def added_recipes():
     #     form_data = (dict(request.form))
     #     recipes = search_and_filter(form_data, 'added_recipes')
     #     filters = True
+
     return render_template("added_recipes.html", form=form, recipes=recipes,
                            next_page=next_page, prev_page=prev_page,
                            max_page=max_page, page=page)
@@ -367,6 +370,8 @@ def get_image(image_name):
 @app.route('/toggle_favourite/<recipe_id>/<return_page>',
            methods=['GET', 'POST'])
 def toggle_favourite(**kwargs):
+    page = request.args.get('page', 1, type=int)
+    print(page)
     recipe_id = kwargs['recipe_id']
     return_page = kwargs['return_page']
     recipe = mongo.db.recipes.find_one({'_id': ObjectId(recipe_id)})
@@ -381,7 +386,7 @@ def toggle_favourite(**kwargs):
                         {'_id': ObjectId(recipe_id)},
                         {'$push': {'favourites': session['username']}})
         flash('Recipe added to your favourites')
-    return redirect(url_for(return_page, recipe_id=recipe_id))
+    return redirect(url_for(return_page, page=page, recipe_id=recipe_id))
 
 
 @app.route("/logout")

@@ -111,7 +111,7 @@
                         <!-- If user is logged in -->
                         {% if session['username'] %}
                         <form class="trigger-form-send" method="POST"
-                            action="{{ url_for('toggle_favourite', recipe_id=recipe._id, return_page='all_recipes') }}">
+                            action="{{ url_for('toggle_favourite', recipe_id=recipe._id, page=page, return_page='all_recipes') }}">
                             <!-- If user has favourited this recipe previously, render solid heart icon -->
                             {% if session['username'] in recipe.favourites %}
                             <input type="checkbox" name="favourite" class="hidden-input"
