@@ -78,6 +78,13 @@
             Remove Search terms and Filters
         </div>
     </a>
+    <!-- User has used search or filter - but the query returned no results -->
+        {% if recipe_count == 0 %}
+        <div class="m-5 text-center">
+            <h2 class="sub-header text-center mt-5">No recipes found!</h2>
+            <p><strong>Please adjust your search term or filters and try again.</strong></p>
+        </div>
+        {% endif %}
     {% endif %}
     <div class="row row-eq-height">
         <!-- RECIPE CARDS -->

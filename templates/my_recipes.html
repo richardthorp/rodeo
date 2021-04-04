@@ -27,7 +27,7 @@
         </div>
     </div>
     <!-- IF USER HASN'T FAVOURITED ANY RECIPES -->
-    {% if recipes.count() == 0 %}
+    {% if recipes_count == 0 %}
     <div class="add-fav-or-recipe">
         <h2 class="sub-header text-center mt-5">Add Favourite Recipes</h2>
         <p class="text-center"><strong>Save your favourite recipes here by clicking on the <i class="far fa-heart"></i>
@@ -96,12 +96,12 @@
         </div>
     </a>
     <!-- User has used search or filter - but the query returned no results -->
-    {% if recipe_count == 0 %}
-    <div class="m-5 text-center">
-        <h2 class="sub-header text-center mt-5">No recipes found!</h2>
-        <p><strong>Please adjust your search term or filters and try again.</strong></p>
-    </div>
-    {% endif %}
+        {% if recipe_count == 0 %}
+        <div class="m-5 text-center">
+            <h2 class="sub-header text-center mt-5">No recipes found!</h2>
+            <p><strong>Please adjust your search term or filters and try again.</strong></p>
+        </div>
+        {% endif %}
     {% endif %}
     <div class="row row-eq-height">
         {% for recipe in recipes %}
