@@ -195,17 +195,5 @@
         {% endfor %}
         {% endif %}
     </div>
-    <div class="row mt-4">
-        <div class="col-6 text-right">
-            {% if page > 1 %}
-            <a href="{{ prev_page }}" class="custom-button">Previous Page</a>
-            {% endif %}
-        </div>
-        <div class="col-6 text-left">
-            {% if page < max_page and max_page != 1 %}
-            <a href="{{ next_page }}" class="custom-button">Next Page</a>
-            {% endif %}
-        </div>
-    </div>
 </div>
 {% endblock %}

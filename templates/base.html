@@ -52,19 +52,32 @@
     </nav>
     <!-- FLASHED MESSAGES -->
     <div class="container-fluid text-center">
-    {% with messages = get_flashed_messages() %}
-    {% if messages %}
-    {% for message in messages %}
-    <div class="flashed-messages">{{ message }}</div>
-    {% endfor %}
-    {% endif %}
-    {% endwith %}
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        {% for message in messages %}
+        <div class="flashed-messages">{{ message }}</div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
     </div>
     <!-- BLOCK CONTENT -->
-    
-        {% block content %}
-        {% endblock %}
-    
+
+    {% block content %}
+    {% endblock %}
+    {% if page %}
+    <div class="row mt-4">
+        <div class="col-6 text-right">
+            {% if page > 1 %}
+            <a href="{{ prev_page }}" class="custom-button">Previous Page</a>
+            {% endif %}
+        </div>
+        <div class="col-6 text-left">
+            {% if page < max_page and max_page != 1 %}
+            <a href="{{ next_page }}" class="custom-button">Next Page</a>
+            {% endif %}
+        </div>
+    </div>
+    {% endif %}
     <!-- FOOTER -->
     <footer class="mt-auto container-fluid">
         <div class="row mt-5 custom-footer d-flex align-items-center">
