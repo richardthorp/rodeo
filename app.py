@@ -237,7 +237,7 @@ def create_query_dict(form_data, page):
     # Add any selected checkboxes to the search_terms dict
     for key, value in form_data.items():
         search_terms['details.' + key] = value
-    if page == 'favourite_recipes':
+    if page == 'my_recipes':
         search_terms.update({"favourites": session['username']})
     if page == 'added_recipes':
         search_terms.update({"added_by": session['username']})
