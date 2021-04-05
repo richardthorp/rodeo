@@ -170,3 +170,11 @@ $("input[name='image_options']").change(function () {
         $("#default-image-preview").hide();
     }
 })
+
+/* Use recipe name as alt attribute on user uploaded images */
+$("document").ready(function () {
+    $('.user-image').each(function() {
+        let recipeTitle = $(this).parent().siblings('.recipe-card-title').text();
+        $(this).attr('alt', recipeTitle);
+    })
+})
