@@ -5,7 +5,6 @@ from flask import (Flask, flash, render_template,
                    redirect, request, session, url_for)
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask_paginate import Pagination, get_page_args
 from forms import (Registration_form, Login_form,
                    Search_and_filter_form, Add_recipe_form)
 if os.path.exists("env.py"):
@@ -94,11 +93,12 @@ def all_recipes():
     form = Search_and_filter_form()
     recipes = mongo.db.recipes.find()
     page = request.args.get('page', 1, type=int)
+    sort_by = request.args.get('sort_by', 'average_rating', type=str)
     session['search_terms'] = {}
     if page > 1:
-        recipes = mongo.db.recipes.find(session['search_terms']).skip((page - 1) * 9).limit(9)
+        recipes = mongo.db.recipes.find(session['search_terms']).sort(sort_by, -1).skip((page - 1) * 9).limit(9)
     else:
-        recipes = mongo.db.recipes.find(session['search_terms']).limit(9)
+        recipes = mongo.db.recipes.find(session['search_terms']).sort(sort_by, -1).limit(9)
 
     next_page = url_for('all_recipes', page=str(page + 1))
     prev_page = url_for('all_recipes', page=str(page - 1))
@@ -113,6 +113,8 @@ def search_results(return_page):
     filters = True
     form = Search_and_filter_form()
     page = request.args.get('page', 1, type=int)
+    sort_by = request.args.get('sort_by', 'average_rating', type=str)
+    print(sort_by)
     next_page = url_for('search_results',
                         return_page=return_page, page=str(page + 1))
     prev_page = url_for('search_results',
@@ -123,10 +125,10 @@ def search_results(return_page):
 
     if page > 1:
         recipes = mongo.db.recipes.find(
-                        session['search_terms']).skip((page - 1) * 9).limit(9)
+                        session['search_terms']).sort(sort_by, -1).skip((page - 1) * 9).limit(9)
     else:
         recipes = mongo.db.recipes.find(
-                        session['search_terms']).limit(9)
+                        session['search_terms']).sort(sort_by, -1).limit(9)
     recipe_count = mongo.db.recipes.count_documents(
                         session['search_terms'])
     max_page = math.ceil(recipe_count / 9)
