@@ -198,7 +198,6 @@ def added_recipes():
     next_page = url_for('added_recipes', page=str(page + 1), sort_by=sort_by)
     prev_page = url_for('added_recipes', page=str(page - 1), sort_by=sort_by)
     max_page = math.ceil(recipes.count() / 9)
-    print(page)
     # recipes = mongo.db.recipes.find({"added_by": session['username']})
     # filters = False
 
@@ -382,9 +381,9 @@ def get_image(image_name):
            methods=['GET', 'POST'])
 def toggle_favourite(**kwargs):
     page = request.args.get('page', 1, type=int)
-    print(page)
     recipe_id = kwargs['recipe_id']
     return_page = kwargs['return_page']
+    filters = request.args.get('filters')
     recipe = mongo.db.recipes.find_one({'_id': ObjectId(recipe_id)})
 
     if session['username'] in recipe['favourites']:
@@ -397,7 +396,16 @@ def toggle_favourite(**kwargs):
                         {'_id': ObjectId(recipe_id)},
                         {'$push': {'favourites': session['username']}})
         flash('Recipe added to your favourites')
-    return redirect(url_for(return_page, page=page, recipe_id=recipe_id))
+    # If user toggles a favourite recipe whilst browsing search results,
+    # return user to those results
+    if filters:
+        return redirect(url_for('search_results', page=page,
+                                return_page=return_page))
+    # Otherwise, return to original page with relevant args
+    if return_page == 'recipe_page':
+        return redirect(url_for('recipe_page', recipe_id=recipe_id))
+    else:
+        return redirect(url_for(return_page, page=page))
 
 
 @app.route("/logout")
