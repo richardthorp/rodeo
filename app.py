@@ -108,10 +108,11 @@ def all_recipes():
                            max_page=max_page, page=page)
 
 
-@app.route('/search_results/<return_page>', methods=["GET", "POST"])
-def search_results(return_page):
+@app.route('/search_results', methods=["GET", "POST"])
+def search_results():
     filters = True
     form = Search_and_filter_form()
+    return_page = request.args.get('return_page', type=str)
     page = request.args.get('page', 1, type=int)
     sort_by = request.args.get('sort_by', 'average_rating', type=str)
     next_page = url_for('search_results',
@@ -126,7 +127,8 @@ def search_results(return_page):
 
     if page > 1:
         recipes = mongo.db.recipes.find(
-                        session['search_terms']).sort(sort_by, -1).skip((page - 1) * 9).limit(9)
+                        session['search_terms']).sort(
+                            sort_by, -1).skip((page - 1) * 9).limit(9)
     else:
         recipes = mongo.db.recipes.find(
                         session['search_terms']).sort(sort_by, -1).limit(9)
