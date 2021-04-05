@@ -100,8 +100,8 @@ def all_recipes():
     else:
         recipes = mongo.db.recipes.find(session['search_terms']).sort(sort_by, -1).limit(9)
 
-    next_page = url_for('all_recipes', page=str(page + 1))
-    prev_page = url_for('all_recipes', page=str(page - 1))
+    next_page = url_for('all_recipes', page=str(page + 1), sort_by=sort_by)
+    prev_page = url_for('all_recipes', page=str(page - 1), sort_by=sort_by)
     max_page = math.ceil(recipes.count() / 9)
     return render_template("all_recipes.html", form=form, recipes=recipes,
                            next_page=next_page, prev_page=prev_page,
@@ -114,11 +114,12 @@ def search_results(return_page):
     form = Search_and_filter_form()
     page = request.args.get('page', 1, type=int)
     sort_by = request.args.get('sort_by', 'average_rating', type=str)
-    print(sort_by)
     next_page = url_for('search_results',
-                        return_page=return_page, page=str(page + 1))
+                        return_page=return_page, page=str(page + 1),
+                        sort_by=sort_by)
     prev_page = url_for('search_results',
-                        return_page=return_page, page=str(page - 1))
+                        return_page=return_page, page=str(page - 1),
+                        sort_by=sort_by)
     if request.method == 'POST':
         form_data = (dict(request.form))
         session['search_terms'] = create_query_dict(form_data, return_page)
@@ -154,16 +155,20 @@ def my_recipes():
 
     form = Search_and_filter_form()
     page = request.args.get('page', 1, type=int)
+    sort_by = request.args.get('sort_by', 'average_rating', type=str)
     if page > 1:
         recipes = mongo.db.recipes.find(
-            {'favourites': session['username']}).skip((page - 1) * 9).limit(9)
+            {'favourites': session['username']}).sort(
+                sort_by, -1).skip((page - 1) * 9).limit(9)
     else:
         recipes = mongo.db.recipes.find(
-            {'favourites': session['username']}).limit(9)
+            {'favourites': session['username']}).sort(sort_by, -1).limit(9)
 
     # page = request.args.get('page', 1, type=int)
-    next_page = url_for('my_recipes', page=str(page + 1))
-    prev_page = url_for('my_recipes', page=str(page - 1))
+    next_page = url_for('my_recipes', page=str(page + 1),
+                        sort_by=sort_by)
+    prev_page = url_for('my_recipes', page=str(page - 1),
+                        sort_by=sort_by)
     max_page = math.ceil(recipes.count() / 9)
 
     return render_template("my_recipes.html", form=form, recipes=recipes,
@@ -179,15 +184,17 @@ def added_recipes():
         return redirect(url_for('login'))
 
     page = request.args.get('page', 1, type=int)
+    sort_by = request.args.get('sort_by', 'average_rating', type=str)
     if page > 1:
         recipes = mongo.db.recipes.find(
-            {'added_by': session['username']}).skip((page - 1) * 9).limit(9)
+            {'added_by': session['username']}).sort(sort_by, -1).skip(
+                (page - 1) * 9).limit(9)
     else:
         recipes = mongo.db.recipes.find(
-            {'added_by': session['username']}).limit(9)
+            {'added_by': session['username']}).sort(sort_by, -1).limit(9)
     form = Search_and_filter_form()
-    next_page = url_for('added_recipes', page=str(page + 1))
-    prev_page = url_for('added_recipes', page=str(page - 1))
+    next_page = url_for('added_recipes', page=str(page + 1), sort_by=sort_by)
+    prev_page = url_for('added_recipes', page=str(page - 1), sort_by=sort_by)
     max_page = math.ceil(recipes.count() / 9)
     print(page)
     # recipes = mongo.db.recipes.find({"added_by": session['username']})

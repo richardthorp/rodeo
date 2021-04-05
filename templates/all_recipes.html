@@ -91,13 +91,13 @@
     <!-- If user sorts by rating / new with filters, send request to search_results route -->
     <p class="mb-0 mt-2 mt-md-3 mt-lg-4 ml-lg-4">Sort recipes by:
         <a href="{{ url_for('search_results', return_page='all_recipes', sort_by='average_rating') }}">Rating</a>
-        <a href="{{ url_for('search_results', return_page='all_recipes', sort_by='newest') }}">Newest</a>
+        <a href="{{ url_for('search_results', return_page='all_recipes', sort_by='_id') }}">Newest</a>
     </p>
     {% else %}
     <!-- If user sorts by rating / new without filters, send request to all_recipes route -->
     <p class="mb-0 mt-2 mt-md-3 mt-lg-4 ml-lg-4">Sort recipes by:
         <a href="{{ url_for('all_recipes', sort_by='average_rating') }}">Rating</a>
-        <a href="{{ url_for('all_recipes', sort_by='newest') }}">Newest</a>
+        <a href="{{ url_for('all_recipes', sort_by='_id') }}">Newest</a>
     </p>
     {% endif %}
     <div class="row row-eq-height">

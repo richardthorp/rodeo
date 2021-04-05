@@ -39,7 +39,7 @@
     <!-- SEARCH AND FILTER CONTAINER -->
     <div class="row search-container rounded-container mx-auto">
         <div class="col-12">
-            <form method="POST" action="{{ url_for('search_results', return_page='added_recipes')}}">
+            <form method="POST" action="{{ url_for('search_results', return_page='added_recipes', sort_by='average_rating')}}">
                 <div class="row">
                     {{ form.hidden_tag() }}
                     <div class="col-12 col-sm-8">
@@ -95,15 +95,26 @@
             Remove Search terms and Filters
         </div>
     </a>
-        <!-- User has used search or filter - but the query returned no results -->
-        {% if recipe_count == 0 %}
-        <div class="m-5 text-center">
-            <h2 class="sub-header text-center mt-5">No recipes found!</h2>
-            <p><strong>Please adjust your search term or filters and try again.</strong></p>
-        </div>
-        {% endif %}
+    <!-- User has used search or filter - but the query returned no results -->
+    {% if recipe_count == 0 %}
+    <div class="m-5 text-center">
+        <h2 class="sub-header text-center mt-5">No recipes found!</h2>
+        <p><strong>Please adjust your search term or filters and try again.</strong></p>
+    </div>
     {% endif %}
-        <!-- RECIPE CARDS -->
+    <!-- If user sorts by rating / new with filters, send request to search_results route -->
+    <p class="mb-0 mt-2 mt-md-3 mt-lg-4 ml-lg-4">Sort recipes by:
+        <a href="{{ url_for('search_results', return_page='added_recipes', sort_by='average_rating') }}">Rating</a>
+        <a href="{{ url_for('search_results', return_page='added_recipes', sort_by='_id') }}">Newest</a>
+    </p>
+    {% else %}
+    <!-- If user sorts by rating / new without filters, send request to added_recipes route -->
+    <p class="mb-0 mt-2 mt-md-3 mt-lg-4 ml-lg-4">Sort recipes by:
+        <a href="{{ url_for('added_recipes', sort_by='average_rating') }}">Rating</a>
+        <a href="{{ url_for('added_recipes', sort_by='_id') }}">Newest</a>
+    </p>
+    {% endif %}
+    <!-- RECIPE CARDS -->
     <div class="row row-eq-height">
         {% for recipe in recipes %}
         <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center">
