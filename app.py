@@ -377,12 +377,11 @@ def get_image(image_name):
     return mongo.send_file(image_name)
 
 
-@app.route('/toggle_favourite/<recipe_id>/<return_page>',
-           methods=['GET', 'POST'])
+@app.route('/toggle_favourite', methods=['GET', 'POST'])
 def toggle_favourite(**kwargs):
     page = request.args.get('page', 1, type=int)
-    recipe_id = kwargs['recipe_id']
-    return_page = kwargs['return_page']
+    recipe_id = request.args.get('recipe_id')
+    return_page = request.args.get('return_page')
     filters = request.args.get('filters')
     recipe = mongo.db.recipes.find_one({'_id': ObjectId(recipe_id)})
 
