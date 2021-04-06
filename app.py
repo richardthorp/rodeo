@@ -378,7 +378,7 @@ def get_image(image_name):
 
 
 @app.route('/toggle_favourite', methods=['GET', 'POST'])
-def toggle_favourite(**kwargs):
+def toggle_favourite():
     page = request.args.get('page', 1, type=int)
     recipe_id = request.args.get('recipe_id')
     return_page = request.args.get('return_page')
