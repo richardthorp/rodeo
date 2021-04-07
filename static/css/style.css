@@ -191,10 +191,11 @@ nav {
     bottom: 10px; */
 }
 
-/* .recipe-card-ratings {
+.recipe-card-ratings {
     position: relative;
-    left: 5px;
-} */
+    left: 10px;
+    padding: 0;
+}
 
 .recipe-card-ratings .star i {
     font-size: 1.3rem;
@@ -867,7 +868,6 @@ nav {
     }
     .shrink-header {
         font-size: 1.5rem;
-        padding: 10px;
     }
     .recipe-card h6 {
         font-size: 0.8rem;
@@ -1024,6 +1024,9 @@ nav {
 @media screen and (min-width: 1200px){
     #slogan {
         font-size: 6rem;
+    }
+    .recipe-card-ratings {
+        left: 0;
     }
 }
 
