@@ -170,16 +170,18 @@ def my_recipes():
         recipes = mongo.db.recipes.find(
             {'favourites': session['username']}).sort(sort_by, -1).limit(9)
 
-    # page = request.args.get('page', 1, type=int)
     next_page = url_for('my_recipes', page=str(page + 1),
                         sort_by=sort_by)
     prev_page = url_for('my_recipes', page=str(page - 1),
                         sort_by=sort_by)
     max_page = math.ceil(recipes.count() / 9)
+    recipes_count = mongo.db.recipes.count_documents(
+        {'favourites': session['username']})
 
     return render_template("my_recipes.html", form=form, recipes=recipes,
                            next_page=next_page, prev_page=prev_page,
-                           max_page=max_page, page=page)
+                           max_page=max_page, page=page,
+                           recipes_count=recipes_count)
 
 
 @app.route("/added_recipes", methods=["GET", "POST"])
@@ -202,6 +204,8 @@ def added_recipes():
     next_page = url_for('added_recipes', page=str(page + 1), sort_by=sort_by)
     prev_page = url_for('added_recipes', page=str(page - 1), sort_by=sort_by)
     max_page = math.ceil(recipes.count() / 9)
+    recipes_count = mongo.db.recipes.count_documents(
+        {'added_by': session['username']})
     # recipes = mongo.db.recipes.find({"added_by": session['username']})
     # filters = False
 
@@ -212,7 +216,8 @@ def added_recipes():
 
     return render_template("added_recipes.html", form=form, recipes=recipes,
                            next_page=next_page, prev_page=prev_page,
-                           max_page=max_page, page=page)
+                           max_page=max_page, page=page,
+                           recipes_count=recipes_count)
 
 
 def create_query_dict(form_data, page):
