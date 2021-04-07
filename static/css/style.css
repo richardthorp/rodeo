@@ -71,14 +71,17 @@ a:hover {
     right: 0;
     z-index: 2;
     margin: 10px auto;
-    background-color: #FFF6BC;
+    background-color: #136F63;
     padding: 10px 20px;
-    border: 3px solid #136F63;
-    border-radius: 25px;
-    font-weight: bold;
+    border: 8px double #FFF;
+    border-radius: 10px;
+    /* font-weight: bold; */
     width: 80%;
     max-width: 800px;
     min-width: 280px;
+    color: #FFF;
+    font-family: 'Bevan';
+    font-size: 1.5rem;
 }
 
 .popover-body {
@@ -806,6 +809,9 @@ nav {
         font-size: 1.5rem;
         padding: 20px 0;
     }
+    .flashed-messages {
+        font-size: 1rem;
+    }
     .about-row {
         min-height: 165px;
     }
@@ -821,6 +827,7 @@ nav {
     }
     .footer-links {
         text-align: center;
+        font-size: 0.8rem;
     }
     .form-header{
         font-size: 0.7rem;
