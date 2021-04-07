@@ -70,20 +70,24 @@ def login():
     if session.get('username'):
         return redirect(url_for('my_recipes'))
     form = Login_form()
-    if form.validate_on_submit():
-        email_or_username = request.form.get("email_or_username")
-        existing_user = mongo.db.users.find_one(
-                        {"$or": [{"username": email_or_username},
-                         {"email": email_or_username}]})
-        if existing_user:
-            if check_password_hash(existing_user["password"],
-                                   request.form.get("password")):
-                session["username"] = existing_user["username"]
-                flash('Welcome, ' + session['username'] + '!')
-                return redirect(url_for("my_recipes"))
-        else:
-            flash("Login details incorrect, please try again.")
-            return redirect(url_for('login'))
+    if request.method == 'POST':
+        if form.validate_on_submit():
+            email_or_username = request.form.get("email_or_username")
+            existing_user = mongo.db.users.find_one(
+                            {"$or": [{"username": email_or_username},
+                            {"email": email_or_username}]})
+            if existing_user:
+                if check_password_hash(existing_user["password"],
+                                    request.form.get("password")):
+                    session["username"] = existing_user["username"]
+                    flash('Welcome, ' + session['username'] + '!')
+                    return redirect(url_for("my_recipes"))
+                else:
+                    flash("Login details incorrect, please try again.")
+                    return redirect(url_for('login'))
+            else:
+                    flash("Login details incorrect, please try again.")
+                    return redirect(url_for('login'))
 
     return render_template("login.html", form=form)
 
@@ -409,7 +413,7 @@ def toggle_favourite():
 
 @app.route("/logout")
 def log_out():
-    session.pop("username")
+    session.clear()
     flash('Log out successful, see you soon!')
     return redirect(url_for('index'))
 
