@@ -124,13 +124,8 @@
   <!-- There are search results to sort, send sort request to search_results route -->
   <p class="mb-0 mt-2 mt-md-3 mt-lg-4 ml-lg-4">
     Sort recipes by:
-    <a
-      href="{{ url_for('search_results', return_page='my_recipes', sort_by='average_rating') }}"
-      >Rating</a
-    >
-    <a
-      href="{{ url_for('search_results', return_page='my_recipes', sort_by='_id') }}"
-      >Newest</a
+    <a href="{{ url_for('search_results', return_page='my_recipes', sort_by='average_rating') }}">rating</a> /
+    <a href="{{ url_for('search_results', return_page='my_recipes', sort_by='_id') }}">newest</a
     >
   </p>
   {% endif %} 
@@ -138,8 +133,8 @@
   <!-- If user sorts by rating / new without filters, send request to my_recipes route -->
   <p class="mb-0 mt-2 mt-md-3 mt-lg-4 ml-lg-4">
     Sort recipes by:
-    <a href="{{ url_for('my_recipes', sort_by='average_rating') }}">Rating</a>
-    <a href="{{ url_for('my_recipes', sort_by='_id') }}">Newest</a>
+    <a href="{{ url_for('my_recipes', sort_by='average_rating') }}">rating</a> / 
+    <a href="{{ url_for('my_recipes', sort_by='_id') }}">newest</a>
   </p>
   {% endif %}
   <!-- RECIPE CARDS -->
