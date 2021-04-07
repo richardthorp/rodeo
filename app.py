@@ -107,7 +107,7 @@ def all_recipes():
     next_page = url_for('all_recipes', page=str(page + 1), sort_by=sort_by)
     prev_page = url_for('all_recipes', page=str(page - 1), sort_by=sort_by)
     max_page = math.ceil(recipes.count() / 9)
-    recipe_count = mongo.db.recipes.count_documents()
+    recipe_count = mongo.db.recipes.count_documents({})
     return render_template("all_recipes.html", form=form, recipes=recipes,
                            next_page=next_page, prev_page=prev_page,
                            max_page=max_page, page=page,

@@ -814,6 +814,10 @@ nav {
     .about-blurb {
         font-size: 0.8rem;
     }
+    .pagination-link {
+        font-size: 0.6rem;
+        width: 130px;
+    }
     .footer-links {
         text-align: center;
     }
