@@ -153,43 +153,27 @@ $(".copyright span").text(function() {
     return year;
 })
 
-/* Render appropriate image or file input on edit_recipe */
-// $("input[name='image_options']").change(function () {
-//     if ($("#keep_image")[0].checked === true) {
-//         $("#keep-image-preview").show();
-//         $("#default-image-preview").hide();
-//         $(".add-image-div").hide();
-//     } else if ($("#default_image")[0].checked === true){
-//         $("#default-image-preview").show();
-//         $("#keep-image-preview").hide();
-//         $(".add-image-div").hide();
-//     }
-//     else {
-//         $(".add-image-div").show();
-//         $("#keep-image-preview").hide();
-//         $("#default-image-preview").hide();
-//     }
-// })
-
-/* Render appropriate image or file input on edit_recipe */
-$("input[name='image_options']").change(function () {
-    if ($("#keep_image")[0].checked === true) {
-        $("#keep-image-option").addClass('selected-image-option').removeClass('image-option');
-        $("#default-image-option").addClass('image-option').removeClass('selected-image-option');
-        $("#add-image-option").addClass('image-option').removeClass('selected-image-option');
-    } else if ($("#default_image")[0].checked === true){
-        $("#default-image-option").addClass('selected-image-option').removeClass('image-option');
-        $("#keep-image-option").addClass('image-option').removeClass('selected-image-option');
-        $("#add-image-option").addClass('image-option').removeClass('selected-image-option');
-    }
-    else {
-        $("#add-image-option").addClass('selected-image-option').removeClass('image-option');
-        $("#keep-image-option").addClass('image-option').removeClass('selected-image-option');
-        $("#default-image-option").addClass('image-option').removeClass('selected-image-option');
-    }
+/* Add selected-image class on image options in edit_recipe.html */
+$("document").ready(function(){
+    $("input[name='image_options']").change(function () {
+        if ($("#keep_image")[0].checked === true) {
+            $("#keep-image-option").addClass('selected-image-option').removeClass('image-option');
+            $("#default-image-option").addClass('image-option').removeClass('selected-image-option');
+            $("#add-image-option").addClass('image-option').removeClass('selected-image-option');
+        } else if ($("#default_image")[0].checked === true){
+            $("#default-image-option").addClass('selected-image-option').removeClass('image-option');
+            $("#keep-image-option").addClass('image-option').removeClass('selected-image-option');
+            $("#add-image-option").addClass('image-option').removeClass('selected-image-option');
+        }
+        else {
+            $("#add-image-option").addClass('selected-image-option').removeClass('image-option');
+            $("#keep-image-option").addClass('image-option').removeClass('selected-image-option');
+            $("#default-image-option").addClass('image-option').removeClass('selected-image-option');
+        }
+    })
 })
 
-/* Set new_image radio option to checked when file selector is used */
+/* Set new_image radio option to checked when file selector is clicked */
 $("document").ready(function(){
     $("#file-upload-label").click(function(){
     $("#new_image").trigger('click');

@@ -16,6 +16,7 @@
                     </div>
                 </div>
                 <hr>
+                <!-- RECIPE TYPES - MEAT, VEG, VEGAN RADIO -->
                 <div class="row">
                     <div class="col-12">
                         <h6 class="form-details">Please select an option below :</h6>
@@ -53,6 +54,7 @@
                     </div>
                 </div>
                 <hr>
+                <!-- RECIPE FILTER CHECKBOXES -->
                 <div class="row">
                     <div class="col-12 mb-2">
                         <h6 class="form-details">Please tick all that apply :</h6>
@@ -153,7 +155,7 @@
                 </div>
             </div>
             <hr>
-            <!-- HOW MANY PEOPLE / IMAGE UPLOAD / ADD BUTTON ROW -->
+            <!-- HOW MANY PEOPLE DOES IT FEED? -->
             <div class="row mx-auto">
                 <div class="col-12">
                     <h6 class="form-details">How many people does it feed?</h6>
@@ -161,24 +163,26 @@
                 </div>
             </div>
             <hr>
-            {% if recipe.image_name == 'default-image' %}
+            <!-- IMAGE OPTIONS -->
+            <!-- If existing recipe image is default image -->
+            {% if recipe.image_name == 'default-image' %}       
             <div class="row mx-auto">
                 <div class="col-12 mb-2">
                     <h6 class="form-details">Add an image (optional)</h6>
-
                     {{ form.picture_upload(class="hidden-input") }}
                     <label for="picture_upload" class="custom-button select-file-button mt-1 mb-2">Select File</label>
                     <span id="selected-file"></span>
                 </div>
             </div>
             {% else %}
-
+            <!-- Existing recipe image is user uploaded image -->
             <div class="col-12">
                 <h6 class="form-details">Add an image</h6>
             </div>
+            <!-- Keep existing image -->
             <div class="col-12 pb-4">
-                <div class="row mt-3 d-flex justify-content-center">
-                    <div class="text-center col-12 col-md-4">
+                <div class="row mt-3 d-flex justify-content-center row-eq-height">
+                    <div class="text-center col-10 col-sm-4 mb-3">
                         <div id="keep-image-option" class="selected-image-option">
                             <input type="radio" name="image_options" id="keep_image" value="keep_image"
                                 class="hidden-input" checked>
@@ -188,7 +192,8 @@
                             </label>
                         </div>
                     </div>
-                    <div class="text-center col-12 col-md-4">
+                    <!-- Use default image -->
+                    <div class="text-center col-10 col-sm-4 mb-3 d-flex">
                         <div id="default-image-option" class="image-option">
                             <input type="radio" name="image_options" id="default_image" value="default_image"
                                 class="hidden-input">
@@ -198,12 +203,11 @@
                             </label>
                         </div>
                     </div>
-                    <div class="text-center col-12 col-md-4">
+                    <!-- Add new image -->
+                    <div class="text-center col-10 col-sm-4 mb-3 d-flex">
                         <div id="add-image-option" class="image-option">
                             <input type="radio" name="image_options" id="new_image" value="new_image"
                                 class="hidden-input">
-                            <label for="new_image">
-                            </label>
                             <label id="file-upload-label" for="new_picture_upload">
                                 <div class="mb-1">Add new image</div>
                                 <i class="fas fa-file-upload"></i>
@@ -214,11 +218,9 @@
                     </div>
                 </div>
             </div>
-
             {% endif %}
         </div>
-
-        <!-- </div> -->
+        <!-- SUBMIT RECIPE BUTTON -->
         <div class="row mx-auto">
             <div class="col d-flex ">
                 {{ form.edit_recipe_button(class="custom-button mx-auto", id="add-recipe-button") }}
