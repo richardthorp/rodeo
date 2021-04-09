@@ -38,7 +38,20 @@ As a user of the website, I want:
 <a name="design"></a>
 ## Design
 
-### Design mock-ups
+### Wireframes
+[Click here to see index.html wireframes](static/images/readme-images/wireframes/index.png)
+
+[Click here to see login.html wireframes](static/images/readme-images/wireframes/login.png)
+
+[Click here to see register.html wireframes](static/images/readme-images/wireframes/register.png)
+
+[Click here to see add-recipes.html wireframes](static/images/readme-images/wireframes/add-recipes.png)
+
+[Click here to see my-recipes.html wireframes](static/images/readme-images/wireframes/my-recipes.png)
+
+[Click here to see all-recipes.html wireframes](static/images/readme-images/wireframes/all-recipes.png)
+
+[Click here to see recipe-page.html wireframes](static/images/readme-images/wireframes/recipe-page.png)
 
 ### Colour Scheme
 ![Colour palette from https://www.coolors.co](static/images/readme-images/colour-palette.jpg "Colour palette from https://www.coolors.co")
