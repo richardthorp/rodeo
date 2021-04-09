@@ -458,6 +458,15 @@ def recipe_page(recipe_id):
     return render_template("recipe_page.html", recipe=recipe,
                            image_name=image_name, user_rating=user_rating)
 
+@app.errorhandler(404)
+def page_not_found(err):
+    return render_template("404.html")
+
+
+@app.errorhandler(500)
+def server_error(err):
+    return render_template("500.html")
+
 
 def format_recipe_data(form_data_dict):
     details = {}

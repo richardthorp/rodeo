@@ -1,0 +1,7 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container-fluid block-content-container text-center my-auto">
+    <h1 class="logo-font header">Whoops!</h1>
+    <h6 class="sub-header  mb-5">It seems something has gone wrong!</h6>
+    <a href="{{  url_for('all_recipes')}}" class="sub-header">Why not come look at some delicious recipes?</a>
+</div>
+{% endblock %}
