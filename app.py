@@ -111,7 +111,7 @@ def all_recipes():
     return render_template("all_recipes.html", form=form, recipes=recipes,
                            next_page=next_page, prev_page=prev_page,
                            max_page=max_page, page=page,
-                           recipe_count=recipe_count)
+                           recipe_count=recipe_count, sort_by=sort_by)
 
 
 @app.route('/search_results', methods=["GET", "POST"])
@@ -145,7 +145,7 @@ def search_results():
     return render_template(return_page + ".html", recipes=recipes, form=form,
                            page=page, next_page=next_page, prev_page=prev_page,
                            max_page=max_page, filters=filters,
-                           recipe_count=recipe_count)
+                           recipe_count=recipe_count, sort_by=sort_by)
 
 
 @app.route('/clear_search/<return_page>')
@@ -183,7 +183,7 @@ def my_recipes():
     return render_template("my_recipes.html", form=form, recipes=recipes,
                            next_page=next_page, prev_page=prev_page,
                            max_page=max_page, page=page,
-                           recipes_count=recipes_count)
+                           recipes_count=recipes_count, sort_by=sort_by)
 
 
 @app.route("/added_recipes", methods=["GET", "POST"])
@@ -219,7 +219,7 @@ def added_recipes():
     return render_template("added_recipes.html", form=form, recipes=recipes,
                            next_page=next_page, prev_page=prev_page,
                            max_page=max_page, page=page,
-                           recipes_count=recipes_count)
+                           recipes_count=recipes_count, sort_by=sort_by)
 
 
 def create_query_dict(form_data, page):
@@ -394,6 +394,7 @@ def toggle_favourite():
     recipe_id = request.args.get('recipe_id')
     return_page = request.args.get('return_page')
     filters = request.args.get('filters')
+    sort_by = request.args.get('sort_by', 'average_rating', type=str)
     recipe = mongo.db.recipes.find_one({'_id': ObjectId(recipe_id)})
 
     if session['username'] in recipe['favourites']:
@@ -410,12 +411,12 @@ def toggle_favourite():
     # return user to those results
     if filters:
         return redirect(url_for('search_results', page=page,
-                                return_page=return_page))
+                                return_page=return_page, sort_by=sort_by))
     # Otherwise, return to original page with relevant args
     if return_page == 'recipe_page':
-        return redirect(url_for('recipe_page', recipe_id=recipe_id))
+        return redirect(url_for('recipe_page', recipe_id=recipe_id, sort_by=sort_by))
     else:
-        return redirect(url_for(return_page, page=page))
+        return redirect(url_for(return_page, page=page, sort_by=sort_by))
 
 
 @app.route("/logout")

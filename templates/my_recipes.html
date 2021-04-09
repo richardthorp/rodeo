@@ -171,7 +171,7 @@
             <form
               class="trigger-form-send"
               method="POST"
-              action="{{ url_for('toggle_favourite', recipe_id=recipe._id, page=page, return_page='my_recipes') }}"
+              action="{{ url_for('toggle_favourite', recipe_id=recipe._id, page=page, return_page='my_recipes', sort_by=sort_by) }}"
             >
               {% if session['username'] in recipe.favourites %}
               <input

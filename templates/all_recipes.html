@@ -147,7 +147,7 @@
             <form
               class="trigger-form-send"
               method="POST"
-              action="{{ url_for('toggle_favourite', recipe_id=recipe._id, page=page, return_page='all_recipes', filters=filters) }}"
+              action="{{ url_for('toggle_favourite', recipe_id=recipe._id, page=page, return_page='all_recipes', filters=filters, sort_by=sort_by) }}"
             >
               <!-- If user has favourited this recipe previously, render solid heart icon -->
               {% if session['username'] in recipe.favourites %}
