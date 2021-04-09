@@ -53,6 +53,21 @@ As a user of the website, I want:
 
 [Click here to see recipe-page.html wireframes](static/images/readme-images/wireframes/recipe-page.png)
 
+### Mock-ups
+[Click here to see index.html mock-ups](static/images/readme-images/mock-ups/index-mock-up.jpg)
+
+[Click here to see login.html mock-ups](static/images/readme-images/mock-ups/login-mock-up.jpg)
+
+[Click here to see register.html mock-ups](static/images/readme-images/mock-ups/register-mock-up.jpg)
+
+[Click here to see add-recipes.html mock-ups](static/images/readme-images/mock-ups/add-recipe-mock-up.jpg)
+
+[Click here to see my-recipes.html mock-ups](static/images/readme-images/mock-ups/my-recipes-mock-up.jpg)
+
+[Click here to see all-recipes.html mock-ups](static/images/readme-images/mock-ups/all-recipes-mock-up.jpg)
+
+[Click here to see recipe-page.html mock-ups](static/images/readme-images/mock-ups/recipe-page-mock-up.jpg)
+
 ### Colour Scheme
 ![Colour palette from https://www.coolors.co](static/images/readme-images/colour-palette.jpg "Colour palette from https://www.coolors.co")
 The colours found throughout the website were selected using the [Coolors](https://coolors.co/) colour scheme generator. I created new with the generator until I found one that featured a selection of bright and lively, but not garish colours.
