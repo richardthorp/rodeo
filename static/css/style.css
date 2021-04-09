@@ -11,7 +11,7 @@
 body {
     min-width: 300px;
     background-color: #e0ca3c;
-    font-family: 'Open Sans';
+    font-family: 'Open Sans', Arial, Helvetica, sans-serif;
 }
 
 .block-content-container {
@@ -31,9 +31,10 @@ a:hover {
 }
 
 .logo-font {
-  font-family: 'Young Heart';
+  font-family: 'Young Heart', Cambria, Cochin, Georgia, serif;
   letter-spacing: 8px;
   color: #000;
+  text-transform: uppercase;
 }
 
 .header {
@@ -46,7 +47,7 @@ a:hover {
 }
 
 .sub-header {
-    font-family: Bevan;
+    font-family: Bevan, Calibri, 'Trebuchet MS', sans-serif;
     text-transform: uppercase;
 }
 
@@ -80,13 +81,13 @@ a:hover {
     max-width: 800px;
     min-width: 280px;
     color: #FFF;
-    font-family: 'Bevan';
+    font-family: Bevan, Calibri, 'Trebuchet MS', sans-serif;
     font-size: 1.5rem;
 }
 
 .popover-body {
     font-size: 1.2em;
-    font-family: Bevan;
+    font-family: Bevan, Calibri, 'Trebuchet MS', sans-serif;
     letter-spacing: 2px;
     padding: 20px;;
     text-align: center;
@@ -133,7 +134,8 @@ nav {
 }
 
 .custom-nav-links, .footer-links {
-  font-family: 'Young Heart';
+  font-family: 'Young Heart', Cambria, Cochin, Georgia, serif;
+  text-transform: uppercase;
   color: #FFFFFFC7;
 }
 
@@ -444,7 +446,7 @@ nav {
 
 .form-input-label {
     display: block;
-    font-family: Bevan;
+    font-family: Bevan, Calibri, 'Trebuchet MS', sans-serif;
     font-size: 1.5rem;
     text-transform: uppercase;
     margin-top: 30px;
@@ -452,7 +454,7 @@ nav {
 }
 
 .custom-button, .delete-button {
-    font-family: Bevan;
+    font-family: Bevan, Calibri, 'Trebuchet MS', sans-serif;
     background-color: transparent;
     text-transform: uppercase;
     border-radius: 10px;
@@ -488,7 +490,7 @@ nav {
 } */
 
 .form-details {
-    font-family: 'Bevan';
+    font-family: Bevan, Calibri, 'Trebuchet MS', sans-serif;
     margin-bottom: 5px;
 }
 
@@ -550,7 +552,7 @@ nav {
 } */
 
 .filter-dropdown {
-    font-family: 'Open Sans';
+    font-family: 'Open Sans', Arial, Helvetica, sans-serif;
     background-color: #FFF6BC;
 }
 
@@ -585,7 +587,7 @@ nav {
 }
 
 .about-blurb {
-    font-family: Bevan;
+    font-family: Bevan, Calibri, 'Trebuchet MS', sans-serif;
     color: #FFF;
     text-align: right;
     font-size: 2rem;
@@ -722,7 +724,7 @@ nav {
 }
 
 .image-option, .selected-image-option {
-    font-family: 'Bevan';
+    font-family: Bevan, Calibri, 'Trebuchet MS', sans-serif;
     font-size: 0.8rem;
     text-transform: uppercase;
     border: 2px solid #136F63;
