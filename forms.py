@@ -53,7 +53,7 @@ class Login_form(FlaskForm):
 
 class Search_and_filter_form(FlaskForm):
     search = StringField("Search",
-                         render_kw={"placeholder": "Enter search terms"})
+                         render_kw={"placeholder": "Enter search term"})
     search_submit = SubmitField("Search")
     recipe_type = RadioField('Type', choices=[('All', 'All'),
                                               ('Meat', 'Meat'),
