@@ -133,7 +133,8 @@ $("document").ready(function () {
 $("document").ready(function () {
     let userRating = parseInt($(".user-rating").text());
     let userRatingHtml = "";
-    for (let i = 1; i < 6; i++) {
+    /* Due to the CSS reversing the row of ratings, the for loop needs a descending counter */
+    for (let i = 5; i > 0; i--) {
         /* Add checked attribute to the input that is equal to the users rating */
         if (i == userRating) {
             userRatingHtml += `<input type="radio" id="star${i}" name="rating" value="${i}" checked/>
