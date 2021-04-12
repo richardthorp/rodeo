@@ -98,11 +98,14 @@ a:hover {
     display: inline-block;
     text-align: center;
 }
+
 #gray-next-link, #gray-prev-link {
     color: #808080a6;
     border-color: #808080a6;
 }
-
+#gray-next-link:hover, #gray-prev-link:hover {
+    background-color: initial;
+} 
 /*------------------------------------------------------- NAV BAR AND FOOTER */
 nav {
   background-color: #136F63;
