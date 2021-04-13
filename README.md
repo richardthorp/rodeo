@@ -1,7 +1,9 @@
 # Rodeo Hot Sauce
-### A website for finding and sharing hot sauce recipes
+This website has been created for a ficticious hot sauce brand, "RODEO HOT SAUCE". 
+
 [Click here to view live website](https://rodeo-hot-sauce.herokuapp.com/)
 ## Table of Contents
+[Website Owners Objectives](#objectives)
 
 [User Experience - UX](#UX)
 
@@ -16,6 +18,17 @@
 [Deployment](#deployment)
 
 [Credits](#credits)
+
+<a name="objectives"></a>
+## Website Owners Objectives
+The primary objectives of the website are to enable to brand to:
+
+* Increase brand awareness
+* Increase sales
+* Promote customer loyalty
+* Generate a sense of community amongst consumers
+* Collect customer data
+* Improve understanding of consumers
 
 <a name="UX"></a>
 ## UX
@@ -32,7 +45,8 @@ As a user of the website, I want:
 * To be able to quickly edit or delete recipes that I have contibuted
 * To be able to save recipes that interest me and be able to access them quickly
 * To be able to rate recipes and have those ratings influence the information hierarchy throughout the website
-* To be able to log in and log out of the website easily and have the data presented be specific to me.
+* To be able to log in and log out of the website easily
+* For the data presented to me to be specific to me.
 
 
 <a name="design"></a>
@@ -89,6 +103,7 @@ The  image below lists the collections found in the MongoDB database. Whilst the
 
 #### Database Schema
 This image shows the database schema for the app. Where a line runs from '1' - '*', this highlights a one to many relationship.
+
 ![Database Schema](static/images/readme-images/database-schema.jpg "Database Schema")
 
 <a name="features"></a>
@@ -200,7 +215,6 @@ The front-end of the website is build with HTML, CSS and JavaScript and the back
 ## Testing
 
 <a name="deployment"></a>
-## Deployment
 
 <a name="credits"></a>
 ## Credits
