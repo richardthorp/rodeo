@@ -215,6 +215,41 @@ The front-end of the website is build with HTML, CSS and JavaScript and the back
 ## Testing
 
 <a name="deployment"></a>
+## Deployment to Heroku
+With the code required to run the app all stored in a repository with Github, deplying the app with Heroku can be done following these steps:
+
+1. Sign in/sign up to [Heroku](https://www.heroku.com/).
+2. Once signed in, click on the 'Create New App' button.
+
+!['Create new app' button](static/images/readme-images/deployment-images/create-new-app.jpg)
+
+3. Name the app, select the local region and click 'Create App'.
+4. In the top menu, select the 'Deploy' tab, and then click 'Connect to GitHub' in the 'Deployment method' section.
+
+!['Deploy' tab and 'Connect to GitHub' button](static/images/readme-images/deployment-images/connect-to-github.jpg)
+
+5. Connect your GitHub account to your Heroku account by clicking on the 'Connect to GitHub' button (if already connected, move to step 6).
+
+6. Search for the GitHub repository which contains the app you wish to deploy, and then click 'connect'.
+
+![Repository search bar and 'Connect' button](static/images/readme-images/deployment-images/search-for-repo.jpg)
+
+7. Once connected, you can choose to automatically deploy any updates made in the GitHub repository or to do so manually by selecting the branch you wish to deploy and clicking on the appropriate button.
+
+![Choose branch dropdowns and automatic and manual deploy buttons](static/images/readme-images/deployment-images/auto-deploy.jpg)
+
+8. Following this, click on the 'Settings' tab and then click 'Reveal Config Vars'
+
+!['Settings' tab and 'Reveal Config Vars' button](static/images/readme-images/deployment-images/settings-tab.jpg)
+
+9. Within the 'Reveal Config Vars' section, add the variables which would be found in your local 'env.py' file. These variables are saved here as they contain sensitive data such as the password to the MongoDB database and the secret key required to use some of Flask's functionality.
+
+![Config vars form](static/images/readme-images/deployment-images/config-vars.jpg)
+
+10. With all of the previous steps complete, as well as the prerequisites, the app will now run by clicking the 'Open app' button.
+
+!['Open app' button](static/images/readme-images/deployment-images/open-app.jpg)
+
 
 <a name="credits"></a>
 ## Credits
