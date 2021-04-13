@@ -159,7 +159,6 @@ nav {
 
 .footer-links {
     font-size: 1rem;
-    text-align: center;
 }
 
 .copyright {
@@ -834,8 +833,7 @@ nav {
         font-size: 0.6rem;
         width: 130px;
     }
-    .footer-links {
-        text-align: center;
+    .footer-links, .copyright {
         font-size: 0.8rem;
     }
     .form-header{

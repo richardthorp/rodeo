@@ -88,21 +88,21 @@
     <!-- FOOTER -->
     <footer class="mt-auto container-fluid">
         <div class="row mt-5 custom-footer d-flex align-items-center">
-            <div class="col-6 col-md-3 col-lg-6 logo-font copyright footer-links">Copyright <span></span></div>
+            <div class="col-6 col-md-3 col-lg-6 logo-font text-left copyright">Copyright <span></span></div>
             <a href="{{ url_for('all_recipes') }}"
-                class="d-none d-md-inline-block col-md-3 col-lg-2 logo-font footer-links">Recipes</a>
+                class="d-none d-md-inline-block text-center col-md-3 col-lg-2 logo-font footer-links">Recipes</a>
             {% if session["username"] %}
             <a href="{{ url_for('my_recipes') }}"
-                class="d-none d-md-inline-block col-md-3 col-lg-2 logo-font footer-links">My Recipes</a>
+                class="d-none d-md-inline-block text-center col-md-3 col-lg-2 logo-font footer-links">My Recipes</a>
             <a href="{{ url_for('log_out') }}"
-                class="d-none d-md-inline-block col-md-3 col-lg-2 logo-font footer-links">Log Out</a>
+                class="d-none d-md-inline-block text-center col-md-3 col-lg-2 logo-font footer-links">Log Out</a>
             {% else %}
             <a href="{{ url_for('login') }}"
-                class="d-none d-md-inline-block col-md-3 col-lg-2 logo-font footer-links">Login</a>
+                class="d-none d-md-inline-block text-center col-md-3 col-lg-2 logo-font footer-links">Login</a>
             <a href="{{ url_for('register') }}"
-                class="d-none d-md-inline-block col-md-3 col-lg-2 logo-font footer-links">Register</a>
+                class="d-none d-md-inline-block text-center col-md-3 col-lg-2 logo-font footer-links">Register</a>
             {% endif %}
-            <a href="#" class="col-6 d-md-none logo-font footer-links">Back to top<i
+            <a href="#" class="col-6 d-md-none logo-font text-right footer-links">Back to top<i
                     class="fas fa-angle-double-up ml-2"></i></a>
         </div>
     </footer>
