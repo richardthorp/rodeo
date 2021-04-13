@@ -81,6 +81,16 @@ The font used for the 'Rodeo' logo is 'Young Heart', sourced from [wfonts](https
 The font 'Bevan' is used in all sub-headers and buttons thoughout the website. This font was sourced from [Google Fonts](https://fonts.google.com/). Once again, this font was chosen because of it's similarities to old western wanted posters. The font is clear and striking, making it very effective at breaking up the page with sub-headers.
 
 For the rest of the site, 'Open Sans' was used due to its clean and clear style. The recipe instructions and ingredients and rendered with this font as it is clear and easy to read, even at small font sizes. This font was also sourced from [Google Fonts](https://fonts.google.com/).
+
+### Database Design
+#### Database Collections
+The  image below lists the collections found in the MongoDB database. Whilst the 'Recipe' and 'Users' collections were created specifically for the Rodeo app, FS Files and FS Chunks were created automatically with the uploading of images to the database.
+![Details of collections in MongoDB](static/images/readme-images/collections-details.jpg "Details of collections in MongoDB")
+
+#### Database Schema
+This image shows the database schema for the app. Where a line runs from '1' - '*', this highlights a one to many relationship.
+![Database Schema](static/images/readme-images/database-schema.jpg "Database Schema")
+
 <a name="features"></a>
 ## Features
 ### Implemented Features
