@@ -215,15 +215,47 @@ The front-end of the website is build with HTML, CSS and JavaScript and the back
 ## Testing
 
 <a name="deployment"></a>
+## Prerequisites
+
+### Github Repository
+Prior to deploying the app to Heroku, the code was stored in a GitHub repository. This made it easy to push any changes from a local git repository to the remote GitHub repository and have Heroku automatically deploy the most recent version of the app from GitHub (see step 7 below).
+
+### Application Requirements
+In order for Heroku to know how to run the app, a requirements.txt file must be present in the repository's root folder. This file can be created by running the command `pip freeze > requirements.txt` from the command line. This will create a file that lists all the dependencies needed to run the app.
+
+### Heroku Procfile
+Heroku also needs a 'Procfile' to know how to run the app. In this instance, the command `echo web: python app.py > Procfile` will create a file that gives Heroku the instructions that this is a web application and it can be run with the command `python app.py`.
+
+### MongoDB URI
+In order to connect the app to the MongoDB database, the URI for the database can be found using the following steps:
+
+1. Log in to MongoDB
+
+2. Once on the MongoDB Dashboard, click on the 'Connect' button.
+
+!['Connect' button on MongoDB Dashboard](static/images/readme-images/deployment-images/mongo-connect.jpg)
+3. From the pop-up, select 'Connect your application'.
+
+![Connect your application' button](static/images/readme-images/deployment-images/connect-app.jpg)
+
+4. On the following menu, select the appropriate driver and driver version options, and the URI will be presented to you. As per the instructions below the URI, `"Replace <password> with the password for the richardThorp user. Replace myFirstDatabase with the name of the database that connections will use by default."`
+
+![The MongoDB URI link](static/images/readme-images/deployment-images/mongo-uri.jpg)
+
+5. This URI should be kept in an 'env.py' file in the local repository with any other sensitive data, as it contains the password to the MongoDB database. The 'env.py' file must also be included in the 'gitignore' file to ensure that the data is never sent to the GitHub repository.
+
+
 ## Deployment to Heroku
 With the code required to run the app all stored in a repository with Github, deplying the app with Heroku can be done following these steps:
 
 1. Sign in/sign up to [Heroku](https://www.heroku.com/).
+
 2. Once signed in, click on the 'Create New App' button.
 
 !['Create new app' button](static/images/readme-images/deployment-images/create-new-app.jpg)
 
 3. Name the app, select the local region and click 'Create App'.
+
 4. In the top menu, select the 'Deploy' tab, and then click 'Connect to GitHub' in the 'Deployment method' section.
 
 !['Deploy' tab and 'Connect to GitHub' button](static/images/readme-images/deployment-images/connect-to-github.jpg)
