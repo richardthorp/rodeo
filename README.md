@@ -107,10 +107,57 @@ This image shows the database schema for the app. Where a line runs from '1' - '
 ![Database Schema](static/images/readme-images/database-schema.jpg "Database Schema")
 
 <a name="features"></a>
+
 ## Features
 ### Implemented Features
 
+#### Header and Footer
+The header and footer elements are consistant throughout the website. To the left of the header is a clickable logo, which links to **index.html**. This is standard practice in web design and expected by the user.
+
+To the right of the header on screen sizes of 768px wide or more, are three navigation links. On smaller screens the links are contained in a dropdown menu which is triggered by a standard menu icon. Again, this is common in web design and the user will naturally understand the purpose of this icon. These links have clear 'hover' effects, that make the font slightly larger and brighter when the cursor is moved over them in order to reinforce to the user that these are clickable links.
+
+The links themselves change depending on whether or not the user is logged in to the website. If the user is not logged in, a link to **'RECIPES'** is presented, where users can browse all the recipes available on the website, as well as **'LOGIN'** and **'REGISTER'**. A logged in user will be presented with the same **'RECIPES'** link, as well as a link to **'MY RECIPES'**, where they have the options to view their favourite recipes, as well as view, add and edit recipes that they have uploaded. Finally, a **'LOG OUT'** link is provided.
+
+At the right of the footer, the same 3 links are presented and are also dependent on the user being logged in or out. On screens smaller than 768px however, a link that reads **'BACK TO TOP'** is offered, which will return the user to the top of the current page.
+
+At the left of the footer is a copyright notice, which uses JavaScript to automatically update the year displayed.
+
 #### index.html
+The **index.html** landing page immediately presents to the user a striking and colourful illustration of a bottle of 'Rodeo Hot Sauce' as well as the tagline 'ADD SOME KICK TO YOUR COOK'. This serves as to suggest to the user that this website is exciting and interesting - as well as belonging to the 'Rodeo Hot Sauce' brand.
+
+Just below this is a small 'WELCOME' section, highlighted but a bright red background. This section succinctly explains to the user the purpose of the website and what a user can expect to gain by registering and using the website.
+
+At the bottom of the page is the 'SOME INSPITRATION' section featuring 3 recipe cards presented in a column for screens of up to 768px wide and in a row for screens sized 992px wide and over. In between these sizes, 2 recipe cards are offered in a row in order to maintain the legibility and clarity of the cards, and to keep the page symmetrical.
+
+![A recipe card](static/images/readme-images/recipe-card.jpg 'A recipe card')
+
+The recipe cards consist of an image, a recipe title, an average rating displayed by a star ratings out of five, and a 'favourite recipe?' heart icon.
+
+By clicking on the recipe cards image or recipe name, the user is taken to the page containing the actual recipe.
+
+The font size for the recipe name is reduced with a JavaScript function if the title contains 28 or more characters, in order to keep all the content of the recipe cards within a similar size of each other across a row.
+
+If a user attempts to click on the 'favourite recipe?' button without being logged in, a popover is presented which prompts the user to either **'LOG IN'** or **'REGISTER'** with those words acting as links to the relevant pages.
+
+If the user is logged in, when hovering the cursor over the heart icons a tooltip is displayed which will suggest to the user either 'Add to favourites' or 'Remove from favourites' depending on whether or not the user has previously 'favourited' the recipe. If the recipe has been 'favourited', a solid heart icon is rendered, otherwise a heart outline is rendered.
+
+![Favourite recipe icons](static/images/readme-images/favourite-icons.jpg '"Favourite recipe?" heart icons')
+
+By clicking the 'Favourite Recipe' icon, the user can add or remove recipes from their **'MY RECIPES'** page. A message will slide down underneath the navigation bar and tell the user that the recipe has been successfully added or removed from their favourites.
+
+These cards can be found on **'index.html'**, **'all_recipes.html'**, **'my_recipes.html** and **''added_recipies.html** and are always presented and function in the same way.
+
+Below these recipe cards is a clickable button which says to the user 'CLICK HERE TO SEE MORE RECIPES'. This links to the **'RECIPES'** page which displays all recipes on the website. 
+
+This button also has clear cursor 'hover' effect to highlight that this is a clickable link.
+
+Normal link           |  Cursor hover link
+-------------------------:|:-------------------------
+![Click Here to see more recipes button](static/images/readme-images/more-recipes-button.jpg 'Click Here to see more recipes button')  |  ![Click Here to see more recipes button](static/images/readme-images/more-recipes-button-hover.jpg 'Click Here to see more recipes button') 
+
+This button styling is found throughout the website for all clickable buttons in order to provide consistancy and allow the user quickly locate these interactive elements.
+
+
 #### login.html
 #### register.html
 #### my_recipes.html
