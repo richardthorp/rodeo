@@ -208,25 +208,25 @@ The front-end of the website is build with HTML, CSS and JavaScript and the back
    * Used to test responsivity of website and test contrast between backgrounds and fonts. Also used to check for any JavaScript errors or warnings printing the console.
    
 
-
-
-
 <a name="testing"></a>
+
 ## Testing
 
 <a name="deployment"></a>
-## Prerequisites
 
-### Github Repository
-Prior to deploying the app to Heroku, the code was stored in a GitHub repository. This made it easy to push any changes from a local git repository to the remote GitHub repository and have Heroku automatically deploy the most recent version of the app from GitHub (see step 7 below).
+## Deployment
+### Prerequisites
 
-### Application Requirements
+#### Github Repository
+Prior to deploying the app to Heroku, the code was stored in a GitHub repository. This made it easy to push any changes from a local git repository to the remote GitHub repository and have Heroku automatically deploy the most recent version of the app from GitHub (see step 7 of 'Deployment to Heroku' below).
+
+#### Application Requirements
 In order for Heroku to know how to run the app, a requirements.txt file must be present in the repository's root folder. This file can be created by running the command `pip freeze > requirements.txt` from the command line. This will create a file that lists all the dependencies needed to run the app.
 
-### Heroku Procfile
+#### Heroku Procfile
 Heroku also needs a 'Procfile' to know how to run the app. In this instance, the command `echo web: python app.py > Procfile` will create a file that gives Heroku the instructions that this is a web application and it can be run with the command `python app.py`.
 
-### MongoDB URI
+#### MongoDB URI
 In order to connect the app to the MongoDB database, the URI for the database can be found using the following steps:
 
 1. Log in to MongoDB
