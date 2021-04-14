@@ -129,7 +129,7 @@ Just below this is a small 'WELCOME' section, highlighted but a bright red backg
 
 At the bottom of the page is the 'SOME INSPITRATION' section featuring 3 recipe cards presented in a column for screens of up to 768px wide and in a row for screens sized 992px wide and over. In between these sizes, 2 recipe cards are offered in a row in order to maintain the legibility and clarity of the cards, and to keep the page symmetrical.
 
-![A recipe card](static/images/readme-images/recipe-card.jpg 'A recipe card')
+<img src="static/images/readme-images/recipe-card.jpg" alt="A recipe card" width="400"/>
 
 The recipe cards consist of an image, a recipe title, an average rating displayed by a star ratings out of five, and a 'favourite recipe?' heart icon.
 
