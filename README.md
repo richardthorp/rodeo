@@ -159,7 +159,33 @@ This button styling is found throughout the website for all clickable buttons in
 
 
 #### login.html
+The **'LOG IN'** page features a simple form that has a text input that will accept either a users email address or username, a text input for the users password input and a submit button. If either of the text input fields are left blank, the form will not be validated and the user will be prompted to fill in the field.
+
+If both fields are filled in, but the login details don't match details held in the database, a message slides down from the navigation bar to instruct the user "Login details incorrect, please try again." This instruction purposefully doesn't instruct the user which element of the form input is incorrect so as not to aid someone trying 'brute force' their way into the website with someone else's details.
+
+On screens 768px wide or more, an illustration of a bottle of 'Rodeo Hot Sauce' is rendered to the right of the form to fill the space on the page.
+
+Beneath the form, there is some text that reads 'Need to sign up?' and then the line 'Click here to sign up' which acts as a link to the **'REGISTER'** page. This link is coloured with the blue shade that is typically found on links throughout the internet to make clear to a user that this is a link.
+
+After a successful submit of the form, the user is sent to **'MY RECIPES'** and a message slides down from the navigation bar to say 'Welcome,' and then the users username.
+
+![A welcome message](static/images/readme-images/welcome.jpg)
+
 #### register.html
+The **'REGISTER'** page features a form that contains 4 text input fields for: users email address, preferred username, password and a 'retype password' input to ensure the user has entered their password choice correctly. If any of the text input fields are left blank, the form will not be validated and the user will be prompted to fill in the field.
+
+Beneath the form, there is some text that reads 'Already have an account?' and then the line 'Click here to log in' which acts as a link to the **'LOG IN'** page. This link is coloured with the blue shade that is typically found on links throughout the internet to make clear to a user that this is a link.
+
+The username and password fields have minimum and maximum input lengths which are stated clearly beneath the inputs. Should the user input not conform to these requirements, the form will not be validated and the user will be made aware of the problem and the input on which the problem has occured. These validations occur on the front-end with the browser, but the back end is also checking these requirements and will reject the form data if any of the inputs don't meet the requirements. 
+
+The back-end also checks that the data sent with the password input matches that of the 'retype password' input. If not, a message slides down from the navigation bar to tell the user "Please make sure the password fields match." 
+
+Another validation check carried out by the back-end is to check whether the email address or username provided with the form already exist in the database. If one of them does, the user is told either "Sorry, that email address already has an account" or "Sorry, that username is already taken" via a message that slides down from the navigation bar.
+
+After a successful submit of the form, the user is sent to **'MY RECIPES'** and a message slides down from the navigation bar to say 'Welcome to Rodeo,' and then the users username.
+
+On screens 768px wide or more, an illustration of a bottle of 'Rodeo Hot Sauce' is rendered to the right of the form to fill the space on the page.
+
 #### my_recipes.html
 #### all_recipes.html
 #### recipe_page.html

@@ -60,6 +60,7 @@ def register():
         elif 'confirm_password' in form.errors:
             flash('Please make sure the password fields match')
         else:
+            print(form.errors)
             flash('Sorry, there has been an error. Please try again.')
 
     return render_template("register.html", form=form)
