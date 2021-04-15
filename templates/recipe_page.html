@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="container-fluid block-content-container">
-    {% if session['username'] == recipe.added_by %}
+    {% if session['username'] == recipe.added_by or session['username'] == 'rodeo' %}
     <div class="rounded-container mx-auto text-center pt-2 pb-2">
         <span>
             <strong>Thank you for adding this recipe!</strong>
