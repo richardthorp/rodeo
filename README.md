@@ -187,12 +187,17 @@ After a successful submit of the form, the user is sent to **'MY RECIPES'** and 
 
 On screens 768px wide or more, an illustration of a bottle of 'Rodeo Hot Sauce' is rendered to the right of the form to fill the space on the page.
 
-#### **all_recipes.html, my_recipes.html and added_recipes.html**
+#### **my_recipes.html**
+The **my_recipes.html** page acts as a central hub for much of the apps functionality. This page presents to the user 3 buttons that can be used to navigate between **my_recipes.html**, **added_recipes.html** and **add_recipe.html**. The buttons stay present on all three of the pages and act as a navigation bar within these pages. These buttons are styled in the same way as other buttons elements found throughout the website and include the same cursor hover effect to highlight that they are clickable links.
+
+![My Recipes buttons](static/images/readme-images/my-recipes-buttons.jpg 'My Recipes buttons')
+
+#### **my_recipes.html, all_recipes.html and added_recipes.html**
 These three pages have been grouped togther because they essentially contain the same features, although the recipes presented are different. The 'recipe cards' mentioned within this section are exactly the same as the cards explained and pictures in the [**'index.html** features section](#recipe-card).
 
 The differences between the recipes on the  different pages are:
 
-* **all_recipes.html** displays all available recipes on the website
+* **all_recipes.html** displays all available recipes on the website. This page is accessible to any user.
 
 * **my_recipes.html** displays recipes that a user has previously 'favourited' with the heart icon on any of the recipe cards, or within an individual recipe page. This page is only accessible to users who are logged in, and is the first page presented when the user logs in, or clicks on the **'MY RECIPES'** link in the header or footer.
 
@@ -211,12 +216,45 @@ If there are more than 9 recipes returned from a search, or that fall within tha
 
 ![Pagination links on the first page of results](static/images/readme-images/pagination-links.jpg 'Pagination links on the first page of results')
 
-#### my_recipes.html
+#### add_recipe.html
+This page contains the form with which users can upload their own recipes and is only accessible to logged in users. The form is validated by both the front and back-end and any requirements are clearly displayed to the user. The form is broken into sections in order to not overwhelm the user and allow the page to flow in a steady mannor.
+
+The first section requires the user to add the recipe name, recipe type and any other details that apply to their recipe.
+
+![The top of the add recipe form](static/images/readme-images/add-recipe-form-top.jpg 'The top of the add recipe form')
+
+The 'meat', 'vegetarian' and 'vegan' options are radio button inputs, and one of them must be selected in order for the form to validate. Below them, there are a number of optional checkboxes that further catagorise the recipe. These options are rendered at the top of the recipe page for that recipe, just below the recipe name.
+
+![The recipe details rendered on a recipe page](static/images/readme-images/recipe-options.jpg 'The recipe details rendered on a recipe page')
+
+These options are also the same as the options offered to users when using the filter aspect of the search functionality on **'all_recipes.html'**, **'my_recipes.html'** and **'added_recipes.html'**.
+
+Below this, the user is asked to input ingredients and instructions. Both of these sections feature a JavaScript powered plus button, which adds an additional input to the relevant section, but only if all previous inputs have been used. Should the user try to add an input before using all available inputs, a tooltip pops up on the empty input to say 'Please use this input first'.
+
+![The tooltip that appears if the plus button is pressed early](static/images/readme-images/add-row-tooltip.jpg 'The tooltip that appears if the plus button is pressed early')
+
+The instructions text inputs feature an auto-resize function (powered by JavaScript and written by James Padolsey http://james.padolsey.com) which makes the input grow as the user enters text. This makes it much easier fot the user to look back at what they have written.  
+
+![The auto-resize text box in action](static/images/readme-images/textbox-resize.jpg 'The auto-resize text box in action')
+
+Beneath the instructions inputs is the 'How many people does it feed' input! This is a required input that will accept any positive integer. This information is also presented with the other recipe details underneath the recipe name on the the recipe page.
+
+Finally, the user is presented with an optional file input to add an image to the recipe page. By clicking on the button, the file explorer for the users device is opened and any image file can be selected. The file type is also validated at the back-end, and will be rejected if the file extension isn't jpg, jpeg or png. If a file is selected, the file name is rendered next the the input to reassure the user that the file is selected.
+
+![A file name next to the 'Select File' button](static/images/readme-images/selected-image.jpg 'A file name next to the 'Select File' button')
+
+#### edit_recipe.html
+The **edit_recipe.html** page contains mostly the same form as the **add_recipe.html** page form, however the inputs are pre-filled with the data from whichever recipe the user wishes to edit. 
+
+The only other difference between the **add_recipe.html** and **edit_recipe.html** forms is the add image section. 
+
+If the user has previously uploaded an image with the recipe, an option to keep that image is offered along with a preview of the image. Next to that are options to use the default image or to upload a new image. These options funtion as a radio input and therefore only one can be selected. If the default image option or the new image option is selected, the original image is deleted from the database an the new image presented in it's place on the recipe page.
+
+[The image options if an image exists for the recipe](static/images/image-options.jpg 'The image options if an image exists for the recipe')
+
+If however, there wasn't an image attached to the recipe, the add image section looks and behaves the same as it does on **add_recipe.html**.
 
 #### recipe_page.html
-#### added_recipes.html
-#### add_recipe.html
-#### edit_recipe.html
 #### 404.html
 The **404** page is displayed if the user tries to access a page that doesn't exist. For example, the user may try to access a recipe they have bookmarked in their browser, but the recipe has since been deleted. The **404** page sinmply states "It seems that whatever you're looking for isn't here" and then provides a link to **'all_recipes.html'** with the text "Why not come look at some delicious recipes?". As with all other pages on the website, the header and footer are present to allow for easy access to the main pages of the website.
 #### 500.html
