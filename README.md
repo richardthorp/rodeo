@@ -111,7 +111,7 @@ This image shows the database schema for the app. Where a line runs from '1' - '
 ## Features
 ### Implemented Features
 
-#### Header and Footer
+#### **Header and Footer**
 The header and footer elements are consistant throughout the website. To the left of the header is a clickable logo, which links to **index.html**. This is standard practice in web design and expected by the user.
 
 To the right of the header on screen sizes of 768px wide or more, are three navigation links. On smaller screens the links are contained in a dropdown menu which is triggered by a standard menu icon. Again, this is common in web design and the user will naturally understand the purpose of this icon. These links have clear 'hover' effects, that make the font slightly larger and brighter when the cursor is moved over them in order to reinforce to the user that these are clickable links.
@@ -122,13 +122,14 @@ At the right of the footer, the same 3 links are presented and are also dependen
 
 At the left of the footer is a copyright notice, which uses JavaScript to automatically update the year displayed.
 
-#### index.html
+#### **index.html**
 The **index.html** landing page immediately presents to the user a striking and colourful illustration of a bottle of 'Rodeo Hot Sauce' as well as the tagline 'ADD SOME KICK TO YOUR COOK'. This serves as to suggest to the user that this website is exciting and interesting - as well as belonging to the 'Rodeo Hot Sauce' brand.
 
 Just below this is a small 'WELCOME' section, highlighted but a bright red background. This section succinctly explains to the user the purpose of the website and what a user can expect to gain by registering and using the website.
 
 At the bottom of the page is the 'SOME INSPITRATION' section featuring 3 recipe cards presented in a column for screens of up to 768px wide and in a row for screens sized 992px wide and over. In between these sizes, 2 recipe cards are offered in a row in order to maintain the legibility and clarity of the cards, and to keep the page symmetrical.
 
+<a name="recipe-card"></a>
 <img src="static/images/readme-images/recipe-card.jpg" alt="A recipe card" width="400"/>
 
 The recipe cards consist of an image, a recipe title, an average rating displayed by a star ratings out of five, and a 'favourite recipe?' heart icon.
@@ -158,7 +159,7 @@ Normal link           |  Cursor hover link
 This button styling is found throughout the website for all clickable buttons in order to provide consistancy and allow the user quickly locate these interactive elements.
 
 
-#### login.html
+#### **login.html**
 The **'LOG IN'** page features a simple form that has a text input that will accept either a users email address or username, a text input for the users password input and a submit button. If either of the text input fields are left blank, the form will not be validated and the user will be prompted to fill in the field.
 
 If both fields are filled in, but the login details don't match details held in the database, a message slides down from the navigation bar to instruct the user "Login details incorrect, please try again." This instruction purposefully doesn't instruct the user which element of the form input is incorrect so as not to aid someone trying 'brute force' their way into the website with someone else's details.
@@ -171,7 +172,7 @@ After a successful submit of the form, the user is sent to **'MY RECIPES'** and 
 
 ![A welcome message](static/images/readme-images/welcome.jpg)
 
-#### register.html
+#### **register.html**
 The **'REGISTER'** page features a form that contains 4 text input fields for: users email address, preferred username, password and a 'retype password' input to ensure the user has entered their password choice correctly. If any of the text input fields are left blank, the form will not be validated and the user will be prompted to fill in the field.
 
 Beneath the form, there is some text that reads 'Already have an account?' and then the line 'Click here to log in' which acts as a link to the **'LOG IN'** page. This link is coloured with the blue shade that is typically found on links throughout the internet to make clear to a user that this is a link.
@@ -186,8 +187,32 @@ After a successful submit of the form, the user is sent to **'MY RECIPES'** and 
 
 On screens 768px wide or more, an illustration of a bottle of 'Rodeo Hot Sauce' is rendered to the right of the form to fill the space on the page.
 
+#### **all_recipes.html, my_recipes.html and added_recipes.html**
+These three pages have been grouped togther because they essentially contain the same features, although the recipes presented are different. The 'recipe cards' mentioned within this section are exactly the same as the cards explained and pictures in the [**'index.html** features section](#recipe-card).
+
+The differences between the recipes on the  different pages are:
+
+* **all_recipes.html** displays all available recipes on the website
+
+* **my_recipes.html** displays recipes that a user has previously 'favourited' with the heart icon on any of the recipe cards, or within an individual recipe page. This page is only accessible to users who are logged in, and is the first page presented when the user logs in, or clicks on the **'MY RECIPES'** link in the header or footer.
+
+* **added_recipes.html** displays all recipes that the user has uploaded to the website. As such, each recipe card presented on this page has an 'edit' button which links to **edit_recipe.html** and a 'delete' button which triggers a modal asking if the user is sure they wish to delete the recipe. This page is also only accessible to logged in users.
+
+Each of the pages presents to the user 9 recipe cards at a time, with 9 x 1 card rows on screens of up 768px wide, 2 x 2 cards rows up to 992px wide and 3 x 3 card rows for any larger screens. This ensures the information on the recipe cards is clear and well laid out irrespective of the users device.
+
+The pages are all headed by a search and filter section. Within this section, users can use a text input field to search for keywords within either the recipe names or ingredients. Alongside this search input are options to filter the recipes by type ('Meat', 'Vegetarian' and 'Vegan') and to further filter by options such as 'Quick', 'Healthy' and 'Gluton Free'. The search and filter results will only return the relevant recipes from within the remit of that particular page (ie. a search on **'my_recipes.html'** will only return recipes that the user has added to their favourites and that meet the terms of the search). If no results are returned from the search, the user is presented with text that states "NO RECIPES FOUND!
+Please adjust your search term or filters and try again." a well as a button to reset the page and clear the search terms.
+
+![The text displayed if no search results are found](static/images/readme-images/no-results.jpg 'The text displayed if no search results are found')
+
+Just below the search and filter section, if there are recipes to be displayed, there are links to control whether to sort the recipes by average rating - with the highest rated recipes first, or with the newest recipes displayed first. The default is for the highest recipes to be displayed first.
+
+If there are more than 9 recipes returned from a search, or that fall within that page's remit (such as the user adding more than 9 recipes and viewing **''added_recipes.html**), pagination links are made available to move through the recipes 9 cards at a time. If the user is on the first or last page of results, this is signified by the pagination link becoming grayed out and the cursor no longer becoming a 'pointer' when hovered over the link. 
+
+![Pagination links on the first page of results](static/images/readme-images/pagination-links.jpg 'Pagination links on the first page of results')
+
 #### my_recipes.html
-#### all_recipes.html
+
 #### recipe_page.html
 #### added_recipes.html
 #### add_recipe.html
