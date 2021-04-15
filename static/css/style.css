@@ -1061,12 +1061,14 @@ nav {
     }
     .recipe-card-title {
         font-size: 3.5rem;
+        line-height: 90px;
     }
     .shrink-header {
         font-size: 3rem;
     }
     #slogan {
         font-size: 10rem;
+        line-height: 220px;
     }
     .about-title {
         font-size: 8rem;
@@ -1075,7 +1077,7 @@ nav {
         font-size: 2rem;
     }
     .about-row {
-        min-height: 500px;
+        min-height: 650px;
     }
     .header {
         font-size: 6rem;
