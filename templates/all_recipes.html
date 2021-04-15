@@ -5,7 +5,7 @@
     <div class="col-12">
       <form
         method="POST"
-        action="{{ url_for('search_results', return_page='my_recipes', sort_by='average_rating')}}"
+        action="{{ url_for('search_results', return_page='all_recipes', sort_by='average_rating')}}"
       >
         <div class="row">
           {{ form.hidden_tag() }}
