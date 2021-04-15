@@ -26,8 +26,9 @@ a:hover {
     text-decoration: none;
 }
 
-.dropdown-item:active {
+.dropdown-item:active, .dropdown-item:hover {
     background-color: initial;
+    color: initial;
 }
 
 .logo-font {
@@ -623,7 +624,7 @@ nav {
     max-width: 450px;
     width: 75%;
     font-size: 1.5rem;
-    color: #000;
+    color: #136F63;
     padding: 5px;
 }
 
