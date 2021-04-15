@@ -193,6 +193,9 @@ On screens 768px wide or more, an illustration of a bottle of 'Rodeo Hot Sauce' 
 #### add_recipe.html
 #### edit_recipe.html
 #### 404.html
+The **404** page is displayed if the user tries to access a page that doesn't exist. For example, the user may try to access a recipe they have bookmarked in their browser, but the recipe has since been deleted. The **404** page sinmply states "It seems that whatever you're looking for isn't here" and then provides a link to **'all_recipes.html'** with the text "Why not come look at some delicious recipes?". As with all other pages on the website, the header and footer are present to allow for easy access to the main pages of the website.
+#### 500.html
+Similar to the **404** page, the **500** page is displayed if the server runs into any issues, either due to a programming error or the server running into issues. This page states "It seems something has gone wrong!" and then provides a link to **'all_recipes.html'** with the text "Why not come look at some delicious recipes?". Again, the header and footer are present to allow the user to easily navigate back through the website.
 
 #### Potential Future Features
 
