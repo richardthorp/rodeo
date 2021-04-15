@@ -842,6 +842,9 @@ nav {
     .form-input-label, .form-details {
         font-size: 0.7rem;
     }
+    .form-requirement {
+        font-size: 0.7rem;
+    }
     .my-recipe-buttons {
         border-width: 2px;
         width: 95%;
@@ -935,6 +938,9 @@ nav {
     .form-input {
         font-size: 0.8rem;
     }
+    .form-requirement {
+        font-size: 0.8rem;
+    }
     .my-recipe-buttons i {
         font-size: 2.5rem;
     }
@@ -987,6 +993,9 @@ nav {
         display: flex;
         flex-direction: column;
         justify-content: center;
+    }
+    .form-requirement {
+        font-size: 1rem;
     }
     .search-container .custom-button {
         font-size: 1rem;
