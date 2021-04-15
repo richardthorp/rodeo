@@ -628,8 +628,8 @@ nav {
 }
 
 .my-recipe-buttons:hover {
-    background-color: #FFF6BC;
-    color: #000;
+    background-color: #136F63;
+    color: #FFF;
 }
 
 .my-recipe-buttons i {
@@ -643,7 +643,8 @@ nav {
 }
 
 .current-button {
-    background-color: #FFF6BC;
+    background-color: #136F63;
+    color: #FFF;
 }
 
 .add-fav-or-recipe {
