@@ -73,7 +73,10 @@ class Search_and_filter_form(FlaskForm):
 
 class Add_recipe_form(FieldsRequiredForm):
     recipe_name = StringField('Recipe Name',
-                              validators=[Length(max=50), InputRequired()])
+                              validators=[Length(min=4, max=50),
+                                          InputRequired()],
+                              render_kw={"minlength": "4",
+                                         "maxlength": "50"})
     recipe_type = RadioField('Type', choices=[('Meat', 'Meat'),
                              ('Vegetarian', 'Vegetarian'),
                              ('Vegan', 'Vegan')])
@@ -85,7 +88,10 @@ class Add_recipe_form(FieldsRequiredForm):
     quick_checkbox = BooleanField('Quick', render_kw={"value": "Quick"})
     fakeaway_checkbox = BooleanField('Fakeaway', render_kw={"value":
                                                             "Fakeaway"})
-    ingredient_1 = StringField("Ingredient 1", validators=[InputRequired()])
+    ingredient_1 = StringField("Ingredient 1", validators=[InputRequired(),
+                                                           Length
+                                                           (min=3, max=50)],
+                               render_kw={"minlength": "3", "maxlength": "50"})
     ingredient_2 = StringField("Ingredient 2", validators=[InputRequired()])
     ingredient_3 = StringField("Ingredient 3", validators=[InputRequired()])
     ingredient_optional = StringField()
