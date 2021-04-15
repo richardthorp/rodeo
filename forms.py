@@ -41,10 +41,10 @@ class Registration_form(FlaskForm):
 
 
 class Login_form(FlaskForm):
-    email_or_username = StringField(
-            "Email Address",
-            render_kw={
-             "placeholder": "Enter email address or username"})
+    email_or_username = StringField("Email Address",
+                                    validators=[InputRequired()],
+                                    render_kw={"placeholder":
+                                               "Enter email address or username"})
     password = PasswordField("Password",
                              render_kw={"placeholder": "Enter password",
                                         "required": ""})
