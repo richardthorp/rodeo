@@ -1,5 +1,5 @@
 # Rodeo Hot Sauce
-This website has been created for a ficticious hot sauce brand, "RODEO HOT SAUCE". 
+This website has been created for a fictitious hot sauce brand, "RODEO HOT SAUCE". 
 
 [Click here to view live website](https://rodeo-hot-sauce.herokuapp.com/)
 ## Table of Contents
@@ -33,16 +33,16 @@ The primary objectives of the website are to enable to brand to:
 <a name="UX"></a>
 ## UX
 ### User Profiles
-As a user of this website, I am someone looking to find recipes, or to contribute recipes to a community. I am an English speaker with an interest in cooking with hot sauce.
+As a user of this website, I am someone looking to find recipes or to contribute recipes to a community. I am an English speaker with an interest in cooking with hot sauce.
 
 ### User Stories
 As a user of the website, I want:
 * To be able to navigate through the website in an intuitive and easy fashion
 * To discover popular recipes involving hot sauce
-* To dicover new recipes involving hot sauce
+* To discover new recipes involving hot sauce
 * To be able to quickly and easily search the recipes to find specific ingredients or meal types
 * To contribute my own recipes to the website community
-* To be able to quickly edit or delete recipes that I have contibuted
+* To be able to quickly edit or delete recipes that I have contributed
 * To be able to save recipes that interest me and be able to access them quickly
 * To be able to rate recipes and have those ratings influence the information hierarchy throughout the website
 * To be able to log in and log out of the website easily
@@ -85,20 +85,20 @@ As a user of the website, I want:
 ### Colour Scheme
 ![Colour palette from https://www.coolors.co](static/images/readme-images/colour-palette.jpg "Colour palette from https://www.coolors.co")
 The colours found throughout the website were selected using the [Coolors](https://coolors.co/) colour scheme generator. I created new with the generator until I found one that featured a selection of bright and lively, but not garish colours.
-The 'Pine Green' colour found in the header and footer provides a strong background on which brings clarity to the bold white logo and links. The colour is also used for all button elements found throughout the website which brings consistancy and allows the user to quickly see that the elements are interative.
-The bright yellow 'Citrine' colour is used as a background to the main body of the website. This colour contrasts well with the 'Pine Green' header and footer, and provides a bright, fresh and natural feel to the site.
-The lighter 'Blond' colour works well against the 'Citrine' to highlight different aspects of the website to the user, such as the recipe cards and containers for the search and filter elements. The lightness of the shade allows for the black font, any clickable 'Pine Green' buttons and recipe images to to stand out from the background.
+The 'Pine Green' colour found in the header and footer provides a strong background on which brings clarity to the bold white logo and links. The colour is also used for all button elements found throughout the website which brings consistency and allows the user to quickly see that the elements are interactive.
+The bright yellow 'Citrine' colour is used as a background to the main body of the website. This colour contrasts well with the 'Pine Green' header and footer and provides a bright, fresh and natural feel to the site.
+The lighter 'Blond' colour works well against the 'Citrine' to highlight different aspects of the website to the user, such as the recipe cards and containers for the search and filter elements. The lightness of the shade allows for the black font, any clickable 'Pine Green' buttons and recipe images to stand out from the background.
 
 ### Fonts
-The font used for the 'Rodeo' logo is 'Young Heart', sourced from [wfonts](https://www.wfonts.com/). The font was chosen because of it's similaries to old western wanted posters which fits the branding of the hot sauce. As well as this, the font is decorative and more interesting than standard block lettering, whilst still being clearly legible. This also meant the font could be used throughout the website for the main navigational links and headings.
+The font used for the 'Rodeo' logo is 'Young Heart', sourced from [wfonts](https://www.wfonts.com/). The font was chosen because of its similarities to old western wanted posters which fits the branding of the hot sauce. As well as this, the font is decorative and more interesting than standard block lettering, whilst still being legible. This also meant the font could be used throughout the website for the main navigational links and headings.
 
-The font 'Bevan' is used in all sub-headers and buttons thoughout the website. This font was sourced from [Google Fonts](https://fonts.google.com/). Once again, this font was chosen because of it's similarities to old western wanted posters. The font is clear and striking, making it very effective at breaking up the page with sub-headers.
+The font 'Bevan' is used in all sub-headers and buttons throughout the website. This font was sourced from [Google Fonts](https://fonts.google.com/). Once again, this font was chosen because of its similarities to old western wanted posters. The font is clear and striking, making it very effective at breaking up the page with sub-headers.
 
 For the rest of the site, 'Open Sans' was used due to its clean and clear style. The recipe instructions and ingredients and rendered with this font as it is clear and easy to read, even at small font sizes. This font was also sourced from [Google Fonts](https://fonts.google.com/).
 
 ### Database Design
 #### Database Collections
-The  image below lists the collections found in the MongoDB database. Whilst the 'Recipe' and 'Users' collections were created specifically for the Rodeo app, FS Files and FS Chunks were created automatically with the uploading of images to the database.
+The image below lists the collections found in the MongoDB database. Whilst the 'Recipe' and 'Users' collections were created specifically for the Rodeo app, FS Files and FS Chunks were created automatically with the uploading of images to the database.
 ![Details of collections in MongoDB](static/images/readme-images/collections-details.jpg "Details of collections in MongoDB")
 
 #### Database Schema
@@ -112,54 +112,54 @@ This image shows the database schema for the app. Where a line runs from '1' - '
 ### Implemented Features
 
 #### **Header and Footer**
-The header and footer elements are consistant throughout the website. To the left of the header is a clickable logo, which links to **index.html**. This is standard practice in web design and expected by the user.
+The header and footer elements are consistent throughout the website. To the left of the header is a clickable logo, which links to **index.html**. This is standard practice in web design and expected by the user.
 
-To the right of the header on screen sizes of 768px wide or more, are three navigation links. On smaller screens the links are contained in a dropdown menu which is triggered by a standard menu icon. Again, this is common in web design and the user will naturally understand the purpose of this icon. These links have clear 'hover' effects, that make the font slightly larger and brighter when the cursor is moved over them in order to reinforce to the user that these are clickable links.
+To the right of the header on screen sizes of 768px wide or more, are three navigation links. On smaller screens, the links are contained in a dropdown menu which is triggered by a standard menu icon. Again, this is common in web design and the user will naturally understand the purpose of this icon. These links have clear 'hover' effects, that make the font slightly larger and brighter when the cursor is moved over them to reinforce to the user that these are clickable links.
 
-The links themselves change depending on whether or not the user is logged in to the website. If the user is not logged in, a link to **'RECIPES'** is presented, where users can browse all the recipes available on the website, as well as **'LOGIN'** and **'REGISTER'**. A logged in user will be presented with the same **'RECIPES'** link, as well as a link to **'MY RECIPES'**, where they have the options to view their favourite recipes, as well as view, add and edit recipes that they have uploaded. Finally, a **'LOG OUT'** link is provided.
+The links themselves change depending on whether or not the user is logged in to the website. If the user is not logged in, a link to **'RECIPES'** is presented, where users can browse all the recipes available on the website, as well as **'LOGIN'** and **'REGISTER'**. A logged-in user will be presented with the same **'RECIPES'** link, as well as a link to **'MY RECIPES'**, where they have the options to view their favourite recipes, as well as view, add and edit recipes that they have uploaded. Finally, a **'LOG OUT'** link is provided.
 
 At the right of the footer, the same 3 links are presented and are also dependent on the user being logged in or out. On screens smaller than 768px however, a link that reads **'BACK TO TOP'** is offered, which will return the user to the top of the current page.
 
 At the left of the footer is a copyright notice, which uses JavaScript to automatically update the year displayed.
 
 #### **index.html**
-The **index.html** landing page immediately presents to the user a striking and colourful illustration of a bottle of 'Rodeo Hot Sauce' as well as the tagline 'ADD SOME KICK TO YOUR COOK'. This serves as to suggest to the user that this website is exciting and interesting - as well as belonging to the 'Rodeo Hot Sauce' brand.
+The **index.html** landing page immediately presents to the user a striking and colourful illustration of a bottle of 'Rodeo Hot Sauce' as well as the tagline 'ADD SOME KICK TO YOUR COOK'. This serves to suggest to the user that this website is exciting and interesting - as well as belonging to the 'Rodeo Hot Sauce' brand.
 
-Just below this is a small 'WELCOME' section, highlighted but a bright red background. This section succinctly explains to the user the purpose of the website and what a user can expect to gain by registering and using the website.
+Just below this is a small 'WELCOME' section, highlighted with a bright red background. This section succinctly explains to the user the purpose of the website and what a user can expect to gain by registering and using the website.
 
-At the bottom of the page is the 'SOME INSPITRATION' section featuring 3 recipe cards presented in a column for screens of up to 768px wide and in a row for screens sized 992px wide and over. In between these sizes, 2 recipe cards are offered in a row in order to maintain the legibility and clarity of the cards, and to keep the page symmetrical.
+At the bottom of the page is the 'SOME INSPIRATION section featuring 3 recipe cards presented in a column for screens of up to 768px wide and in a row for screens sized 992px wide and over. In between these sizes, 2 recipe cards are offered in a row to maintain the legibility and clarity of the cards, and to keep the page symmetrical.
 
 <a name="recipe-card"></a>
 <img src="static/images/readme-images/recipe-card.jpg" alt="A recipe card" width="400"/>
 
-The recipe cards consist of an image, a recipe title, an average rating displayed by a star ratings out of five, and a 'favourite recipe?' heart icon.
+The recipe cards consist of an image, a recipe title, an average rating displayed by a star rating out of five, and a 'favourite recipe?' heart icon.
 
 By clicking on the recipe cards image or recipe name, the user is taken to the page containing the actual recipe.
 
-The font size for the recipe name is reduced with a JavaScript function if the title contains 28 or more characters, in order to keep all the content of the recipe cards within a similar size of each other across a row.
+The font size for the recipe name is reduced with a JavaScript function if the title contains 28 or more characters, to keep all the content of the recipe cards within a similar size of each other across a row.
 
 If a user attempts to click on the 'favourite recipe?' button without being logged in, a popover is presented which prompts the user to either **'LOG IN'** or **'REGISTER'** with those words acting as links to the relevant pages.
 
 <a name="heart-icons"></a>
-If the user is logged in, when hovering the cursor over the heart icons a tooltip is displayed which will suggest to the user either 'Add to favourites' or 'Remove from favourites' depending on whether or not the user has previously 'favourited' the recipe. If the recipe has been 'favourited', a solid heart icon is rendered, otherwise a heart outline is rendered.
+If the user is logged in, when hovering the cursor over the heart icons a tooltip is displayed which will suggest to the user either 'Add to favourites' or 'Remove from favourites' depending on whether or not the user has previously 'favourited' the recipe. If the recipe has been 'favourited', a solid heart icon is rendered, otherwise, a heart outline is rendered.
 
 ![Favourite recipe icons](static/images/readme-images/favourite-icons.jpg '"Favourite recipe?" heart icons')
 
 By clicking the 'Favourite Recipe' icon, the user can add or remove recipes from their **'MY RECIPES'** page. A message will slide down underneath the navigation bar and tell the user that the recipe has been successfully added or removed from their favourites.
 
-If the user is not logged in, clicking on the heart icon will trigger a popover which prompts the user to register or log in (an [example of this popover](#recipe-page) can be viewed in the **'recipe_page.html'** section.)
+If the user is not logged in, clicking on the heart icon will trigger a popover which prompts the user to register or login (an [example of this popover](#recipe-page) can be viewed in the **'recipe_page.html'** section.)
 
 These cards can be found on **'index.html'**, **'all_recipes.html'**, **'my_recipes.html** and **''added_recipies.html** and are always presented and function in the same way.
 
-Below these recipe cards is a clickable button which says to the user 'CLICK HERE TO SEE MORE RECIPES'. This links to the **'RECIPES'** page which displays all recipes on the website. 
+Below these recipe cards is a clickable button that says to the user 'CLICK HERE TO SEE MORE RECIPES'. This links to the **'RECIPES'** page which displays all recipes on the website. 
 
-This button also has clear cursor 'hover' effect to highlight that this is a clickable link.
+This button also has a cursor 'hover' effect to highlight that this is a clickable link.
 
 Normal link           |  Cursor hover link
 -------------------------:|:-------------------------
 ![Click Here to see more recipes button](static/images/readme-images/more-recipes-button.jpg 'Click Here to see more recipes button')  |  ![Click Here to see more recipes button](static/images/readme-images/more-recipes-button-hover.jpg 'Click Here to see more recipes button') 
 
-This button styling is found throughout the website for all clickable buttons in order to provide consistancy and allow the user quickly locate these interactive elements.
+This button styling is found throughout the website for most clickable buttons to provide consistency and allow the user to quickly locate these interactive elements.
 
 #### **recipe_page.html**
 The **recipe_page.html** page holds a template that is used to render the actual recipes from the database. 
@@ -173,15 +173,15 @@ Next, there are several details about the recipe, such as how many people the re
 
 These details also make up the filters available in the search functionality of **'all_recipes.html'**, **'my_recipes.html'** and **'added_recipes.html'**.
 
-Below this is a recipe image. If the user who added the recipe included an image, then that image will be displayed, however if no image was added a default image of an illustrated 'Rodeo Hot Sauce' bottle with patterns around it is inserted here instead.
+Below this, the recipe image is displayed. If the user who added the recipe included an image then that image will be displayed, however, if no image was added a default image of an illustrated 'Rodeo Hot Sauce' bottle with patterns around it is inserted here instead.
 
 ![A recipe with the default image](static/images/readme-images/default-recipe-image.jpg 'A recipe with the default image')
 
-Under the image, the user is able to view the average rating for the recipe out of 5 stars, rounded to the nearest half star.
+Under the image, the user can view the average rating for the recipe out of 5 stars, rounded to the nearest half star.
 
 ![A 2.5 star rating](static/images/readme-images/rating-stars.jpg 'A 2.5 star rating')
 
-Next to the average rating are the user rating stars and 'ADD RATING' button. If the user is logged in, they can submit their rating for the recipe by clicking on their chosen star rating and clicking the button directly below. If the user has already rated the recipe, their rating will be reflected in the number of coloured stars when the page loads. For instance, if the user has previously given the recipe a rating of 3/5, 3 of the stars will be coloured in when the recipe page is loaded. When a user submits a rating, any existing rating for that recipe by that user will be replaced by the new rating. This means a user can only provide 1 rating for each recipe at a time.
+Next to the average rating are the user rating stars and the 'ADD RATING' button. If the user is logged in, they can submit their rating for the recipe by clicking on their chosen star rating and clicking the button directly below. If the user has already rated the recipe, their rating will be reflected in the number of coloured stars when the page loads. For instance, if the user has previously given the recipe a rating of 3/5, 3 of the stars will be coloured in when the recipe page is loaded. When a user submits a rating, any existing rating for that recipe by that user will be replaced by the new rating. This means a user can only provide 1 rating for each recipe at a time.
 
 On screens smaller than 768px wide, these star rating features are replaced by a 'VIEW RATINGS' button which triggers a modal containing the average rating and user rating stars.
 
@@ -193,61 +193,61 @@ Next to the average and user rating stars is the 'FAVOURITE RECIPE' header and h
 
 If the user is logged in, this functions in the same way as the [heart icons on the recipe cards.](#heart-icons) 
 
-If the user is not logged in, neither the 'favourite recipe' or 'user rating' features will work. Instead, if the user tries to interact with either of them, a popover is triggered which informs the user to 'LOGIN or REGISTER to...' and then either '...save recipes to your favourites' or '...to rate recipes'.
+If the user is not logged in, neither the 'favourite recipe' nor 'user rating' features will work. Instead, if the user tries to interact with either of them, a popover is triggered which informs the user to 'LOGIN or REGISTER to...' and then either '...save recipes to your favourites' or '...to rate recipes'.
 
 <a name="recipe-page"></a>
 
 ![The 'FAVOURITE RECIPE?' popover](static/images/readme-images/favourite-popover.jpg 'The "FAVOURITE RECIPE?" popover')
 
-Finally, the ingredients and instructions are presented. On larger screens these are presented side by side, but below 992 pixels wide they are in a column. 
+Finally, the ingredients and instructions are presented. On larger screens, these are presented side by side, but below 992 pixels wide they are in a column. 
 
 ![Ingredients and instructions listed on a large screen](static/images/readme-images/ingredients-instructions.jpg 'Ingredients and instructions listed on a large screen')
 
 #### **login.html**
-The **'LOG IN'** page features a simple form that has a text input that will accept either a users email address or username, a text input for the users password input and a submit button. If either of the text input fields are left blank, the form will not be validated and the user will be prompted to fill in the field.
+The **'LOG IN'** page features a simple form that has a text input that will accept either a users email address or username, a text input for the user's password input and a submit button. If either of the text input fields are left blank, the form will not be validated and the user will be prompted to fill in the field.
 
 If both fields are filled in, but the login details don't match details held in the database, a message slides down from the navigation bar to instruct the user "Login details incorrect, please try again." This instruction purposefully doesn't instruct the user which element of the form input is incorrect so as not to aid someone trying 'brute force' their way into the website with someone else's details.
 
 On screens 768px wide or more, an illustration of a bottle of 'Rodeo Hot Sauce' is rendered to the right of the form to fill the space on the page.
 
-Beneath the form, there is some text that reads 'Need to sign up?' and then the line 'Click here to sign up' which acts as a link to the **'REGISTER'** page. This link is coloured with the blue shade that is typically found on links throughout the internet to make clear to a user that this is a link.
+Beneath the form, some text reads 'Need to sign up?' and then the line 'Click here to sign up' which acts as a link to the **'REGISTER'** page. This link is coloured with the blue shade that is typically found on links throughout the internet to make clear to a user that this is a link.
 
-After a successful submit of the form, the user is sent to **'MY RECIPES'** and a message slides down from the navigation bar to say 'Welcome,' and then the users username.
+After successful submission of the form, the user is sent to **'MY RECIPES'** and a message slides down from the navigation bar to say 'Welcome,' and then the user's username.
 
 ![A welcome message](static/images/readme-images/welcome.jpg)
 
 #### **register.html**
-The **'REGISTER'** page features a form that contains 4 text input fields for: users email address, preferred username, password and a 'retype password' input to ensure the user has entered their password choice correctly. If any of the text input fields are left blank, the form will not be validated and the user will be prompted to fill in the field.
+The **'REGISTER'** page features a form that contains 4 text input fields for the user's email address, preferred username, password and a 'retype password' input to ensure the user has entered their password choice correctly. If any of the text input fields are left blank, the form will not be validated and the user will be prompted to fill in the field.
 
-Beneath the form, there is some text that reads 'Already have an account?' and then the line 'Click here to log in' which acts as a link to the **'LOG IN'** page. This link is coloured with the blue shade that is typically found on links throughout the internet to make clear to a user that this is a link.
+Beneath the form, some text reads 'Already have an account?' and then the line 'Click here to log in' which acts as a link to the **'LOG IN'** page. This link is coloured with the blue shade that is typically found on links throughout the internet to make clear to a user that this is a link.
 
-The username and password fields have minimum and maximum input lengths which are stated clearly beneath the inputs. Should the user input not conform to these requirements, the form will not be validated and the user will be made aware of the problem and the input on which the problem has occured. These validations occur on the front-end with the browser, but the back end is also checking these requirements and will reject the form data if any of the inputs don't meet the requirements. 
+The username and password fields have minimum and maximum input lengths which are stated clearly beneath the inputs. Should the user input not conform to these requirements, the form will not be validated and the user will be made aware of the problem and the input on which the problem has occurred. These validations occur on the front-end with the browser, but the back end is also checking these requirements and will reject the form data if any of the inputs don't meet the requirements. 
 
 The back-end also checks that the data sent with the password input matches that of the 'retype password' input. If not, a message slides down from the navigation bar to tell the user "Please make sure the password fields match." 
 
 Another validation check carried out by the back-end is to check whether the email address or username provided with the form already exist in the database. If one of them does, the user is told either "Sorry, that email address already has an account" or "Sorry, that username is already taken" via a message that slides down from the navigation bar.
 
-After a successful submit of the form, the user is sent to **'MY RECIPES'** and a message slides down from the navigation bar to say 'Welcome to Rodeo,' and then the users username.
+After successful submission of the form, the user is sent to **'MY RECIPES'** and a message slides down from the navigation bar to say 'Welcome to Rodeo,' and then the user's username.
 
 On screens 768px wide or more, an illustration of a bottle of 'Rodeo Hot Sauce' is rendered to the right of the form to fill the space on the page.
 
 #### **my_recipes.html**
-The **my_recipes.html** page acts as a central hub for much of the apps functionality. This page presents to the user 3 buttons that can be used to navigate between **my_recipes.html**, **added_recipes.html** and **add_recipe.html**. The buttons stay present on all three of the pages and act as a navigation bar within these pages. These buttons are styled in the same way as other buttons elements found throughout the website and include the same cursor hover effect to highlight that they are clickable links.
+The **my_recipes.html** page acts as a central hub for much of the app's functionality. This page presents to the user 3 buttons that can be used to navigate between **my_recipes.html**, **added_recipes.html** and **add_recipe.html**. The buttons stay present on all three of the pages and act as a navigation bar within these pages. These buttons are styled in the same way as other buttons elements found throughout the website and include the same cursor hover effect to highlight that they are clickable links.
 
 ![My Recipes buttons](static/images/readme-images/my-recipes-buttons.jpg 'My Recipes buttons')
 
 #### **my_recipes.html, all_recipes.html and added_recipes.html**
-These three pages have been grouped togther because they essentially contain the same features, although the recipes presented are different. The 'recipe cards' mentioned within this section are exactly the same as the cards explained and pictures in the [**'index.html** features section](#recipe-card).
+These three pages have been grouped because they essentially contain the same features, although the recipes presented are different. The 'recipe cards' mentioned within this section are the same as the cards explained and pictures in the [**'index.html** features section](#recipe-card).
 
 The differences between the recipes on the  different pages are:
 
 * **all_recipes.html** displays all available recipes on the website. This page is accessible to any user.
 
-* **my_recipes.html** displays recipes that a user has previously 'favourited' with the heart icon on any of the recipe cards, or within an individual recipe page. This page is only accessible to users who are logged in, and is the first page presented when the user logs in, or clicks on the **'MY RECIPES'** link in the header or footer.
+* **my_recipes.html** displays recipes that a user has previously 'favourited' with the heart icon on any of the recipe cards, or within an individual recipe page. This page is only accessible to users who are logged in and is the first page presented when the user logs in or clicks on the **'MY RECIPES'** link in the header or footer.
 
-* **added_recipes.html** displays all recipes that the user has uploaded to the website. As such, each recipe card presented on this page has an 'edit' button which links to **edit_recipe.html** and a 'delete' button which triggers a modal asking if the user is sure they wish to delete the recipe. This page is also only accessible to logged in users.
+* **added_recipes.html** displays all recipes that the user has uploaded to the website. As such, each recipe card presented on this page has an 'edit' button that links to **edit_recipe.html** and a 'delete' button which triggers a modal asking if the user is sure they wish to delete the recipe. This page is also only accessible to logged-in users.
 
-Each of the pages presents to the user 9 recipe cards at a time, with 9 x 1 card rows on screens of up 768px wide, 2 x 2 cards rows up to 992px wide and 3 x 3 card rows for any larger screens. This ensures the information on the recipe cards is clear and well laid out irrespective of the users device.
+Each of the pages presents to the user 9 recipe cards at a time, with 9 x 1 card rows on screens of up 768px wide, 2 x 2 cards rows up to 992px wide and 3 x 3 card rows for any larger screens. This ensures the information on the recipe cards is clear and well laid out irrespective of the user's device.
 
 The pages are all headed by a search and filter section. Within this section, users can use a text input field to search for keywords within either the recipe names or ingredients. Alongside this search input are options to filter the recipes by type ('Meat', 'Vegetarian' and 'Vegan') and to further filter by options such as 'Quick', 'Healthy' and 'Gluton Free'. The search and filter results will only return the relevant recipes from within the remit of that particular page (ie. a search on **'my_recipes.html'** will only return recipes that the user has added to their favourites and that meet the terms of the search). If no results are returned from the search, the user is presented with text that states "NO RECIPES FOUND!
 Please adjust your search term or filters and try again." a well as a button to reset the page and clear the search terms.
@@ -256,50 +256,50 @@ Please adjust your search term or filters and try again." a well as a button to 
 
 Just below the search and filter section, if there are recipes to be displayed, there are links to control whether to sort the recipes by average rating - with the highest rated recipes first, or with the newest recipes displayed first. The default is for the highest recipes to be displayed first.
 
-If there are more than 9 recipes returned from a search, or that fall within that page's remit (such as the user adding more than 9 recipes and viewing **''added_recipes.html**), pagination links are made available to move through the recipes 9 cards at a time. If the user is on the first or last page of results, this is signified by the pagination link becoming grayed out and the cursor no longer becoming a 'pointer' when hovered over the link. 
+If there are more than 9 recipes returned from a search, or that fall within that page's remit (such as the user adding more than 9 recipes and viewing **''added_recipes.html**), pagination links are made available to move through the recipes 9 cards at a time. If the user is on the first or last page of results, this is signified by the pagination link becoming greyed out and the cursor no longer becoming a 'pointer' when hovered over the link. 
 
 ![Pagination links on the first page of results](static/images/readme-images/pagination-links.jpg 'Pagination links on the first page of results')
 
 <a name='add-recipe'></a>
 #### add_recipe.html
-This page contains the form with which users can upload their own recipes and is only accessible to logged in users. The form is validated by both the front and back-end and any requirements are clearly displayed to the user. The form is broken into sections in order to not overwhelm the user and allow the page to flow in a steady mannor.
+This page contains the form with which users can upload their own recipes and is only accessible to logged-in users. The form is validated by both the front and back-end and any requirements are clearly displayed to the user. The form is broken into sections in order to not overwhelm the user and allow the page to flow steadily.
 
 The first section requires the user to add the recipe name, recipe type and any other details that apply to their recipe.
 
 ![The top of the add recipe form](static/images/readme-images/add-recipe-form-top.jpg 'The top of the add recipe form')
 
-The 'meat', 'vegetarian' and 'vegan' options are radio button inputs, and one of them must be selected in order for the form to validate. Below them, there are a number of optional checkboxes that further catagorise the recipe. These options are rendered at the top of the recipe page for that recipe, just below the recipe name which can be seen [in the **'recipe_page.html'** section](#recipe-options-image)
+The 'meat', 'vegetarian' and 'vegan' options are radio button inputs, and one of them must be selected for the form to validate. Below them, there are several optional checkboxes that further categorise the recipe. These options are rendered at the top of the recipe page for that recipe, just below the recipe name which can be seen [in the **'recipe_page.html'** section](#recipe-options-image)
 
 
 These options are also the same as the options offered to users when using the filter aspect of the search functionality on **'all_recipes.html'**, **'my_recipes.html'** and **'added_recipes.html'**.
 
-Below this, the user is asked to input ingredients and instructions. Both of these sections feature a JavaScript powered plus button, which adds an additional input to the relevant section, but only if all previous inputs have been used. Should the user try to add an input before using all available inputs, a tooltip pops up on the empty input to say 'Please use this input first'.
+Below this, the user is asked to input ingredients and instructions. Both of these sections feature a JavaScript-powered plus button, which adds an additional input to the relevant section, but only if all previous inputs have been used. Should the user try to add an input before using all available inputs, a tooltip pops up on the empty input to say 'Please use this input first'.
 
 ![The tooltip that appears if the plus button is pressed early](static/images/readme-images/add-row-tooltip.jpg 'The tooltip that appears if the plus button is pressed early')
 
-The instructions text inputs feature an auto-resize function (powered by JavaScript and written by James Padolsey http://james.padolsey.com) which makes the input grow as the user enters text. This makes it much easier fot the user to look back at what they have written.  
+The instructions text inputs feature an auto-resize function (powered by JavaScript and written by James Padolsey http://james.padolsey.com) which makes the input grow as the user enters text. This makes it much easier for the user to look back at what they have written.  
 
 ![The auto-resize text box in action](static/images/readme-images/textbox-resize.jpg 'The auto-resize text box in action')
 
-Beneath the instructions inputs is the 'How many people does it feed' input! This is a required input that will accept any positive integer. This information is also presented with the other recipe details underneath the recipe name on the the recipe page.
+Beneath the instructions inputs is the 'How many people does it feed' input! This is a required input that will accept any positive integer. This information is also presented with the other recipe details underneath the recipe name on the recipe page.
 
-Finally, the user is presented with an optional file input to add an image to the recipe page. By clicking on the button, the file explorer for the users device is opened and any image file can be selected. The file type is also validated at the back-end, and will be rejected if the file extension isn't jpg, jpeg or png. If a file is selected, the file name is rendered next the the input to reassure the user that the file is selected.
+Finally, the user is presented with an optional file input to add an image to the recipe page. By clicking on the button, the file explorer for the user's device is opened and any image file can be selected. The file type is also validated at the back-end and will be rejected if the file extension isn't jpg, jpeg or png. If a file is selected, the file name is rendered next to the input to reassure the user that the file is selected.
 
 ![A file name next to the 'Select File' button](static/images/readme-images/selected-image.jpg "A file name next to the 'Select File' button")
 
 #### edit_recipe.html
-The **edit_recipe.html** page contains mostly the same form as the **add_recipe.html** page form, however the inputs are pre-filled with the data from whichever recipe the user wishes to edit. 
+The **edit_recipe.html** page contains mostly the same form as the **add_recipe.html** page form, however, the inputs are pre-filled with the data from whichever recipe the user wishes to edit. 
 
 The only other difference between the **add_recipe.html** and **edit_recipe.html** forms is the add image section. 
 
-If the user has previously uploaded an image with the recipe, an option to keep that image is offered along with a preview of the image. Next to that are options to use the default image or to upload a new image. These options funtion as a radio input and therefore only one can be selected. If the default image option or the new image option is selected, the original image is deleted from the database an the new image presented in it's place on the recipe page.
+If the user has previously uploaded an image with the recipe, an option to keep that image is offered along with a preview of the image. Next to that are options to use the default image or to upload a new image. These options function as a radio input and therefore only one can be selected. If the default image option or the new image option is selected, the original image is deleted from the database and the new image presented in its place on the recipe page.
 
 ![The image options if an image exists for the recipe](static/images/readme-images/image-options.jpg 'The image options if an image exists for the recipe')
 
 If however, there wasn't an image attached to the recipe, the add image section looks and behaves the same as it does on **add_recipe.html**.
 
 #### 404.html
-The **404** page is displayed if the user tries to access a page that doesn't exist. For example, the user may try to access a recipe they have bookmarked in their browser, but the recipe has since been deleted. The **404** page sinmply states "It seems that whatever you're looking for isn't here" and then provides a link to **'all_recipes.html'** with the text "Why not come look at some delicious recipes?". As with all other pages on the website, the header and footer are present to allow for easy access to the main pages of the website.
+The **404** page is displayed if the user tries to access a page that doesn't exist. For example, the user may try to access a recipe they have bookmarked in their browser, but the recipe has since been deleted. The **404** page simply states "It seems that whatever you're looking for isn't here" and then provides a link to **'all_recipes.html'** with the text "Why not come look at some delicious recipes?". As with all other pages on the website, the header and footer are present to allow for easy access to the main pages of the website.
 #### 500.html
 Similar to the **404** page, the **500** page is displayed if the server runs into any issues, either due to a programming error or the server running into issues. This page states "It seems something has gone wrong!" and then provides a link to **'all_recipes.html'** with the text "Why not come look at some delicious recipes?". Again, the header and footer are present to allow the user to easily navigate back through the website.
 
@@ -308,7 +308,7 @@ Similar to the **404** page, the **500** page is displayed if the server runs in
 <a name="tech"></a>
 ## Languages and Technologies
 ### Languages
-The front-end of the website is build with HTML, CSS and JavaScript and the back-end in Python.
+The front-end of the website is built with HTML, CSS and JavaScript and the back-end in Python.
 
 ### Technologies
 #### IDE and Version control and Deployment
@@ -330,7 +330,7 @@ The front-end of the website is build with HTML, CSS and JavaScript and the back
 
 #### Libraries, Frameworks and Packages 
 * [Bootsrap](https://getbootstrap.com/)
-   * Used to provide structure, responsiveness and some CSS styling  to the front-end. Also used to add modals, tooltips, dropdowns and popovers.
+   * Used to provide structure, responsiveness and some CSS styling to the front-end. Also used to add modals, tooltips, dropdowns and popovers.
 
 * [Jquery](https://jquery.com/)
    * jQuery is required to power certain Bootstrap features, including elements mentioned above. jQuery is also used to shorten the syntax required to achieve certain functions, such as targeting HTML elements within the JavaScript file.
@@ -409,7 +409,7 @@ In order for Heroku to know how to run the app, a requirements.txt file must be 
 Heroku also needs a 'Procfile' to know how to run the app. In this instance, the command `echo web: python app.py > Procfile` will create a file that gives Heroku the instructions that this is a web application and it can be run with the command `python app.py`.
 
 #### MongoDB URI
-In order to connect the app to the MongoDB database, the URI for the database can be found using the following steps:
+To connect the app to the MongoDB database, the URI for the database can be found using the following steps:
 
 1. Log in to MongoDB
 
@@ -428,7 +428,7 @@ In order to connect the app to the MongoDB database, the URI for the database ca
 
 
 ## Deployment to Heroku
-With the code required to run the app all stored in a repository with Github, deplying the app with Heroku can be done following these steps:
+With the code required to run the app all stored in a repository with Github, deploying the app with Heroku can be done following these steps:
 
 1. Sign in/sign up to [Heroku](https://www.heroku.com/).
 
