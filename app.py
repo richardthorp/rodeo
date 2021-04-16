@@ -453,6 +453,7 @@ def recipe_page(recipe_id):
         average_rating = get_average_rating(recipe_id)
         mongo.db.recipes.update_one({'_id': ObjectId(recipe_id)},
                                     {'$set': {'average_rating': average_rating}})
+        flash('Thank you for your rating!')
 
         return redirect(url_for('recipe_page', recipe_id=recipe_id))
 
