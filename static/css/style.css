@@ -659,7 +659,7 @@ nav {
     font-size: 1.5rem;
 }
 
-/*------------------------------------------------------- ADD RECIPE */
+/*------------------------------------------------------- ADD RECIPE + EDIT RECIPE*/
 .form-container .form-details {
     padding: 5px 5px 0 5px;
 }
@@ -753,6 +753,11 @@ nav {
 .image-option i, .selected-image-option i, .image-option,
 .selected-image-option, .selected-image-option img, .image-option img {
     cursor: pointer;
+}
+
+.selected-file-container {
+    width: 100%;
+    overflow-wrap: break-word; 
 }
 /* .image-option {
     display: block; 
