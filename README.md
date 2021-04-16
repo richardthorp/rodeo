@@ -140,11 +140,14 @@ The font size for the recipe name is reduced with a JavaScript function if the t
 
 If a user attempts to click on the 'favourite recipe?' button without being logged in, a popover is presented which prompts the user to either **'LOG IN'** or **'REGISTER'** with those words acting as links to the relevant pages.
 
+<a name="heart-icons"></a>
 If the user is logged in, when hovering the cursor over the heart icons a tooltip is displayed which will suggest to the user either 'Add to favourites' or 'Remove from favourites' depending on whether or not the user has previously 'favourited' the recipe. If the recipe has been 'favourited', a solid heart icon is rendered, otherwise a heart outline is rendered.
 
 ![Favourite recipe icons](static/images/readme-images/favourite-icons.jpg '"Favourite recipe?" heart icons')
 
 By clicking the 'Favourite Recipe' icon, the user can add or remove recipes from their **'MY RECIPES'** page. A message will slide down underneath the navigation bar and tell the user that the recipe has been successfully added or removed from their favourites.
+
+If the user is not logged in, clicking on the heart icon will trigger a popover which prompts the user to register or log in (an [example of this popover](#recipe-page) can be viewed in the **'recipe_page.html'** section.)
 
 These cards can be found on **'index.html'**, **'all_recipes.html'**, **'my_recipes.html** and **''added_recipies.html** and are always presented and function in the same way.
 
@@ -158,6 +161,49 @@ Normal link           |  Cursor hover link
 
 This button styling is found throughout the website for all clickable buttons in order to provide consistancy and allow the user quickly locate these interactive elements.
 
+#### **recipe_page.html**
+The **recipe_page.html** page holds a template that is used to render the actual recipes from the database. 
+
+At the top of the page is the recipe name, in big bold font that matches that of the logo. Beneath this, there is a subtle line of text which reads 'Recipe added by' and then the username of whoever added the recipe.
+
+Next, there are several details about the recipe, such as how many people the recipe serves, whether the recipe is vegan, vegetarian or meat and several other details which are selected by the user from a list when they add the recipe. This can be seen in the [**'add_recipe.html'** section](#add-recipe)
+
+<a name="recipe-options-image"></a>
+![The recipe details rendered on a recipe page](static/images/readme-images/recipe-options.jpg 'The recipe details rendered on a recipe page')
+
+These details also make up the filters available in the search functionality of **'all_recipes.html'**, **'my_recipes.html'** and **'added_recipes.html'**.
+
+Below this is a recipe image. If the user who added the recipe included an image, then that image will be displayed, however if no image was added a default image of an illustrated 'Rodeo Hot Sauce' bottle with patterns around it is inserted here instead.
+
+![A recipe with the default image](static/images/readme-images/default-recipe-image.jpg 'A recipe with the default image')
+
+Under the image, the user is able to view the average rating for the recipe out of 5 stars, rounded to the nearest half star.
+
+![A 2.5 star rating](static/images/readme-images/rating-stars.jpg 'A 2.5 star rating')
+
+Next to the average rating are the user rating stars and 'ADD RATING' button. If the user is logged in, they can submit their rating for the recipe by clicking on their chosen star rating and clicking the button directly below. If the user has already rated the recipe, their rating will be reflected in the number of coloured stars when the page loads. For instance, if the user has previously given the recipe a rating of 3/5, 3 of the stars will be coloured in when the recipe page is loaded. When a user submits a rating, any existing rating for that recipe by that user will be replaced by the new rating. This means a user can only provide 1 rating for each recipe at a time.
+
+![A user rating of 3/5](static/images/readme-images/user-rating.jpg 'A user rating of 3/5')
+
+On screens smaller than 768px wide, these star rating features are replaced by a 'VIEW RATINGS' button which triggers a modal containing the average rating and user rating stars.
+
+![The ratings modal as seen on a mobile device](static/images/readme-images/rating-modal.jpg 'The ratings modal as seen on a mobile device')
+
+Whenever a new rating is added, a message slides down from the navigation bar to thank the user for their rating.
+
+Next to the average and user rating stars is the 'FAVOURITE RECIPE' header and heart icon. 
+
+If the user is logged in, this functions in the same way as the [heart icons on the recipe cards.](#heart-icons) 
+
+If the user is not logged in, neither the 'favourite recipe' or 'user rating' features will work. Instead, if the user tries to interact with either of them, a popover is triggered which informs the user to 'LOGIN or REGISTER to...' and then either '...save recipes to your favourites' or '...to rate recipes'.
+
+<a name="recipe-page"></a>
+
+![The 'FAVOURITE RECIPE?' popover](static/images/readme-images/favourite-popover.jpg 'The "FAVOURITE RECIPE?" popover')
+
+Finally, the ingredients and instructions are presented. On larger screens these are presented side by side, but below 992 pixels wide they are in a column. 
+
+![Ingredients and instructions listed on a large screen](static/images/readme-images/ingredients-instructions.jpg 'Ingredients and instructions listed on a large screen')
 
 #### **login.html**
 The **'LOG IN'** page features a simple form that has a text input that will accept either a users email address or username, a text input for the users password input and a submit button. If either of the text input fields are left blank, the form will not be validated and the user will be prompted to fill in the field.
@@ -216,6 +262,7 @@ If there are more than 9 recipes returned from a search, or that fall within tha
 
 ![Pagination links on the first page of results](static/images/readme-images/pagination-links.jpg 'Pagination links on the first page of results')
 
+<a name='add-recipe'></a>
 #### add_recipe.html
 This page contains the form with which users can upload their own recipes and is only accessible to logged in users. The form is validated by both the front and back-end and any requirements are clearly displayed to the user. The form is broken into sections in order to not overwhelm the user and allow the page to flow in a steady mannor.
 
@@ -223,9 +270,8 @@ The first section requires the user to add the recipe name, recipe type and any 
 
 ![The top of the add recipe form](static/images/readme-images/add-recipe-form-top.jpg 'The top of the add recipe form')
 
-The 'meat', 'vegetarian' and 'vegan' options are radio button inputs, and one of them must be selected in order for the form to validate. Below them, there are a number of optional checkboxes that further catagorise the recipe. These options are rendered at the top of the recipe page for that recipe, just below the recipe name.
+The 'meat', 'vegetarian' and 'vegan' options are radio button inputs, and one of them must be selected in order for the form to validate. Below them, there are a number of optional checkboxes that further catagorise the recipe. These options are rendered at the top of the recipe page for that recipe, just below the recipe name which can be seen [in the **'recipe_page.html'** section](#recipe-options-image)
 
-![The recipe details rendered on a recipe page](static/images/readme-images/recipe-options.jpg 'The recipe details rendered on a recipe page')
 
 These options are also the same as the options offered to users when using the filter aspect of the search functionality on **'all_recipes.html'**, **'my_recipes.html'** and **'added_recipes.html'**.
 
@@ -241,7 +287,7 @@ Beneath the instructions inputs is the 'How many people does it feed' input! Thi
 
 Finally, the user is presented with an optional file input to add an image to the recipe page. By clicking on the button, the file explorer for the users device is opened and any image file can be selected. The file type is also validated at the back-end, and will be rejected if the file extension isn't jpg, jpeg or png. If a file is selected, the file name is rendered next the the input to reassure the user that the file is selected.
 
-![A file name next to the 'Select File' button](static/images/readme-images/selected-image.jpg 'A file name next to the 'Select File' button')
+![A file name next to the 'Select File' button](static/images/readme-images/selected-image.jpg "A file name next to the 'Select File' button")
 
 #### edit_recipe.html
 The **edit_recipe.html** page contains mostly the same form as the **add_recipe.html** page form, however the inputs are pre-filled with the data from whichever recipe the user wishes to edit. 
@@ -250,11 +296,10 @@ The only other difference between the **add_recipe.html** and **edit_recipe.html
 
 If the user has previously uploaded an image with the recipe, an option to keep that image is offered along with a preview of the image. Next to that are options to use the default image or to upload a new image. These options funtion as a radio input and therefore only one can be selected. If the default image option or the new image option is selected, the original image is deleted from the database an the new image presented in it's place on the recipe page.
 
-[The image options if an image exists for the recipe](static/images/image-options.jpg 'The image options if an image exists for the recipe')
+![The image options if an image exists for the recipe](static/images/readme-images/image-options.jpg 'The image options if an image exists for the recipe')
 
 If however, there wasn't an image attached to the recipe, the add image section looks and behaves the same as it does on **add_recipe.html**.
 
-#### recipe_page.html
 #### 404.html
 The **404** page is displayed if the user tries to access a page that doesn't exist. For example, the user may try to access a recipe they have bookmarked in their browser, but the recipe has since been deleted. The **404** page sinmply states "It seems that whatever you're looking for isn't here" and then provides a link to **'all_recipes.html'** with the text "Why not come look at some delicious recipes?". As with all other pages on the website, the header and footer are present to allow for easy access to the main pages of the website.
 #### 500.html
