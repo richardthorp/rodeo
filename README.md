@@ -285,7 +285,7 @@ Beneath the instructions inputs is the 'How many people does it feed' input! Thi
 
 Finally, the user is presented with an optional file input to add an image to the recipe page. By clicking on the button, the file explorer for the user's device is opened and any image file can be selected. The file type is also validated at the back-end and will be rejected if the file extension isn't jpg, jpeg or png.
 
-As well as the file type, the file size is also validated at both the front and back end in order to stop the database becoming reaching its data capacity too quickly. If a file larger than 1MB is selected, a JavaScript function triggers a browser alert that says 'File size too big, please choose a smaller file.' and the file is removed from the file input. If for any reason this validator fails, there is a 
+As well as the file type, the file size is also validated at both the front and back end in order to stop the database becoming reaching its data capacity too quickly. If a file larger than 1MB is selected, a JavaScript function triggers a browser alert that says 'File size too big, please choose a smaller file.' and the file is removed from the file input. If for any reason this validator fails, there is a limit set within the flask app that will reject any request data greater than 1.2MB. In this instance, the user should be redirected to the **added_recipes.html** page.
 
 If a file is selected that meets both the file type and size requirements, the file name is rendered next to the input to reassure the user that the file is selected.
 
@@ -308,6 +308,9 @@ The **404** page is displayed if the user tries to access a page that doesn't ex
 Similar to the **404** page, the **500** page is displayed if the server runs into any issues, either due to a programming error or the server running into issues. This page states "It seems something has gone wrong!" and then provides a link to **'all_recipes.html'** with the text "Why not come look at some delicious recipes?". Again, the header and footer are present to allow the user to easily navigate back through the website.
 
 #### Potential Future Features
+A very useful feature that is not currently available in the app is the ability for a user to reset their password should they forget it or need to change it. Unfortunately I believe this to be out of my skillset at this moment and do not have the time to do the research neccessary to implement this feature.
+
+Another feature I would like to add is a dashboard available to the website admin, which could display statistics useful to the 'Rodeo Hot Sauce' brand. These statistics could highlight trends such as growing popularity of certain meal types which would be useful for marketing purposes.
 
 <a name="tech"></a>
 ## Languages and Technologies
