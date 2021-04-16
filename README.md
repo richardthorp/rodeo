@@ -283,7 +283,11 @@ The instructions text inputs feature an auto-resize function (powered by JavaScr
 
 Beneath the instructions inputs is the 'How many people does it feed' input! This is a required input that will accept any positive integer. This information is also presented with the other recipe details underneath the recipe name on the recipe page.
 
-Finally, the user is presented with an optional file input to add an image to the recipe page. By clicking on the button, the file explorer for the user's device is opened and any image file can be selected. The file type is also validated at the back-end and will be rejected if the file extension isn't jpg, jpeg or png. If a file is selected, the file name is rendered next to the input to reassure the user that the file is selected.
+Finally, the user is presented with an optional file input to add an image to the recipe page. By clicking on the button, the file explorer for the user's device is opened and any image file can be selected. The file type is also validated at the back-end and will be rejected if the file extension isn't jpg, jpeg or png.
+
+As well as the file type, the file size is also validated at both the front and back end in order to stop the database becoming reaching its data capacity too quickly. If a file larger than 1MB is selected, a JavaScript function triggers a browser alert that says 'File size too big, please choose a smaller file.' and the file is removed from the file input. If for any reason this validator fails, there is a 
+
+If a file is selected that meets both the file type and size requirements, the file name is rendered next to the input to reassure the user that the file is selected.
 
 ![A file name next to the 'Select File' button](static/images/readme-images/selected-image.jpg "A file name next to the 'Select File' button")
 
