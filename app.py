@@ -15,6 +15,7 @@ app = Flask(__name__)
 app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
+app.config['MAX_CONTENT_LENGTH'] = 1.2 * 1024 * 1024
 
 mongo = PyMongo(app)
 
@@ -460,6 +461,7 @@ def recipe_page(recipe_id):
     return render_template("recipe_page.html", recipe=recipe,
                            image_name=image_name, user_rating=user_rating)
 
+
 @app.errorhandler(404)
 def page_not_found(err):
     return render_template("404.html")
@@ -470,13 +472,19 @@ def server_error(err):
     return render_template("500.html")
 
 
+@app.errorhandler(413)
+def request_entity_too_big(err):
+    flash("The image file was too big, please use a different file.")
+    return redirect(url_for('added_recipes'))
+
+
 def format_recipe_data(form_data_dict):
     details = {}
     ingredients = []
     instructions = []
     formatted_recipe = {}
     details = {key: value for key, value in form_data_dict.items() if
-                "checkbox" in key or "recipe_type" in key}
+               "checkbox" in key or "recipe_type" in key}
     for (key, value) in form_data_dict.items():
         if "ingredient" in key and value != "":
             ingredients.append(value.strip())
