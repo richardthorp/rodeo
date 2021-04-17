@@ -129,7 +129,7 @@
             {% if recipe.image_name == 'default-image' %}
             <img src="/static/images/default-image.jpg" alt="Illustration of Rodeo Hot Sauce bottle" />
             {% else %}
-            <img src="{{ url_for('get_image', image_name = recipe.image_name) }}" alt="" />
+            <img src="{{ url_for('get_image', image_name = recipe.image_name) }}" class="user-image" alt="" />
             {% endif %}
           </div>
           <h4 class="recipe-card-title logo-font text-center">

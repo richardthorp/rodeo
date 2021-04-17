@@ -205,7 +205,11 @@ $("document").ready(function(){
 /* Use recipe name as alt attribute on user uploaded images */
 $("document").ready(function () {
     $('.user-image').each(function() {
-        let recipeTitle = $(this).parent().siblings('.recipe-card-title').text();
+        let recipeTitle = $(this).parent().siblings('.recipe-card-title').text().trim();
+        $(this).attr('alt', recipeTitle);
+    })
+    $('.recipe-page-image').each(function() {
+        let recipeTitle = $(this).siblings('h1').text().trim();
         $(this).attr('alt', recipeTitle);
     })
 })
