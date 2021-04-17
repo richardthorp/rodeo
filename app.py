@@ -77,10 +77,10 @@ def login():
             email_or_username = request.form.get("email_or_username")
             existing_user = mongo.db.users.find_one(
                             {"$or": [{"username": email_or_username},
-                            {"email": email_or_username}]})
+                                     {"email": email_or_username}]})
             if existing_user:
                 if check_password_hash(existing_user["password"],
-                                    request.form.get("password")):
+                                       request.form.get("password")):
                     session["username"] = existing_user["username"]
                     flash('Welcome, ' + session['username'] + '!')
                     return redirect(url_for("my_recipes"))
@@ -88,8 +88,8 @@ def login():
                     flash("Login details incorrect, please try again.")
                     return redirect(url_for('login'))
             else:
-                    flash("Login details incorrect, please try again.")
-                    return redirect(url_for('login'))
+                flash("Login details incorrect, please try again.")
+                return redirect(url_for('login'))
 
     return render_template("login.html", form=form)
 
@@ -102,9 +102,12 @@ def all_recipes():
     sort_by = request.args.get('sort_by', 'average_rating', type=str)
     session['search_terms'] = {}
     if page > 1:
-        recipes = mongo.db.recipes.find(session['search_terms']).sort(sort_by, -1).skip((page - 1) * 9).limit(9)
+        recipes = mongo.db.recipes.find(
+            session['search_terms']).sort(sort_by, -1).skip(
+                (page - 1) * 9).limit(9)
     else:
-        recipes = mongo.db.recipes.find(session['search_terms']).sort(sort_by, -1).limit(9)
+        recipes = mongo.db.recipes.find(session['search_terms']).sort(
+            sort_by, -1).limit(9)
 
     next_page = url_for('all_recipes', page=str(page + 1), sort_by=sort_by)
     prev_page = url_for('all_recipes', page=str(page - 1), sort_by=sort_by)
@@ -210,18 +213,123 @@ def added_recipes():
     max_page = math.ceil(recipes.count() / 9)
     recipes_count = mongo.db.recipes.count_documents(
         {'added_by': session['username']})
-    # recipes = mongo.db.recipes.find({"added_by": session['username']})
-    # filters = False
-
-    # if form.validate_on_submit():
-    #     form_data = (dict(request.form))
-    #     recipes = search_and_filter(form_data, 'added_recipes')
-    #     filters = True
 
     return render_template("added_recipes.html", form=form, recipes=recipes,
                            next_page=next_page, prev_page=prev_page,
                            max_page=max_page, page=page,
                            recipes_count=recipes_count, sort_by=sort_by)
+
+
+@app.route("/add_recipe", methods=["GET", "POST"])
+def add_recipe():
+    if not session.get('username'):
+        flash('Please log in to add and favourite recipes')
+        return redirect(url_for('login'))
+
+    form = Add_recipe_form()
+    if request.method == 'POST':
+        if form.validate_on_submit():
+            form_data_dict = dict(request.form)
+            formatted_recipe = format_recipe_data(form_data_dict)
+
+            # If an image file has been sent with form data...
+            if request.files['picture_upload']:
+                # Remove any special characters from the file name and
+                # add user _id to file name to ensure name is unique
+                user = mongo.db.users.find_one({
+                                'username': session['username']})
+                user_id = str(user['_id'])
+                file_name = "".join(char for char in
+                                    request.files['picture_upload'].filename
+                                    if char.isalnum()) + user_id
+
+                mongo.save_file(file_name,
+                                request.files['picture_upload'])
+                formatted_recipe['image_name'] = file_name
+            else:
+                formatted_recipe['image_name'] = 'default-image'
+
+            # Insert recipe to DB
+            recipe_id = mongo.db.recipes.insert_one(formatted_recipe)
+            flash('Recipe added! Thank you!')
+            return redirect(url_for('recipe_page',
+                                    recipe_id=recipe_id.inserted_id))
+
+        # Invalid form...
+        else:
+            flash('''Sorry, there was an issue with the form data.
+                    Please try again''')
+            return render_template("add_recipe.html", form=form)
+    else:
+        return render_template("add_recipe.html", form=form)
+
+
+@app.route('/edit_recipe/<recipe_id>', methods=['GET', 'POST'])
+def edit_recipe(recipe_id):
+    # User not logged in...
+    if not session.get('username'):
+        flash('Please log in to add and favourite recipes')
+        return redirect(url_for('login'))
+
+    form = Add_recipe_form()
+    recipe = mongo.db.recipes.find_one({'_id': ObjectId(recipe_id)})
+    if request.method == 'POST':
+        if form.validate_on_submit():
+            form_data_dict = dict(request.form)
+            formatted_recipe = format_recipe_data(form_data_dict)
+            # If the 'picture_upload' input has been used, there is no
+            # existing image in the database to remove, so just format the
+            # name upload to db
+            print(form_data_dict)
+            if request.files.get('picture_upload'):
+                # Remove any special characters from the file name and
+                # add user _id to file name to ensure name is unique
+                user = mongo.db.users.find_one({
+                                    'username': session['username']})
+                user_id = str(user['_id'])
+                file_name = "".join(char for char in
+                                    request.files['picture_upload'].filename
+                                    if char.isalnum()) + user_id
+
+                mongo.save_file(file_name,
+                                request.files['picture_upload'])
+                formatted_recipe['image_name'] = file_name
+
+            # If the new_picture_upload input has been used, this means the
+            # image is to replace an existing user uploaded image, so find
+            # the original image and delete before formatting new image
+            # name and uploading to db
+            elif (request.files.get('new_picture_upload')
+                  and form_data_dict['image_options'] == 'new_image'):
+                # Call delete_image to remove image data from db
+                delete_image(recipe['image_name'])
+                user = mongo.db.users.find_one({
+                                    'username': session['username']})
+                user_id = str(user['_id'])
+                file_name = "".join(char for char in
+                                    request.files[
+                                        'new_picture_upload'].filename
+                                    if char.isalnum()) + user_id
+                mongo.save_file(file_name, request.files['new_picture_upload'])
+                formatted_recipe['image_name'] = file_name
+
+            # User had uploaded an image but now wants to use the default image
+            # Delete existing image data from db and set new image to default
+            elif form_data_dict['image_options'] == 'default_image':
+                # Call delete_image to remove image data from db
+                delete_image(recipe['image_name'])
+                # Set recipe image name to default image
+                formatted_recipe['image_name'] = 'default-image'
+            # Update recipe in DB
+            mongo.db.recipes.update_one({'_id': ObjectId(recipe_id)},
+                                        {'$set': formatted_recipe})
+            return redirect(url_for('recipe_page', recipe_id=recipe_id))
+        # Invalid form...
+        else:
+            flash('''Sorry, there was an issue with the form data.
+                Please try again''')
+            print("NOT VALID", form.errors)
+    return render_template('edit_recipe.html', form=form, recipe=recipe)
 
 
 def create_query_dict(form_data, page):
@@ -258,116 +366,6 @@ def create_query_dict(form_data, page):
     return search_terms
 
 
-@app.route("/add_recipe", methods=["GET", "POST"])
-def add_recipe():
-    if not session.get('username'):
-        flash('Please log in to add and favourite recipes')
-        return redirect(url_for('login'))
-    else:
-        form = Add_recipe_form()
-        if request.method == 'POST':
-            if form.validate_on_submit():
-                form_data_dict = dict(request.form)
-                formatted_recipe = format_recipe_data(form_data_dict)
-
-                # If an image file has been sent with form data...
-                if request.files['picture_upload']:
-                    # Remove any special characters from the file name and
-                    # add user _id to file name to ensure name is unique
-                    user = mongo.db.users.find_one({
-                                    'username': session['username']})
-                    user_id = str(user['_id'])
-                    file_name = "".join(char for char in
-                                        request.files['picture_upload'].filename
-                                        if char.isalnum()) + user_id
-
-                    mongo.save_file(file_name,
-                                    request.files['picture_upload'])
-                    formatted_recipe['image_name'] = file_name
-                else:
-                    formatted_recipe['image_name'] = 'default-image'
-
-                # Insert recipe to DB
-                recipe_id = mongo.db.recipes.insert_one(formatted_recipe)
-                flash('Recipe added! Thank you!')
-                return redirect(url_for('recipe_page',
-                                        recipe_id=recipe_id.inserted_id))
-
-            # Invalid form...
-            else:
-                flash('''Sorry, there was an issue with the form data.
-                      Please try again''')
-                return render_template("add_recipe.html", form=form)
-        else:
-            return render_template("add_recipe.html", form=form)
-
-
-@app.route('/edit_recipe/<recipe_id>', methods=['GET', 'POST'])
-def edit_recipe(recipe_id):
-    # User not logged in...
-    if not session.get('username'):
-        flash('Please log in to add and favourite recipes')
-        return redirect(url_for('login'))
-    else:
-        form = Add_recipe_form()
-        recipe = mongo.db.recipes.find_one({'_id': ObjectId(recipe_id)})
-        if request.method == 'POST':
-            if form.validate_on_submit():
-                form_data_dict = dict(request.form)
-                formatted_recipe = format_recipe_data(form_data_dict)
-                # If the 'picture_upload' input has been used, there is no
-                # existing image in the database to remove, so just format the
-                # name upload to db
-                print(form_data_dict)
-                if request.files.get('picture_upload'):
-                    # Remove any special characters from the file name and
-                    # add user _id to file name to ensure name is unique
-                    user = mongo.db.users.find_one({
-                                        'username': session['username']})
-                    user_id = str(user['_id'])
-                    file_name = "".join(char for char in
-                                        request.files['picture_upload'].filename
-                                        if char.isalnum()) + user_id
-
-                    mongo.save_file(file_name,
-                                    request.files['picture_upload'])
-                    formatted_recipe['image_name'] = file_name
-
-                # If the new_picture_upload input has been used, this means the
-                # image is to replace an existing user uploaded image, so find
-                # the original image and delete before formatting new image
-                # name and uploading to db
-                elif request.files.get('new_picture_upload') and form_data_dict['image_options'] == 'new_image':
-                    # Call delete_image to remove image data from db
-                    delete_image(recipe['image_name'])
-                    user = mongo.db.users.find_one({
-                                        'username': session['username']})
-                    user_id = str(user['_id'])
-                    file_name = "".join(char for char in
-                                        request.files['new_picture_upload'].filename
-                                        if char.isalnum()) + user_id
-                    mongo.save_file(file_name, request.files['new_picture_upload'])
-                    formatted_recipe['image_name'] = file_name
-
-                # User had uploaded an image but now wants to use the default image -
-                # Delete existing image data from db and set new image to default
-                elif form_data_dict['image_options'] == 'default_image':
-                    # Call delete_image to remove image data from db
-                    delete_image(recipe['image_name'])
-                    # Set recipe image name to default image
-                    formatted_recipe['image_name'] = 'default-image'
-                # Update recipe in DB
-                mongo.db.recipes.update_one({'_id': ObjectId(recipe_id)},
-                                            {'$set': formatted_recipe})
-                return redirect(url_for('recipe_page', recipe_id=recipe_id))
-            # Invalid form...
-            else:
-                flash('''Sorry, there was an issue with the form data.
-                    Please try again''')
-                print("NOT VALID", form.errors)
-        return render_template('edit_recipe.html', form=form, recipe=recipe)
-
-
 @app.route('/delete_recipe/<recipe_id>')
 def delete_recipe(recipe_id):
     recipe = mongo.db.recipes.find_one({'_id': ObjectId(recipe_id)})
@@ -383,6 +381,19 @@ def delete_recipe(recipe_id):
         mongo.db.recipes.delete_one({'_id': ObjectId(recipe_id)})
         flash('Recipe Deleted')
         return redirect(url_for('added_recipes'))
+
+
+def delete_image(image_name):
+    # Find image data in fs.files using recipe image_name
+    db_image = mongo.db.fs.files.find_one({
+                    'filename': image_name})
+
+    # Find the image data in the fs.chunks collection and delete
+    # using _id of file found in query above
+    mongo.db.fs.chunks.delete_one({'files_id': ObjectId(db_image['_id'])})
+
+    # Then delete image file meta data from fs.files
+    mongo.db.fs.files.delete_one({'filename': image_name})
 
 
 @app.route('/get_image/<image_name>')
@@ -416,7 +427,8 @@ def toggle_favourite():
                                 return_page=return_page, sort_by=sort_by))
     # Otherwise, return to original page with relevant args
     if return_page == 'recipe_page':
-        return redirect(url_for('recipe_page', recipe_id=recipe_id, sort_by=sort_by))
+        return redirect(url_for('recipe_page', recipe_id=recipe_id,
+                                sort_by=sort_by))
     else:
         return redirect(url_for(return_page, page=page, sort_by=sort_by))
 
@@ -438,12 +450,7 @@ def recipe_page(recipe_id):
         if session['username'] in recipe['ratings']:
             user_rating = int(recipe['ratings'][session['username']])
 
-    # NEED TO LOOK INTO BEST WAY TO SET DEFAULT ~~~~~~~~~~~~~~~~~~~~~
-    if recipe['image_name']:
-        image_name = recipe['image_name']
-    else:
-        image_name = url_for('static', filename='/images/hero.png')
-
+    # If method is POST, the user has submitted a recipe rating
     if request.method == 'POST':
         # Find the respective recipe, and within the ratings field set
         # username and user rating
@@ -453,13 +460,14 @@ def recipe_page(recipe_id):
         # Calculate new average_rating and update in the db
         average_rating = get_average_rating(recipe_id)
         mongo.db.recipes.update_one({'_id': ObjectId(recipe_id)},
-                                    {'$set': {'average_rating': average_rating}})
+                                    {'$set': {
+                                        'average_rating': average_rating}})
         flash('Thank you for your rating!')
 
         return redirect(url_for('recipe_page', recipe_id=recipe_id))
 
     return render_template("recipe_page.html", recipe=recipe,
-                           image_name=image_name, user_rating=user_rating)
+                           user_rating=user_rating)
 
 
 @app.errorhandler(404)
@@ -508,19 +516,6 @@ def format_recipe_data(form_data_dict):
         'favourites': []
         }
     return formatted_recipe
-
-
-def delete_image(image_name):
-    # Find image data in fs.files using recipe image_name
-    db_image = mongo.db.fs.files.find_one({
-                    'filename': image_name})
-
-    # Find the image data in the fs.chunks collection and delete
-    # using _id of file found in query above
-    mongo.db.fs.chunks.delete_one({'files_id': ObjectId(db_image['_id'])})
-
-    # Then delete image file meta data from fs.files
-    mongo.db.fs.files.delete_one({'filename': image_name})
 
 
 def get_average_rating(recipe_id):
