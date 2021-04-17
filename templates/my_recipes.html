@@ -4,10 +4,7 @@
   <!-- MY RECIPES NAVIGATION BUTTONS -->
   <div class="row d-flex justify-content-around mt-3 mt-lg-5 no-gutters">
     <div class="col-4 d-flex justify-content-center">
-      <a
-        href="{{ url_for('my_recipes') }}"
-        class="my-recipe-buttons current-button"
-      >
+      <a href="{{ url_for('my_recipes') }}" class="my-recipe-buttons current-button">
         <div class="text-center sub-header">
           <p><i class="fas fa-heart"></i>View my favourite recipes</p>
         </div>
@@ -33,11 +30,9 @@
   <div class="add-fav-or-recipe">
     <h2 class="sub-header text-center mt-5">Add Favourite Recipes</h2>
     <p class="text-center">
-      <strong
-        >Save your favourite recipes here by clicking on the
+      <strong>Save your favourite recipes here by clicking on the
         <i class="far fa-heart"></i> symbol on recipe pages, or when browsing
-        all the recipes <a href="{{url_for('all_recipes')}}">here!</a></strong
-      >
+        all the recipes <a href="{{url_for('all_recipes')}}">here!</a></strong>
     </p>
   </div>
   {% else %}
@@ -45,10 +40,7 @@
   <!-- SEARCH AND FILTER CONTAINER -->
   <div class="row search-container rounded-container mx-auto">
     <div class="col-12">
-      <form
-        method="POST"
-        action="{{ url_for('search_results', return_page='my_recipes', sort_by='average_rating')}}"
-      >
+      <form method="POST" action="{{ url_for('search_results', return_page='my_recipes', sort_by='average_rating')}}">
         <div class="row">
           {{ form.hidden_tag() }}
           <div class="col-12 col-sm-8">
@@ -61,20 +53,11 @@
           <div class="col-12 col-sm-4">
             <div class="sub-header text-right m-1">Filter recipes</div>
             <div class="dropdown text-right">
-              <button
-                class="btn btn-secondary dropdown-toggle custom-button"
-                type="button"
-                id="dropdownMenuButton"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
+              <button class="btn btn-secondary dropdown-toggle custom-button" type="button" id="dropdownMenuButton"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Filter
               </button>
-              <div
-                class="dropdown-menu filter-dropdown"
-                aria-labelledby="dropdownMenuButton"
-              >
+              <div class="dropdown-menu filter-dropdown" aria-labelledby="dropdownMenuButton">
                 <h6 class="dropdown-header sub-header">Recipe Type</h6>
                 {{ form.recipe_type(class="dropdown-item") }}
                 <div class="dropdown-divider"></div>
@@ -125,15 +108,14 @@
   <p class="mb-0 mt-2 mt-md-3 mt-lg-4 ml-lg-4">
     Sort recipes by:
     <a href="{{ url_for('search_results', return_page='my_recipes', sort_by='average_rating') }}">rating</a> /
-    <a href="{{ url_for('search_results', return_page='my_recipes', sort_by='_id') }}">newest</a
-    >
+    <a href="{{ url_for('search_results', return_page='my_recipes', sort_by='_id') }}">newest</a>
   </p>
-  {% endif %} 
+  {% endif %}
   {% else %}
   <!-- If user sorts by rating / new without filters, send request to my_recipes route -->
   <p class="mb-0 mt-2 mt-md-3 mt-lg-4 ml-lg-4">
     Sort recipes by:
-    <a href="{{ url_for('my_recipes', sort_by='average_rating') }}">rating</a> / 
+    <a href="{{ url_for('my_recipes', sort_by='average_rating') }}">rating</a> /
     <a href="{{ url_for('my_recipes', sort_by='_id') }}">newest</a>
   </p>
   {% endif %}
@@ -145,15 +127,9 @@
         <a href="{{url_for('recipe_page', recipe_id=recipe._id)}}">
           <div class="recipe-image-container">
             {% if recipe.image_name == 'default-image' %}
-            <img
-              src="/static/images/default-image.jpg"
-              alt="Illustration of Rodeo Hot Sauce bottle"
-            />
+            <img src="/static/images/default-image.jpg" alt="Illustration of Rodeo Hot Sauce bottle" />
             {% else %}
-            <img
-              src="{{ url_for('get_image', image_name = recipe.image_name) }}"
-              alt=""
-            />
+            <img src="{{ url_for('get_image', image_name = recipe.image_name) }}" alt="" />
             {% endif %}
           </div>
           <h4 class="recipe-card-title logo-font text-center">
@@ -168,33 +144,16 @@
           <div class="col-6 text-center">
             <h6 class="sub-header mt-3">Add to<br />Favourites</h6>
             {% if session['username'] %}
-            <form
-              class="trigger-form-send"
-              method="POST"
-              action="{{ url_for('toggle_favourite', recipe_id=recipe._id, page=page, return_page='my_recipes', sort_by=sort_by) }}"
-            >
+            <form class="trigger-form-send" method="POST" action="{{ url_for('toggle_favourite', recipe_id=recipe._id,
+                                 page=page, return_page='my_recipes', sort_by=sort_by, filters=filters) }}">
               {% if session['username'] in recipe.favourites %}
-              <input
-                type="checkbox"
-                name="favourite"
-                class="hidden-input"
-                id="favourite-checkbox-checked-{{+ loop.index}}"
-                value="delete_fav"
-              />
-              <label for="favourite-checkbox-checked-{{+ loop.index}}"
-                ><i class="fas fa-heart"></i
-              ></label>
+              <input type="checkbox" name="favourite" class="hidden-input"
+                id="favourite-checkbox-checked-{{+ loop.index}}" value="delete_fav" />
+              <label for="favourite-checkbox-checked-{{+ loop.index}}"><i class="fas fa-heart"></i></label>
               {% else %}
-              <input
-                type="checkbox"
-                name="favourite"
-                class="hidden-input"
-                id="favourite-checkbox-unchecked-{{+ loop.index}}"
-                value="add_fav"
-              />
-              <label for="favourite-checkbox-unchecked-{{+ loop.index}}"
-                ><i class="far fa-heart"></i
-              ></label>
+              <input type="checkbox" name="favourite" class="hidden-input"
+                id="favourite-checkbox-unchecked-{{+ loop.index}}" value="add_fav" />
+              <label for="favourite-checkbox-unchecked-{{+ loop.index}}"><i class="far fa-heart"></i></label>
               {% endif %}
             </form>
             {% else %}
