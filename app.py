@@ -346,9 +346,10 @@ def edit_recipe(recipe_id):
         if form.validate_on_submit():
             form_data_dict = dict(request.form)
             formatted_recipe = format_recipe_data(form_data_dict)
-            # If the 'picture_upload' input has been used, there is no
-            # existing image in the database to remove, so just format the
-            # name upload to db
+            # If 'picture_upload' is truthy in request.files, we know there
+            # is no existing image in the database to remove because that input
+            # is only shown in the template when image.name == 'default-image',
+            # so just format the image name and upload file to DB
             if request.files.get('picture_upload'):
                 # Remove any special characters from the file name and
                 # add user _id to file name to ensure name is unique
@@ -363,12 +364,11 @@ def edit_recipe(recipe_id):
                                 request.files['picture_upload'])
                 formatted_recipe['image_name'] = file_name
 
-            # If the new_picture_upload input has been used, this means the
-            # image sent with the form is to replace an existing user uploaded
-            # image, so find the original image in the DB and delete before
-            # formatting new image name and uploading to DB.
-            elif (request.files.get('new_picture_upload')
-                  and form_data_dict['image_options'] == 'new_image'):
+            # If image_options == new_image, the image sent with the form is to
+            # replace an existing user uploaded image, so find the original
+            # image in the DB and delete before formatting new image name and
+            # uploading to DB.
+            elif (form_data_dict.get('image_options') == 'new_image'):
                 # Call delete_image to remove image data from db
                 delete_image(recipe['image_name'])
                 # find the user _id to append to the image name
@@ -383,19 +383,21 @@ def edit_recipe(recipe_id):
                 mongo.save_file(file_name, request.files['new_picture_upload'])
                 formatted_recipe['image_name'] = file_name
 
-            # User had uploaded an image but now wants to use the default image
-            # Delete existing image data from db and set new image to default
-            elif form_data_dict['image_options'] == 'default_image':
+            # If image_options == default_image, the user had uploaded an image
+            # but now wants to use the default image. Delete existing image
+            # data from db and set new image name to 'default-image'.
+            elif form_data_dict.get('image_options') == 'default_image':
                 # Call delete_image to remove image data from db
                 delete_image(recipe['image_name'])
                 # Set recipe image name to default image
                 formatted_recipe['image_name'] = 'default-image'
+
             # Update recipe in DB
             mongo.db.recipes.update_one({'_id': ObjectId(recipe_id)},
                                         {'$set': formatted_recipe})
             return redirect(url_for('recipe_page', recipe_id=recipe_id))
-        # Invalid form...
-        else:
+
+        else:  # Invalid form...
             flash('''
                 Sorry, there was an issue with the form data.
                 Please try again
