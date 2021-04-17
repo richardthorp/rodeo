@@ -113,12 +113,13 @@ def all_recipes():
     sort_by = request.args.get('sort_by', 'average_rating', type=str)
     # If not on page one, skip the retrieved recipes by the page number * 9
     if page > 1:
-        recipes = mongo.db.recipes.find().sort(sort_by, -1).skip(
+        recipes = mongo.db.recipes.find().sort(
+            [(sort_by, -1), ('_id', 1)]).skip(
                 (page - 1) * 9).limit(9)
     # This is page one, fetch the first 9 recipes
     else:
         recipes = mongo.db.recipes.find().sort(
-            sort_by, -1).limit(9)
+            [(sort_by, -1), ('_id', 1)]).limit(9)
 
     # Generate pagination links and find number of retrieved recipes
     next_page = url_for('all_recipes', page=str(page + 1), sort_by=sort_by)
@@ -149,11 +150,12 @@ def my_recipes():
     if page > 1:
         recipes = mongo.db.recipes.find(
             {'favourites': session['username']}).sort(
-                sort_by, -1).skip((page - 1) * 9).limit(9)
+                [(sort_by, -1), ('_id', 1)]).skip((page - 1) * 9).limit(9)
     # This is page one, fetch the first 9 recipes
     else:
         recipes = mongo.db.recipes.find(
-            {'favourites': session['username']}).sort(sort_by, -1).limit(9)
+            {'favourites': session['username']}).sort(
+                [(sort_by, -1), ('_id', 1)]).limit(9)
 
     # Generate pagination links and find number of retrieved recipes
     next_page = url_for('my_recipes', page=str(page + 1),
@@ -183,11 +185,13 @@ def added_recipes():
     sort_by = request.args.get('sort_by', 'average_rating', type=str)
     if page > 1:
         recipes = mongo.db.recipes.find(
-            {'added_by': session['username']}).sort(sort_by, -1).skip(
+            {'added_by': session['username']}).sort(
+                [(sort_by, -1), ('_id', 1)]).skip(
                 (page - 1) * 9).limit(9)
     else:
         recipes = mongo.db.recipes.find(
-            {'added_by': session['username']}).sort(sort_by, -1).limit(9)
+            {'added_by': session['username']}).sort(
+                [(sort_by, -1), ('_id', 1)]).limit(9)
     form = Search_and_filter_form()
     next_page = url_for('added_recipes', page=str(page + 1), sort_by=sort_by)
     prev_page = url_for('added_recipes', page=str(page - 1), sort_by=sort_by)
@@ -228,10 +232,12 @@ def search_results():
     if page > 1:
         recipes = mongo.db.recipes.find(
                         session['search_terms']).sort(
-                            sort_by, -1).skip((page - 1) * 9).limit(9)
+                            [(sort_by, -1), ('_id', 1)]).skip(
+                                (page - 1) * 9).limit(9)
     else:
         recipes = mongo.db.recipes.find(
-                        session['search_terms']).sort(sort_by, -1).limit(9)
+                        session['search_terms']).sort(
+                            [(sort_by, -1), ('_id', 1)]).limit(9)
     recipe_count = mongo.db.recipes.count_documents(
                         session['search_terms'])
     max_page = math.ceil(recipe_count / 9)
