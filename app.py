@@ -30,21 +30,26 @@ def index():
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
+    # if user is already logged in, redirect to my_recipes route
     if session.get('username'):
         return redirect(url_for('my_recipes'))
+
     form = Registration_form()
     if request.method == 'POST':
         if form.validate_on_submit():
+            # Check the database for any existing users that match either the
+            # username or email form data
             existing_user = mongo.db.users.find_one(
                         {"username": request.form.get("username").lower()})
             existing_email = mongo.db.users.find_one(
                         {"email": request.form.get("email").lower()})
+            # If username or email already exist, flash message to say which
+            # field is the problem
             if existing_user:
                 flash("Sorry, that username is already taken")
-                print("User taken")
             elif existing_email:
                 flash("Sorry, that email address already has an account")
-                print("Email taken")
+            # All details on the form are valid, add user to DB.
             else:
                 registration_info = {
                     "email": request.form.get('email').lower(),
@@ -58,10 +63,10 @@ def register():
                 session["username"] = request.form.get("username")
                 return redirect(url_for('my_recipes'))
 
-        elif 'confirm_password' in form.errors:
+        # FORM NOT VALIDATED
+        elif 'confirm_password' in form.errors:  # Miss-matched passwords
             flash('Please make sure the password fields match')
-        else:
-            print(form.errors)
+        else:  # There is another issue with the form data
             flash('Sorry, there has been an error. Please try again.')
 
     return render_template("register.html", form=form)
@@ -69,25 +74,29 @@ def register():
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
+    # if user is already logged in, redirect to my_recipes route
     if session.get('username'):
         return redirect(url_for('my_recipes'))
+
     form = Login_form()
     if request.method == 'POST':
         if form.validate_on_submit():
             email_or_username = request.form.get("email_or_username")
+            # Look in DB for either a username or email that matches
+            # form email_or_username data
             existing_user = mongo.db.users.find_one(
                             {"$or": [{"username": email_or_username},
                                      {"email": email_or_username}]})
-            if existing_user:
+            if existing_user:  # User exists in the DB - check the passwords
                 if check_password_hash(existing_user["password"],
                                        request.form.get("password")):
                     session["username"] = existing_user["username"]
                     flash('Welcome, ' + session['username'] + '!')
-                    return redirect(url_for("my_recipes"))
-                else:
+                    return redirect(url_for("my_recipes")) 
+                else:  # Password is incorrect
                     flash("Login details incorrect, please try again.")
                     return redirect(url_for('login'))
-            else:
+            else:  # No matching user found on DB
                 flash("Login details incorrect, please try again.")
                 return redirect(url_for('login'))
 
@@ -97,31 +106,39 @@ def login():
 @app.route("/all_recipes", methods=['GET', 'POST'])
 def all_recipes():
     form = Search_and_filter_form()
-    recipes = mongo.db.recipes.find()
+    recipes = mongo.db.recipes.find()  # Find all recipes
+    # If no page arg sent to function, this is page 1
     page = request.args.get('page', 1, type=int)
+    # If no sort_by arg sent to function, sort by rating
     sort_by = request.args.get('sort_by', 'average_rating', type=str)
-    session['search_terms'] = {}
+    # If not on page one, skip the retrieved recipes by the page number * 9
     if page > 1:
-        recipes = mongo.db.recipes.find(
-            session['search_terms']).sort(sort_by, -1).skip(
+        recipes = mongo.db.recipes.find().sort(sort_by, -1).skip(
                 (page - 1) * 9).limit(9)
+    # This is page one, fetch the first 9 recipes
     else:
-        recipes = mongo.db.recipes.find(session['search_terms']).sort(
+        recipes = mongo.db.recipes.find().sort(
             sort_by, -1).limit(9)
 
+    # Generate pagination links and find number of retrieved recipes
     next_page = url_for('all_recipes', page=str(page + 1), sort_by=sort_by)
     prev_page = url_for('all_recipes', page=str(page - 1), sort_by=sort_by)
     max_page = math.ceil(recipes.count() / 9)
     recipe_count = mongo.db.recipes.count_documents({})
+
     return render_template("all_recipes.html", form=form, recipes=recipes,
                            next_page=next_page, prev_page=prev_page,
                            max_page=max_page, page=page,
                            recipe_count=recipe_count, sort_by=sort_by)
 
 
+# search_results route used to provide results for all pages that contain
+# search functionality. The route works in the same way as all_recipes,
+# my_recipes and added_recipes routes, but the DB query is saved as a session
+# variable having been created in the create_query_dict function.
 @app.route('/search_results', methods=["GET", "POST"])
 def search_results():
-    filters = True
+    filters = True  # Used to toggle 'clear_filter' link in templates
     form = Search_and_filter_form()
     return_page = request.args.get('return_page', type=str)
     page = request.args.get('page', 1, type=int)
