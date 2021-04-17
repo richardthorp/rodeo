@@ -168,6 +168,13 @@ $(".copyright span").text(function() {
     return year;
 })
 
+/* Set new_image radio option to checked when file loaded in file input */
+function fileLoaded(input){
+    if (input.files[0]){
+        $("#new_image").trigger('click');
+    }
+}
+
 /* Add selected-image class on image options in edit_recipe.html */
 $("document").ready(function(){
     $("input[name='image_options']").change(function () {
@@ -189,11 +196,11 @@ $("document").ready(function(){
 })
 
 /* Set new_image radio option to checked when file selector is clicked */
-$("document").ready(function(){
-    $("#file-upload-label").click(function(){
-    $("#new_image").trigger('click');
-    })
-})
+// $("document").ready(function(){
+//     $("#file-upload-label").click(function(){
+//     $("#new_image").trigger('click');
+//     })
+// })
 
 /* Use recipe name as alt attribute on user uploaded images */
 $("document").ready(function () {
@@ -202,11 +209,3 @@ $("document").ready(function () {
         $(this).attr('alt', recipeTitle);
     })
 })
-
-// $('#new_picture_upload').change(function(){
-//     if ((this).files[0].size > 1000000){
-//         console.log('GOT YOU');
-//     }else {
-//         console.log('ALL GOOD')
-//     }
-// })

@@ -751,7 +751,8 @@ nav {
     font-size: 9.35rem;
 }
 .image-option i, .selected-image-option i, .image-option,
-.selected-image-option, .selected-image-option img, .image-option img {
+.selected-image-option, .selected-image-option img, .image-option img, 
+.image-option label {
     cursor: pointer;
 }
 

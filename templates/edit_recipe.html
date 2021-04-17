@@ -210,14 +210,14 @@
                     </div>
                     <!-- Add new image -->
                     <div class="text-center col-10 col-sm-4 mb-3 d-flex">
-                        <div id="add-image-option" class="image-option">
+                        <div id="add-image-option" class="image-option pb-0 pl-0 pr-0">
                             <input type="radio" name="image_options" id="new_image" value="new_image"
                                 class="hidden-input">
                             <label id="file-upload-label" for="new_picture_upload">
                                 <div class="mb-1">Add new image</div>
                                 <i class="fas fa-file-upload"></i>
                             </label>
-                            {{ form.new_picture_upload(class="hidden-input") }}
+                            {{ form.new_picture_upload(class="hidden-input", onchange="fileLoaded(this)") }}
                             <div class="selected-file-container" id="selected-file"></div>
                         </div>
                     </div>
