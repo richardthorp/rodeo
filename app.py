@@ -444,20 +444,25 @@ def format_recipe_data(form_data_dict):
 
 @app.route('/delete_recipe/<recipe_id>')
 def delete_recipe(recipe_id):
+    page = request.args.get('page', 1, type=int)
+    filters = request.args.get('filters')
+    sort_by = request.args.get('sort_by', 'average_rating', type=str)
     # Find the recipe to delete in the DB
     recipe = mongo.db.recipes.find_one({'_id': ObjectId(recipe_id)})
-    # If recipe image is default, just delete recipe from db
-    if recipe['image_name'] == 'default-image':
-        mongo.db.recipes.delete_one({'_id': ObjectId(recipe_id)})
-        flash('Recipe Deleted')
-        return redirect(url_for('added_recipes'))
-    else:  # Recipe has a user uploaded image
-        # Call delete_image to remove image data from db
+
+    # Recipe has a user uploaded image
+    if recipe['image_name'] != 'default-image':
+        # Call delete_image() to remove image data from db
         delete_image(recipe['image_name'])
-        # Then delete recipe data
-        mongo.db.recipes.delete_one({'_id': ObjectId(recipe_id)})
-        flash('Recipe Deleted')
-        return redirect(url_for('added_recipes'))
+
+    # Delete recipe from DB
+    mongo.db.recipes.delete_one({'_id': ObjectId(recipe_id)})
+    flash('Recipe Deleted')
+    if filters:
+        return redirect(url_for('search_results', return_page='added_recipes',
+                                page=page, sort_by=sort_by))
+    else:
+        return redirect(url_for('added_recipes', page=page, sort_by=sort_by))
 
 
 def delete_image(image_name):
