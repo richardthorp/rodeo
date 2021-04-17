@@ -162,7 +162,7 @@ Normal link           |  Cursor hover link
 This button styling is found throughout the website for most clickable buttons to provide consistency and allow the user to quickly locate these interactive elements.
 
 #### **recipe_page.html**
-The **recipe_page.html** page holds a template that is used to render the actual recipes from the database. 
+The **recipe_page.html** page holds a template that is used to render the actual recipes from the database. If the user viewing the page is also the user who added the recipe, an 'edit' and a 'delete' button are added to the top of the page. The 'edit' button allows the user to edit their recipe on **'edit_recipe.html'** and the 'delete' button triggers a modal that double-checks that they wish to delete the recipe. These buttons are also made available to the admin user 'rodeo', so that any malicious or inappropriate content can be quickly removed. 
 
 At the top of the page is the recipe name, in big bold font that matches that of the logo. Beneath this, there is a subtle line of text which reads 'Recipe added by' and then the username of whoever added the recipe.
 
