@@ -241,11 +241,16 @@ def search_results():
     recipe_count = mongo.db.recipes.count_documents(
                         session['search_terms'])
     max_page = math.ceil(recipe_count / 9)
+    if session['search_terms'].get('$text'):
+        search_words = session['search_terms'].get('$text').get('$search')
+    else:
+        search_words = ""
 
     return render_template(return_page + ".html", recipes=recipes, form=form,
                            page=page, next_page=next_page, prev_page=prev_page,
                            max_page=max_page, filters=filters,
-                           recipe_count=recipe_count, sort_by=sort_by)
+                           recipe_count=recipe_count, sort_by=sort_by,
+                           search_words=search_words)
 
 
 def create_query_dict(form_data, page):
