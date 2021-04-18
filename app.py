@@ -541,6 +541,14 @@ def log_out():
 @app.route("/recipe_page/<recipe_id>", methods=["GET", "POST"])
 def recipe_page(recipe_id):
     recipe = mongo.db.recipes.find_one({'_id': ObjectId(recipe_id)})
+    # These variables are to pass to the 'back to...' link
+    page = request.args.get('page', 1, type=int)
+    recipe_id = request.args.get('recipe_id')
+    return_page = request.args.get('return_page')
+    return_page_text = request.args.get('return_page_text')
+    filters = request.args.get('filters')
+    sort_by = request.args.get('sort_by', 'average_rating', type=str)
+
     user_rating = 0
     # If the user is logged in, see if they have aleady rated this recipe.
     # If so, save the rating to a variable to render to the page
@@ -565,7 +573,9 @@ def recipe_page(recipe_id):
         return redirect(url_for('recipe_page', recipe_id=recipe_id))
 
     return render_template("recipe_page.html", recipe=recipe,
-                           user_rating=user_rating)
+                           user_rating=user_rating, page=page, filters=filters,
+                           sort_by=sort_by, return_page=return_page,
+                           max_page=1, return_page_text=return_page_text)
 
 
 def get_average_rating(recipe_id):

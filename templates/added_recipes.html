@@ -125,7 +125,8 @@
     {% for recipe in recipes %}
     <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center">
       <div class="recipe-card added-recipe-card">
-        <a href="{{url_for('recipe_page', recipe_id=recipe._id)}}">
+        <a href="{{url_for('recipe_page', recipe_id=recipe._id, page=page, return_page='added_recipes', 
+                            return_page_text='Added Recipes', filters=filters, sort_by=sort_by)}}">
           <!-- RECIPE CARD IMAGE -->
           <div class="recipe-image-container">
             {% if recipe.image_name == 'default-image' %}
