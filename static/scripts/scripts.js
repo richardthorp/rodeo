@@ -2,13 +2,12 @@
    autoResize() used to make textarea input expand with text input*/
 $(".auto-resize").autoResize();
 
-/* ADD RECIPE AND EDIT RECIPE FORM SCRIPTS */
-
 /* RENDER NEW ROWS IN ADD_RECIPE AND EDIT RECIPE FORMS WHEN PLUS BUTTON CLICKED */
 $("#add-ingredient-button").on('click', function () {
     ingredientItems = $(".ingredients-container .form-input");
     /* Check that all the boxes in the ingredient container have some text in them before rendering a new text input */
     for (let i = 0; i < ingredientItems.length; i += 1) {
+        /* If there's a text input without text, trigger tooltip and exit function */
         if (ingredientItems[i].value == "") {
             $(ingredientItems[i]).tooltip({ title: "Please use this input first!" }).tooltip('show');
             setTimeout(() => {
@@ -17,7 +16,7 @@ $("#add-ingredient-button").on('click', function () {
             return;
         }
     }
-    /* Get number to add to name attribute in form */
+    /* All inputs have text, get number to add to name attribute in form and render a new input to ingredients container*/
     inputNumber = ingredientItems.length + 1;
     ingredientHTMLString = `<input class='form-input small-input' id=ingredient_${inputNumber} name='ingredient_${inputNumber}' type='text' value=''>`;
     $(".ingredients-container").append(ingredientHTMLString);
@@ -44,9 +43,12 @@ $("#add-instruction-button").on('click', function () {
     $(".auto-resize").autoResize();
 });
 
+
+/* ADD EXISTING VALUES TO EDIT_RECIPE PAGE AND OVER-WRITE WTFORMS NAME ATTRIBUTES */
 $("document").ready(function () {
-    /* Edit recipe form - get value passed to the placeholder attibute in template and 
-    use as inner text value. Overwrite name attribute provided by WTForms and set equal 
+    /* Get value passed to the placeholder attibute in template and 
+    use as inner text value. This is because value attribute in template cannot be used
+    to set text in the textarea input. Then, overwrite name attribute provided by WTForms and set equal 
     to id attribute which is made unique with loop index in edit_recipe template */
     $(".edit-recipe-instructions .form-input").siblings('textarea[id]').each((index, instruction) => {
         instruction.innerText = instruction.getAttribute("placeholder");
@@ -63,13 +65,27 @@ $("document").ready(function () {
     })
 });
 
-/* If the recipe card title contains 28 characters or more, apply the shrink-header CSS class */
-$(".recipe-card-title").each(function () {
-    if ($(this).text().length >= 28) {
-        $(this).addClass('shrink-header');
-    }
+/* ADD SELECTED-IMAGE CLASS TO 'CHECKED' IMAGE OPTIONS INPUT IN EDIT RECIPE */
+$("document").ready(function(){
+    $("input[name='image_options']").change(function () {
+        if ($("#keep_image")[0].checked === true) {
+            $("#keep-image-option").addClass('selected-image-option').removeClass('image-option');
+            $("#default-image-option").addClass('image-option').removeClass('selected-image-option');
+            $("#add-image-option").addClass('image-option').removeClass('selected-image-option');
+        } else if ($("#default_image")[0].checked === true){
+            $("#default-image-option").addClass('selected-image-option').removeClass('image-option');
+            $("#keep-image-option").addClass('image-option').removeClass('selected-image-option');
+            $("#add-image-option").addClass('image-option').removeClass('selected-image-option');
+        }
+        else {
+            $("#add-image-option").addClass('selected-image-option').removeClass('image-option');
+            $("#keep-image-option").addClass('image-option').removeClass('selected-image-option');
+            $("#default-image-option").addClass('image-option').removeClass('selected-image-option');
+        }
+    })
 })
 
+/* VALIDATE FILE UPLOAD SIZE IN ADD AND EDIT RECIPE FORMS  */
 /* Check that the selected file in the image upload input on add_recipe is below 1mb.
 If not, remove the file from the input and fire an alert */
 $("#picture_upload").change(function () {
@@ -92,14 +108,20 @@ $("#new_picture_upload").change(function () {
     $("#selected-file").text($("#new_picture_upload").val().split("\\").pop())
 })
 
-
-// Make 'favourite-recipe' checkbox auto submit when clicked
+/* MAKE 'FAVOURITE-RECIPE' CHECKBOX AUTO SUBMIT WHEN CLICKED (TOGGLE FAVOURITE) */
 $(".trigger-form-send").on('click', function () {
     console.log($(this));
     $(this).submit();
 });
 
-/* Enable bootsrap popovers and 'dismiss on next click' */
+/* IF THE RECIPE CARD TITLE CONTAINS 28 OR MORE CHARACTERS, APPLY SHRINK-HEADER CSS CLASS */
+$(".recipe-card-title").each(function () {
+    if ($(this).text().length >= 28) {
+        $(this).addClass('shrink-header');
+    }
+})
+
+/* ENABLE BOOTSTRAP POPOVERS AND 'DISMISS ON NEXT CLICK' */
 $(function () {
     $('[data-toggle="popover"]').popover({ html: true });
     $('[data-toggle="tooltip"]').tooltip();
@@ -109,18 +131,18 @@ $('.popover-dismiss').popover({
     trigger: 'focus'
 })
 
-/* Add slide down and slide up animation to flashed messages */
+/* ADD SLIDE DOWN AND SLIDE UP ANIMATION TO FLASHED MESSAGES */
 $(".flashed-messages").hide().slideDown('slow', function () {
     setTimeout(function () {
         $(".flashed-messages").slideUp();
     }, 4000)
 });
 
-/* Render average rating stars to page */
+/* RENDER AVERAGE RATING STARS TO PAGE */
 $("document").ready(function () {
-    $(".ratings-container").each((index, node) => {
+    $(".ratings-container").each((index, container) => {
         /* Get rating passed to each ratings-container in templates */
-        let rating = parseFloat(node.innerText)
+        let rating = parseFloat(container.innerText)
         /* Find the difference between given rating and potential rating. Round the number down, 
         as half stars are handled in the rating while loop */
         let remainder = Math.floor(5 - rating);
@@ -139,11 +161,11 @@ $("document").ready(function () {
             ratingHtml += "<span class='star blank-star'><i class='far fa-star'></i></span>"
             remainder--;
         }
-        node.innerHTML = ratingHtml;
+        container.innerHTML = ratingHtml;
     })
 })
 
-/* Render user rating stars (radio form inputs) */
+/* RENDER USER RATING STARS TO PAGE */
 $("document").ready(function () {
     let userRating = parseInt($(".user-rating").text());
     let userRatingHtml = "";
@@ -161,48 +183,21 @@ $("document").ready(function () {
     $(".user-rating").html(userRatingHtml);
 })
 
-/* Get current year and render in copyright section of footer */
+/* GET CURRENT YEAR AND RENDER IN COPYRIGHT SECTION OF FOOTER */
 $(".copyright span").text(function() {
     let y = new Date()
     let year = y.getFullYear();
     return year;
 })
 
-/* Set new_image radio option to checked when file loaded in file input */
+/* SET NEW_IMAGE RADIO OPTIONS TO 'CHECKED' WHEN FILE LOADED IN FILE INPUT */
 function fileLoaded(input){
     if (input.files[0]){
         $("#new_image").trigger('click');
     }
 }
 
-/* Add selected-image class on image options in edit_recipe.html */
-$("document").ready(function(){
-    $("input[name='image_options']").change(function () {
-        if ($("#keep_image")[0].checked === true) {
-            $("#keep-image-option").addClass('selected-image-option').removeClass('image-option');
-            $("#default-image-option").addClass('image-option').removeClass('selected-image-option');
-            $("#add-image-option").addClass('image-option').removeClass('selected-image-option');
-        } else if ($("#default_image")[0].checked === true){
-            $("#default-image-option").addClass('selected-image-option').removeClass('image-option');
-            $("#keep-image-option").addClass('image-option').removeClass('selected-image-option');
-            $("#add-image-option").addClass('image-option').removeClass('selected-image-option');
-        }
-        else {
-            $("#add-image-option").addClass('selected-image-option').removeClass('image-option');
-            $("#keep-image-option").addClass('image-option').removeClass('selected-image-option');
-            $("#default-image-option").addClass('image-option').removeClass('selected-image-option');
-        }
-    })
-})
-
-/* Set new_image radio option to checked when file selector is clicked */
-// $("document").ready(function(){
-//     $("#file-upload-label").click(function(){
-//     $("#new_image").trigger('click');
-//     })
-// })
-
-/* Use recipe name as alt attribute on user uploaded images */
+/* USE RECIPE NAME AS ALT ATTRIBUTE ON USER UPLOADED IMAGES */
 $("document").ready(function () {
     $('.user-image').each(function() {
         let recipeTitle = $(this).parent().siblings('.recipe-card-title').text().trim();
