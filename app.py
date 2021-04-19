@@ -162,7 +162,7 @@ def all_recipes():
     return render_template("all_recipes.html", form=form, recipes=recipes,
                            next_page=next_page, prev_page=prev_page,
                            max_page=max_page, page=page,
-                           recipe_count=recipe_count)
+                           recipe_count=recipe_count, sort_by=sort_by)
 
 
 # This route function is the same as the all_recipes route above

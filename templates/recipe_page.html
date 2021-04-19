@@ -12,7 +12,7 @@
                     <i class="fas fa-arrow-circle-left"></i> back to {{ return_page_text }}</a>
                 <!-- Otherwise, return them to standard previous page-->
                 {% else %}
-                <a href="{{ url_for(return_page, page=page, sort_by=sort_by, return_page=return_page) }}"
+                <a href="{{ url_for(return_page, page=page, sort_by=sort_by, filters=filters, return_page=return_page) }}"
                     class="sub-header">
                     <i class="fas fa-arrow-circle-left"></i> back to {{return_page_text}}</a>
                 {% endif %}
