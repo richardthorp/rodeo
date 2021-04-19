@@ -108,6 +108,13 @@ $("#new_picture_upload").change(function () {
     $("#selected-file").text($("#new_picture_upload").val().split("\\").pop())
 })
 
+/* SET NEW_IMAGE RADIO OPTION TO 'CHECKED' WHEN FILE LOADED IN FILE INPUT */
+function fileLoaded(input){
+    if (input.files[0]){
+        $("#new_image").trigger('click');
+    }
+}
+
 /* MAKE 'FAVOURITE-RECIPE' CHECKBOX AUTO SUBMIT WHEN CLICKED (TOGGLE FAVOURITE) */
 $(".trigger-form-send").on('click', function () {
     console.log($(this));
@@ -189,13 +196,6 @@ $(".copyright span").text(function() {
     let year = y.getFullYear();
     return year;
 })
-
-/* SET NEW_IMAGE RADIO OPTIONS TO 'CHECKED' WHEN FILE LOADED IN FILE INPUT */
-function fileLoaded(input){
-    if (input.files[0]){
-        $("#new_image").trigger('click');
-    }
-}
 
 /* USE RECIPE NAME AS ALT ATTRIBUTE ON USER UPLOADED IMAGES */
 $("document").ready(function () {

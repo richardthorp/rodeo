@@ -103,36 +103,66 @@ def login():
     return render_template("login.html", form=form)
 
 
+def get_recipes_paginated(return_route, page, sort_by, **kwargs):
+    # If this function is called in the search_results route, the return_page
+    # var needs to be passed in as a kwarg to tell the pagination links which
+    # template is being rendered in the return statement of the search_results
+    # route
+    if return_route == 'search_results':
+        db_query = session['search_terms']
+        return_page = kwargs.get('return_page')
+        next_page = url_for(return_route, page=str(page + 1),
+                            return_page=return_page, sort_by=sort_by)
+        prev_page = url_for(return_route, page=str(page - 1),
+                            return_page=return_page, sort_by=sort_by)
+    # Otherwise, the route functions have the render_template argument hard
+    # coded in the routes
+    else:
+        next_page = url_for(return_route, page=str(page + 1), sort_by=sort_by)
+        prev_page = url_for(return_route, page=str(page - 1), sort_by=sort_by)
+
+    if return_route == 'all_recipes':
+        db_query = {}
+    elif return_route == 'my_recipes':
+        db_query = {'favourites': session['username']}
+    elif return_route == 'added_recipes':
+        db_query = {'added_by': session['username']}
+
+    # Query DB using the dict created above
+    if page == 1:  # This is page one, fetch the first 9 recipes
+        recipes = mongo.db.recipes.find(db_query).sort(
+            [(sort_by, -1), ('_id', -1)]).limit(9)
+
+    else:  # This is not page one, skip forwards by required amount
+        recipes = mongo.db.recipes.find(db_query).sort(
+            [(sort_by, -1), ('_id', -1)]).skip(
+                (page - 1) * 9).limit(9)
+
+    recipe_count = mongo.db.recipes.count_documents(db_query)
+    max_page = math.ceil(recipe_count / 9)
+
+    return recipes, next_page, prev_page, recipe_count, max_page
+
+
 @app.route("/all_recipes", methods=['GET', 'POST'])
 def all_recipes():
     form = Search_and_filter_form()
-    recipes = mongo.db.recipes.find()  # Find all recipes
     # If no page arg sent to function, this is page 1
     page = request.args.get('page', 1, type=int)
     # If no sort_by arg sent to function, sort by rating
     sort_by = request.args.get('sort_by', 'average_rating', type=str)
-    # If not on page one, skip the retrieved recipes by the page number * 9
-    if page > 1:
-        recipes = mongo.db.recipes.find().sort(
-            [(sort_by, -1), ('_id', -1)]).skip(
-                (page - 1) * 9).limit(9)
-    # This is page one, fetch the first 9 recipes
-    else:
-        recipes = mongo.db.recipes.find().sort(
-            [(sort_by, -1), ('_id', -1)]).limit(9)
-
-    # Generate pagination links and find number of retrieved recipes
-    next_page = url_for('all_recipes', page=str(page + 1), sort_by=sort_by)
-    prev_page = url_for('all_recipes', page=str(page - 1), sort_by=sort_by)
-    max_page = math.ceil(recipes.count() / 9)
-    recipe_count = mongo.db.recipes.count_documents({})
+    # Call get_recipes_paginated() to fetch recipes from DB and generate
+    # pagination links
+    (recipes, next_page, prev_page, recipe_count,
+        max_page) = get_recipes_paginated('all_recipes', page, sort_by)
 
     return render_template("all_recipes.html", form=form, recipes=recipes,
                            next_page=next_page, prev_page=prev_page,
                            max_page=max_page, page=page,
-                           recipe_count=recipe_count, sort_by=sort_by)
+                           recipe_count=recipe_count)
 
 
+# This route function is the same as the all_recipes route above
 @app.route("/my_recipes", methods=["GET", "POST"])
 def my_recipes():
     # If user not logged in, redirect to login route
@@ -140,69 +170,38 @@ def my_recipes():
         flash('Please log in to add and favourite recipes')
         return redirect(url_for('login'))
 
-    session['search_terms'] = {}  # Clear any search terms
     form = Search_and_filter_form()
-    # If no page arg sent to function, this is page 1
     page = request.args.get('page', 1, type=int)
-    # If no sort_by arg sent to function, sort by average rating
     sort_by = request.args.get('sort_by', 'average_rating', type=str)
-    # If not on page one, skip the retrieved recipes by the page number * 9
-    if page > 1:
-        recipes = mongo.db.recipes.find(
-            {'favourites': session['username']}).sort(
-                [(sort_by, -1), ('_id', -1)]).skip((page - 1) * 9).limit(9)
-    # This is page one, fetch the first 9 recipes
-    else:
-        recipes = mongo.db.recipes.find(
-            {'favourites': session['username']}).sort(
-                [(sort_by, -1), ('_id', -1)]).limit(9)
 
-    # Generate pagination links and find number of retrieved recipes
-    next_page = url_for('my_recipes', page=str(page + 1),
-                        sort_by=sort_by)
-    prev_page = url_for('my_recipes', page=str(page - 1),
-                        sort_by=sort_by)
-    max_page = math.ceil(recipes.count() / 9)
-    recipes_count = mongo.db.recipes.count_documents(
-        {'favourites': session['username']})
+    (recipes, next_page, prev_page, recipe_count,
+        max_page) = get_recipes_paginated('my_recipes', page, sort_by)
 
     return render_template("my_recipes.html", form=form, recipes=recipes,
                            next_page=next_page, prev_page=prev_page,
                            max_page=max_page, page=page,
-                           recipes_count=recipes_count, sort_by=sort_by)
+                           recipe_count=recipe_count, sort_by=sort_by)
 
 
-# This route function is the same as the my_recipes route above, except that
-# DB query looks for recipes that have been 'added_by' the user.
+# This route function is the same as the all_recipes route above
 @app.route("/added_recipes", methods=["GET", "POST"])
 def added_recipes():
-    session['search_terms'] = {}
+    # If user not logged in, redirect to login route
     if not session.get('username'):
         flash('Please log in to add and favourite recipes')
         return redirect(url_for('login'))
 
+    form = Search_and_filter_form()
     page = request.args.get('page', 1, type=int)
     sort_by = request.args.get('sort_by', 'average_rating', type=str)
-    if page > 1:
-        recipes = mongo.db.recipes.find(
-            {'added_by': session['username']}).sort(
-                [(sort_by, -1), ('_id', -1)]).skip(
-                (page - 1) * 9).limit(9)
-    else:
-        recipes = mongo.db.recipes.find(
-            {'added_by': session['username']}).sort(
-                [(sort_by, -1), ('_id', -1)]).limit(9)
-    form = Search_and_filter_form()
-    next_page = url_for('added_recipes', page=str(page + 1), sort_by=sort_by)
-    prev_page = url_for('added_recipes', page=str(page - 1), sort_by=sort_by)
-    max_page = math.ceil(recipes.count() / 9)
-    recipes_count = mongo.db.recipes.count_documents(
-        {'added_by': session['username']})
+
+    (recipes, next_page, prev_page, recipe_count,
+        max_page) = get_recipes_paginated('added_recipes', page, sort_by)
 
     return render_template("added_recipes.html", form=form, recipes=recipes,
                            next_page=next_page, prev_page=prev_page,
                            max_page=max_page, page=page,
-                           recipes_count=recipes_count, sort_by=sort_by)
+                           recipe_count=recipe_count, sort_by=sort_by)
 
 
 # search_results route used to provide results for all pages that contain
@@ -214,33 +213,24 @@ def added_recipes():
 def search_results():
     filters = True  # Used to toggle 'clear_search' link in templates
     form = Search_and_filter_form()
-    return_page = request.args.get('return_page', type=str)
     page = request.args.get('page', 1, type=int)
     sort_by = request.args.get('sort_by', 'average_rating', type=str)
-    next_page = url_for('search_results',
-                        return_page=return_page, page=str(page + 1),
-                        sort_by=sort_by)
-    prev_page = url_for('search_results',
-                        return_page=return_page, page=str(page - 1),
-                        sort_by=sort_by)
+    # The return_page variable is required to instruct this route which
+    # template to display the results in.
+    return_page = request.args.get('return_page', type=str)
+
     # If data has been sent via the Search_and_filter_form, update the
     # search_terms variable in session.
     if request.method == 'POST':
         form_data = (dict(request.form))
         session['search_terms'] = create_query_dict(form_data, return_page)
 
-    if page > 1:
-        recipes = mongo.db.recipes.find(
-                        session['search_terms']).sort(
-                            [(sort_by, -1), ('_id', -1)]).skip(
-                                (page - 1) * 9).limit(9)
-    else:
-        recipes = mongo.db.recipes.find(
-                        session['search_terms']).sort(
-                            [(sort_by, -1), ('_id', -1)]).limit(9)
-    recipe_count = mongo.db.recipes.count_documents(
-                        session['search_terms'])
-    max_page = math.ceil(recipe_count / 9)
+    (recipes, next_page, prev_page, recipe_count,
+        max_page) = get_recipes_paginated('search_results', page, sort_by,
+                                          return_page=return_page)
+
+    # If the user searched using the search box, save the search words in a var
+    # to be able to render them in the search box if pagination links are used
     if session['search_terms'].get('$text'):
         search_words = session['search_terms'].get('$text').get('$search')
     else:
