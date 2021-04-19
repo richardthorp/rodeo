@@ -26,7 +26,7 @@
     </div>
   </div>
   <!-- IF USER HASN'T FAVOURITED ANY RECIPES -->
-  {% if recipe_count == 0 %}
+  {% if not filters and recipe_count == 0 %}
   <div class="add-fav-or-recipe">
     <h2 class="sub-header text-center mt-5">Add Favourite Recipes</h2>
     <p class="text-center">
