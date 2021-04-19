@@ -541,7 +541,8 @@ def recipe_page(recipe_id):
     recipe = mongo.db.recipes.find_one({'_id': ObjectId(recipe_id)})
     # These variables are to pass to the 'back to...' link
     page = request.args.get('page', 1, type=int)
-    recipe_id = request.args.get('recipe_id')
+    # recipe_id = request.args.get('recipe_id')
+    recipe_id = recipe['_id']
     return_page = request.args.get('return_page')
     return_page_text = request.args.get('return_page_text')
     filters = request.args.get('filters')
@@ -579,7 +580,10 @@ def recipe_page(recipe_id):
 def get_average_rating(recipe_id):
     recipe = mongo.db.recipes.find_one({'_id': ObjectId(recipe_id)})
     # Find out how many ratings the recipe has
+    print('RECIPE ID:', recipe_id)
+    print('RECIPE:', recipe)
     ratings_count = len(recipe['ratings'])
+    print(ratings_count)
 
     # If the recipe has ratings, add them together and divide by
     # ratings count to find average rating

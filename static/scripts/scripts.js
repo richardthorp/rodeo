@@ -199,7 +199,7 @@ $("document").ready(function () {
 
 /* Same as above but for ratings modal (modal id's made different to pass HTML validation) */
 $("document").ready(function () {
-    let userRating = parseInt($(".user-rating").text());
+    let userRating = parseInt($(".user-rating-modal").text());
     let userRatingHtml = "";
     /* Due to the CSS reversing the row of ratings, the for loop needs a descending counter */
     for (let i = 5; i > 0; i--) {
