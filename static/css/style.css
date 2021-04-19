@@ -293,7 +293,7 @@ nav {
 }
 
 /* CSS FOR STAR RATINGS ADAPTED FROM https://codepen.io/hesguru/pen/BaybqXv */
-.user-rating {
+.user-rating, .user-rating-modal {
     height: 46px;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -307,15 +307,15 @@ nav {
             justify-content: center;
 }
 
-.user-rating label, .modal-average-rating span {
+.user-rating label, .user-rating-modal label, .modal-average-rating span {
     padding: 0 3px;
 }
 
-.user-rating:not(:checked) > input {
+.user-rating:not(:checked) > input, .user-rating-modal:not(:checked) > input {
     display: none;
 }
 
-.user-rating:not(:checked) > label {
+.user-rating:not(:checked) > label, .user-rating-modal:not(:checked) > label {
     float:right;
     overflow:hidden;
     white-space:nowrap;
@@ -323,19 +323,27 @@ nav {
     font-size:1.5rem;
     color:#808080;
 }
-.user-rating > input:checked ~ label {
+
+.user-rating > input:checked ~ label, .user-rating-modal > input:checked ~ label {
     color: #ffc700;    
 }
 
 .user-rating:not(:checked) > label:hover,
-.user-rating:not(:checked) > label:hover ~ label {
+.user-rating:not(:checked) > label:hover ~ label,
+.user-rating-modal:not(:checked) > label:hover,
+.user-rating-modal:not(:checked) > label:hover ~ label {
     color: #deb217;  
 }
 .user-rating > input:checked + label:hover,
 .user-rating > input:checked + label:hover ~ label,
 .user-rating > input:checked ~ label:hover,
 .user-rating > input:checked ~ label:hover ~ label,
-.user-rating > label:hover ~ input:checked ~ label {
+.user-rating-modal > label:hover ~ input:checked ~ label,
+.user-rating-modal > input:checked + label:hover,
+.user-rating-modal > input:checked + label:hover ~ label,
+.user-rating-modal > input:checked ~ label:hover,
+.user-rating-modal > input:checked ~ label:hover ~ label,
+.user-rating-modal > label:hover ~ input:checked ~ label {
     color: #c59b08;
 }
 /* END OF COPIED CSS */

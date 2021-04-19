@@ -25,9 +25,10 @@
             <strong>Thank you for adding this recipe!</strong>
         </span>
         <span class="d-block d-sm-inline mt-2">
-            <a href="{{ url_for('edit_recipe', recipe_id=recipe._id) }}"><button
-                    class="custom-button ml-3">Edit</button></a>
-            <button class="delete-button ml-3" data-toggle="modal" data-target="#delete-recipe-modal">Delete</button>
+            <a href="{{ url_for('edit_recipe', recipe_id=recipe._id) }}">
+                <span class="custom-button ml-3">Edit</span>
+            </a>
+            <span class="delete-button ml-3" data-toggle="modal" data-target="#delete-recipe-modal">Delete</span>
         </span>
     </div>
     <div class="modal fade" id="delete-recipe-modal" tabindex="-1" aria-labelledby="delete-recipe-modal"
@@ -39,8 +40,9 @@
                 </div>
                 <div class="modal-footer justify-content-center">
                     <button type="button" class="custom-button" data-dismiss="modal">Close</button>
-                    <a href="{{url_for('delete_recipe', recipe_id=recipe._id)}}"><button type="button"
-                            class="delete-button">Delete Recipe</button></a>
+                    <a href="{{url_for('delete_recipe', recipe_id=recipe._id)}}">
+                        <span class="delete-button">Delete Recipe</span>
+                    </a>
                 </div>
             </div>
         </div>
@@ -113,7 +115,7 @@
                                 <!-- USER RATING SECTION -->
                                 <form method="POST" action="{{ url_for('recipe_page', recipe_id=recipe._id) }}">
                                     <h6 class="sub-header text-muted mt-4">Your Rating</h6>
-                                    <div class="user-rating">
+                                    <div class="user-rating-modal">
                                         {{ user_rating }}
                                     </div>
                                     <div class="d-flex justify-content-center">
