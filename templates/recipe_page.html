@@ -5,17 +5,17 @@
         <div class="col">
             <!-- If the user has come from all_recipes/my_recipes/added_recipes, render a 'back to...' link to relevant page  -->
             {% if return_page %}
-                <!-- If the user got to this page via search results, return them to those results-->
-                {% if filters %}
-                <a href="{{ url_for('search_results', page=page, filters=filters, sort_by=sort_by, return_page=return_page) }}"
-                    class="sub-header">
-                    <i class="fas fa-arrow-circle-left"></i> back to {{ return_page_text }}</a>
-                <!-- Otherwise, return them to standard previous page-->
-                {% else %}
-                <a href="{{ url_for(return_page, page=page, sort_by=sort_by, filters=filters, return_page=return_page) }}"
-                    class="sub-header">
-                    <i class="fas fa-arrow-circle-left"></i> back to {{return_page_text}}</a>
-                {% endif %}
+            <!-- If the user got to this page via search results, return them to those results-->
+            {% if filters %}
+            <a href="{{ url_for('search_results', page=page, filters=filters, sort_by=sort_by, return_page=return_page) }}"
+                class="sub-header">
+                <i class="fas fa-arrow-circle-left"></i> back to {{ return_page_text }}</a>
+            <!-- Otherwise, return them to standard previous page-->
+            {% else %}
+            <a href="{{ url_for(return_page, page=page, sort_by=sort_by, filters=filters, return_page=return_page) }}"
+                class="sub-header">
+                <i class="fas fa-arrow-circle-left"></i> back to {{return_page_text}}</a>
+            {% endif %}
             {% endif %}
         </div>
     </div>
@@ -98,7 +98,7 @@
                     View<br>Ratings
                 </button>
                 <!-- RATINGS MODAL -->
-                <div class="modal fade" id="rating-modal" tabindex="-1" aria-labelledby="rating modal"
+                <div class="modal fade" id="rating-modal" tabindex="-1" aria-labelledby="ratings-modal"
                     aria-hidden="true">
                     <div id="ratings-modal" class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
@@ -177,9 +177,11 @@
         <div class="col-12 col-lg-6">
             <div class="ingredients-section rounded-container mx-auto">
                 <h3 class="sub-header text-center m-2 m-sm-3 m-md-4">Ingredients</h3>
-                {% for ingredient in recipe.ingredients %}
-                <li>{{ ingredient }}</li>
-                {% endfor %}
+                <ul>
+                    {% for ingredient in recipe.ingredients %}
+                    <li>{{ ingredient }}</li>
+                    {% endfor %}
+                </ul>
             </div>
         </div>
         <div class="col-12 col-lg-6">
@@ -187,8 +189,7 @@
                 <h3 class="sub-header text-center m-2 m-sm-3 m-md-4">Instructions</h3>
                 <ul>
                     {% for instruction in recipe.instructions %}
-                    <h6 class="sub-header">Step {{loop.index}}</h6>
-                    <li>{{ instruction }}</li>
+                    <li><div class="sub-header">Step {{loop.index}}</div>{{ instruction }}</li>
                     {% endfor %}
                 </ul>
             </div>
