@@ -103,6 +103,9 @@ def login():
     return render_template("login.html", form=form)
 
 
+# This function queries the database for all_recipes, my_recipes, added_recipes
+# and search_results route functions as well as generating the pagination links
+# for each route.
 def get_recipes_paginated(return_route, page, sort_by, **kwargs):
     # If this function is called in the search_results route, the return_page
     # var needs to be passed in as a kwarg to tell the pagination links which
