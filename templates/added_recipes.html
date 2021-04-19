@@ -154,8 +154,7 @@
             <h6 class="sub-header mt-3">Favourite<br />Recipe?</h6>
             <!-- If user is logged in -->
             {% if session['username'] %}
-            <form class="trigger-form-send" method="POST"
-              action="{{ url_for('toggle_favourite', recipe_id=recipe._id, return_page='added_recipes',
+            <form class="trigger-form-send" method="POST" action="{{ url_for('toggle_favourite', recipe_id=recipe._id, return_page='added_recipes',
                                  page=page, sort_by=sort_by, filters=filters) }}">
               <!-- If user has favourited this recipe previously, render solid heart icon -->
               {% if session['username'] in recipe.favourites %}
@@ -184,8 +183,8 @@
         <hr />
         <div class="row">
           <div class="col-12 text-center mt-2">
-            <a href="{{ url_for('edit_recipe', recipe_id=recipe._id) }}"><button
-                class="custom-button ml-3">Edit</button>
+            <a href="{{ url_for('edit_recipe', recipe_id=recipe._id) }}">
+              <span class="custom-button ml-3">Edit</span>
             </a>
             <button class="delete-button ml-3" data-toggle="modal" data-target="#delete-recipe-modal-{{+loop.index}}">
               Delete
@@ -194,7 +193,7 @@
         </div>
         <!-- DELETE RECIPE MODAL -->
         <div class="modal fade" id="delete-recipe-modal-{{+loop.index}}" tabindex="-1"
-          aria-labelledby="delete-recipe-modal" aria-hidden="true">
+          aria-labelledby="delete-recipe-modal-{{+loop.index}}" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
               <div class="modal-body text-center">
@@ -205,11 +204,9 @@
                 <button type="button" class="custom-button" data-dismiss="modal">
                   Close
                 </button>
-                <a
-                  href="{{ url_for('delete_recipe', recipe_id=recipe._id, page=page, sort_by=sort_by, filters=filters) }}"><button
-                    type="button" class="delete-button">
-                    Delete Recipe
-                  </button></a>
+                <a href="{{ url_for('delete_recipe', recipe_id=recipe._id, page=page, sort_by=sort_by, filters=filters) }}">
+                  <span class="delete-button">Delete Recipe</span>
+                </a>
               </div>
             </div>
           </div>
