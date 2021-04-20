@@ -728,6 +728,7 @@ nav {
     }
     .about-title {
         font-size: 3rem;
+        margin-left: 10px;
     }
     .about-blurb {
         font-size: 0.8rem;
@@ -937,6 +938,7 @@ nav {
     }
     #slogan {
         font-size: 5.5rem;
+        line-height: 120px;
     }
     .custom-nav-links {
         font-size: 2rem;
