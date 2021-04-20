@@ -73,3 +73,18 @@ As mentioned in 'Potential Future Features', a great way to accomplish this obje
 
 #### **A note on Testing against Brand Objectives**
 I feel that whilst these objectives have been met to some extent, as the focus of this project is firmly on the access to and manipulation of a shared data set for users, these objectives have not been a priority in the design or implementation of the website.
+
+## Validation
+### HTML
+The HTML code has been validated against the [W3C Markup Validator](https://validator.w3.org/). This was done by copying the HTML code from Chrome Dev Tool once rendered in the browser, for all pages whilst both logged in and logged out of the website, and pasting the code into the validator. This was neccessary in order to test the code in it's final state after being proccessed by the Jinja templates. The HTML code contains no validity issues.
+
+### CSS and Javascript
+The CSS code has been validated against the [W3C CSS Validator](https://jigsaw.w3.org/css-validator/) and the JavaScript with the [JS Hint](https://jshint.com/) code analysis tool, with any issues highlighted by the validators fixed. The code contains no validity issues.
+
+### Python
+All Python code was written to be PEP 8 compliant. The only error message thrown by the Gitpod linter is 'Instance of 'Registration_form' has no 'errors' member'. I am unsure as to why this error is thrown as the function which uses the Registration_form.errors object has been tested and works as expected. The function has access to the data in the error object and uses the flash function to display a custom error message depending on the content of that object.
+
+![The route function which contains a pylint error](static/images/readme-images/testing-images/form-error.jpg "The route function which contains a pylint error")
+
+## Responsive testing
+The website has been developed and tested to ensure a high level of responsiveness. This has been achieved using Google Chrome Dev Tools, testing on different physical devices and by viewing the site on [Am I Responsive?](http://ami.responsivedesign.is/).
