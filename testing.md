@@ -54,3 +54,22 @@ If the user in not logged in, a link to **'login.html'** is available in the nav
 
 #### **For the data presented to me to be specific to me.**
 By adding favourite recipes to the **'my_recipes.html'** list, as well as adding their own recipes, users can curate their own selection of recipes that can be accessed by logging in to the website.
+
+## **Testing against Brand Objectives**
+#### **Increase brand awareness**
+By having a website to direct consumers and potential consumers to, the brand has a platform on which to promote itself. With the website focussing heavily on users adding their own recipes and viewing other peoples recipes, the potential for users themselves to promote the brand by sharing recipes with friends and family and across social media is provided.
+
+#### **Increase sales**
+At present, there is no requirement to have 'Rodeo Hot Sauce' as an ingredient in the recipes. Whilst this was considered, it was decided that it would not be conducive to encouraging people to use the site by restricting the content in that way. However, by establishing the website as a hub for good quality hot sauce recipes, this would add to the perception of 'Rodeo' being a quality product and brand, and therefore in turn increase sales.  
+
+#### **Generate a sense of community amongst consumers**
+By providing a platform for fans of hot sauce to come together and share in their love of hot sauce recipes, the website enables and encourages people to contribute to the community. As mentioned in the 'Potential Future Features' section of the README document, to further this goal it would be beneficial to add an 'add comment' feature to the recipe pages to allow users to interact with each other.
+
+#### **Collect customer data**
+By requiring users to register with their email address, the brand can use these addresses to send marketing direct to their target audience.
+
+#### **Improve understanding of consumers**
+As mentioned in 'Potential Future Features', a great way to accomplish this objective would be to provide a dashboard for the website owners which displays which types of recipes are being added and which recipes are most popular. Unfortunately, time constraints mean this feature is unfeasable at this time.
+
+#### **A note on Testing against Brand Objectives**
+I feel that whilst these objectives have been met to some extent, as the focus of this project is firmly on the access to and manipulation of a shared data set for users, these objectives have not been a priority in the design or implementation of the website.
