@@ -80,7 +80,7 @@
                     </div>
                     <!-- If user is logged in, provide submit button - otherwise provide popover with links to log in and register -->
                     {% if session['username'] %}
-                    <input class="custom-button add-rating-btn mt-2" type="submit" value="Add Rating">
+                    <input class="custom-button add-rating-btn mt-2" type="submit" value="Add Rating" id="rating-submit">
                     {% else %}
                     <a tabindex="0" class="sign-in-popover mx-auto" role="button" data-toggle="popover"
                         data-trigger="focus" data-placement="bottom" data-content="<a href='{{ url_for('login') }}'><b>LOG IN</b></a> or 
@@ -119,10 +119,10 @@
                                         {{ user_rating }}
                                     </div>
                                     <div class="d-flex justify-content-center">
-                                        <!-- If user is logged in, provide submit button - otherwise provide popover with links to log in and register -->
+                                        <!-- If user is logged in, provide submit button -->
                                         {% if session['username'] %}
                                         <input class="custom-button add-rating-btn mt-2" type="submit"
-                                            value="Add Rating">
+                                            value="Add Rating" id="modal-rating-submit">
                                         <!-- User not logged in - provide popover with links to log in and register  -->
                                         {% else %}
                                         <a tabindex="0" class="sign-in-popover" role="button" data-toggle="popover"

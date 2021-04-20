@@ -187,10 +187,10 @@ $("document").ready(function () {
     for (let i = 5; i > 0; i--) {
         /* Add checked attribute to the input that is equal to the users rating */
         if (i == userRating) {
-            userRatingHtml += `<input type="radio" id="star${i}" name="rating" value="${i}" checked/>
+            userRatingHtml += `<input type="radio" id="star${i}" name="rating" value="${i}" class="rating-input" checked/>
                               <label for="star${i}" title="text"><i class="fas fa-star"></i></label>`;
         } else {
-            userRatingHtml += `<input type="radio" id="star${i}" name="rating" value="${i}" />
+            userRatingHtml += `<input type="radio" id="star${i}" name="rating" value="${i}" class="rating-input"/>
                               <label for="star${i}" title="text"><i class="fas fa-star"></i></label>`;
         }
     }
@@ -205,15 +205,38 @@ $("document").ready(function () {
     for (let i = 5; i > 0; i--) {
         /* Add checked attribute to the input that is equal to the users rating */
         if (i == userRating) {
-            userRatingHtml += `<input type="radio" id="modal-star${i}" name="rating" value="${i}" checked/>
+            userRatingHtml += `<input type="radio" id="modal-star${i}" name="rating" value="${i}" class="modal-star" checked/>
                            <label for="modal-star${i}" title="text"><i class="fas fa-star"></i></label>`;
         } else {
-            userRatingHtml += `<input type="radio" id="modal-star${i}" name="rating" value="${i}" />
+            userRatingHtml += `<input type="radio" id="modal-star${i}" name="rating" value="${i}" class="modal-star"/>
                            <label for="modal-star${i}" title="text"><i class="fas fa-star"></i></label>`;
         }
     }
     $(".user-rating-modal").html(userRatingHtml);
 });
+
+/* PREVENT USER SENDING EMPTY RATING FORM ON RECIPE_PACE AND TRIGGER TOOLTIP */
+$("#rating-submit").on('click', (event) => {
+    if ($(".rating-input:checked").val() == undefined){
+        event.preventDefault();
+        $(".user-rating").tooltip({
+            title: "Please click on a star to submit a rating!",
+            placement: 'top'
+        }).tooltip('show');
+        clearTooltip($(".user-rating"));
+    }
+})
+/* Same as above but for ratings modal */
+$("#modal-rating-submit").on('click', (event) => {
+    if ($(".modal-star:checked").val() == undefined){
+        event.preventDefault();
+        $(".user-rating-modal").tooltip({
+            title: "Please click on a star to submit a rating!",
+            placement: 'top'
+        }).tooltip('show');
+        clearTooltip($(".user-rating-modal"));
+    }
+})
 
 /* GET CURRENT YEAR AND RENDER IN COPYRIGHT SECTION OF FOOTER */
 $(".copyright span").text(function () {

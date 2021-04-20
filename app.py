@@ -559,9 +559,10 @@ def recipe_page(recipe_id):
     if request.method == 'POST':
         # Find the respective recipe, and within the ratings dict set
         # username and user rating
+        user_rating = request.form.get('rating', 0, type=int)
         mongo.db.recipes.update_one({'_id': ObjectId(recipe_id)}, {'$set':
                                     {'ratings.' + session['username']:
-                                        request.form.get('rating')}})
+                                        user_rating}})
         # Calculate new average_rating and update in the db
         average_rating = get_average_rating(recipe_id)
         mongo.db.recipes.update_one({'_id': ObjectId(recipe_id)},
@@ -580,10 +581,7 @@ def recipe_page(recipe_id):
 def get_average_rating(recipe_id):
     recipe = mongo.db.recipes.find_one({'_id': ObjectId(recipe_id)})
     # Find out how many ratings the recipe has
-    print('RECIPE ID:', recipe_id)
-    print('RECIPE:', recipe)
     ratings_count = len(recipe['ratings'])
-    print(ratings_count)
 
     # If the recipe has ratings, add them together and divide by
     # ratings count to find average rating
