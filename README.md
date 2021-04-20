@@ -20,7 +20,7 @@ This website has been created for a fictitious hot sauce brand, "RODEO HOT SAUCE
 [Credits](#credits)
 
 <a name="objectives"></a>
-## Website Owners Objectives
+## Brand Objectives
 The primary objectives of the website are to enable to brand to:
 
 * Increase brand awareness
@@ -317,6 +317,8 @@ Similar to the **404** page, the **500** page is displayed if the server runs in
 A very useful feature that is not currently available in the app is the ability for a user to reset their password should they forget it or need to change it. Unfortunately I believe this to be out of my skillset at this moment and do not have the time to do the research neccessary to implement this feature.
 
 Another feature I would like to add is a dashboard available to the website admin, which could display statistics useful to the 'Rodeo Hot Sauce' brand. These statistics could highlight trends such as growing popularity of certain meal types which would be useful for marketing purposes.
+
+To further encourage users to register and contribute to the website, I would like to add the ability to add comments to the recipe pages. I believe this would be an effective way to boost the sense of community within the users of the website.
 
 <a name="tech"></a>
 ## Languages and Technologies
