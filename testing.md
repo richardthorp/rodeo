@@ -134,6 +134,8 @@ In the footer, check that same links are visible on screens above 768px wide as 
 3. Click on name
     * Ensure name links to corresponding recipe page.
 
+<a name="favourite-recipe-toggle"></a>
+
 ##### 'FAVOURITE RECIPE' heart icon (also found on recipe_page.html)
 ###### **Logged out user**
 1. Click on the heart icon
@@ -284,3 +286,78 @@ For all tests above that result in a validation error, ensure that no data is se
 ###### **Logged in user**
 1. Type 'http://rodeo-hot-sauce.herokuapp.com/register' into the browser address input and hit return
     * Ensure that the address redirects to my_recipes.html
+
+**************************
+#### recipe_page.html
+###### **Logged in user**
+1. Test navigation bar and footer according to tests detailed in ["Testing of site-wide features"](#site-wide-features).
+2. Add a new recipe to the database (via add_recipe.html) and make sure to upload an image for the recipe
+    * Ensure all the details of the newly added recipe are rendered correctly on the recipe_page.html page.
+    * Ensure that the correct recipe image has been rendered.
+    * Check that the 'EDIT' and 'DELETE' buttons have been rendered at the top of the page
+        * Mouse over the buttons and ensure cursor becomes a pointer and hover effect is triggered.
+        * Click on the 'EDIT' button and make sure it links to edit_recipe.html and that the correct information is automatically entered into the form inputs
+        * Click on the 'DELETE' button
+            * Ensure that the delete recipe modal has been triggered
+                * Mouse over the 'CLOSE' and 'DELETE RECIPE' buttons and ensure cursor becomes a pointer and hover effect is triggered.
+                * Click the 'CLOSE' button and ensure the modal is removed
+                * Click anywhere outside of the modal and ensure the modal is removed
+3. Within the MongoDB website and in the recipe document, make a note of the name given to the image. Find the corresponding document in the FS.files collection using the image name and make a note of the ObjectID of this file.
+4. Via the delete recipe modal, click on 'DELETE RECIPE'
+    *  Within the MongoDB website, make sure that the recipe has been removed from the recipes collection.
+    * Check within the MongoDB website that the file data has been removed from the FS.files collection using either the image file name or the ObjectID noted in step 2.
+    * Within the MongoDB website, navigate to FS.chunks. Ensure that no document exists in the collection which has a files_id that matches the ObjectID from above.
+    * Make sure the the delete button redirects to added_recipes.html.
+5. Add a new recipe to the database (via add_recipe.html) and do not add an image
+    * Ensure all the details of the newly added recipe are rendered correctly on the recipe_page.html page.
+    * Ensure that the default recipe image has been rendered.
+6. Navigate to a recipe page from all_recipes.html
+    * Make sure the 'BACK TO...' link at the top of the page states 'BACK TO ALL RECIPES'
+7. Navigate to a recipe page from my_recipes.html
+    * Make sure the 'BACK TO...' link at the top of the page states 'BACK TO MY RECIPES'
+8. Navigate to a recipe page from added_recipes.html
+    * Make sure the 'BACK TO...' link at the top of the page states 'BACK TO ADDED RECIPES'
+6. Navigate to a recipe page from from outside the website
+    * Make sure the that the 'BACK TO...' link is not rendered
+7. Test the 'ADD TO FAVOURITES' heart icon according to the tests written under ["'FAVOURITE RECIPE' heart icon"](#favourite-recipe-toggle) in the 'Recipe Cards' testing section.
+
+On a screen wider than 768px:
+
+1. Mouse over 'ADD RATING' button
+    * Ensure cursor becomes a pointer and hover effect is triggered.
+2. Mouse over the user rating stars
+    * Ensure cursor becomes a pointer and the all stars to the left of the current star are changed to dark gold.
+3. Click on a user rating star
+    * Check that the star and all other stars to the left are changed in colour to gold, and that the colour remains when the mouse is moved away.
+    * Click on a different star and ensure the outcome is the same as above.
+4. Click on a user rating star and then click 'ADD RATING' button
+    * Check that the 'Thank you for your rating' message slides in from the navigation bar, and then slides back up after 4 seconds.
+    * Check that the new rating is reflected in the 'Average Rating' stars on the page.
+    * Within the MongoDB website and in the 'rodeo' database, find the corrosponding recipe document in the 'recipes' collection. Make sure that the ratings object in the document is updated accordingly.
+5. Commit a 'hard refresh' of the recipe page (to clear out any cached version stored in the browser)
+    * Make sure that the user rating stars are coloured gold to correlate rating given in step 5.
+6. Repeat steps 5 and 6
+    * Make sure that the ratings object for the recipe only contains one key-value pair for the username, and that the value has been updated.
+7. Click on 'ADD RATING' button without first clicking on a star
+    * Ensure a tooltip is rendered which states 'Please click on a star to submit a rating'
+    * Within the MongoDB website, find the corresponding recipe in the recipes collection and make sure no data has been added to the ratings object.
+
+On a screen less than 768px wide:
+
+1. Mouse over 'VIEW RATINGS' button
+    * Ensure cursor becomes a pointer and hover effect is triggered.
+2. Click on 'VIEW RATINGS' button
+    * Ensure that the ratings modal is triggered
+3. Within the ratings modal, repeat steps 3 to 6 above.
+
+
+###### **Logged out user**
+1. Test navigation bar and footer according to tests detailed in ["Testing of site-wide features"](#site-wide-features).
+2. Test the 'ADD TO FAVOURITES' heart icon according to the tests written under ["'FAVOURITE RECIPE' heart icon"](#favourite-recipe-toggle) in the 'Recipe Cards' testing section.
+3. Navigate to a recipe page from all_recipes.html
+    * Make sure the 'BACK TO...' link at the top of the page states 'BACK TO ALL RECIPES'
+4. Navigate to a recipe page from from outside the website
+    * Make sure the that the 'BACK TO...' link is not rendered
+5. Click on the 'ADD RATING' button
+    * Ensure that the 'LOG IN or REGISTER to rate recipes' popover is rendered and that the 'LOG IN' and 'REGISTER' link to the relevant pages.
+
