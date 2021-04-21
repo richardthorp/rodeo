@@ -1,77 +1,78 @@
 # Testing
 ## Testing against User Stories
-#### **To be able to navigate through the website in an intuitive and easy fashion.**
+### **To be able to navigate through the website in an intuitive and easy fashion.**
 
 The website conforms to standard website UX principles. All pages have a navigation bar which provides clear links to the main pages of the website. Any links or buttons feature cursor hover effects to make clear that they are interactive elements. Where appropriate, a 'back to...' button is provided to ensure the user can quickly and easily return to search results or lists of recipes. 
 
 ![The 'back to...' link and navigation bar links](static/images/readme-images/testing-images/navigation.jpg "The 'back to...' link and navigation bar links")
 
-#### **To discover popular recipes involving hot sauce**
+### **To discover popular recipes involving hot sauce**
 
 When visiting the website, the first page presented to the user displays a small amount of content before offering 2 or 3 (depending on screen size) of the website highest rated recipes. Below this is a link to browse all of the recipes available on the website which are by default presented with the highest rated recipes first.
 
 ![The 3 highest rated recipes form the website displayed on index.html](static/images/readme-images/testing-images/index-recipes.jpg "The 3 highest rated recipes form the website displayed on index.html")
 
-#### **To discover new recipes involving hot sauce**
+### **To discover new recipes involving hot sauce**
 Whilst browsing any of the pages that list the recipes, the option to sort the recipes by newest first is available via a clear 'sort by: newest' link above the recipe cards.
 
 ![The 'sort by' links above the recipe cards](static/images/readme-images/testing-images/sort-by.jpg "The 'sort by' links above the recipe cards")
 
 
-#### **To be able to quickly and easily search the recipes to find specific ingredients or meal types**
+### **To be able to quickly and easily search the recipes to find specific ingredients or meal types**
 Whilst browsing any of the pages that list the recipes, a search text input and options to filter the recipes are available above the listed recipes. The search feature will search the relevent recipes for that page (ie. on **'added_recipes.html'**, only recipes that the user has added) for any matching words in the recipe name and ingredient fields.
 As well as this, the user has the option to filter the recipes by type ('vegetarian', 'vegan' or 'meat') and the further filter by options such as 'quick', 'healthy' and 'gluton free'.
 
-#### **To contribute my own recipes to the website community**
+### **To contribute my own recipes to the website community**
 Once a user is registered and logged in, they are directed to **'my_recipes.html'**. Whist this page is mainly dedicated to displaying recipes that the user has added to their favourites, the link to **'add_recipe.html'** is clearly displayed towards the top of the page. Once on **'add_recipe.html'**, a simple form is available for the user to fill out and submit their recipe to the database. This recipe is then immediately available to view on the website.
 
 ![The 'ADD A NEW RECIPE' button in 'MY RECIPES'](static/images/readme-images/testing-images/add-recipe-button.jpg "The 'ADD A NEW RECIPE' button in 'MY RECIPES'")
 
-#### **To be able to quickly edit or delete recipes that I have contributed**
+### **To be able to quickly edit or delete recipes that I have contributed**
 Once a user has added their recipe to the database via **'add_recipe.html'**, they are directed to the **'recipe_page.html'** page for that recipe. At the top of this page are links to 'edit' and 'delete' the recipe. By clicking on the 'edit' button, the user is returned to the same form that they filled out in **'add_recipe.html'**, with all the existing recipe information in the form ready to be edited. By clicking on the 'delete' button, a modal is triggered which asks the user "Are you sure you want to delete this recipe? This cannot be undone!". At this point the user can either immediately delete the recipe from the database, or return to the recipe page.
-The 'edit' and 'delete' buttons are also available to the user at the bottom of each recipe card in the **'added_recipes.html'** page.
 
 ![The 'EDIT' and 'DELETE' buttons in a recipe page](static/images/readme-images/testing-images/edit-delete-buttons.jpg "The 'EDIT' and 'DELETE' buttons in a recipe page")
 
+The 'edit' and 'delete' buttons are also available to the user at the bottom of each recipe card in the **'added_recipes.html'** page.
+
 ![The 'EDIT' and 'DELETE' buttons in added_recipes.html](static/images/readme-images/testing-images/recipe-card-edit-delete.jpg "The 'EDIT' and 'DELETE' buttons in added_recipes.html")
 
-#### **To be able to save recipes that interest me and be able to access them quickly**
+### **To be able to save recipes that interest me and be able to access them quickly**
 If the user is logged in, any page that displays a recipe or recipe cards features the 'FAVOURITE RECIPE?' heart icon. Once clicked, the recipe can be accessed quickly through the 'MY RECIPES' link in the navigation bar or footer. If the recipe is already in the users 'MY RECIPES' page, clicking the heart icon will remove the recipe from the list. 
 
 ![The heart icon as seen in a recipe page](static/images/readme-images/testing-images/heart-icon.jpg "The heart icon as seen in a recipe page")
 
 
-#### **To be able to rate recipes and have those ratings influence the information hierarchy throughout the website**
+### **To be able to rate recipes and have those ratings influence the information hierarchy throughout the website**
 If the user is logged in, whilst on a **'recipe_page.html'** page, the option to rate the recipe out of 5 stars is available. Once a user rating is sent, the average rating for that recipe is updated to reflect the new score. This in turn will move the recipe up or down the lists presented in **'all_recipes.html'**, **'my_recipes.html'** and **'added_recipes.html'**.
 
 ![The user rating stars and 'add rating' button](static/images/readme-images/testing-images/user-rating-stars.jpg "The user rating stars and 'add rating' button")
 
-#### **To be able to log in and log out of the website easily**
+### **To be able to log in and log out of the website easily**
 If the user in not logged in, a link to **'login.html'** is available in the navigation bar, and if the user is logged in a link to the **'logout'** function is presented.
 
 ![The log out button in the navigation bar](static/images/readme-images/testing-images/log-out-button.jpg "The log out button in the navigation bar")
 
 
-#### **For the data presented to me to be specific to me.**
+### **For the data presented to me to be specific to me.**
 By adding favourite recipes to the **'my_recipes.html'** list, as well as adding their own recipes, users can curate their own selection of recipes that can be accessed by logging in to the website.
 
 ## **Testing against Brand Objectives**
-#### **Increase brand awareness**
+### **Increase brand awareness**
 By having a website to direct consumers and potential consumers to, the brand has a platform on which to promote itself. With the website focussing heavily on users adding their own recipes and viewing other peoples recipes, the potential for users themselves to promote the brand by sharing recipes with friends and family and across social media is provided.
 
-#### **Increase sales**
+### **Increase sales**
 At present, there is no requirement to have 'Rodeo Hot Sauce' as an ingredient in the recipes. Whilst this was considered, it was decided that it would not be conducive to encouraging people to use the site by restricting the content in that way. However, by establishing the website as a hub for good quality hot sauce recipes, this would add to the perception of 'Rodeo' being a quality product and brand, and therefore in turn increase sales.  
 
-#### **Generate a sense of community amongst consumers**
+### **Generate a sense of community amongst consumers**
 By providing a platform for fans of hot sauce to come together and share in their love of hot sauce recipes, the website enables and encourages people to contribute to the community. As mentioned in the 'Potential Future Features' section of the README document, to further this goal it would be beneficial to add an 'add comment' feature to the recipe pages to allow users to interact with each other.
 
-#### **Collect customer data**
+### **Collect customer data**
 By requiring users to register with their email address, the brand can use these addresses to send marketing direct to their target audience.
 
-#### **Improve understanding of consumers**
+### **Improve understanding of consumers**
 As mentioned in 'Potential Future Features', a great way to accomplish this objective would be to provide a dashboard for the website owners which displays which types of recipes are being added and which recipes are most popular. Unfortunately, time constraints mean this feature is unfeasable at this time.
 
-#### **A note on Testing against Brand Objectives**
+### **A note on Testing against Brand Objectives**
 I feel that whilst these objectives have been met to some extent, as the focus of this project is firmly on the access to and manipulation of a shared data set for users, these objectives have not been a priority in the design or implementation of the website.
 
 ## Validation
@@ -87,4 +88,125 @@ All Python code was written to be PEP 8 compliant. The only error message thrown
 ![The route function which contains a pylint error](static/images/readme-images/testing-images/form-error.jpg "The route function which contains a pylint error")
 
 ## Responsive testing
-The website has been developed and tested to ensure a high level of responsiveness. This has been achieved using Google Chrome Dev Tools, testing on different physical devices and by viewing the site on [Am I Responsive?](http://ami.responsivedesign.is/).
+The website has been developed and tested to ensure a high level of responsiveness. This has been achieved using Google Chrome Dev Tools, testing on different physical devices as listed below and by viewing the site on [Am I Responsive?](http://ami.responsivedesign.is/).
+### Responsive testing procedure
+Check that text, images and all other elements load with correct styles and spacing all all pages. On mobile and tablet, rotate the screen to landscape orientation and repeat the checks. Whilst testing on laptop, using each browsers developer tools, resize the page and ensure all elements respond to the screen size accordingly.
+
+## Manual testing of all elements throughout the website
+The tests detailed in this section were all completed using the following web browsers and hardware:
+|                            | Chrome             | Edge             | Firefox            | Safari |
+| -------------             |:------------------:| -----------------:|-------------------:|--------:|
+| Microsoft Surface 3 (15") | :heavy_check_mark: |:heavy_check_mark: | :heavy_check_mark: |         |
+| Samsung Galaxy A6         | :heavy_check_mark: |:heavy_check_mark: | :heavy_check_mark: |         |
+| Huawei P Smart 2019       | :heavy_check_mark: | :heavy_check_mark:| :heavy_check_mark: |         |
+| Macbook Pro 2016 (13")    | :heavy_check_mark: |                   | :heavy_check_mark: |:heavy_check_mark: |
+| iPad 7th generation 2019  | :heavy_check_mark: |                  | :heavy_check_mark: |:heavy_check_mark: |
+
+### Testing of site-wide features
+#### Header and footer
+###### **Logged out user**
+* Ensure navigation bar links read 'RECIPES', 'LOGIN' and 'REGISTER'.
+###### **Logged in user**
+* Ensure navigation bar links read 'RECIPES', 'MY RECIPES' and 'LOG OUT'. 
+
+In the footer, check that same links are visible on screens above 768px wide as well as the copyright information. On smaller screens, ensure that the copyright information is visible and in place of the 3 navigation links there is one link to go 'BACK TO TOP'.
+
+##### 'RODEO' logo
+1. Mouse over 'RODEO' logo
+    * Ensure cursor becomes a pointer.
+2. Click on 'RODEO' logo
+    * Ensure logo links to index.html.
+
+##### Navigation bar and footer links
+1. Mouse over links
+    * Ensure cursor becomes a pointer and hover effect is triggered.
+2. Click on links
+    * Ensure links direct to correct page.
+
+#### Recipe Cards 
+1. Mouse over all elements on the cards
+    * Ensure cursor becomes a pointer over image, recipe name and 'FAVOURITE RECIPE' heart icon.
+2. Click on image
+    * Ensure image links to corresponding recipe page.
+3. Click on name
+    * Ensure name links to corresponding recipe page.
+
+##### 'FAVOURITE RECIPE' heart icon (also found on recipe_page.html)
+###### **Logged out user**
+1. Click on the heart icon
+    * Ensure popover is triggered and that links to login.html and register.html work as expected.
+    * Ensure popover is dismissed on next click.
+###### **Logged in user**
+1. Mouse over the heart icon
+    * Ensure that a tooltip is rendered. If the recipe has not been previously favourited, ensure tooltip reads 'Add to favourites' and the heart outline is rendered. If the recipe has been previoulsy favourited, ensure tooltip reads 'Remove from favourites' and the solid heart is rendered.
+2. Click on heart icon
+    * Ensure that a message slides down from the navigation bar to say whether the recipe was added or removed from favourites. Ensure message slides back up after 4 seconds.
+    * Ensure that the heart icon is toggled - solid icon if recipe is in favourites and outline of icon if not in favourites.
+    * Navigate to 'MY RECIPES' and ensure that the relevent recipes are either added or removed from the list.
+    * Ensure that the 'FAVOURITE RECIPE?' toggle returns to the same page that it was used on. 
+        * After using a combination of search, filter, sort by and pagination features, use the 'FAVOURITE RECIPE?' toggle. Ensure that the return page is the same as the page on which the function was called. 
+
+
+#### Search and filter functionality 
+##### Search text input and submit button
+1. Mouse over 'SEARCH' button
+    * Ensure cursor becomes a pointer and hover effect is triggered.
+2. Type text into the text input and click on 'SEARCH'
+    * Ensure relevant search results are returned.
+    * If no results are returned, ensure text reads 'NO RECIPES FOUND! Please adjust your search term or filters and try again.'
+    * If more than 9 results are returned, ensure pagination links are rendered at the bottom of the page (see pagination link testing below).
+    * Ensure 'REMOVE SEARCH TERMS AND FILTERS' button is rendered
+        * Mouse over button and ensure hover effect is triggered.
+        * Click on the button and ensure button links back to original page, and that all relevant recipes are displayed.
+
+##### Recipe filter options and 'FILTER' button
+1. Mouse over 'FILTER' button
+    * Ensure cursor becomes a pointer and hover effect is triggered.
+2. Select different options, including a combination of recipe type (vegetarian, vegan, meat) and recipe options and click on 'FILTER' button.
+    * Ensure relevant recipes are returned.
+    * If recipes are returned, ensure text reads 'NO RECIPES FOUND! Please adjust your search term or filters and try again.'
+    * If more than 9 results are returned, ensure pagination links are rendered at the bottom of the page (see pagination link testing below).
+
+##### Combinination of text search and recipe filters
+1. Enter a search term that yields results
+    * Add filters to the results - ensure that only relevent recipes are returned.
+
+#### Pagination links
+Pagination links are available on all_recipes.html, my_recipes.html and added_recipes.html when the total number of available recipes is above 9.
+
+##### General testing of links
+1. On first page of available recipes
+    * Ensure that the 'PREVIOUS PAGE' link has greyed out effect and that moving the mouse over the link renders no change in the cursor.
+    * Mouse over 'NEXT PAGE' link
+        * Ensure hover effect is rendered.
+    * Click on 'NEXT PAGE' link
+        * Ensure that a new page of unique recipes are rendered. If paginating through search and filter results and/or have sorted the recipes by rating or newest, ensure that those conditions are still met.
+2. In the middle of available recipes (more than 18 recipes available)
+    * Ensure that both 'PREVIOUS PAGE' and 'NEXT PAGE' links are rendered.
+    * Mouse over 'PREVIOUS PAGE' and 'NEXT PAGE' links
+        * Ensure hover effect is rendered.
+    * Click on 'PREVIOUS PAGE' and 'NEXT PAGE' links
+        * Ensure that the previous or a new page of unique recipes are rendered. If paginating through search and filter results and/or have sorted the recipes by rating or newest, ensure that those conditions are still met.
+3. On the last page of available results
+    * Ensure that the 'NEXT PAGE' link has greyed out effect and that moving the mouse over the link renders no change in the cursor.
+    * Mouse over 'PREVIOUS PAGE' link
+        * Ensure hover effect is rendered.
+    * Click on 'PREVIOUS PAGE' link
+        * Ensure that the previous page of unique recipes are rendered. If paginating through search and filter results and/or have sorted the recipes by rating or newest, ensure that those conditions are still met.
+
+
+
+
+#### index.html
+This page features recipe cards which were tested as per **Recipe Cards** above.
+##### 'CLICK HERE TO SEE MORE RECIPES'link
+1. Mouse over link
+    * Ensure cursor becomes a pointer and hover effect is triggered.
+2. Click on link
+    * Ensure link direct to all_recipes.html.
+
+#### all_recipes.html
+This page features recipe cards which were tested as per **Recipe Cards** above.
+
+        * Mouse over pagination links. Ensure that relevent pagination links are grayed out if on the first or last page of results. Ensure valid pagination links render hover effect on mouse over.
+
