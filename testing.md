@@ -102,49 +102,49 @@ The tests detailed in this section were all completed using the following web br
 | Macbook Pro 2016 (13")    | :heavy_check_mark: |                   | :heavy_check_mark: |:heavy_check_mark: |
 | iPad 7th generation 2019  | :heavy_check_mark: |                  | :heavy_check_mark: |:heavy_check_mark: |
 
+**********************
+
 <a name="site-wide-features"></a>
 
 ### Testing of site-wide features
 #### **Header and footer**
-###### **Logged out user**
-* Ensure navigation bar links read 'RECIPES', 'LOGIN' and 'REGISTER'.
-###### **Logged in user**
-* Ensure navigation bar links read 'RECIPES', 'MY RECIPES' and 'LOG OUT'. 
-
-In the footer, check that same links are visible on screens above 768px wide as well as the copyright information. On smaller screens, ensure that the copyright information is visible and in place of the 3 navigation links there is one link to go 'BACK TO TOP'.
-
-##### 'RODEO' logo
-1. Mouse over 'RODEO' logo
+##### **Logged out user**
+1. Ensure navigation bar links read 'RECIPES', 'LOGIN' and 'REGISTER'.
+2. In the footer, check that same links are visible on screens above 768px wide as well as the copyright information. 
+3. On a screen smaller than 768px wide, ensure that the copyright information is visible, and in place of the 3 navigation links there is one link to go 'BACK TO TOP'.
+4. Mouse over 'RODEO' logo
     * Ensure cursor becomes a pointer.
-2. Click on 'RODEO' logo
+5. Click on 'RODEO' logo
     * Ensure logo links to index.html.
-
-##### Navigation bar and footer links
-1. Mouse over links
+6. Mouse over footer links
     * Ensure cursor becomes a pointer and hover effect is triggered.
-2. Click on links
+7. Click on footer links
     * Ensure links direct to correct page.
 
+##### **Logged in user**
+1. Ensure navigation bar links read 'RECIPES', 'MY RECIPES' and 'LOG OUT'. 
+2. Repeat steps 2 to 7 from **Logged out user** above
+
 *******************************************
+<a name="recipe-cards"></a>
+
 #### **Recipe Cards**
+##### **Logged out user**
 1. Mouse over all elements on the cards
     * Ensure cursor becomes a pointer over image, recipe name and 'FAVOURITE RECIPE' heart icon.
-2. Click on image
+2. Click on recipe image
     * Ensure image links to corresponding recipe page.
-3. Click on name
+3. Click on recipe name
     * Ensure name links to corresponding recipe page.
-
-<a name="favourite-recipe-toggle"></a>
-
-##### 'FAVOURITE RECIPE' heart icon (also found on recipe_page.html)
-###### **Logged out user**
-1. Click on the heart icon
+4. Click on the heart icon
     * Ensure popover is triggered and that links to login.html and register.html work as expected.
     * Ensure popover is dismissed on next click.
-###### **Logged in user**
-1. Mouse over the heart icon
+
+##### **Logged in user**
+1. Repeat step 1 to 3 from **Logged out user** above
+2. Mouse over the heart icon
     * Ensure that a tooltip is rendered. If the recipe has not been previously favourited, ensure tooltip reads 'Add to favourites' and the heart outline is rendered. If the recipe has been previoulsy favourited, ensure tooltip reads 'Remove from favourites' and the solid heart is rendered.
-2. Click on heart icon
+3. Click on heart icon
     * Ensure that a message slides down from the navigation bar to say whether the recipe was added or removed from favourites. Ensure message slides back up after 4 seconds.
     * Ensure that the heart icon is toggled - solid icon if recipe is in favourites and outline of icon if not in favourites.
     * Navigate to 'MY RECIPES' and ensure that the relevent recipes are either added or removed from the list.
@@ -153,7 +153,6 @@ In the footer, check that same links are visible on screens above 768px wide as 
 
 **********************************
 #### **Search and filter functionality**
-##### Search text input and submit button
 1. Mouse over 'SEARCH' button
     * Ensure cursor becomes a pointer and hover effect is triggered.
 2. Type text into the text input and click on 'SEARCH'
@@ -163,22 +162,18 @@ In the footer, check that same links are visible on screens above 768px wide as 
     * Ensure 'REMOVE SEARCH TERMS AND FILTERS' button is rendered
         * Mouse over button and ensure hover effect is triggered.
         * Click on the button and ensure button links back to original page, and that all relevant recipes are displayed.
-
-##### Recipe filter options and 'FILTER' button
-1. Mouse over 'FILTER' button
+3. Mouse over 'FILTER' button
     * Ensure cursor becomes a pointer and hover effect is triggered.
-2. Select different options, including a combination of recipe type (vegetarian, vegan, meat) and recipe options and click on 'FILTER' button.
+4. Select different options, including a combination of recipe type (vegetarian, vegan, meat) and recipe options and click on 'FILTER' button.
     * Ensure relevant recipes are returned.
-    * If recipes are returned, ensure text reads 'NO RECIPES FOUND! Please adjust your search term or filters and try again.'
+    * If no results are returned, ensure text reads 'NO RECIPES FOUND! Please adjust your search term or filters and try again.'
     * If more than 9 results are returned, ensure pagination links are rendered at the bottom of the page (see pagination link testing below).
-
-##### Combinination of text search and recipe filters
-1. Enter a search term that yields results
-    * Add filters to the results - ensure that only relevent recipes are returned.
+    * Ensure 'REMOVE SEARCH TERMS AND FILTERS' button is rendered
+        * Mouse over button and ensure hover effect is triggered.
+        * Click on the button and ensure button links back to original page, and that all relevant recipes are displayed.
 
 **************************
 #### **Pagination links**
-Pagination links are available on all_recipes.html, my_recipes.html and added_recipes.html when the total number of available recipes is above 9.
 
 1. On first page of available recipes
     * Ensure that the 'PREVIOUS PAGE' link has greyed out effect and that moving the mouse over the link renders no change in the cursor.
@@ -200,50 +195,46 @@ Pagination links are available on all_recipes.html, my_recipes.html and added_re
         * Ensure that the previous page of unique recipes are rendered. If paginating through search and filter results and/or have sorted the recipes by rating or newest, ensure that those conditions are still met.
 
 ### Testing of individual pages
-#### index.html
-This page features recipe cards which were tested as per **Recipe Cards** above.
-
-##### 'SOME INSPIRATION' recipe cards
-1. Add and remove ratings to recipes
-    * Ensure that the recipe cards on this page are updated to show the 3 highest rated recipes.
-
-##### 'CLICK HERE TO SEE MORE RECIPES' link
-1. Mouse over link
+#### **index.html**
+1. Test the recipe cards according to the tests written in ['Recipe Cards' above](#recipe-cards)
+2. Add and remove ratings to recipes
+    * Ensure that the recipe cards in the 'SOME INSPIRATION section are updated to show the 3 highest rated recipes.
+3. Mouse over 'CLICK HERE TO SEE MORE RECIPES' link
     * Ensure cursor becomes a pointer and hover effect is triggered.
-2. Click on link
+4. Click on 'CLICK HERE TO SEE MORE RECIPES' link
     * Ensure link directs to all_recipes.html.
 
 **************************
-#### all_recipes.html
-Test navigation bar, footer, search and filter, sort by, recipe cards and pagination links according to tests detailed in ["Testing of site-wide features"](#site-wide-features).
+#### **all_recipes.html**
+1. Test navigation bar, footer, search and filter, sort by, recipe cards and pagination links according to tests detailed in ["Testing of site-wide features"](#site-wide-features).
 
-Ensure all available recipes are displayed by comparing the number of recipes presented with the number of recipes in the recipe collection of the database.
+2. Ensure all available recipes are displayed by comparing the number of recipes presented with the number of recipes in the recipe collection of the database.
 
 **************************
-#### login.html
-###### **Logged out user**
-Test navigation bar and footer according to tests detailed in ["Testing of site-wide features"](#site-wide-features).
-1. Mouse over 'LOG IN' button
+#### **login.html**
+##### **Logged out user**
+1. Test navigation bar and footer according to tests detailed in ["Testing of site-wide features"](#site-wide-features).
+2. Mouse over 'LOG IN' button
     * Ensure cursor becomes a pointer and hover effect is triggered.
-2. Mouse over 'Click here to register' beneath the 'Need to sign up?' text.
+3. Mouse over 'Click here to register' beneath the 'Need to sign up?' text.
     * Ensure cursor becomes a pointer and hover effect is triggered.
-3. Click on the 'Click here to register' link
+4. Click on the 'Click here to register' link
     * Ensure the link directs to register.html
-4. Enter a valid username and corresponding password
+5. Enter a valid username and corresponding password
     * Click on 'LOG IN' button
         * Ensure that the button links to my_recipes.html
         * Check that the "Welcome, 'username'" message slides in from the navigation bar and that the correct username is presented, and then slides back up after 4 seconds.
-5. Enter a valid username with a non valid password
+6. Enter a valid username with a non valid password
     * Click on 'LOG IN' button
         * Ensure that the button does not link to my_recipes.html
         * Check that the "Login details incorrect, please try again" message slides in from the navigation bar, and then slides back up after 4 seconds.
-6. Enter an invalid username and a password
+7. Enter an invalid username and a password
     * Click on 'LOG IN' button
         * Ensure that the button does not link to my_recipes.html
         * Check that the "Login details incorrect, please try again" message slides in from the navigation bar, and then slides back up after 4 seconds.
-7. Enter a username, but no password
+8. Enter a username, but no password
     * Ensure 'Please fill in this field' tooltip in presented on the password input.
-8. Enter a password, but no username
+9. Enter a password, but no username
     * Ensure 'Please fill in this field' tooltip in presented on the username input.
 
 ###### **Logged in user**
@@ -252,33 +243,33 @@ Test navigation bar and footer according to tests detailed in ["Testing of site-
 
 
 **************************
-#### register.html
-###### **Logged out user**
-Test navigation bar and footer according to tests detailed in ["Testing of site-wide features"](#site-wide-features).
-1. Mouse over 'REGISTER' button
+#### **register.html**
+##### **Logged out user**
+1. Test navigation bar and footer according to tests detailed in ["Testing of site-wide features"](#site-wide-features).
+2. Mouse over 'REGISTER' button
     * Ensure cursor becomes a pointer and hover effect is triggered.
-2. Mouse over 'Click here to log in' beneath the 'Already have an account?' text.
+3. Mouse over 'Click here to log in' beneath the 'Already have an account?' text.
     * Ensure cursor becomes a pointer and hover effect is triggered.
-3. Click on the 'Click here to log in' link
+4. Click on the 'Click here to log in' link
     * Ensure the link directs to login.html
-4. Enter details into all the inputs conforming to the requirements stated
+5. Enter details into all the inputs conforming to the requirements stated
     * Click on 'REGISTER' button
         * Ensure that the button links to my_recipes.html
         * Check that the "Welcome to Rodeo, 'username'" message slides in from the navigation bar and that the correct username is presented, and then slides back up after 4 seconds.
         * Within the MongoDB website and in the 'rodeo' database, check that a new document has been added to the 'users' collection, with the username and email in lowercase, and a hashed version of the users password.
-5. For each of the inputs, click on the 'REGISTER' button whilst keeping the input empty
+6. For each of the inputs, click on the 'REGISTER' button whilst keeping the input empty
     * Ensure 'Please fill in this field' tooltip in presented on the empty input.
-6. Enter an invalid email address
+7. Enter an invalid email address
     * Ensure 'Please inlcude an @ in the email address' tooltip in presented on the email input.
-7. For each of the username and password inputs, enter text that does not conform to the length requirements
+8. For each of the username and password inputs, enter text that does not conform to the length requirements
     * Ensure 'Please lengthen/shorten this text...' tooltip in presented on the offending input.
-8. Enter valid text into all inputs with an email address that already exists in the database
+9. Enter valid text into all inputs with an email address that already exists in the database
     * Ensure the 'Sorry, that email address already has an account' message slides in from the navigation bar, and then slides back up after 4 seconds.
-9. Enter valid text into all inputs with a username that already exists in the database
+10. Enter valid text into all inputs with a username that already exists in the database
     * Ensure the 'Sorry, that username is already taken' message slides in from the navigation bar, and then slides back up after 4 seconds.
-10. Repeat step 9 but change the casing of the text in the username input
+11. Repeat step 9 but change the casing of the text in the username input
     * Ensure the 'Sorry, that username is already taken' message slides in from the navigation bar, and then slides back up after 4 seconds.
-11. Enter valid text into all inputs but type different text into the password and confirm password inputs
+12. Enter valid text into all inputs but type different text into the password and confirm password inputs
     * Ensure the 'Please make sure the password fields match' message slides in from the navigation bar, and then slides back up after 4 seconds.
 
 For all tests above that result in a validation error, ensure that no data is sent to the database by monitoring the 'users' collection in the database.
@@ -288,8 +279,8 @@ For all tests above that result in a validation error, ensure that no data is se
     * Ensure that the address redirects to my_recipes.html
 
 **************************
-#### recipe_page.html
-###### **Logged in user**
+#### **recipe_page.html**
+##### **Logged in user**
 1. Test navigation bar and footer according to tests detailed in ["Testing of site-wide features"](#site-wide-features).
 2. Add a new recipe to the database (via add_recipe.html) and make sure to upload an image for the recipe
     * Ensure all the details of the newly added recipe are rendered correctly on the recipe_page.html page.
@@ -319,7 +310,7 @@ For all tests above that result in a validation error, ensure that no data is se
     * Make sure the 'BACK TO...' link at the top of the page states 'BACK TO ADDED RECIPES'
 6. Navigate to a recipe page from from outside the website
     * Make sure the that the 'BACK TO...' link is not rendered
-7. Test the 'ADD TO FAVOURITES' heart icon according to the tests written under ["'FAVOURITE RECIPE' heart icon"](#favourite-recipe-toggle) in the 'Recipe Cards' testing section.
+7. Test the 'ADD TO FAVOURITES' heart icon according to the tests written under "'FAVOURITE RECIPE' heart icon" in the ['Recipe Cards' testing section.](#recipe-cards)
 
 On a screen wider than 768px:
 
@@ -351,7 +342,7 @@ On a screen less than 768px wide:
 3. Within the ratings modal, repeat steps 3 to 6 above.
 
 
-###### **Logged out user**
+##### **Logged out user**
 1. Test navigation bar and footer according to tests detailed in ["Testing of site-wide features"](#site-wide-features).
 2. Test the 'ADD TO FAVOURITES' heart icon according to the tests written under ["'FAVOURITE RECIPE' heart icon"](#favourite-recipe-toggle) in the 'Recipe Cards' testing section.
 3. Navigate to a recipe page from all_recipes.html
