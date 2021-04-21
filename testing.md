@@ -102,8 +102,10 @@ The tests detailed in this section were all completed using the following web br
 | Macbook Pro 2016 (13")    | :heavy_check_mark: |                   | :heavy_check_mark: |:heavy_check_mark: |
 | iPad 7th generation 2019  | :heavy_check_mark: |                  | :heavy_check_mark: |:heavy_check_mark: |
 
+<a name="site-wide-features"></a>
+
 ### Testing of site-wide features
-#### Header and footer
+#### **Header and footer**
 ###### **Logged out user**
 * Ensure navigation bar links read 'RECIPES', 'LOGIN' and 'REGISTER'.
 ###### **Logged in user**
@@ -123,7 +125,8 @@ In the footer, check that same links are visible on screens above 768px wide as 
 2. Click on links
     * Ensure links direct to correct page.
 
-#### Recipe Cards 
+*******************************************
+#### **Recipe Cards**
 1. Mouse over all elements on the cards
     * Ensure cursor becomes a pointer over image, recipe name and 'FAVOURITE RECIPE' heart icon.
 2. Click on image
@@ -146,8 +149,8 @@ In the footer, check that same links are visible on screens above 768px wide as 
     * Ensure that the 'FAVOURITE RECIPE?' toggle returns to the same page that it was used on. 
         * After using a combination of search, filter, sort by and pagination features, use the 'FAVOURITE RECIPE?' toggle. Ensure that the return page is the same as the page on which the function was called. 
 
-
-#### Search and filter functionality 
+**********************************
+#### **Search and filter functionality**
 ##### Search text input and submit button
 1. Mouse over 'SEARCH' button
     * Ensure cursor becomes a pointer and hover effect is triggered.
@@ -171,10 +174,10 @@ In the footer, check that same links are visible on screens above 768px wide as 
 1. Enter a search term that yields results
     * Add filters to the results - ensure that only relevent recipes are returned.
 
-#### Pagination links
+**************************
+#### **Pagination links**
 Pagination links are available on all_recipes.html, my_recipes.html and added_recipes.html when the total number of available recipes is above 9.
 
-##### General testing of links
 1. On first page of available recipes
     * Ensure that the 'PREVIOUS PAGE' link has greyed out effect and that moving the mouse over the link renders no change in the cursor.
     * Mouse over 'NEXT PAGE' link
@@ -194,19 +197,90 @@ Pagination links are available on all_recipes.html, my_recipes.html and added_re
     * Click on 'PREVIOUS PAGE' link
         * Ensure that the previous page of unique recipes are rendered. If paginating through search and filter results and/or have sorted the recipes by rating or newest, ensure that those conditions are still met.
 
-
-
-
+### Testing of individual pages
 #### index.html
 This page features recipe cards which were tested as per **Recipe Cards** above.
-##### 'CLICK HERE TO SEE MORE RECIPES'link
+
+##### 'SOME INSPIRATION' recipe cards
+1. Add and remove ratings to recipes
+    * Ensure that the recipe cards on this page are updated to show the 3 highest rated recipes.
+
+##### 'CLICK HERE TO SEE MORE RECIPES' link
 1. Mouse over link
     * Ensure cursor becomes a pointer and hover effect is triggered.
 2. Click on link
-    * Ensure link direct to all_recipes.html.
+    * Ensure link directs to all_recipes.html.
 
+**************************
 #### all_recipes.html
-This page features recipe cards which were tested as per **Recipe Cards** above.
+Test navigation bar, footer, search and filter, sort by, recipe cards and pagination links according to tests detailed in ["Testing of site-wide features"](#site-wide-features).
 
-        * Mouse over pagination links. Ensure that relevent pagination links are grayed out if on the first or last page of results. Ensure valid pagination links render hover effect on mouse over.
+Ensure all available recipes are displayed by comparing the number of recipes presented with the number of recipes in the recipe collection of the database.
 
+**************************
+#### login.html
+###### **Logged out user**
+Test navigation bar and footer according to tests detailed in ["Testing of site-wide features"](#site-wide-features).
+1. Mouse over 'LOG IN' button
+    * Ensure cursor becomes a pointer and hover effect is triggered.
+2. Mouse over 'Click here to register' beneath the 'Need to sign up?' text.
+    * Ensure cursor becomes a pointer and hover effect is triggered.
+3. Click on the 'Click here to register' link
+    * Ensure the link directs to register.html
+4. Enter a valid username and corresponding password
+    * Click on 'LOG IN' button
+        * Ensure that the button links to my_recipes.html
+        * Check that the "Welcome, 'username'" message slides in from the navigation bar and that the correct username is presented, and then slides back up after 4 seconds.
+5. Enter a valid username with a non valid password
+    * Click on 'LOG IN' button
+        * Ensure that the button does not link to my_recipes.html
+        * Check that the "Login details incorrect, please try again" message slides in from the navigation bar, and then slides back up after 4 seconds.
+6. Enter an invalid username and a password
+    * Click on 'LOG IN' button
+        * Ensure that the button does not link to my_recipes.html
+        * Check that the "Login details incorrect, please try again" message slides in from the navigation bar, and then slides back up after 4 seconds.
+7. Enter a username, but no password
+    * Ensure 'Please fill in this field' tooltip in presented on the password input.
+8. Enter a password, but no username
+    * Ensure 'Please fill in this field' tooltip in presented on the username input.
+
+###### **Logged in user**
+1. Type 'http://rodeo-hot-sauce.herokuapp.com/login' into the browser address input and hit return
+    * Ensure that the address redirects to my_recipes.html
+
+
+**************************
+#### register.html
+###### **Logged out user**
+Test navigation bar and footer according to tests detailed in ["Testing of site-wide features"](#site-wide-features).
+1. Mouse over 'REGISTER' button
+    * Ensure cursor becomes a pointer and hover effect is triggered.
+2. Mouse over 'Click here to log in' beneath the 'Already have an account?' text.
+    * Ensure cursor becomes a pointer and hover effect is triggered.
+3. Click on the 'Click here to log in' link
+    * Ensure the link directs to login.html
+4. Enter details into all the inputs conforming to the requirements stated
+    * Click on 'REGISTER' button
+        * Ensure that the button links to my_recipes.html
+        * Check that the "Welcome to Rodeo, 'username'" message slides in from the navigation bar and that the correct username is presented, and then slides back up after 4 seconds.
+        * Within the MongoDB website and in the 'rodeo' database, check that a new document has been added to the 'users' collection, with the username and email in lowercase, and a hashed version of the users password.
+5. For each of the inputs, click on the 'REGISTER' button whilst keeping the input empty
+    * Ensure 'Please fill in this field' tooltip in presented on the empty input.
+6. Enter an invalid email address
+    * Ensure 'Please inlcude an @ in the email address' tooltip in presented on the email input.
+7. For each of the username and password inputs, enter text that does not conform to the length requirements
+    * Ensure 'Please lengthen/shorten this text...' tooltip in presented on the offending input.
+8. Enter valid text into all inputs with an email address that already exists in the database
+    * Ensure the 'Sorry, that email address already has an account' message slides in from the navigation bar, and then slides back up after 4 seconds.
+9. Enter valid text into all inputs with a username that already exists in the database
+    * Ensure the 'Sorry, that username is already taken' message slides in from the navigation bar, and then slides back up after 4 seconds.
+10. Repeat step 9 but change the casing of the text in the username input
+    * Ensure the 'Sorry, that username is already taken' message slides in from the navigation bar, and then slides back up after 4 seconds.
+11. Enter valid text into all inputs but type different text into the password and confirm password inputs
+    * Ensure the 'Please make sure the password fields match' message slides in from the navigation bar, and then slides back up after 4 seconds.
+
+For all tests above that result in a validation error, ensure that no data is sent to the database by monitoring the 'users' collection in the database.
+
+###### **Logged in user**
+1. Type 'http://rodeo-hot-sauce.herokuapp.com/register' into the browser address input and hit return
+    * Ensure that the address redirects to my_recipes.html
