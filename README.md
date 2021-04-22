@@ -96,6 +96,7 @@ The font 'Bevan' is used in all sub-headers and buttons throughout the website. 
 
 For the rest of the site, 'Open Sans' was used due to its clean and clear style. The recipe instructions and ingredients and rendered with this font as it is clear and easy to read, even at small font sizes. This font was also sourced from [Google Fonts](https://fonts.google.com/).
 
+<a name="database-design"></a>
 ### Database Design
 #### Database Collections
 The image below lists the collections found in the MongoDB database. Whilst the 'Recipe' and 'Users' collections were created specifically for the Rodeo app, FS Files and FS Chunks were created automatically with the uploading of images to the database.

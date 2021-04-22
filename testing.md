@@ -258,7 +258,7 @@ The tests detailed in this section were all completed using the following web br
         * Check that the "Welcome to Rodeo, 'username'" message slides in from the navigation bar and that the correct username is presented, and then slides back up after 4 seconds.
         * Within the MongoDB website and in the 'rodeo' database, check that a new document has been added to the 'users' collection, with the username and email in lowercase, and a hashed version of the users password.
 6. For each of the inputs, click on the 'REGISTER' button whilst keeping the input empty
-    * Ensure 'Please fill in this field' tooltip in presented on the empty input.
+    * Ensure 'Please fill in this field' tooltip is presented on the empty input.
 7. Enter an invalid email address
     * Ensure 'Please inlcude an @ in the email address' tooltip in presented on the email input.
 8. For each of the username and password inputs, enter text that does not conform to the length requirements
@@ -388,3 +388,46 @@ On a screen less than 768px wide:
 ##### **Logged out user**
 1. Type 'http://rodeo-hot-sauce.herokuapp.com/added_recipes' into the browser address input and hit return
     * Ensure that the address redirects to /login
+
+**************************
+#### **/add_recipe**
+##### **Logged in user**
+1. Test navigation bar and footer according to tests detailed in ["Testing of site-wide features"](#site-wide-features).
+2. Ensure the 'ADD A NEW RECIPE' button has the 'current-button' CSS class applied (background-color:#136F63, color: #FFF)
+3. Ensure the other 2 buttons ('VIEW MY FAVOURITE RECIPES', 'VIEW MY ADDED RECIPES') have the standard 'my-recipe-buttons' CSS class
+4. Mouse over 'VIEW MY FAVOURITE RECIPES' and 'VIEW MY ADDED RECIPES' buttons
+    * Ensure cursor becomes a pointer and hover effect is triggered.
+5. Mouse over 'SELECT FILE' and 'ADD RECIPE' buttons
+    * Ensure cursor becomes a pointer and hover effect is triggered.
+6. Fill out the form with valid data in each input and click 'SUBMIT RECIPE' button
+    * Make sure to be directed to the new recipe page
+    * Make sure all data is present and correctly displayed on the recipe page
+    * On the MongoDB website, find the newly added recipe in the recipes collection
+        * Ensure all data is in correct format and in correct data types as stated in the [Database Design section of the README](README.md#database-design)
+7. For each of the required inputs (all except for recipe filter checkboxes and image file upload), fill out the form but leave that input blank
+    * Ensure 'Please fill in this field' tooltip is presented on the empty input.
+8. For each of the inputs that has character length requirements, try to submit the form with invalid lengths
+    * Ensure 'Please lengthen/shorten this text...' tooltip in presented on the offending input.
+9. With all available text boxes in the 'Ingredients' section containing text, click on the plus button
+    * Ensure a new text input is rendered
+        * Submit the form with data in the new input and ensure data is processed correctly (ie. the resulting recipe page contains all the data)
+10. Repeat step 9 but add multiple new text inputs
+11. With any of the ingredient text inputs empty, try to add a new input using the plus button
+    * Ensure that the 'Please use this input first' tooltip is rendered
+12. Repeat step 11 but keeping different ingredient inputs blank
+13. Add text to all available ingredient inputs and add several new inputs all with text data
+    * Delete some of the text in the inputs and submit the form
+        * Ensure that the resulting recipe page is free of empty ingredient list items
+14. Repeat step 13 but using the 'Instructions' text inputs.
+15. Add lots of text to an instruction input and ensure that the text box grows in size to accomodate the text.
+16. Add a negative number to the 'How many people does it feed?' number input and submit the form
+    * Ensure 'Value must be equal to or greater than 1' tooltip is rendered.
+16. Select an image under 1MB in size in the file input
+    * Ensure that the image name is rendered next to the 'SELECT FILE' button.
+    * Submit the recipe and ensure the correct image is displayed in the recipe page.
+17. Select an image over 1MB in size in the file input
+    * Ensure that an alert is triggered that reads 'File size too big, please choose a smaller file.'
+    * Submit the form
+        * Ensure no image was sent with the form by checking that the resulting recipe page displays the default image.
+18. Select a file which is not an image in the file input and submit the form
+    * Ensure that the form data is not sent to the database and that a message that states 'Sorry, there was an issue with the form data. Please try again'.
