@@ -188,10 +188,10 @@ $("document").ready(function () {
         /* Add checked attribute to the input that is equal to the users rating */
         if (i == userRating) {
             userRatingHtml += `<input type="radio" id="star${i}" name="rating" value="${i}" class="rating-input" checked/>
-                              <label for="star${i}" title="text"><i class="fas fa-star"></i></label>`;
+                              <label for="star${i}"><i class="fas fa-star"></i></label>`;
         } else {
             userRatingHtml += `<input type="radio" id="star${i}" name="rating" value="${i}" class="rating-input"/>
-                              <label for="star${i}" title="text"><i class="fas fa-star"></i></label>`;
+                              <label for="star${i}"><i class="fas fa-star"></i></label>`;
         }
     }
     $(".user-rating").html(userRatingHtml);
@@ -206,10 +206,10 @@ $("document").ready(function () {
         /* Add checked attribute to the input that is equal to the users rating */
         if (i == userRating) {
             userRatingHtml += `<input type="radio" id="modal-star${i}" name="rating" value="${i}" class="modal-star" checked/>
-                           <label for="modal-star${i}" title="text"><i class="fas fa-star"></i></label>`;
+                           <label for="modal-star${i}"><i class="fas fa-star"></i></label>`;
         } else {
             userRatingHtml += `<input type="radio" id="modal-star${i}" name="rating" value="${i}" class="modal-star"/>
-                           <label for="modal-star${i}" title="text"><i class="fas fa-star"></i></label>`;
+                           <label for="modal-star${i}"><i class="fas fa-star"></i></label>`;
         }
     }
     $(".user-rating-modal").html(userRatingHtml);
