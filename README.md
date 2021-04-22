@@ -13,7 +13,7 @@ This website has been created for a fictitious hot sauce brand, "RODEO HOT SAUCE
 
 [Languages and Technologies](#tech)
 
-[Testing](#testing)
+[Testing](testing.md) (links to separate page)
 
 [Deployment](#deployment)
 
@@ -37,7 +37,7 @@ As a user of this website, I am someone looking to find recipes or to contribute
 
 ### User Stories
 As a user of the website, I want:
-* To be able to navigate through the website in an intuitive and easy fashion
+* To be able to navigate through the website intuitively and easily
 * To discover popular recipes involving hot sauce
 * To discover new recipes involving hot sauce
 * To be able to quickly and easily search the recipes to find specific ingredients or meal types
