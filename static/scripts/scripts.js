@@ -90,28 +90,28 @@ $("document").ready(function () {
     });
 });
 
-/* VALIDATE FILE UPLOAD SIZE IN ADD AND EDIT RECIPE FORMS  */
-/* Check that the selected file in the image upload input on add_recipe is below 1mb.
-If not, remove the file from the input and fire an alert */
-$("#picture_upload").change(function () {
-    if ((this).files[0].size > 1000000) {
-        (this).value = null;
-        alert('File size too big, please choose a smaller file.');
-    } else {
-        /* The file is below 1mb. Get the name of the file selected in the file input on 
-        and render to page */
-        $("#selected-file").text($("#picture_upload").val().split("\\").pop());
-    }
-});
+// /* VALIDATE FILE UPLOAD SIZE IN ADD AND EDIT RECIPE FORMS  */
+// /* Check that the selected file in the image upload input on add_recipe is below 1mb.
+// If not, remove the file from the input and fire an alert */
+// $("#picture_upload").change(function () {
+//     if ((this).files[0].size > 1000000) {
+//         (this).value = null;
+//         alert('File size too big, please choose a smaller file.');
+//     } else {
+//         /* The file is below 1mb. Get the name of the file selected in the file input on 
+//         and render to page */
+//         $("#selected-file").text($("#picture_upload").val().split("\\").pop());
+//     }
+// });
 
-/* This is the same as the function above, but for the edit_recipe page */
-$("#new_picture_upload").change(function () {
-    if ((this).files[0].size > 1000000) {
-        (this).value = null;
-        alert('File size too big, please choose a smaller file.');
-    } else
-        $("#selected-file").text($("#new_picture_upload").val().split("\\").pop());
-});
+// /* This is the same as the function above, but for the edit_recipe page */
+// $("#new_picture_upload").change(function () {
+//     if ((this).files[0].size > 1000000) {
+//         (this).value = null;
+//         alert('File size too big, please choose a smaller file.');
+//     } else
+//         $("#selected-file").text($("#new_picture_upload").val().split("\\").pop());
+// });
 
 /* SET NEW_IMAGE RADIO OPTION TO 'CHECKED' WHEN FILE LOADED IN FILE INPUT */
 function fileLoaded(input) {

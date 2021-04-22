@@ -422,12 +422,60 @@ On a screen less than 768px wide:
 15. Add lots of text to an instruction input and ensure that the text box grows in size to accomodate the text.
 16. Add a negative number to the 'How many people does it feed?' number input and submit the form
     * Ensure 'Value must be equal to or greater than 1' tooltip is rendered.
-16. Select an image under 1MB in size in the file input
+17. Select an image under 1MB in size in the file input
     * Ensure that the image name is rendered next to the 'SELECT FILE' button.
     * Submit the recipe and ensure the correct image is displayed in the recipe page.
-17. Select an image over 1MB in size in the file input
+18. Select an image over 1MB in size in the file input
     * Ensure that an alert is triggered that reads 'File size too big, please choose a smaller file.'
     * Submit the form
         * Ensure no image was sent with the form by checking that the resulting recipe page displays the default image.
-18. Select a file which is not an image in the file input and submit the form
+19. Select a file which is not an image in the file input and submit the form
     * Ensure that the form data is not sent to the database and that a message that states 'Sorry, there was an issue with the form data. Please try again'.
+
+##### **Logged out user**
+1. Type 'http://rodeo-hot-sauce.herokuapp.com/add_recipe' into the browser address input and hit return
+    * Ensure that the address redirects to /login
+
+**************************
+#### **/edit_recipe**
+##### **Logged in user**
+1. Navigate to /edit_recipe via the 'EDIT' button on a recipe page that uses the default recipe image
+    * Ensure that the edit recipe form inputs are pre-populated with the existing recipe data.
+    * Repeat steps 5-16 from the add_recipe test above.
+    * Test navigation bar and footer according to tests detailed in ["Testing of site-wide features"](#site-wide-features).
+2. Navigate to /edit_recipe via the 'EDIT' button on a recipe card on the /added_recipes page
+    * Ensure that the edit recipe form inputs are pre-populated with the existing recipe data
+3. Navigate to /edit_recipe using a recipe that does contain a user uploaded image
+    * Ensure that the 3 boxes for 'KEEP EXISTING IMAGE', 'USE DEFAULT IMAGE' and 'ADD A NEW IMAGE' are rendered
+        * Ensure that the 'KEEP EXISTING IMAGE' is selected by default and that the image is rendered within the box
+        * Mouse over the other 2 boxes and ensure cursor becomes a pointer and hover effect is triggered.
+    * Submit the form with 'KEEP EXISTING IMAGE' selected
+        * Check that the image is still displayed in the resulting recipe page
+    * Submit the form with 'USE DEFAULT IMAGE' selected
+        * Ensure the existing image is deleted from the database using the tests in steps 3 and 4 of /recipe_page tests
+        * Check the default image is displayed in the resulting recipe form
+    * Submit the form with a new image selected in the 'ADD A NEW IMAGE' input
+        * Ensure the existing image is deleted from the database using the tests in steps 3 and 4 of /recipe_page tests
+        * Check the new image is displayed in the resulting recipe form
+    * Click on 'ADD A NEW IMAGE' but don't select an image in the file explorer
+        * Make sure that the 'ADD A NEW IMAGE' input is not selected
+    * Click on 'ADD A NEW IMAGE', select an image in the file explorer but then select a different option from 'USE DEFAULT IMAGE' or 'KEEP EXISTING IMAGE' and submit the form
+        * Make sure that the selected option is presented in the resulting recipe page
+
+**************************
+#### **/page_not_found (404 error)**
+1. Type 'http://rodeo-hot-sauce.herokuapp.com/' into the browser address input followed by a random string and hit return
+    * Ensure that the 404.html template is rendered
+        * Click on 'WHY NOT COME LOOK AT SOME DELICIOUS RECIPES?' link and ensure it links to /all_recipes
+
+**************************
+#### **/server_error (500 error)**
+1. In app.py, find the route function for /all_recipes and comment out the line 'form = 'Search_and_filter_form()'
+    * Navigate to all recipes
+        * Ensure that the 404.html template is rendered
+        * Click on 'WHY NOT COME LOOK AT SOME DELICIOUS RECIPES?' link and ensure it links to /all_recipes
+
+**************************
+#### **/request_entity_too_big (413 error)**
+It has not been possible to test this route function due to issues with running the app on the Flask Development server. When testing this function, the connection to the server cuts out and the 413 error is not returned. This issue has been noted on [Stack Overflow with users saying]("https://stackoverflow.com/questions/19911106/flask-file-upload-limit") that when the app is moved to a production server, the issue is resolved.
+
