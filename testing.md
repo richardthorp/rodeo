@@ -10,7 +10,7 @@ The website conforms to standard website UX principles. All pages have a navigat
 
 When visiting the website, the first page presented to the user displays a small amount of content before offering 2 or 3 (depending on screen size) of the website highest rated recipes. Below this is a link to browse all of the recipes available on the website which are by default presented with the highest rated recipes first.
 
-![The 3 highest rated recipes form the website displayed on index.html](static/images/readme-images/testing-images/index-recipes.jpg "The 3 highest rated recipes form the website displayed on index.html")
+![The 3 highest rated recipes form the website displayed on /index](static/images/readme-images/testing-images/index-recipes.jpg "The 3 highest rated recipes form the website displayed on /index")
 
 ### **To discover new recipes involving hot sauce**
 Whilst browsing any of the pages that list the recipes, the option to sort the recipes by newest first is available via a clear 'sort by: newest' link above the recipe cards.
@@ -19,22 +19,22 @@ Whilst browsing any of the pages that list the recipes, the option to sort the r
 
 
 ### **To be able to quickly and easily search the recipes to find specific ingredients or meal types**
-Whilst browsing any of the pages that list the recipes, a search text input and options to filter the recipes are available above the listed recipes. The search feature will search the relevent recipes for that page (ie. on **'added_recipes.html'**, only recipes that the user has added) for any matching words in the recipe name and ingredient fields.
+Whilst browsing any of the pages that list the recipes, a search text input and options to filter the recipes are available above the listed recipes. The search feature will search the relevent recipes for that page (ie. on **'/added_recipes'**, only recipes that the user has added) for any matching words in the recipe name and ingredient fields.
 As well as this, the user has the option to filter the recipes by type ('vegetarian', 'vegan' or 'meat') and the further filter by options such as 'quick', 'healthy' and 'gluton free'.
 
 ### **To contribute my own recipes to the website community**
-Once a user is registered and logged in, they are directed to **'my_recipes.html'**. Whist this page is mainly dedicated to displaying recipes that the user has added to their favourites, the link to **'add_recipe.html'** is clearly displayed towards the top of the page. Once on **'add_recipe.html'**, a simple form is available for the user to fill out and submit their recipe to the database. This recipe is then immediately available to view on the website.
+Once a user is registered and logged in, they are directed to **'/my_recipes'**. Whist this page is mainly dedicated to displaying recipes that the user has added to their favourites, the link to **'/add_recipe'** is clearly displayed towards the top of the page. Once on **'/add_recipe'**, a simple form is available for the user to fill out and submit their recipe to the database. This recipe is then immediately available to view on the website.
 
 ![The 'ADD A NEW RECIPE' button in 'MY RECIPES'](static/images/readme-images/testing-images/add-recipe-button.jpg "The 'ADD A NEW RECIPE' button in 'MY RECIPES'")
 
 ### **To be able to quickly edit or delete recipes that I have contributed**
-Once a user has added their recipe to the database via **'add_recipe.html'**, they are directed to the **'recipe_page.html'** page for that recipe. At the top of this page are links to 'edit' and 'delete' the recipe. By clicking on the 'edit' button, the user is returned to the same form that they filled out in **'add_recipe.html'**, with all the existing recipe information in the form ready to be edited. By clicking on the 'delete' button, a modal is triggered which asks the user "Are you sure you want to delete this recipe? This cannot be undone!". At this point the user can either immediately delete the recipe from the database, or return to the recipe page.
+Once a user has added their recipe to the database via **'/add_recipe'**, they are directed to the **'/recipe_page'** page for that recipe. At the top of this page are links to 'edit' and 'delete' the recipe. By clicking on the 'edit' button, the user is returned to the same form that they filled out in **'/add_recipe'**, with all the existing recipe information in the form ready to be edited. By clicking on the 'delete' button, a modal is triggered which asks the user "Are you sure you want to delete this recipe? This cannot be undone!". At this point the user can either immediately delete the recipe from the database, or return to the recipe page.
 
 ![The 'EDIT' and 'DELETE' buttons in a recipe page](static/images/readme-images/testing-images/edit-delete-buttons.jpg "The 'EDIT' and 'DELETE' buttons in a recipe page")
 
-The 'edit' and 'delete' buttons are also available to the user at the bottom of each recipe card in the **'added_recipes.html'** page.
+The 'edit' and 'delete' buttons are also available to the user at the bottom of each recipe card in the **'/added_recipes'** page.
 
-![The 'EDIT' and 'DELETE' buttons in added_recipes.html](static/images/readme-images/testing-images/recipe-card-edit-delete.jpg "The 'EDIT' and 'DELETE' buttons in added_recipes.html")
+![The 'EDIT' and 'DELETE' buttons in /added_recipes](static/images/readme-images/testing-images/recipe-card-edit-delete.jpg "The 'EDIT' and 'DELETE' buttons in /added_recipes")
 
 ### **To be able to save recipes that interest me and be able to access them quickly**
 If the user is logged in, any page that displays a recipe or recipe cards features the 'FAVOURITE RECIPE?' heart icon. Once clicked, the recipe can be accessed quickly through the 'MY RECIPES' link in the navigation bar or footer. If the recipe is already in the users 'MY RECIPES' page, clicking the heart icon will remove the recipe from the list. 
@@ -43,18 +43,18 @@ If the user is logged in, any page that displays a recipe or recipe cards featur
 
 
 ### **To be able to rate recipes and have those ratings influence the information hierarchy throughout the website**
-If the user is logged in, whilst on a **'recipe_page.html'** page, the option to rate the recipe out of 5 stars is available. Once a user rating is sent, the average rating for that recipe is updated to reflect the new score. This in turn will move the recipe up or down the lists presented in **'all_recipes.html'**, **'my_recipes.html'** and **'added_recipes.html'**.
+If the user is logged in, whilst on a **'/recipe_page'** page, the option to rate the recipe out of 5 stars is available. Once a user rating is sent, the average rating for that recipe is updated to reflect the new score. This in turn will move the recipe up or down the lists presented in **'/all_recipes'**, **'/my_recipes'** and **'/added_recipes'**.
 
 ![The user rating stars and 'add rating' button](static/images/readme-images/testing-images/user-rating-stars.jpg "The user rating stars and 'add rating' button")
 
 ### **To be able to log in and log out of the website easily**
-If the user in not logged in, a link to **'login.html'** is available in the navigation bar, and if the user is logged in a link to the **'logout'** function is presented.
+If the user in not logged in, a link to **'/login'** is available in the navigation bar, and if the user is logged in a link to the **'logout'** function is presented.
 
 ![The log out button in the navigation bar](static/images/readme-images/testing-images/log-out-button.jpg "The log out button in the navigation bar")
 
 
 ### **For the data presented to me to be specific to me.**
-By adding favourite recipes to the **'my_recipes.html'** list, as well as adding their own recipes, users can curate their own selection of recipes that can be accessed by logging in to the website.
+By adding favourite recipes to the **'/my_recipes'** list, as well as adding their own recipes, users can curate their own selection of recipes that can be accessed by logging in to the website.
 
 ## **Testing against Brand Objectives**
 ### **Increase brand awareness**
@@ -115,7 +115,7 @@ The tests detailed in this section were all completed using the following web br
 4. Mouse over 'RODEO' logo
     * Ensure cursor becomes a pointer.
 5. Click on 'RODEO' logo
-    * Ensure logo links to index.html.
+    * Ensure logo links to /index.
 6. Mouse over footer links
     * Ensure cursor becomes a pointer and hover effect is triggered.
 7. Click on footer links
@@ -137,7 +137,7 @@ The tests detailed in this section were all completed using the following web br
 3. Click on recipe name
     * Ensure name links to corresponding recipe page.
 4. Click on the heart icon
-    * Ensure popover is triggered and that links to login.html and register.html work as expected.
+    * Ensure popover is triggered and that links to /login and /register work as expected.
     * Ensure popover is dismissed on next click.
 
 ##### **Logged in user**
@@ -195,23 +195,23 @@ The tests detailed in this section were all completed using the following web br
         * Ensure that the previous page of unique recipes are rendered. If paginating through search and filter results and/or have sorted the recipes by rating or newest, ensure that those conditions are still met.
 
 ### Testing of individual pages
-#### **index.html**
+#### /index**
 1. Test the recipe cards according to the tests written in ['Recipe Cards' above](#recipe-cards)
 2. Add and remove ratings to recipes
     * Ensure that the recipe cards in the 'SOME INSPIRATION section are updated to show the 3 highest rated recipes.
 3. Mouse over 'CLICK HERE TO SEE MORE RECIPES' link
     * Ensure cursor becomes a pointer and hover effect is triggered.
 4. Click on 'CLICK HERE TO SEE MORE RECIPES' link
-    * Ensure link directs to all_recipes.html.
+    * Ensure link directs to /all_recipes.
 
 **************************
-#### **all_recipes.html**
+#### **/all_recipes**
 1. Test navigation bar, footer, search and filter, sort by, recipe cards and pagination links according to tests detailed in ["Testing of site-wide features"](#site-wide-features).
 
 2. Ensure all available recipes are displayed by comparing the number of recipes presented with the number of recipes in the recipe collection of the database.
 
 **************************
-#### **login.html**
+#### **/login**
 ##### **Logged out user**
 1. Test navigation bar and footer according to tests detailed in ["Testing of site-wide features"](#site-wide-features).
 2. Mouse over 'LOG IN' button
@@ -219,18 +219,18 @@ The tests detailed in this section were all completed using the following web br
 3. Mouse over 'Click here to register' beneath the 'Need to sign up?' text.
     * Ensure cursor becomes a pointer and hover effect is triggered.
 4. Click on the 'Click here to register' link
-    * Ensure the link directs to register.html
+    * Ensure the link directs to /register
 5. Enter a valid username and corresponding password
     * Click on 'LOG IN' button
-        * Ensure that the button links to my_recipes.html
+        * Ensure that the button links to /my_recipes
         * Check that the "Welcome, 'username'" message slides in from the navigation bar and that the correct username is presented, and then slides back up after 4 seconds.
 6. Enter a valid username with a non valid password
     * Click on 'LOG IN' button
-        * Ensure that the button does not link to my_recipes.html
+        * Ensure that the button does not link to /my_recipes
         * Check that the "Login details incorrect, please try again" message slides in from the navigation bar, and then slides back up after 4 seconds.
 7. Enter an invalid username and a password
     * Click on 'LOG IN' button
-        * Ensure that the button does not link to my_recipes.html
+        * Ensure that the button does not link to /my_recipes
         * Check that the "Login details incorrect, please try again" message slides in from the navigation bar, and then slides back up after 4 seconds.
 8. Enter a username, but no password
     * Ensure 'Please fill in this field' tooltip in presented on the password input.
@@ -239,11 +239,11 @@ The tests detailed in this section were all completed using the following web br
 
 ###### **Logged in user**
 1. Type 'http://rodeo-hot-sauce.herokuapp.com/login' into the browser address input and hit return
-    * Ensure that the address redirects to my_recipes.html
+    * Ensure that the address redirects to /my_recipes
 
 
 **************************
-#### **register.html**
+#### **/register**
 ##### **Logged out user**
 1. Test navigation bar and footer according to tests detailed in ["Testing of site-wide features"](#site-wide-features).
 2. Mouse over 'REGISTER' button
@@ -251,10 +251,10 @@ The tests detailed in this section were all completed using the following web br
 3. Mouse over 'Click here to log in' beneath the 'Already have an account?' text.
     * Ensure cursor becomes a pointer and hover effect is triggered.
 4. Click on the 'Click here to log in' link
-    * Ensure the link directs to login.html
+    * Ensure the link directs to /login
 5. Enter details into all the inputs conforming to the requirements stated
     * Click on 'REGISTER' button
-        * Ensure that the button links to my_recipes.html
+        * Ensure that the button links to /my_recipes
         * Check that the "Welcome to Rodeo, 'username'" message slides in from the navigation bar and that the correct username is presented, and then slides back up after 4 seconds.
         * Within the MongoDB website and in the 'rodeo' database, check that a new document has been added to the 'users' collection, with the username and email in lowercase, and a hashed version of the users password.
 6. For each of the inputs, click on the 'REGISTER' button whilst keeping the input empty
@@ -276,18 +276,18 @@ For all tests above that result in a validation error, ensure that no data is se
 
 ###### **Logged in user**
 1. Type 'http://rodeo-hot-sauce.herokuapp.com/register' into the browser address input and hit return
-    * Ensure that the address redirects to my_recipes.html
+    * Ensure that the address redirects to /my_recipes
 
 **************************
-#### **recipe_page.html**
+#### **/recipe_page**
 ##### **Logged in user**
 1. Test navigation bar and footer according to tests detailed in ["Testing of site-wide features"](#site-wide-features).
-2. Add a new recipe to the database (via add_recipe.html) and make sure to upload an image for the recipe
-    * Ensure all the details of the newly added recipe are rendered correctly on the recipe_page.html page.
+2. Add a new recipe to the database (via /add_recipe) and make sure to upload an image for the recipe
+    * Ensure all the details of the newly added recipe are rendered correctly on the /recipe_page page.
     * Ensure that the correct recipe image has been rendered.
     * Check that the 'EDIT' and 'DELETE' buttons have been rendered at the top of the page
         * Mouse over the buttons and ensure cursor becomes a pointer and hover effect is triggered.
-        * Click on the 'EDIT' button and make sure it links to edit_recipe.html and that the correct information is automatically entered into the form inputs
+        * Click on the 'EDIT' button and make sure it links to /edit_recipe and that the correct information is automatically entered into the form inputs
         * Click on the 'DELETE' button
             * Ensure that the delete recipe modal has been triggered
                 * Mouse over the 'CLOSE' and 'DELETE RECIPE' buttons and ensure cursor becomes a pointer and hover effect is triggered.
@@ -298,15 +298,15 @@ For all tests above that result in a validation error, ensure that no data is se
     *  Within the MongoDB website, make sure that the recipe has been removed from the recipes collection.
     * Check within the MongoDB website that the file data has been removed from the FS.files collection using either the image file name or the ObjectID noted in step 2.
     * Within the MongoDB website, navigate to FS.chunks. Ensure that no document exists in the collection which has a files_id that matches the ObjectID from above.
-    * Make sure the the delete button redirects to added_recipes.html.
-5. Add a new recipe to the database (via add_recipe.html) and do not add an image
-    * Ensure all the details of the newly added recipe are rendered correctly on the recipe_page.html page.
+    * Make sure the the delete button redirects to /added_recipes.
+5. Add a new recipe to the database (via /add_recipe) and do not add an image
+    * Ensure all the details of the newly added recipe are rendered correctly on the /recipe_page page.
     * Ensure that the default recipe image has been rendered.
-6. Navigate to a recipe page from all_recipes.html
+6. Navigate to a recipe page from /all_recipes
     * Make sure the 'BACK TO...' link at the top of the page states 'BACK TO ALL RECIPES'
-7. Navigate to a recipe page from my_recipes.html
+7. Navigate to a recipe page from /my_recipes
     * Make sure the 'BACK TO...' link at the top of the page states 'BACK TO MY RECIPES'
-8. Navigate to a recipe page from added_recipes.html
+8. Navigate to a recipe page from /added_recipes
     * Make sure the 'BACK TO...' link at the top of the page states 'BACK TO ADDED RECIPES'
 6. Navigate to a recipe page from from outside the website
     * Make sure the that the 'BACK TO...' link is not rendered
@@ -345,7 +345,7 @@ On a screen less than 768px wide:
 ##### **Logged out user**
 1. Test navigation bar and footer according to tests detailed in ["Testing of site-wide features"](#site-wide-features).
 2. Test the 'ADD TO FAVOURITES' heart icon according to the tests written under ["'FAVOURITE RECIPE' heart icon"](#favourite-recipe-toggle) in the 'Recipe Cards' testing section.
-3. Navigate to a recipe page from all_recipes.html
+3. Navigate to a recipe page from /all_recipes
     * Make sure the 'BACK TO...' link at the top of the page states 'BACK TO ALL RECIPES'
 4. Navigate to a recipe page from from outside the website
     * Make sure the that the 'BACK TO...' link is not rendered

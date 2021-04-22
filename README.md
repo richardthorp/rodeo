@@ -112,7 +112,7 @@ This image shows the database schema for the app. Where a line runs from '1' - '
 ### Implemented Features
 
 #### **Header and Footer**
-The header and footer elements are consistent throughout the website. To the left of the header is a clickable logo, which links to **index.html**. This is standard practice in web design and expected by the user.
+The header and footer elements are consistent throughout the website. To the left of the header is a clickable logo, which links to **/index**. This is standard practice in web design and expected by the user.
 
 To the right of the header on screen sizes of 768px wide or more, are three navigation links. On smaller screens, the links are contained in a dropdown menu which is triggered by a standard menu icon. Again, this is common in web design and the user will naturally understand the purpose of this icon. These links have clear 'hover' effects, that make the font slightly larger and brighter when the cursor is moved over them to reinforce to the user that these are clickable links.
 
@@ -122,8 +122,8 @@ At the right of the footer, the same 3 links are presented and are also dependen
 
 At the left of the footer is a copyright notice, which uses JavaScript to automatically update the year displayed.
 
-#### **index.html**
-The **index.html** landing page immediately presents to the user a striking and colourful illustration of a bottle of 'Rodeo Hot Sauce' as well as the tagline 'ADD SOME KICK TO YOUR COOK'. This serves to suggest to the user that this website is exciting and interesting - as well as belonging to the 'Rodeo Hot Sauce' brand.
+#### **/index**
+The **/index** landing page immediately presents to the user a striking and colourful illustration of a bottle of 'Rodeo Hot Sauce' as well as the tagline 'ADD SOME KICK TO YOUR COOK'. This serves to suggest to the user that this website is exciting and interesting - as well as belonging to the 'Rodeo Hot Sauce' brand.
 
 Just below this is a small 'WELCOME' section, highlighted with a bright red background. This section succinctly explains to the user the purpose of the website and what a user can expect to gain by registering and using the website.
 
@@ -147,9 +147,9 @@ If the user is logged in, when hovering the cursor over the heart icons a toolti
 
 By clicking the 'Favourite Recipe' icon, the user can add or remove recipes from their **'MY RECIPES'** page. A message will slide down underneath the navigation bar and tell the user that the recipe has been successfully added or removed from their favourites.
 
-If the user is not logged in, clicking on the heart icon will trigger a popover which prompts the user to register or login (an [example of this popover](#recipe-page) can be viewed in the **'recipe_page.html'** section.)
+If the user is not logged in, clicking on the heart icon will trigger a popover which prompts the user to register or login (an [example of this popover](#recipe-page) can be viewed in the **/recipe_page** section.)
 
-These cards can be found on **'index.html'**, **'all_recipes.html'**, **'my_recipes.html** and **''added_recipies.html** and are always presented and function in the same way.
+These cards can be found on **/index**, **/all_recipes**, **/my_recipes** and **/added_recipies** and are always presented and function in the same way.
 
 Below these recipe cards is a clickable button that says to the user 'CLICK HERE TO SEE MORE RECIPES'. This links to the **'RECIPES'** page which displays all recipes on the website. 
 
@@ -161,19 +161,19 @@ Normal link           |  Cursor hover link
 
 This button styling is found throughout the website for most clickable buttons to provide consistency and allow the user to quickly locate these interactive elements.
 
-#### **recipe_page.html**
-The **recipe_page.html** page holds a template that is used to render the actual recipes from the database. At the top left, if the user has navigated to the page from **'all_recipes.html'**. **'my_recipes.html'** or **'added_recipes.html'** a 'back to...' link is rendered with the name of the page that the link directs to. If the user found the recipe page through any of the websites search features, the 'back to...' link will return the user to their search results to allow them to keep browsing them. 
+#### **/recipe_page**
+The **/recipe_page** page holds a template that is used to render the actual recipes from the database. At the top left, if the user has navigated to the page from **/all_recipes**. **/my_recipes** or **/added_recipes** a 'back to...' link is rendered with the name of the page that the link directs to. If the user found the recipe page through any of the websites search features, the 'back to...' link will return the user to their search results to allow them to keep browsing them. 
 
-If the user viewing the page is also the user who added the recipe, an 'edit' and a 'delete' button are added to the top of the page. The 'edit' button allows the user to edit their recipe on **'edit_recipe.html'** and the 'delete' button triggers a modal that double-checks that they wish to delete the recipe. These buttons are also made available to the admin user 'rodeo', so that any malicious or inappropriate content can be quickly removed. 
+If the user viewing the page is also the user who added the recipe, an 'edit' and a 'delete' button are added to the top of the page. The 'edit' button allows the user to edit their recipe on **/edit_recipe** and the 'delete' button triggers a modal that double-checks that they wish to delete the recipe. These buttons are also made available to the admin user 'rodeo', so that any malicious or inappropriate content can be quickly removed. 
 
 At the top of the page is the recipe name, in big bold font that matches that of the logo. Beneath this, there is a subtle line of text which reads 'Recipe added by' and then the username of whoever added the recipe.
 
-Next, there are several details about the recipe, such as how many people the recipe serves, whether the recipe is vegan, vegetarian or meat and several other details which are selected by the user from a list when they add the recipe. This can be seen in the [**'add_recipe.html'** section](#add-recipe)
+Next, there are several details about the recipe, such as how many people the recipe serves, whether the recipe is vegan, vegetarian or meat and several other details which are selected by the user from a list when they add the recipe. This can be seen in the [**'/add_recipe'** section](#add-recipe)
 
 <a name="recipe-options-image"></a>
 ![The recipe details rendered on a recipe page](static/images/readme-images/recipe-options.jpg 'The recipe details rendered on a recipe page')
 
-These details also make up the filters available in the search functionality of **'all_recipes.html'**, **'my_recipes.html'** and **'added_recipes.html'**.
+These details also make up the filters available in the search functionality of **/all_recipes**, **/my_recipes** and **/added_recipes**.
 
 Below this, the recipe image is displayed. If the user who added the recipe included an image then that image will be displayed, however, if no image was added a default image of an illustrated 'Rodeo Hot Sauce' bottle with patterns around it is inserted here instead.
 
@@ -209,7 +209,7 @@ Finally, the ingredients and instructions are presented. On larger screens, thes
 
 ![Ingredients and instructions listed on a large screen](static/images/readme-images/ingredients-instructions.jpg 'Ingredients and instructions listed on a large screen')
 
-#### **login.html**
+#### **/login**
 The **'LOG IN'** page features a simple form that has a text input that will accept either a users email address or username, a text input for the user's password input and a submit button. If either of the text input fields are left blank, the form will not be validated and the user will be prompted to fill in the field.
 
 If both fields are filled in, but the login details don't match details held in the database, a message slides down from the navigation bar to instruct the user "Login details incorrect, please try again." This instruction purposefully doesn't instruct the user which element of the form input is incorrect so as not to aid someone trying 'brute force' their way into the website with someone else's details.
@@ -222,7 +222,7 @@ After successful submission of the form, the user is sent to **'MY RECIPES'** an
 
 ![A welcome message](static/images/readme-images/welcome.jpg)
 
-#### **register.html**
+#### **/register**
 The **'REGISTER'** page features a form that contains 4 text input fields for the user's email address, preferred username, password and a 'retype password' input to ensure the user has entered their password choice correctly. If any of the text input fields are left blank, the form will not be validated and the user will be prompted to fill in the field.
 
 Beneath the form, some text reads 'Already have an account?' and then the line 'Click here to log in' which acts as a link to the **'LOG IN'** page. This link is coloured with the blue shade that is typically found on links throughout the internet to make clear to a user that this is a link.
@@ -237,47 +237,47 @@ After successful submission of the form, the user is sent to **'MY RECIPES'** an
 
 On screens 768px wide or more, an illustration of a bottle of 'Rodeo Hot Sauce' is rendered to the right of the form to fill the space on the page.
 
-#### **my_recipes.html**
-The **my_recipes.html** page acts as a central hub for much of the app's functionality. This page presents to the user 3 buttons that can be used to navigate between **my_recipes.html**, **added_recipes.html** and **add_recipe.html**. The buttons stay present on all three of the pages and act as a navigation bar within these pages. These buttons are styled in the same way as other buttons elements found throughout the website and include the same cursor hover effect to highlight that they are clickable links.
+#### **/my_recipes**
+The **/my_recipes** page acts as a central hub for much of the app's functionality. This page presents to the user 3 buttons that can be used to navigate between **/my_recipes**, **/added_recipes** and **/add_recipe**. The buttons stay present on all three of the pages and act as a navigation bar within these pages. These buttons are styled in the same way as other buttons elements found throughout the website and include the same cursor hover effect to highlight that they are clickable links.
 
 ![My Recipes buttons](static/images/readme-images/my-recipes-buttons.jpg 'My Recipes buttons')
 
-#### **my_recipes.html, all_recipes.html and added_recipes.html**
-These three pages have been grouped because they essentially contain the same features, although the recipes presented are different. The 'recipe cards' mentioned within this section are the same as the cards explained and pictures in the [**'index.html** features section](#recipe-card).
+#### **/my_recipes, /all_recipes/ and /added_recipes**
+These three pages have been grouped because they essentially contain the same features, although the recipes presented are different. The 'recipe cards' mentioned within this section are the same as the cards explained and pictures in the [**'/index** features section](#recipe-card).
 
 The differences between the recipes on the  different pages are:
 
-* **all_recipes.html** displays all available recipes on the website. This page is accessible to any user.
+* **/all_recipes** displays all available recipes on the website. This page is accessible to any user.
 
-* **my_recipes.html** displays recipes that a user has previously 'favourited' with the heart icon on any of the recipe cards, or within an individual recipe page. This page is only accessible to users who are logged in and is the first page presented when the user logs in or clicks on the **'MY RECIPES'** link in the header or footer.
+* **/my_recipes** displays recipes that a user has previously 'favourited' with the heart icon on any of the recipe cards, or within an individual recipe page. This page is only accessible to users who are logged in and is the first page presented when the user logs in or clicks on the **'MY RECIPES'** link in the header or footer.
 
-* **added_recipes.html** displays all recipes that the user has uploaded to the website. As such, each recipe card presented on this page has an 'edit' button that links to **edit_recipe.html** and a 'delete' button which triggers a modal asking if the user is sure they wish to delete the recipe. This page is also only accessible to logged-in users.
+* **/added_recipes** displays all recipes that the user has uploaded to the website. As such, each recipe card presented on this page has an 'edit' button that links to **/edit_recipe** and a 'delete' button which triggers a modal asking if the user is sure they wish to delete the recipe. This page is also only accessible to logged-in users.
 
 Each of the pages presents to the user 9 recipe cards at a time, with 9 x 1 card rows on screens of up 768px wide, 2 x 2 cards rows up to 992px wide and 3 x 3 card rows for any larger screens. This ensures the information on the recipe cards is clear and well laid out irrespective of the user's device.
 
-The pages are all headed by a search and filter section. Within this section, users can use a text input field to search for keywords within either the recipe names or ingredients. Alongside this search input are options to filter the recipes by type ('Meat', 'Vegetarian' and 'Vegan') and to further filter by options such as 'Quick', 'Healthy' and 'Gluton Free'. The search and filter results will only return the relevant recipes from within the remit of that particular page (ie. a search on **'my_recipes.html'** will only return recipes that the user has added to their favourites and that meet the terms of the search). If no results are returned from the search, the user is presented with text that states "NO RECIPES FOUND!
+The pages are all headed by a search and filter section. Within this section, users can use a text input field to search for keywords within either the recipe names or ingredients. Alongside this search input are options to filter the recipes by type ('Meat', 'Vegetarian' and 'Vegan') and to further filter by options such as 'Quick', 'Healthy' and 'Gluton Free'. The search and filter results will only return the relevant recipes from within the remit of that particular page (ie. a search on **/my_recipes** will only return recipes that the user has added to their favourites and that meet the terms of the search). If no results are returned from the search, the user is presented with text that states "NO RECIPES FOUND!
 Please adjust your search term or filters and try again." a well as a button to reset the page and clear the search terms.
 
 ![The text displayed if no search results are found](static/images/readme-images/no-results.jpg 'The text displayed if no search results are found')
 
 Just below the search and filter section, if there are recipes to be displayed, there are links to control whether to sort the recipes by average rating - with the highest rated recipes first, or with the newest recipes displayed first. The default is for the highest recipes to be displayed first.
 
-If there are more than 9 recipes returned from a search, or that fall within that page's remit (such as the user adding more than 9 recipes and viewing **''added_recipes.html**), pagination links are made available to move through the recipes 9 cards at a time. If the user is on the first or last page of results, this is signified by the pagination link becoming greyed out and the cursor no longer becoming a 'pointer' when hovered over the link. 
+If there are more than 9 recipes returned from a search, or that fall within that page's remit (such as the user adding more than 9 recipes and viewing **/added_recipes**), pagination links are made available to move through the recipes 9 cards at a time. If the user is on the first or last page of results, this is signified by the pagination link becoming greyed out and the cursor no longer becoming a 'pointer' when hovered over the link. 
 
 ![Pagination links on the first page of results](static/images/readme-images/pagination-links.jpg 'Pagination links on the first page of results')
 
 <a name='add-recipe'></a>
-#### add_recipe.html
+#### /add_recipe
 This page contains the form with which users can upload their own recipes and is only accessible to logged-in users. The form is validated by both the front and back-end and any requirements are clearly displayed to the user. The form is broken into sections in order to not overwhelm the user and allow the page to flow steadily.
 
 The first section requires the user to add the recipe name, recipe type and any other details that apply to their recipe.
 
 ![The top of the add recipe form](static/images/readme-images/add-recipe-form-top.jpg 'The top of the add recipe form')
 
-The 'meat', 'vegetarian' and 'vegan' options are radio button inputs, and one of them must be selected for the form to validate. Below them, there are several optional checkboxes that further categorise the recipe. These options are rendered at the top of the recipe page for that recipe, just below the recipe name which can be seen [in the **'recipe_page.html'** section](#recipe-options-image)
+The 'meat', 'vegetarian' and 'vegan' options are radio button inputs, and one of them must be selected for the form to validate. Below them, there are several optional checkboxes that further categorise the recipe. These options are rendered at the top of the recipe page for that recipe, just below the recipe name which can be seen [in the **'/recipe_page'** section](#recipe-options-image)
 
 
-These options are also the same as the options offered to users when using the filter aspect of the search functionality on **'all_recipes.html'**, **'my_recipes.html'** and **'added_recipes.html'**.
+These options are also the same as the options offered to users when using the filter aspect of the search functionality on **/all_recipes**, **/my_recipes** and **/added_recipes**.
 
 Below this, the user is asked to input ingredients and instructions. Both of these sections feature a JavaScript-powered plus button, which adds an additional input to the relevant section, but only if all previous inputs have been used. Should the user try to add an input before using all available inputs, a tooltip pops up on the empty input to say 'Please use this input first'.
 
@@ -291,27 +291,27 @@ Beneath the instructions inputs is the 'How many people does it feed' input! Thi
 
 Finally, the user is presented with an optional file input to add an image to the recipe page. By clicking on the button, the file explorer for the user's device is opened and any image file can be selected. The file type is also validated at the back-end and will be rejected if the file extension isn't jpg, jpeg or png.
 
-As well as the file type, the file size is also validated at both the front and back end in order to stop the database becoming reaching its data capacity too quickly. If a file larger than 1MB is selected, a JavaScript function triggers a browser alert that says 'File size too big, please choose a smaller file.' and the file is removed from the file input. If for any reason this validator fails, there is a limit set within the flask app that will reject any request data greater than 1.2MB. In this instance, the user should be redirected to the **added_recipes.html** page.
+As well as the file type, the file size is also validated at both the front and back end in order to stop the database becoming reaching its data capacity too quickly. If a file larger than 1MB is selected, a JavaScript function triggers a browser alert that says 'File size too big, please choose a smaller file.' and the file is removed from the file input. If for any reason this validator fails, there is a limit set within the flask app that will reject any request data greater than 1.2MB. In this instance, the user should be redirected to the **/added_recipes** page.
 
 If a file is selected that meets both the file type and size requirements, the file name is rendered next to the input to reassure the user that the file is selected.
 
 ![A file name next to the 'Select File' button](static/images/readme-images/selected-image.jpg "A file name next to the 'Select File' button")
 
-#### edit_recipe.html
-The **edit_recipe.html** page contains mostly the same form as the **add_recipe.html** page form, however, the inputs are pre-filled with the data from whichever recipe the user wishes to edit. 
+#### /edit_recipe
+The **/edit_recipe** page contains mostly the same form as the **/add_recipe** page form, however, the inputs are pre-filled with the data from whichever recipe the user wishes to edit. 
 
-The only other difference between the **add_recipe.html** and **edit_recipe.html** forms is the add image section. 
+The only other difference between the **/add_recipe** and **/edit_recipe** forms is the add image section. 
 
 If the user has previously uploaded an image with the recipe, an option to keep that image is offered along with a preview of the image. Next to that are options to use the default image or to upload a new image. These options function as a radio input and therefore only one can be selected. If the default image option or the new image option is selected, the original image is deleted from the database and the new image presented in its place on the recipe page.
 
 ![The image options if an image exists for the recipe](static/images/readme-images/image-options.jpg 'The image options if an image exists for the recipe')
 
-If however, there wasn't an image attached to the recipe, the add image section looks and behaves the same as it does on **add_recipe.html**.
+If however, there wasn't an image attached to the recipe, the add image section looks and behaves the same as it does on **/add_recipe**.
 
-#### 404.html
-The **404** page is displayed if the user tries to access a page that doesn't exist. For example, the user may try to access a recipe they have bookmarked in their browser, but the recipe has since been deleted. The **404** page simply states "It seems that whatever you're looking for isn't here" and then provides a link to **'all_recipes.html'** with the text "Why not come look at some delicious recipes?". As with all other pages on the website, the header and footer are present to allow for easy access to the main pages of the website.
-#### 500.html
-Similar to the **404** page, the **500** page is displayed if the server runs into any issues, either due to a programming error or the server running into issues. This page states "It seems something has gone wrong!" and then provides a link to **'all_recipes.html'** with the text "Why not come look at some delicious recipes?". Again, the header and footer are present to allow the user to easily navigate back through the website.
+#### /404
+The **404** page is displayed if the user tries to access a page that doesn't exist. For example, the user may try to access a recipe they have bookmarked in their browser, but the recipe has since been deleted. The **404** page simply states "It seems that whatever you're looking for isn't here" and then provides a link to **/all_recipes** with the text "Why not come look at some delicious recipes?". As with all other pages on the website, the header and footer are present to allow for easy access to the main pages of the website.
+#### /500
+Similar to the **404** page, the **500** page is displayed if the server runs into any issues, either due to a programming error or the server running into issues. This page states "It seems something has gone wrong!" and then provides a link to **/all_recipes** with the text "Why not come look at some delicious recipes?". Again, the header and footer are present to allow the user to easily navigate back through the website.
 
 #### Potential Future Features
 A very useful feature that is not currently available in the app is the ability for a user to reset their password should they forget it or need to change it. Unfortunately I believe this to be out of my skillset at this moment and do not have the time to do the research neccessary to implement this feature.
