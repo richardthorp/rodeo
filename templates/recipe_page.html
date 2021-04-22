@@ -27,6 +27,7 @@
         <span>
             <strong>Thank you for adding this recipe!</strong>
         </span>
+        <!-- EDIT AND DELETE BUTTONS -->
         <span class="d-block d-sm-inline mt-2">
             <a href="{{ url_for('edit_recipe', recipe_id=recipe._id) }}">
                 <span class="custom-button ml-3">Edit</span>
@@ -53,7 +54,9 @@
     </div>
     {% endif %}
     <div class="recipe-header rounded-container mx-auto">
+        <!-- RECIPE NAME -->
         <h1 class="logo-font text-center header m-2 m-md-3">{{ recipe.name }}</h1>
+        <!-- RECIPE DETAILS... -->
         <p class="recipe-added-by text-center text-muted">Recipe added by {{ recipe.added_by }}</p>
         <p class="serves-details sub-header text-center">Serves {{ recipe.feeds }}</p>
         <ul class="sub-header recipe-details-list d-flex justify-content-center mx-auto flex-wrap">
@@ -91,8 +94,9 @@
                     {% else %}
                     <!-- POPOVER CODE FROM BOOTSRAP -->
                     <a tabindex="0" class="sign-in-popover mx-auto" role="button" data-toggle="popover"
-                        data-trigger="focus" data-placement="bottom" data-content="<a href='{{ url_for('login') }}'><b>LOG IN</b></a> or 
-                        <a href='{{ url_for('register') }}'><b>REGISTER</b></a> to rate recipes!">
+                        data-trigger="focus" data-placement="bottom"
+                        data-content="<a href='{{ url_for('login') }}'>
+                            <b>LOG IN</b></a> or  <a href='{{ url_for('register') }}'><b>REGISTER</b></a> to rate recipes!">
                         <div class="custom-button add-rating-btn mt-2 text-center p-1">Add Rating</div>
                     </a>
                     {% endif %}
