@@ -20,6 +20,7 @@ app.config['MAX_CONTENT_LENGTH'] = 1.2 * 1024 * 1024
 mongo = PyMongo(app)
 
 
+@app.route("/index")
 @app.route("/")
 def index():
     # Get top 3 recipes with highest average_rating
