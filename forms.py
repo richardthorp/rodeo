@@ -62,7 +62,7 @@ class Search_and_filter_form(FlaskForm):
                                               default='All')
     cheap_checkbox = BooleanField('Cheap', render_kw={"value":
                                                       "Cheap"})
-    gluton_free_checkbox = BooleanField('Gluton Free',
+    gluton_free_checkbox = BooleanField('Gluten Free',
                                         render_kw={"value": "Gluton Free"})
     healthy_checkbox = BooleanField('Healthy', render_kw={"value":  "Healthy"})
     quick_checkbox = BooleanField('Quick', render_kw={"value": "Quick"})
@@ -80,9 +80,11 @@ class Add_recipe_form(FieldsRequiredForm):
     recipe_type = RadioField('Type', choices=[('Meat', 'Meat'),
                              ('Vegetarian', 'Vegetarian'),
                              ('Vegan', 'Vegan')])
+    # Value attributes set here to make it quicker to put these values directly
+    # into the recipe pages
     cheap_checkbox = BooleanField('Cheap', render_kw={"value":
                                                       "Cheap"})
-    gluton_free_checkbox = BooleanField('Gluton Free',
+    gluton_free_checkbox = BooleanField('Gluten Free',
                                         render_kw={"value": "Gluton Free"})
     healthy_checkbox = BooleanField('Healthy', render_kw={"value":  "Healthy"})
     quick_checkbox = BooleanField('Quick', render_kw={"value": "Quick"})
