@@ -81,7 +81,7 @@ def login():
     form = Login_form()
     if request.method == 'POST':
         if form.validate_on_submit():
-            email_or_username = request.form.get("email_or_username")
+            email_or_username = request.form.get("email_or_username").lower()
             # Look in DB for either a username or email that matches
             # form email_or_username data
             existing_user = mongo.db.users.find_one(
