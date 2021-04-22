@@ -97,7 +97,9 @@ a:hover {
 #gray-next-link, #gray-prev-link {
     color: #808080a6;
     border-color: #808080a6;
+    cursor: default;
 }
+
 #gray-next-link:hover, #gray-prev-link:hover {
     background-color: initial;
 } 
