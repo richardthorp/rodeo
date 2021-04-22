@@ -279,6 +279,7 @@ For all tests above that result in a validation error, ensure that no data is se
     * Ensure that the address redirects to /my_recipes
 
 **************************
+<a name="/recipe_page"></a>
 #### **/recipe_page**
 ##### **Logged in user**
 1. Test navigation bar and footer according to tests detailed in ["Testing of site-wide features"](#site-wide-features).
@@ -352,3 +353,38 @@ On a screen less than 768px wide:
 5. Click on the 'ADD RATING' button
     * Ensure that the 'LOG IN or REGISTER to rate recipes' popover is rendered and that the 'LOG IN' and 'REGISTER' link to the relevant pages.
 
+**************************
+#### **/my_recipes**
+##### **Logged in user**
+1. Test navigation bar and footer according to tests detailed in ["Testing of site-wide features"](#site-wide-features).
+2. Ensure the 'VIEW MY FAVOURITE RECIPES' button has the 'current-button' CSS class applied (background-color:#136F63, color: #FFF)
+3. Ensure the other 2 buttons ('VIEW MY ADDED RECIPES', 'ADD A NEW RECIPE') have the standard 'my-recipe-buttons' CSS class
+4. Mouse over 'VIEW MY ADDED RECIPES' and 'ADD A NEW RECIPE' buttons
+    * Ensure cursor becomes a pointer and hover effect is triggered.
+5. Test the search and filter functionalilty according to tests detailed in ["Testing of site-wide features"](#site-wide-features).
+6. Test the 'Sort recipes by:' links according to tests detailed in ["Testing of site-wide features"](#site-wide-features).
+7. On /all_recipes, add a selection of recipes to /my_recipes using the 'FAVOURITE RECIPE' heart icon (at least 19 recipes needed)
+    * Navigate to /my_recipes and ensure that the correct recipes are present
+    * Test the pagination links according to tests detailed in ["Testing of site-wide features"](#site-wide-features).
+    * Using the 'FAVOURITE RECIPE' heart icon on the recipe cards, remove a selection of recipes from the list
+##### **Logged out user**
+1. Type 'http://rodeo-hot-sauce.herokuapp.com/my_recipes' into the browser address input and hit return
+    * Ensure that the address redirects to /login
+
+**************************
+#### **/added_recipes**
+##### **Logged in user**
+1. Test navigation bar and footer according to tests detailed in ["Testing of site-wide features"](#site-wide-features).
+2. Ensure the 'VIEW MY ADDED RECIPES' button has the 'current-button' CSS class applied (background-color:#136F63, color: #FFF)
+3. Ensure the other 2 buttons ('VIEW MY FAVOURITE RECIPES', 'ADD A NEW RECIPE') have the standard 'my-recipe-buttons' CSS class
+4. Mouse over 'VIEW MY FAVOURITE RECIPES' and 'ADD A NEW RECIPE' buttons
+    * Ensure cursor becomes a pointer and hover effect is triggered.
+5. Add a selection of recipes using /add_recipe (at least 19 recipes)
+    * Ensure only those recipes are presented in /added_recipes
+    * Test the pagination links according to tests detailed in ["Testing of site-wide features"](#site-wide-features).
+    * Test the search and filter functionalilty according to tests detailed in ["Testing of site-wide features"](#site-wide-features).
+    * Test the 'Sort recipes by:' links according to tests detailed in ["Testing of site-wide features"](#site-wide-features).
+    * Test the 'EDIT' and 'DELETE' buttons according to tests in [/recipe_page tests](#/recipe_page)
+##### **Logged out user**
+1. Type 'http://rodeo-hot-sauce.herokuapp.com/added_recipes' into the browser address input and hit return
+    * Ensure that the address redirects to /login
