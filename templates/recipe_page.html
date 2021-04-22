@@ -15,8 +15,10 @@
             <a href="{{ url_for(return_page, page=page, sort_by=sort_by, filters=filters, return_page=return_page) }}"
                 class="sub-header">
                 <i class="fas fa-arrow-circle-left"></i> back to {{return_page_text}}</a>
-            {% endif %}  <!--End if filters -->
-            {% endif %}  <!--End if return_page -->
+            <!--End if filters -->
+            {% endif %}
+            <!--End if return_page -->
+            {% endif %}
         </div>
     </div>
     <!-- User added this recipe - render edit and delete buttons -->
@@ -84,7 +86,8 @@
                     </div>
                     <!-- If user is logged in, provide submit button - otherwise provide popover with links to log in and register -->
                     {% if session['username'] %}
-                    <input class="custom-button add-rating-btn mt-2" type="submit" value="Add Rating" id="rating-submit">
+                    <input class="custom-button add-rating-btn mt-2" type="submit" value="Add Rating"
+                        id="rating-submit">
                     {% else %}
                     <!-- POPOVER CODE FROM BOOTSRAP -->
                     <a tabindex="0" class="sign-in-popover mx-auto" role="button" data-toggle="popover"
@@ -92,7 +95,7 @@
                         <a href='{{ url_for('register') }}'><b>REGISTER</b></a> to rate recipes!">
                         <div class="custom-button add-rating-btn mt-2 text-center p-1">Add Rating</div>
                     </a>
-                    {% endif  %}
+                    {% endif %}
                 </form>
             </div>
             <div class="col-6 d-md-none text-center d-flex align-items-center justify-content-center">
@@ -130,12 +133,13 @@
                                         {% else %}
                                         <!-- POPOVER CODE FROM BOOTSRAP -->
                                         <a tabindex="0" class="sign-in-popover" role="button" data-toggle="popover"
-                                            data-trigger="focus" data-placement="bottom" data-content="<a href='{{ url_for('login') }}'><b>LOG IN</b></a> or 
-                                        <a href='{{ url_for('register') }}'><b>REGISTER</b></a> to rate recipes!">
+                                            data-trigger="focus" data-placement="bottom"
+                                            data-content="<a href='{{ url_for('login') }}'><b>LOG IN</b></a> or 
+                                                          <a href='{{ url_for('register') }}'><b>REGISTER</b></a> to rate recipes!">
                                             <div class="custom-button add-rating-btn mt-2 text-center p-1">Add Rating
                                             </div>
                                         </a>
-                                        {% endif  %}
+                                        {% endif %}
                                     </div>
                                 </form>
                             </div>
@@ -170,8 +174,10 @@
                     <div class="favourite-toggle">
                         <a tabindex="0" class="sign-in-popover" role="button" data-toggle="popover" data-trigger="focus"
                             data-placement="bottom" data-content="<a href='{{ url_for('login') }}'><b>LOG IN</b></a> or 
-                    <a href='{{ url_for('register') }}'><b>REGISTER</b></a> to save recipes to your favourites!">
-                            <i class="far fa-heart"></i></a></div>
+                                                                  <a href='{{ url_for('register') }}'><b>REGISTER</b></a>
+                                                                  to save recipes to your favourites!">
+                            <i class="far fa-heart"></i></a>
+                    </div>
                     {% endif %}
                 </form>
             </div>
@@ -193,7 +199,9 @@
                 <h3 class="sub-header text-center m-2 m-sm-3 m-md-4">Instructions</h3>
                 <ul>
                     {% for instruction in recipe.instructions %}
-                    <li><div class="sub-header">Step {{loop.index}}</div>{{ instruction }}</li>
+                    <li>
+                        <div class="sub-header">Step {{loop.index}}</div>{{ instruction }}
+                    </li>
                     {% endfor %}
                 </ul>
             </div>
