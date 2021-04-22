@@ -41,7 +41,7 @@
                     <h4 class="sub-header mt-4 text-center">Click on recipes for more info</h4>
                 </div>
             </div>
-            <div class="row">
+            <div class="row row-eq-height">
                 {% for recipe in recipes %}
                 <!-- Ensure current loop isn't loop 3 so cards will be displayed on all screen sizes -->
                 {% if loop.index != 3 %}
@@ -106,7 +106,7 @@
                 </div>
                 <!-- This is loop 3 - card is hidden on medium screen sizes -->
                 {% else %}
-                <div class="col-12 col-lg-4 d-md-none d-lg-block d-flex justify-content-center">
+                <div class="col-12 col-lg-4 d-md-none d-lg-inline-flex d-flex justify-content-center">
                     <div class="recipe-card">
                         <a href="{{url_for('recipe_page', recipe_id=recipe._id)}}">
                             <div class="recipe-image-container">
