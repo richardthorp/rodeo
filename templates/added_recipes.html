@@ -26,7 +26,7 @@
     </div>
   </div>
   {% if not filters and recipe_count == 0 %}
-  <!-- USER HASN'T ADDED ANY RECIPES -->
+  <!-- User hasn't added any recipes -->
   <div class="add-fav-or-recipe">
     <h2 class="sub-header text-center mt-5">Add Your Recipes</h2>
     <p class="text-center">
@@ -36,7 +36,7 @@
     </p>
   </div>
   {% else %}
-  <!-- USER HAS ADDED RECIPES -->
+  <!-- User has added recipes -->
   <!-- SEARCH AND FILTER CONTAINER -->
   <div class="row search-container rounded-container mx-auto">
     <div class="col-12">
@@ -53,6 +53,7 @@
           </div>
           <div class="col-12 col-sm-4">
             <div class="sub-header text-right m-1">Filter recipes</div>
+            <!-- DROPDOWN FROM BOOTSTRAP -->
             <div class="dropdown text-right">
               <button class="btn btn-secondary dropdown-toggle custom-button" type="button" id="dropdownMenuButton"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -89,8 +90,8 @@
       </form>
     </div>
   </div>
-  {% if filters %}
   <!-- User has used search or filter - provide 'remove search and filter' button -->
+  {% if filters %}
   <a href="{{ url_for('clear_search', return_page='added_recipes') }}">
     <div class="text-center mt-3 custom-button remove-filters-button mx-auto">
       Remove Search terms and Filters
@@ -112,16 +113,16 @@
     <a href="{{ url_for('search_results', return_page='added_recipes', sort_by='_id') }}">newest</a>
   </p>
   {% endif %}
+    <!-- If user sorts by rating / new without filters, send request to added_recipes route -->
   {% else %}
-  <!-- If user sorts by rating / new without filters, send request to added_recipes route -->
   <p class="mb-0 mt-2 mt-md-3 mt-lg-4 ml-lg-4">
     Sort recipes by:
     <a href="{{ url_for('added_recipes', sort_by='average_rating') }}">rating</a> /
     <a href="{{ url_for('added_recipes', sort_by='_id') }}">newest</a>
   </p>
   {% endif %}
-  <!-- RECIPE CARDS -->
   <div class="row row-eq-height">
+    <!-- RECIPE CARDS -->
     {% for recipe in recipes %}
     <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center">
       <div class="recipe-card added-recipe-card">
@@ -152,32 +153,24 @@
           <!-- ADD TO FAVOURITES SECTION -->
           <div class="col-6 text-center">
             <h6 class="sub-header mt-3">Favourite<br />Recipe?</h6>
-            <!-- If user is logged in -->
-            {% if session['username'] %}
             <form class="trigger-form-send" method="POST" action="{{ url_for('toggle_favourite', recipe_id=recipe._id, return_page='added_recipes',
                                  page=page, sort_by=sort_by, filters=filters) }}">
               <!-- If user has favourited this recipe previously, render solid heart icon -->
               {% if session['username'] in recipe.favourites %}
               <input type="checkbox" name="favourite" class="hidden-input"
                 id="favourite-checkbox-checked-{{+ loop.index}}" value="delete_fav" />
+              <!-- TOOLTIP FROM BOOTSTRAP -->
               <label for="favourite-checkbox-checked-{{+ loop.index}}"><i class="fas fa-heart" data-toggle="tooltip"
                   data-placement="bottom" title="Remove from favourites"></i></label>
               <!-- If user has not favourited recipe, render outline heart icon -->
               {% else %}
               <input type="checkbox" name="favourite" class="hidden-input"
                 id="favourite-checkbox-unchecked-{{+ loop.index}}" value="add_fav" />
+              <!-- TOOLTIP FROM BOOTSTRAP -->
               <label for="favourite-checkbox-unchecked-{{+ loop.index}}"><i class="far fa-heart" data-toggle="tooltip"
                   data-placement="bottom" title="Add to favourites"></i></label>
               {% endif %}
             </form>
-            <!-- User not logged in - provide popover with links to log in and register  -->
-            {% else %}
-            <a tabindex="0" class="sign-in-popover" role="button" data-toggle="popover" data-trigger="focus"
-              data-placement="bottom" data-content="<a href='{{ url_for('login') }}'><b>LOG IN</b></a> or 
-                        <a href='{{ url_for('register') }}'><b>REGISTER</b></a> to save recipes to your favourites!">
-              <i class="far fa-heart"></i>
-            </a>
-            {% endif %}
           </div>
         </div>
         <hr />
@@ -191,7 +184,7 @@
             </button>
           </div>
         </div>
-        <!-- DELETE RECIPE MODAL -->
+        <!-- DELETE RECIPE MODAL FROM BOOTSRAP -->
         <div class="modal fade" id="delete-recipe-modal-{{+loop.index}}" tabindex="-1"
           aria-labelledby="delete-recipe-modal-{{+loop.index}}" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered">

@@ -2,17 +2,20 @@
 {% block content %}
 <div class="container-fluid block-content-container">
     <div class="row">
+        <!-- HERO IMAGE -->
         <div class="col-12 hero d-flex justify-content-center">
             <img src="/static/images/hero.png" alt="">
         </div>
     </div>
     <div class="row">
+        <!-- SLOGAN -->
         <div class="col">
             <h2 id="slogan" class="logo-font header pb-2 m-0 m-md-2 m-lg-4">Add some kick to your cook</h2>
         </div>
     </div>
 </div>
 <div class="container-fluid">
+    <!-- WELCOME SECTION -->
     <div class="row about-row">
         <div class="col-2 col-md-3 col-lg-4">
             <h2 class="about-title logo-font">Welcome</h2>
@@ -29,6 +32,7 @@
     </div>
 </div>
 <div class="container-fluid block-content-container">
+    <!-- SOME INSPIRATION SECTION -->
     <div class="row inspiration">
         <div class="col">
             <div class="row">
@@ -68,10 +72,10 @@
                                 <form class="trigger-form-send" method="POST"
                                     action="{{ url_for('toggle_favourite', recipe_id=recipe._id, return_page='index') }}">
                                     <!-- If user has favourited this recipe previously, render solid heart icon -->
-                                    <!-- If user has favourited this recipe previously, render solid heart icon -->
                                     {% if session['username'] in recipe.favourites %}
                                     <input type="checkbox" name="favourite" class="hidden-input"
                                         id="favourite-checkbox-checked-{{+ loop.index}}" value="delete_fav">
+                                    <!-- TOOLTIP FROM BOOTSTRAP -->
                                     <label for="favourite-checkbox-checked-{{+ loop.index}}"><i class="fas fa-heart"
                                             data-toggle="tooltip" data-placement="bottom"
                                             title="Remove from favourites"></i></label>
@@ -79,6 +83,7 @@
                                     {% else %}
                                     <input type="checkbox" name="favourite" class="hidden-input"
                                         id="favourite-checkbox-unchecked-{{+ loop.index}}" value="add_fav">
+                                    <!-- TOOLTIP FROM BOOTSTRAP -->
                                     <label for="favourite-checkbox-unchecked-{{+ loop.index}}"><i class="far fa-heart"
                                             data-toggle="tooltip" data-placement="bottom"
                                             title="Add to favourites"></i></label>
@@ -86,6 +91,7 @@
                                 </form>
                                 <!-- User not logged in - provide popover with links to log in and register  -->
                                 {% else %}
+                                <!-- POPOVER FROM BOOTSTRAP -->
                                 <a tabindex="0" class="sign-in-popover" role="button" data-toggle="popover"
                                     data-trigger="focus" data-placement="bottom"
                                     data-content="<a href='{{ url_for('login') }}'><b>LOG IN</b></a> or 
@@ -122,10 +128,10 @@
                                 <form class="trigger-form-send" method="POST"
                                     action="{{ url_for('toggle_favourite', recipe_id=recipe._id, return_page='index') }}">
                                     <!-- If user has favourited this recipe previously, render solid heart icon -->
-                                    <!-- If user has favourited this recipe previously, render solid heart icon -->
                                     {% if session['username'] in recipe.favourites %}
                                     <input type="checkbox" name="favourite" class="hidden-input"
                                         id="favourite-checkbox-checked-{{+ loop.index}}" value="delete_fav">
+                                    <!-- TOOLTIP FROM BOOTSTRAP -->
                                     <label for="favourite-checkbox-checked-{{+ loop.index}}"><i class="fas fa-heart"
                                             data-toggle="tooltip" data-placement="bottom"
                                             title="Remove from favourites"></i></label>
@@ -133,6 +139,7 @@
                                     {% else %}
                                     <input type="checkbox" name="favourite" class="hidden-input"
                                         id="favourite-checkbox-unchecked-{{+ loop.index}}" value="add_fav">
+                                    <!-- TOOLTIP FROM BOOTSTRAP -->
                                     <label for="favourite-checkbox-unchecked-{{+ loop.index}}"><i class="far fa-heart"
                                             data-toggle="tooltip" data-placement="bottom"
                                             title="Add to favourites"></i></label>
@@ -140,6 +147,7 @@
                                 </form>
                                 <!-- User not logged in - provide popover with links to log in and register  -->
                                 {% else %}
+                                <!-- POPVER FROM BOOTSTRAP -->
                                 <a tabindex="0" class="sign-in-popover" role="button" data-toggle="popover"
                                     data-trigger="focus" data-placement="bottom"
                                     data-content="<a href='{{ url_for('login') }}'><b>LOG IN</b></a> or 

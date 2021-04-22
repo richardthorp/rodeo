@@ -23,6 +23,7 @@
                         <h6 class="form-details">Please select an option below :</h6>
                         <div class="recipe-type-radio p-0">
                             <ul id="recipe_type">
+                                <!-- Apply checked attribute to recipe type according to existing data -->
                                 {% if recipe.details.recipe_type == 'Meat' %}
                                 <li><input id="recipe_type-0" name="recipe_type" required type="radio" value="Meat"
                                         checked>

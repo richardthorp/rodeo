@@ -15,10 +15,11 @@
             <a href="{{ url_for(return_page, page=page, sort_by=sort_by, filters=filters, return_page=return_page) }}"
                 class="sub-header">
                 <i class="fas fa-arrow-circle-left"></i> back to {{return_page_text}}</a>
-            {% endif %}
-            {% endif %}
+            {% endif %}  <!--End if filters -->
+            {% endif %}  <!--End if return_page -->
         </div>
     </div>
+    <!-- User added this recipe - render edit and delete buttons -->
     {% if session['username'] == recipe.added_by or session['username'] == 'rodeo' %}
     <div class="rounded-container mx-auto text-center pt-2 pb-2">
         <span>
@@ -31,6 +32,7 @@
             <span class="delete-button ml-3" data-toggle="modal" data-target="#delete-recipe-modal">Delete</span>
         </span>
     </div>
+    <!-- MODAL CODE FROM BOOTSTRAP -->
     <div class="modal fade" id="delete-recipe-modal" tabindex="-1" aria-labelledby="delete-recipe-modal"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
@@ -67,6 +69,7 @@
             <div class="d-none d-md-inline col-md-4 text-center">
                 <h6 class="sub-header">Average Rating</h6>
                 <div class="ratings-container">
+                    <!-- Stars rendered with scripts.js function -->
                     {{ recipe.average_rating }}
                 </div>
             </div>
@@ -76,12 +79,14 @@
                 <form class="rating-form-md" name="rating-form" method="POST"
                     action="{{ url_for('recipe_page', recipe_id=recipe._id) }}">
                     <div class="user-rating">
+                        <!-- Stars rendered with scripts.js function -->
                         {{ user_rating }}
                     </div>
                     <!-- If user is logged in, provide submit button - otherwise provide popover with links to log in and register -->
                     {% if session['username'] %}
                     <input class="custom-button add-rating-btn mt-2" type="submit" value="Add Rating" id="rating-submit">
                     {% else %}
+                    <!-- POPOVER CODE FROM BOOTSRAP -->
                     <a tabindex="0" class="sign-in-popover mx-auto" role="button" data-toggle="popover"
                         data-trigger="focus" data-placement="bottom" data-content="<a href='{{ url_for('login') }}'><b>LOG IN</b></a> or 
                         <a href='{{ url_for('register') }}'><b>REGISTER</b></a> to rate recipes!">
@@ -91,13 +96,11 @@
                 </form>
             </div>
             <div class="col-6 d-md-none text-center d-flex align-items-center justify-content-center">
-
-
                 <button type="button" class="custom-button ratings-button" data-toggle="modal"
                     data-target="#rating-modal">
                     View<br>Ratings
                 </button>
-                <!-- RATINGS MODAL -->
+                <!-- RATINGS MODAL FROM BOOTSRAP -->
                 <div class="modal fade" id="rating-modal" tabindex="-1" aria-labelledby="ratings-modal"
                     aria-hidden="true">
                     <div id="ratings-modal" class="modal-dialog modal-dialog-centered">
@@ -125,6 +128,7 @@
                                             value="Add Rating" id="modal-rating-submit">
                                         <!-- User not logged in - provide popover with links to log in and register  -->
                                         {% else %}
+                                        <!-- POPOVER CODE FROM BOOTSRAP -->
                                         <a tabindex="0" class="sign-in-popover" role="button" data-toggle="popover"
                                             data-trigger="focus" data-placement="bottom" data-content="<a href='{{ url_for('login') }}'><b>LOG IN</b></a> or 
                                         <a href='{{ url_for('register') }}'><b>REGISTER</b></a> to rate recipes!">
@@ -156,22 +160,22 @@
                     {% else %}
                     <input type="checkbox" class="hidden-input" name="favourite" id="favourite-checkbox-unchecked"
                         value="add_fav">
+                    <!-- TOOLTIP CODE FROM BOOTSRAP -->
                     <label class="favourite-toggle" for="favourite-checkbox-unchecked"><i class="far fa-heart"
                             data-toggle="tooltip" data-placement="bottom" title="Add to favourites"></i></label>
                     {% endif %}
                     <!-- User not logged in - provide popover with links to log in and register  -->
                     {% else %}
+                    <!-- POPOVER CODE FROM BOOTSRAP -->
                     <div class="favourite-toggle">
                         <a tabindex="0" class="sign-in-popover" role="button" data-toggle="popover" data-trigger="focus"
                             data-placement="bottom" data-content="<a href='{{ url_for('login') }}'><b>LOG IN</b></a> or 
                     <a href='{{ url_for('register') }}'><b>REGISTER</b></a> to save recipes to your favourites!">
                             <i class="far fa-heart"></i></a></div>
-
                     {% endif %}
                 </form>
             </div>
         </div>
-        <!--END OF LOGGED IN USER VIEW-->
     </div>
     <div class="row">
         <div class="col-12 col-lg-6">

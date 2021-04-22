@@ -15,6 +15,7 @@
           </div>
           <div class="col-12 col-sm-4">
             <div class="sub-header text-right m-1">Filter recipes</div>
+            <!-- DROPDOWN FROM BOOTSTRAP -->
             <div class="dropdown text-right">
               <button class="btn btn-secondary dropdown-toggle custom-button" type="button" id="dropdownMenuButton"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -51,9 +52,8 @@
       </form>
     </div>
   </div>
-  <!-- User has user search or filter inputs -->
+  <!-- User has used search or filter inputs- render button to clear search queries -->
   {% if filters %}
-  <!-- Render button to clear search queries -->
   <a href="{{ url_for('clear_search', return_page='all_recipes', sort_by='average_rating') }}">
     <div class="text-center mt-3 custom-button remove-filters-button mx-auto">
       Remove Search terms and Filters
@@ -67,7 +67,7 @@
       <strong>Please adjust your search term or filters and try again.</strong>
     </p>
   </div>
-  {% elif filters and recipe_count > 0 %}
+  {% elif filters and recipe_count > 0 %}#
   <!-- If user sorts by rating / new with filters, send request to search_results route -->
   <p class="mb-0 mt-2 mt-md-3 mt-lg-4 ml-lg-4">
     Sort recipes by:
@@ -75,8 +75,9 @@
     /
     <a href="{{ url_for('search_results', return_page='all_recipes', sort_by='_id') }}">newest</a>
   </p>
-  {% endif %} {% else %}
-  <!-- If user sorts by rating / new without filters, send request to all_recipes route -->
+  {% endif %} 
+    <!-- If user sorts by rating / new without filters, send request to all_recipes route -->
+  {% else %}
   <p class="mb-0 mt-2 mt-md-3 mt-lg-4 ml-lg-4">
     Sort recipes by:
     <a href="{{ url_for('all_recipes', sort_by='average_rating') }}">rating</a>
@@ -124,18 +125,21 @@
               {% if session['username'] in recipe.favourites %}
               <input type="checkbox" name="favourite" class="hidden-input"
                 id="favourite-checkbox-checked-{{+ loop.index}}" value="delete_fav" />
+              <!-- TOOLTIP FROM BOOTSTRAP -->
               <label for="favourite-checkbox-checked-{{+ loop.index}}"><i class="fas fa-heart" data-toggle="tooltip"
                   data-placement="bottom" title="Remove from favourites"></i></label>
               <!-- If user has not favourited recipe, render outline heart icon -->
               {% else %}
               <input type="checkbox" name="favourite" class="hidden-input"
                 id="favourite-checkbox-unchecked-{{+ loop.index}}" value="add_fav" />
+              <!-- TOOLTIP FROM BOOTSTRAP -->
               <label for="favourite-checkbox-unchecked-{{+ loop.index}}"><i class="far fa-heart" data-toggle="tooltip"
                   data-placement="bottom" title="Add to favourites"></i></label>
               {% endif %}
             </form>
             <!-- User not logged in - provide popover with links to log in and register  -->
             {% else %}
+            <!-- POPOVER FROM BOOTSTRAP -->
             <a tabindex="0" class="sign-in-popover" role="button" data-toggle="popover" data-trigger="focus"
               data-placement="bottom" data-content="<a href='{{ url_for('login') }}'><b>LOG IN</b></a> or 
                         <a href='{{ url_for('register') }}'><b>REGISTER</b></a> to save recipes to your favourites!">
