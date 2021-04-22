@@ -573,11 +573,6 @@ nav {
     padding: 5px;
 }
 
-.my-recipe-buttons:hover {
-    background-color: #136F63;
-    color: #FFF;
-}
-
 .my-recipe-buttons i {
     display: block;
     padding: 15px;
@@ -588,7 +583,7 @@ nav {
     color: black;
 }
 
-.current-button {
+.current-button, .my-recipe-buttons:hover {
     background-color: #136F63;
     color: #FFF;
 }
