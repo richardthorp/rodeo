@@ -156,8 +156,9 @@
                 <h6 class="sub-header text-center">Favourite Recipe?</h6>
                 <!-- If user is logged in -->
                 {% if session['username'] %}
-                <form id="favourite-form" class="trigger-form-send" method="POST" action="{{ url_for('toggle_favourite', recipe_id=recipe._id, return_page='recipe_page',
-                            back_link=back_link, back_link_text=back_link_text, filters=filters) }}">
+                <form id="favourite-form" class="trigger-form-send" method="POST" action="{{ url_for('toggle_favourite',
+                    recipe_id=recipe._id, return_page='recipe_page', back_link=back_link, back_link_text=back_link_text, 
+                    filters=filters, sort_by=sort_by) }}">
                     <!-- If user has favourited this recipe previously, render solid heart icon -->
                     {% if session['username'] in recipe.favourites %}
                     <input type="checkbox" class="hidden-input" name="favourite" id="favourite-checkbox-checked"
