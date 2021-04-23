@@ -195,6 +195,16 @@ The tests detailed in this section were all completed using the following web br
     * Click on the 'PREVIOUS PAGE' link
         * Ensure that the previous page of unique recipes are rendered. If paginating through search and filter results and/or have sorted the recipes by rating or newest, ensure that those conditions are still met.
 
+**************************
+#### **Sort by: rating / newest**
+1. Add 5 recipes and give them descending numerical names (give the first recipe the name 'Five', the second 'Four' and so on), and give each recipe an ingredient named 'testing'
+    * On the /all_recipes page, click on 'Sort by: newest' and ensure that the results presented are returned in numerical order.
+2. Add different ratings to recipes
+    * On the /all_recipes page, click on 'Sort by: ratings' and ensure that the results presented are returned with the highest rated recipes first.
+3. On the /all_recipes page, perform a search for 'testing' and repeat steps 1 and 2.
+4. Repeat tests 1 to 3 on the /my_recipes and /added_recipes pages.
+
+**************************
 ### Testing of individual pages
 #### /index**
 1. Test the recipe cards according to the tests written in ['Recipe Cards' above](#recipe-cards)
