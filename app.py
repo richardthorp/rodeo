@@ -499,6 +499,8 @@ def toggle_favourite():
     recipe_id = request.args.get('recipe_id')
     return_page = request.args.get('return_page')
     filters = request.args.get('filters')
+    back_link = request.args.get('back_link')
+    back_link_text = request.args.get('back_link_text')
     sort_by = request.args.get('sort_by', 'average_rating', type=str)
     recipe = mongo.db.recipes.find_one({'_id': ObjectId(recipe_id)})
 
@@ -517,15 +519,20 @@ def toggle_favourite():
                         {'$push': {'favourites': session['username']}})
         flash('Recipe added to your favourites')
 
-    # If user toggles a favourite recipe whilst browsing search results,
-    # return user to those results
-    if filters:
+    # If called from recipe_page, return to the recipe page with all the data
+    # required to allow user to keep browsing search results if they use the
+    # 'back to...' link
+    if return_page == 'recipe_page':
+        return redirect(url_for('recipe_page', recipe_id=recipe_id,
+                                sort_by=sort_by, back_link=back_link,
+                                back_link_text=back_link_text,
+                                filters=filters))
+    # If the return page isn't recipe_page and filters is truthy, the function
+    # has been called whilst browsing search results
+    elif return_page != 'recipe_page' and filters:
         return redirect(url_for('search_results', page=page,
                                 return_page=return_page, sort_by=sort_by))
     # Otherwise, return to original page with relevant args
-    if return_page == 'recipe_page':
-        return redirect(url_for('recipe_page', recipe_id=recipe_id,
-                                sort_by=sort_by))
     else:
         return redirect(url_for(return_page, page=page, sort_by=sort_by))
 
@@ -544,8 +551,8 @@ def recipe_page(recipe_id):
     page = request.args.get('page', 1, type=int)
     # recipe_id = request.args.get('recipe_id')
     recipe_id = recipe['_id']
-    return_page = request.args.get('return_page')
-    return_page_text = request.args.get('return_page_text')
+    back_link = request.args.get('back_link')
+    back_link_text = request.args.get('back_link_text')
     filters = request.args.get('filters')
     sort_by = request.args.get('sort_by', 'average_rating', type=str)
 
@@ -575,8 +582,8 @@ def recipe_page(recipe_id):
 
     return render_template("recipe_page.html", recipe=recipe,
                            user_rating=user_rating, page=page, filters=filters,
-                           sort_by=sort_by, return_page=return_page,
-                           max_page=1, return_page_text=return_page_text)
+                           sort_by=sort_by, back_link=back_link,
+                           max_page=1, back_link_text=back_link_text)
 
 
 def get_average_rating(recipe_id):

@@ -94,8 +94,8 @@
         <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center">
             <div class="recipe-card">
                 <!-- RECIPE CARD IMAGE -->
-                <a href="{{ url_for('recipe_page', recipe_id=recipe._id, page=page, return_page='all_recipes', 
-                            return_page_text='Recipes', filters=filters, sort_by=sort_by) }}">
+                <a href="{{ url_for('recipe_page', recipe_id=recipe._id, page=page, back_link='all_recipes', 
+                        back_link_text='Recipes', filters=filters, sort_by=sort_by) }}">
                     <div class="recipe-image-container">
                         {% if recipe.image_name == 'default-image' %}
                         <img src="/static/images/default-image.jpg" alt="Illustration of Rodeo Hot Sauce bottle" />

@@ -4,17 +4,17 @@
     <div class="row mt-4">
         <div class="col">
             <!-- If the user has come from all_recipes/my_recipes/added_recipes, render a 'back to...' link to relevant page  -->
-            {% if return_page %}
+            {% if back_link %}
             <!-- If the user got to this page via search results, return them to those results-->
             {% if filters %}
-            <a href="{{ url_for('search_results', page=page, filters=filters, sort_by=sort_by, return_page=return_page) }}"
+            <a href="{{ url_for('search_results', page=page, filters=filters, sort_by=sort_by, return_page=back_link) }}"
                 class="sub-header">
-                <i class="fas fa-arrow-circle-left"></i> back to {{ return_page_text }}</a>
+                <i class="fas fa-arrow-circle-left"></i> back to {{ back_link_text }}</a>
             <!-- Otherwise, return them to standard previous page-->
             {% else %}
-            <a href="{{ url_for(return_page, page=page, sort_by=sort_by, filters=filters, return_page=return_page) }}"
+            <a href="{{ url_for(back_link, page=page, sort_by=sort_by, filters=filters) }}"
                 class="sub-header">
-                <i class="fas fa-arrow-circle-left"></i> back to {{return_page_text}}</a>
+                <i class="fas fa-arrow-circle-left"></i> back to {{ back_link_text }}</a>
             <!--End if filters -->
             {% endif %}
             <!--End if return_page -->
@@ -157,7 +157,8 @@
                 <!-- If user is logged in -->
                 {% if session['username'] %}
                 <form id="favourite-form" class="trigger-form-send" method="POST"
-                    action="{{ url_for('toggle_favourite', recipe_id=recipe._id, return_page='recipe_page') }}">
+                    action="{{ url_for('toggle_favourite', recipe_id=recipe._id, return_page='recipe_page',
+                            back_link=back_link, back_link_text=back_link_text, filters=filters) }}">
                     <!-- If user has favourited this recipe previously, render solid heart icon -->
                     {% if session['username'] in recipe.favourites %}
                     <input type="checkbox" class="hidden-input" name="favourite" id="favourite-checkbox-checked"
