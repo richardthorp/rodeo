@@ -578,7 +578,10 @@ def recipe_page(recipe_id):
                                         'average_rating': average_rating}})
         flash('Thank you for your rating!')
 
-        return redirect(url_for('recipe_page', recipe_id=recipe_id))
+        return redirect(url_for('recipe_page', recipe_id=recipe_id,
+                                sort_by=sort_by, filters=filters,
+                                back_link=back_link,
+                                back_link_text=back_link_text))
 
     return render_template("recipe_page.html", recipe=recipe,
                            user_rating=user_rating, page=page, filters=filters,

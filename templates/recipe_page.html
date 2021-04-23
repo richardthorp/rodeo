@@ -12,8 +12,7 @@
                 <i class="fas fa-arrow-circle-left"></i> back to {{ back_link_text }}</a>
             <!-- Otherwise, return them to standard previous page-->
             {% else %}
-            <a href="{{ url_for(back_link, page=page, sort_by=sort_by, filters=filters) }}"
-                class="sub-header">
+            <a href="{{ url_for(back_link, page=page, sort_by=sort_by, filters=filters) }}" class="sub-header">
                 <i class="fas fa-arrow-circle-left"></i> back to {{ back_link_text }}</a>
             <!--End if filters -->
             {% endif %}
@@ -81,8 +80,8 @@
             <!-- USER RATING SECTION -->
             <div class="d-none d-md-flex col-md-4 flex-wrap justify-content-center your-rating">
                 <h6 class="sub-header text-center">Your Rating</h6>
-                <form class="rating-form-md" name="rating-form" method="POST"
-                    action="{{ url_for('recipe_page', recipe_id=recipe._id) }}">
+                <form class="rating-form-md" name="rating-form" method="POST" action="{{ url_for('recipe_page', recipe_id=recipe._id, back_link=back_link, 
+                        back_link_text=back_link_text, filters=filters, page=page, sort_by=sort_by) }}">
                     <div class="user-rating">
                         <!-- Stars rendered with scripts.js function -->
                         {{ user_rating }}
@@ -123,7 +122,8 @@
                                     {{ recipe.average_rating }}
                                 </div>
                                 <!-- USER RATING SECTION -->
-                                <form method="POST" action="{{ url_for('recipe_page', recipe_id=recipe._id) }}">
+                                <form method="POST" action="{{ url_for('recipe_page', recipe_id=recipe._id, back_link=back_link, 
+                                    back_link_text=back_link_text, filters=filters, page=page, sort_by=sort_by) }}">
                                     <h6 class="sub-header text-muted mt-4">Your Rating</h6>
                                     <div class="user-rating-modal">
                                         {{ user_rating }}
@@ -156,8 +156,7 @@
                 <h6 class="sub-header text-center">Favourite Recipe?</h6>
                 <!-- If user is logged in -->
                 {% if session['username'] %}
-                <form id="favourite-form" class="trigger-form-send" method="POST"
-                    action="{{ url_for('toggle_favourite', recipe_id=recipe._id, return_page='recipe_page',
+                <form id="favourite-form" class="trigger-form-send" method="POST" action="{{ url_for('toggle_favourite', recipe_id=recipe._id, return_page='recipe_page',
                             back_link=back_link, back_link_text=back_link_text, filters=filters) }}">
                     <!-- If user has favourited this recipe previously, render solid heart icon -->
                     {% if session['username'] in recipe.favourites %}
