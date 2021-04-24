@@ -6,7 +6,7 @@
             action="{{ url_for('search_results', return_page='all_recipes', sort_by='average_rating')}}">
             {{ form.hidden_tag() }}
             <div
-                class="col-12 col-md-8 d-flex flex-nowrap align-items-center justify-content-end justify-content-md-start">
+                class="col-12 col-md-8 d-flex flex-nowrap mt-2 mt-md-0 align-items-center justify-content-end justify-content-md-start">
                 {{ form.search(class="d-inline", value=search_words) }}
                 {{ form.search_submit(class="custom-button search-button ml-1") }}
             </div>
