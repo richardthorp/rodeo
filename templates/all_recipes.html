@@ -17,35 +17,35 @@
                     data-toggle="modal">View Filters</button>
             </div>
             <!-- FILTERS MODAL -->
-            <div class="modal fade" id="filters-modal" tabindex="-1" aria-labelledby="Filters modal" aria-hidden="true">
+            <div class="modal fade filters-modal" id="filters-modal" tabindex="-1" aria-labelledby="Filters modal"
+                aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-body">
-                            <h6 class="dropdown-header sub-header">Recipe Type</h6>
-                            {{ form.recipe_type(class="dropdown-item") }}
-                            <div class="dropdown-divider"></div>
-                            <h6 class="dropdown-header sub-header">Recipe Options</h6>
-                            <div class="modal-filter-options">
-                                <div class="filter-option">
-                                    {{ form.cheap_checkbox() }} 
-                                    {{ form.cheap_checkbox.label() }}
-                                </div>
-                                <div class="filter-option">
-                                    {{ form.gluton_free_checkbox() }}
-                                    {{ form.gluton_free_checkbox.label() }}
-                                </div>
-                                <div class="filter-option">
-                                    {{ form.fakeaway_checkbox() }}
-                                    {{ form.fakeaway_checkbox.label() }}
-                                </div>
-                                <div class="filter-option">
-                                    {{ form.healthy_checkbox() }}
-                                    {{ form.healthy_checkbox.label() }}
-                                </div>
-                                <div class="filter-option">
-                                    {{ form.quick_checkbox() }}
-                                    {{ form.quick_checkbox.label() }}
-                                </div>
+                            <h6 class="sub-header">Recipe Type</h6>
+                            {{ form.recipe_type() }}
+                            <hr>
+                            <!-- <div class="dropdown-divider"></div> -->
+                            <h6 class="sub-header">Recipe Options</h6>
+                            <div class="filters-modal-checkbox">
+                                {{ form.cheap_checkbox() }}
+                                {{ form.cheap_checkbox.label() }}
+                            </div>
+                            <div class="filters-modal-checkbox">
+                                {{ form.gluton_free_checkbox() }}
+                                {{ form.gluton_free_checkbox.label() }}
+                            </div>
+                            <div class="filters-modal-checkbox">
+                                {{ form.fakeaway_checkbox() }}
+                                {{ form.fakeaway_checkbox.label() }}
+                            </div>
+                            <div class="filters-modal-checkbox">
+                                {{ form.healthy_checkbox() }}
+                                {{ form.healthy_checkbox.label() }}
+                            </div>
+                            <div class="filters-modal-checkbox">
+                                {{ form.quick_checkbox() }}
+                                {{ form.quick_checkbox.label() }}
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="custom-button btn-secondary"
