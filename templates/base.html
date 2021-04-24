@@ -29,7 +29,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto text-right">
                 <li class="nav-item">
-                    <a class="nav-link logo-font custom-nav-links" href="{{ url_for('all_recipes') }}">Recipes<span
+                    <a class="nav-link logo-font custom-nav-links" href="{{ url_for('all_recipes') }}">All Recipes<span
                             class="sr-only">(current)</span></a>
                 </li>
                 {% if session["username"] %}
@@ -94,7 +94,7 @@
         <div class="row mt-5 custom-footer d-flex align-items-center">
             <div class="col-6 col-md-3 col-lg-6 logo-font text-left copyright">Copyright <br><span></span></div>
             <a href="{{ url_for('all_recipes') }}"
-                class="d-none d-md-inline-block text-center col-md-3 col-lg-2 logo-font footer-links">Recipes</a>
+                class="d-none d-md-inline-block text-center col-md-3 col-lg-2 logo-font footer-links">All Recipes</a>
             {% if session["username"] %}
             <a href="{{ url_for('my_recipes') }}"
                 class="d-none d-md-inline-block text-center col-md-3 col-lg-2 logo-font footer-links">My Recipes</a>
