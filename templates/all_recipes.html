@@ -7,19 +7,19 @@
             {{ form.hidden_tag() }}
             <div
                 class="col-12 col-md-8 d-flex flex-nowrap align-items-center justify-content-end justify-content-md-start">
-                {{ form.search(class="form-input mb-2 d-inline", value=search_words) }}
+                {{ form.search(class="d-inline", value=search_words) }}
                 {{ form.search_submit(class="custom-button search-button ml-1") }}
             </div>
             <div class="col-12 col-md-4 d-flex justify-content-md-end">
                 <!-- MODAL FROM BOOTSTRAP -->
                 <!-- FILTERS MODAL BUTTON -->
-                <button class="btn custom-button filters-button mb-1 mb-md-0" type="button" data-target="#filters-modal"
+                <button class="btn custom-button filters-button mb-2 mt-2" type="button" data-target="#filters-modal"
                     data-toggle="modal">View Filters</button>
             </div>
             <!-- FILTERS MODAL -->
             <div class="modal fade filters-modal" id="filters-modal" tabindex="-1" aria-labelledby="Filters modal"
                 aria-hidden="true">
-                <div class="modal-dialog">
+                <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-body">
                             <h6 class="sub-header">Recipe Type</h6>
@@ -47,42 +47,16 @@
                                 {{ form.quick_checkbox() }}
                                 {{ form.quick_checkbox.label() }}
                             </div>
-                            <div class="modal-footer">
-                                <button type="button" class="custom-button btn-secondary"
+                            <hr>
+                            <div class="d-flex justify-content-center">
+                                <button type="button" class="custom-button btn-secondary mr-2"
                                     data-dismiss="modal">Close</button>
-                                {{ form.filter_submit(class="custom-button filters-button") }}
+                                {{ form.filter_submit(class="custom-button filters-button ml-2") }}
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- <div class="dropdown-menu filter-dropdown" aria-labelledby="dropdownMenuButton">
-                        <h6 class="dropdown-header sub-header">Recipe Type</h6>
-                        {{ form.recipe_type(class="dropdown-item") }}
-                        <div class="dropdown-divider"></div>
-                        <h6 class="dropdown-header sub-header">Recipe Options</h6>
-                        <div class="filter-option">
-                            {{ form.cheap_checkbox() }} {{ form.cheap_checkbox.label() }}
-                        </div>
-                        <div class="filter-option">
-                            {{ form.gluton_free_checkbox() }}
-                            {{ form.gluton_free_checkbox.label() }}
-                        </div>
-                        <div class="filter-option">
-                            {{ form.fakeaway_checkbox() }}
-                            {{ form.fakeaway_checkbox.label() }}
-                        </div>
-                        <div class="filter-option">
-                            {{ form.healthy_checkbox() }}
-                            {{ form.healthy_checkbox.label() }}
-                        </div>
-                        <div class="filter-option">
-                            {{ form.quick_checkbox() }}
-                            {{ form.quick_checkbox.label() }}
-                        </div>
-                        {{ form.filter_submit(class="custom-button d-flex mx-auto") }}
-                    </div>
-                </div> -->
         </form>
     </div>
     <!-- User has used search or filter inputs- render button to clear search queries -->
@@ -102,7 +76,7 @@
     </div>
     {% elif filters and recipe_count > 0 %}
     <!-- If user sorts by rating / new with filters, send request to search_results route -->
-    <p class="mb-0 mt-2 mt-lg-0">
+    <p class="mb-0 mt-4 mt-lg-0">
         Sort recipes by:
         <a href="{{ url_for('search_results', return_page='all_recipes', sort_by='average_rating') }}">rating</a>
         /
@@ -111,7 +85,7 @@
     {% endif %}
     <!-- If user sorts by rating / new without filters, send request to all_recipes route -->
     {% else %}
-    <p class="mb-0 mt-2 mt-lg-0">
+    <p class="mb-0 mt-4 mt-lg-0">
         Sort recipes by:
         <a href="{{ url_for('all_recipes', sort_by='average_rating') }}">rating</a>
         /

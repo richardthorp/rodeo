@@ -22,11 +22,6 @@ a:hover {
     text-decoration: none;
 }
 
-/* .dropdown-item:active, .dropdown-item:hover {
-    background-color: initial;
-    color: initial;
-} */
-
 .logo-font {
   font-family: 'Young Heart', Cambria, Cochin, Georgia, serif;
   letter-spacing: 8px;
@@ -462,9 +457,6 @@ nav {
 
 
 /*------------------------------------------------------- SEARCH AND FILTER */
-/* .search-container {
-    width: 90%;
-} */
 .search-form {
     display: contents;
 }
@@ -476,29 +468,6 @@ nav {
     display: inline;
     padding: 5px;
 }
-/* .search-container .sub-header {
-    font-size: 0.8rem;
-} */
-
-/* .search-container .custom-button {
-    margin-bottom: 8px;
-} */
-
-/* .search-container .form-input, .small-input {
-    max-width: 400px;
-} */
-
-/* .search-container ul {
-    padding: 0;
-}
-.search-container li {
-    padding: 0 5px;
-} */
-
-/* .search-container .filter-option {
-    display: inline-block;
-    margin: 10px;
-} */
 
 #search {
     width: 100%;
@@ -513,21 +482,6 @@ nav {
     color: #FFF;
     background-color: #136F63;
 }
-
-/* .search-container-radio ul li {
-    list-style: none;
-    display: inline;
-    padding: 0 10px;
-} */
-
-/* .filter-dropdown {
-    font-family: 'Open Sans', Arial, Helvetica, sans-serif;
-    background-color: #FFF6BC;
-}
-
-.filter-dropdown ul {
-    list-style: none;
-} */
 
 /*------------------------------------------------------- INDEX */
 .hero {
@@ -636,7 +590,7 @@ nav {
 
 }
 
-.recipe-type-radio ul li, .search-container-radio ul li {
+.recipe-type-radio ul li {
     list-style: none;
     display: inline;
 }
@@ -780,23 +734,14 @@ nav {
     .rounded-container {
         margin-top: 10px;
         width: 100%;
-        /* border-radius: 10px; */
     }
     .search-container {
         max-width: 350px;
     }
     .search-container .custom-button {
         font-size: 0.7rem;
-        /* margin: 0 0 5px 0; */
     }
-    .filters-modal {
-        width: 290px;
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        margin: 0 auto;
-    }
+
     .filters-modal ul li, .filters-modal-checkbox {
         display: block;
     }
@@ -890,17 +835,9 @@ nav {
     .search-container {
         max-width: 350px;
     }
-    .search-container .custom-button {
-        font-size: 0.8rem;
-        /* margin: 0 0 5px 0; */
-    }
     .rounded-container {
         margin-top: 20px;
     }
-    /* .recipe-type-options .filter-option {
-        display: inline-block;
-        text-align: center;
-    } */
     .select-file-button {
         padding: 5px;
     }
@@ -950,10 +887,7 @@ nav {
     }
     .search-container {
         width: 90%;
-        max-width: 660px;
-    }
-    .search-container .custom-button {
-        font-size: 1rem;
+        max-width: 600px;
     }
     .select-file-button {
         font-size: 0.8rem;
