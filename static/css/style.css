@@ -50,7 +50,7 @@ a:hover {
 
 .rounded-container {
     background-color: #FFF6BC;
-    border-radius: 20px;
+    border-radius: 10px;
     margin-top: 40px;
 }
 
@@ -462,16 +462,19 @@ nav {
 
 
 /*------------------------------------------------------- SEARCH AND FILTER */
-.search-container {
+/* .search-container {
     width: 90%;
+} */
+.search-form {
+    display: contents;
 }
-.search-container .sub-header {
+/* .search-container .sub-header {
     font-size: 0.8rem;
-}
+} */
 
-.search-container .custom-button {
+/* .search-container .custom-button {
     margin-bottom: 8px;
-}
+} */
 
 .search-container .form-input, .small-input {
     max-width: 400px;
@@ -486,11 +489,21 @@ nav {
 
 .search-container .filter-option {
     display: inline-block;
+    margin: 10px;
 }
 
 #search {
-    width: 60%;
+    width: 100%;
     max-width: 250px;
+}
+
+.search-button {
+    height: fit-content;
+}
+
+.filters-button {
+    color: #FFF;
+    background-color: #136F63;
 }
 
 .search-container-radio ul li {
@@ -499,14 +512,14 @@ nav {
     padding: 0 10px;
 }
 
-.filter-dropdown {
+/* .filter-dropdown {
     font-family: 'Open Sans', Arial, Helvetica, sans-serif;
     background-color: #FFF6BC;
 }
 
 .filter-dropdown ul {
     list-style: none;
-}
+} */
 
 /*------------------------------------------------------- INDEX */
 .hero {
@@ -759,10 +772,14 @@ nav {
     .rounded-container {
         margin-top: 10px;
         width: 100%;
+        /* border-radius: 10px; */
+    }
+    .search-container {
+        max-width: 350px;
     }
     .search-container .custom-button {
         font-size: 0.7rem;
-        margin: 0 0 5px 0;
+        /* margin: 0 0 5px 0; */
     }
     .recipe-type-filters .filter-option, .recipe-type-radio ul li {
         display: block;
@@ -851,9 +868,12 @@ nav {
         font-size: 1rem;
         border-width: 3px;
     }
+    .search-container {
+        max-width: 350px;
+    }
     .search-container .custom-button {
         font-size: 0.8rem;
-        margin: 0 0 5px 0;
+        /* margin: 0 0 5px 0; */
     }
     .rounded-container {
         margin-top: 20px;
@@ -908,6 +928,10 @@ nav {
     }
     .form-requirement {
         font-size: 1rem;
+    }
+    .search-container {
+        width: 90%;
+        max-width: 660px;
     }
     .search-container .custom-button {
         font-size: 1rem;
