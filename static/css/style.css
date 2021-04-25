@@ -783,6 +783,9 @@ nav {
     .recipe-header h6 {
         font-size: 0.8rem;
     }
+    .back-links {
+        font-size: 0.8rem;
+    }
     .serves-details {
         font-size: 1.2rem;
         margin: 20px 0;

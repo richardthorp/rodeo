@@ -1,18 +1,18 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="container-fluid block-content-container">
-    <div class="row mt-4">
+    <div class="row mt-2 mt-sm-3">
         <div class="col">
             <!-- If the user has come from all_recipes/my_recipes/added_recipes, render a 'back to...' link to relevant page  -->
             {% if back_link %}
             <!-- If the user got to this page via search results, return them to those results-->
             {% if filters %}
             <a href="{{ url_for('search_results', page=page, filters=filters, sort_by=sort_by, return_page=back_link) }}"
-                class="sub-header">
+                class="sub-header back-links">
                 <i class="fas fa-arrow-circle-left"></i> back to {{ back_link_text }}</a>
             <!-- Otherwise, return them to standard previous page-->
             {% else %}
-            <a href="{{ url_for(back_link, page=page, sort_by=sort_by, filters=filters) }}" class="sub-header">
+            <a href="{{ url_for(back_link, page=page, sort_by=sort_by, filters=filters) }}" class="sub-header back-links">
                 <i class="fas fa-arrow-circle-left"></i> back to {{ back_link_text }}</a>
             <!--End if filters -->
             {% endif %}
