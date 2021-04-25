@@ -33,6 +33,7 @@
                             class="sr-only">(current)</span></a>
                 </li>
                 {% if session["username"] %}
+                <!-- User is logged in -->
                 <li class="nav-item ml-md-3 ml-lg-5">
                     <a class="nav-link logo-font custom-nav-links" href="{{ url_for('my_recipes') }}">My Recipes</a>
                 </li>
@@ -40,6 +41,7 @@
                     <a class="nav-link logo-font custom-nav-links" href="{{ url_for('log_out') }}">Log Out</a>
                 </li>
                 {% else %}
+                <!-- User is not logged in -->
                 <li class="nav-item ml-md-3 ml-lg-5">
                     <a class="nav-link logo-font custom-nav-links" href="{{ url_for('login') }}">Login</a>
                 </li>
@@ -64,8 +66,10 @@
 
     {% block content %}
     {% endblock %}
+
     <!-- PAGINATION LINKS -->
     {% if page and max_page > 1 %}
+    <!-- If page variable passed to route and there is more than one page of results, render pagination links  -->
     <div class="container-fluid">
         <div class="row mt-4">
             <div class="col-6 text-right">
@@ -96,11 +100,13 @@
             <a href="{{ url_for('all_recipes') }}"
                 class="d-none d-md-inline-block text-center col-md-3 col-lg-2 logo-font footer-links">All Recipes</a>
             {% if session["username"] %}
+            <!-- User is logged in -->
             <a href="{{ url_for('my_recipes') }}"
                 class="d-none d-md-inline-block text-center col-md-3 col-lg-2 logo-font footer-links">My Recipes</a>
             <a href="{{ url_for('log_out') }}"
                 class="d-none d-md-inline-block text-center col-md-3 col-lg-2 logo-font footer-links">Log Out</a>
             {% else %}
+            <!-- User is not logged in -->
             <a href="{{ url_for('login') }}"
                 class="d-none d-md-inline-block text-center col-md-3 col-lg-2 logo-font footer-links">Login</a>
             <a href="{{ url_for('register') }}"

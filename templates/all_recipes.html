@@ -6,8 +6,9 @@
         <form method="POST" class="search-form"
             action="{{ url_for('search_results', return_page='all_recipes', sort_by='average_rating')}}">
             {{ form.hidden_tag() }}
-            <div
-                class="col-12 col-md-8 d-flex flex-nowrap mt-2 mt-md-0 align-items-center justify-content-end justify-content-md-start">
+            <div class="col-12 col-md-8 d-flex flex-nowrap mt-2 mt-md-0 align-items-center 
+                justify-content-end justify-content-md-start">
+                <!-- SEARCH INPUT AND SUBMIT BUTTON -->
                 {{ form.search(class="d-inline", value=search_words) }}
                 {{ form.search_submit(class="custom-button search-button ml-1") }}
             </div>
@@ -26,7 +27,6 @@
                             <h6 class="sub-header">Recipe Type</h6>
                             {{ form.recipe_type() }}
                             <hr>
-                            <!-- <div class="dropdown-divider"></div> -->
                             <h6 class="sub-header">Recipe Options</h6>
                             <div class="filters-modal-checkbox">
                                 {{ form.cheap_checkbox() }}
@@ -60,15 +60,15 @@
             </div>
         </form>
     </div>
-    <!-- User has used search or filter inputs- render button to clear search queries -->
     {% if filters %}
+    <!-- User has used search or filter inputs - render button to clear search queries -->
     <a href="{{ url_for('clear_search', return_page='all_recipes', sort_by='average_rating') }}">
         <div class="text-center mt-3 custom-button remove-filters-button mx-auto">
             Remove Search terms and Filters
         </div>
     </a>
-    <!-- User has used search or filter - but the query returned no results -->
     {% if filters and recipe_count == 0 %}
+    <!-- User has used search or filter - but the query returned no results -->
     <div class="m-5 text-center">
         <h2 class="sub-header text-center mt-5">No recipes found!</h2>
         <p>
@@ -76,16 +76,16 @@
         </p>
     </div>
     {% elif filters and recipe_count > 0 %}
-    <!-- If user sorts by rating / new with filters, send request to search_results route -->
-    <p class="mb-0 mt-4 mt-lg-0">
+    <!-- There are search results to sort, send sort request to search_results route -->
+        <p class="mb-0 mt-4 mt-lg-0">
         Sort recipes by:
         <a href="{{ url_for('search_results', return_page='all_recipes', sort_by='average_rating') }}">rating</a>
         /
         <a href="{{ url_for('search_results', return_page='all_recipes', sort_by='_id') }}">newest</a>
     </p>
     {% endif %}
-    <!-- If user sorts by rating / new without filters, send request to all_recipes route -->
     {% else %}
+    <!-- If user sorts by rating / new without filters, send request to all_recipes route -->
     <p class="mb-0 mt-4 mt-lg-0">
         Sort recipes by:
         <a href="{{ url_for('all_recipes', sort_by='average_rating') }}">rating</a>
@@ -94,8 +94,8 @@
     </p>
     {% endif %}
     <div class="row row-eq-height">
-        <!-- RECIPE CARDS -->
         {% for recipe in recipes %}
+        <!-- RECIPE CARDS -->
         <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center">
             <div class="recipe-card">
                 <!-- RECIPE CARD IMAGE -->
@@ -126,20 +126,20 @@
                     <!-- ADD TO FAVOURITES SECTION -->
                     <div class="col-6 text-center">
                         <h6 class="sub-header mt-3">Favourite<br />Recipe?</h6>
-                        <!-- If user is logged in -->
                         {% if session['username'] %}
+                        <!-- User is logged in -->
                         <form class="trigger-form-send" method="POST" action="{{ url_for('toggle_favourite', recipe_id=recipe._id,
                             page=page, return_page='all_recipes', filters=filters, sort_by=sort_by) }}">
-                            <!-- If user has favourited this recipe previously, render solid heart icon -->
                             {% if session['username'] in recipe.favourites %}
+                            <!-- User has favourited this recipe previously, render solid heart icon -->
                             <input type="checkbox" name="favourite" class="hidden-input"
                                 id="favourite-checkbox-checked-{{+ loop.index}}" value="delete_fav">
                             <!-- TOOLTIP FROM BOOTSTRAP -->
                             <label for="favourite-checkbox-checked-{{+ loop.index}}"><i class="fas fa-heart"
                                     data-toggle="tooltip" data-placement="bottom"
                                     title="Remove from favourites"></i></label>
-                            <!-- If user has not favourited recipe, render outline heart icon -->
                             {% else %}
+                            <!-- User has not favourited recipe, render outline heart icon -->        
                             <input type="checkbox" name="favourite" class="hidden-input"
                                 id="favourite-checkbox-unchecked-{{+ loop.index}}" value="add_fav">
                             <!-- TOOLTIP FROM BOOTSTRAP -->
@@ -149,8 +149,8 @@
                             </label>
                             {% endif %}
                         </form>
-                        <!-- User not logged in - provide popover with links to log in and register  -->
                         {% else %}
+                        <!-- User not logged in - provide popover with links to log in and register  -->
                         <!-- POPOVER FROM BOOTSTRAP -->
                         <a tabindex="0" class="sign-in-popover" role="button" data-toggle="popover" data-trigger="focus"
                             data-placement="bottom"

@@ -3,25 +3,24 @@
 <div class="container-fluid block-content-container">
     <div class="row mt-2 mt-sm-3">
         <div class="col">
-            <!-- If the user has come from all_recipes/my_recipes/added_recipes, render a 'back to...' link to relevant page  -->
             {% if back_link %}
-            <!-- If the user got to this page via search results, return them to those results-->
+            <!-- User has come from all_recipes/my_recipes/added_recipes- render a 'back to...' link to relevant page  -->
             {% if filters %}
+            <!-- If user got to this page via search results- return them to those results-->
             <a href="{{ url_for('search_results', page=page, filters=filters, sort_by=sort_by, return_page=back_link) }}"
                 class="sub-header back-links">
                 <i class="fas fa-arrow-circle-left"></i> back to {{ back_link_text }}</a>
-            <!-- Otherwise, return them to standard previous page-->
             {% else %}
-            <a href="{{ url_for(back_link, page=page, sort_by=sort_by, filters=filters) }}" class="sub-header back-links">
+            <!-- Otherwise, return them to standard previous page-->
+            <a href="{{ url_for(back_link, page=page, sort_by=sort_by, filters=filters) }}"
+                class="sub-header back-links">
                 <i class="fas fa-arrow-circle-left"></i> back to {{ back_link_text }}</a>
-            <!--End if filters -->
             {% endif %}
-            <!--End if return_page -->
             {% endif %}
         </div>
     </div>
-    <!-- User added this recipe - render edit and delete buttons -->
     {% if session['username'] == recipe.added_by or session['username'] == 'rodeo' %}
+    <!-- User added this recipe - render edit and delete buttons -->
     <div class="rounded-container mx-auto text-center pt-2 pb-2">
         <span>
             <strong>Thank you for adding this recipe!</strong>
@@ -80,17 +79,19 @@
             <!-- USER RATING SECTION -->
             <div class="d-none d-md-flex col-md-4 flex-wrap justify-content-center your-rating">
                 <h6 class="sub-header text-center">Your Rating</h6>
-                <form class="rating-form-md" name="rating-form" method="POST" action="{{ url_for('recipe_page', recipe_id=recipe._id, back_link=back_link, 
-                        back_link_text=back_link_text, filters=filters, page=page, sort_by=sort_by) }}">
+                <form class="rating-form-md" name="rating-form" method="POST"
+                    action="{{ url_for('recipe_page', recipe_id=recipe._id,
+                    back_link=back_link, back_link_text=back_link_text, filters=filters, page=page, sort_by=sort_by) }}">
                     <div class="user-rating">
                         <!-- Stars rendered with scripts.js function -->
                         {{ user_rating }}
                     </div>
-                    <!-- If user is logged in, provide submit button - otherwise provide popover with links to log in and register -->
                     {% if session['username'] %}
+                    <!-- User is logged in, provide submit button -->
                     <input class="custom-button add-rating-btn mt-2" type="submit" value="Add Rating"
                         id="rating-submit">
                     {% else %}
+                    <!-- User is not logged in - provide popover with links to log in and register -->
                     <!-- POPOVER CODE FROM BOOTSRAP -->
                     <a tabindex="0" class="sign-in-popover mx-auto" role="button" data-toggle="popover"
                         data-trigger="focus" data-placement="bottom"
@@ -119,6 +120,7 @@
                             <div class="modal-body">
                                 <h6 class="sub-header text-muted">Average Rating</h6>
                                 <div class="ratings-container">
+                                    <!-- Stars rendered with scripts.js function -->
                                     {{ recipe.average_rating }}
                                 </div>
                                 <!-- USER RATING SECTION -->
@@ -129,12 +131,12 @@
                                         {{ user_rating }}
                                     </div>
                                     <div class="d-flex justify-content-center">
-                                        <!-- If user is logged in, provide submit button -->
                                         {% if session['username'] %}
+                                        <!-- User is logged in, provide submit button -->
                                         <input class="custom-button add-rating-btn mt-2" type="submit"
                                             value="Add Rating" id="modal-rating-submit">
-                                        <!-- User not logged in - provide popover with links to log in and register  -->
                                         {% else %}
+                                        <!-- User not logged in - provide popover with links to log in and register  -->
                                         <!-- POPOVER CODE FROM BOOTSRAP -->
                                         <a tabindex="0" class="sign-in-popover" role="button" data-toggle="popover"
                                             data-trigger="focus" data-placement="bottom"
@@ -154,27 +156,27 @@
             <div class="col-6 col-md-4 text-center">
                 <!-- ADD TO FAVOURITES SECTION -->
                 <h6 class="sub-header text-center">Favourite Recipe?</h6>
-                <!-- If user is logged in -->
                 {% if session['username'] %}
+                <!-- User is logged in -->
                 <form id="favourite-form" class="trigger-form-send" method="POST" action="{{ url_for('toggle_favourite',
                     recipe_id=recipe._id, return_page='recipe_page', back_link=back_link, back_link_text=back_link_text, 
                     filters=filters, sort_by=sort_by) }}">
-                    <!-- If user has favourited this recipe previously, render solid heart icon -->
                     {% if session['username'] in recipe.favourites %}
+                    <!-- User has favourited this recipe previously, render solid heart icon -->
                     <input type="checkbox" class="hidden-input" name="favourite" id="favourite-checkbox-checked"
                         value="delete_fav">
                     <label class="favourite-toggle" for="favourite-checkbox-checked"><i class="fas fa-heart"
                             data-toggle="tooltip" data-placement="bottom" title="Remove from favourites"></i></label>
-                    <!-- If user has not favourited recipe, render outline heart icon -->
                     {% else %}
+                    <!-- User has not favourited recipe, render outline heart icon -->
                     <input type="checkbox" class="hidden-input" name="favourite" id="favourite-checkbox-unchecked"
                         value="add_fav">
                     <!-- TOOLTIP CODE FROM BOOTSRAP -->
                     <label class="favourite-toggle" for="favourite-checkbox-unchecked"><i class="far fa-heart"
                             data-toggle="tooltip" data-placement="bottom" title="Add to favourites"></i></label>
                     {% endif %}
-                    <!-- User not logged in - provide popover with links to log in and register  -->
                     {% else %}
+                    <!-- User not logged in - provide popover with links to log in and register  -->
                     <!-- POPOVER CODE FROM BOOTSRAP -->
                     <div class="favourite-toggle">
                         <a tabindex="0" class="sign-in-popover" role="button" data-toggle="popover" data-trigger="focus"

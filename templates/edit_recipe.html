@@ -141,6 +141,7 @@
                     <p class="text-muted mb-1 form-requirement">Must be at least 3 ingredients between 3 - 50 characters
                     </p>
                     {% for ingredient in recipe.ingredients %}
+                    <!-- For first 3 inputs, render respective WTForm input -->
                     {% if loop.index0 == 0 %}
                     {{ form.ingredient_1(class="form-input small-input edit-recipe-ingredient", id='ingredient_1',
                     value=recipe.ingredients[loop.index0]) }}
@@ -150,6 +151,7 @@
                     {% elif loop.index0 == 2 %}
                     {{ form.ingredient_3(class="form-input small-input edit-recipe-ingredient", id='ingredient_3',
                     value=recipe.ingredients[loop.index0]) }}
+                    <!-- After 3 inputs, render optional WTForm inputs -->
                     {% else %}
                     {{ form.ingredient_optional(class="form-input small-input edit-recipe-ingredient", id='ingredient_'
                     + loop.index|string, value=recipe.ingredients[loop.index0]) }}
@@ -167,12 +169,14 @@
                     <h6 class="text-left form-details mb-1">Instructions</h6>
                     <p class="text-muted mb-1 form-requirement">Please add at least 2 instructions</p>
                     {% for instruction in recipe.instructions %}
+                    <!-- For first 2 inputs, render respective WTForm input -->
                     {% if loop.index0 == 0 %}
                     {{ form.instruction_1(class="form-input auto-resize edit-recipe-instruction",
                     placeholder=recipe.instructions[loop.index0])}}
                     {% elif loop.index0 == 1 %}
                     {{ form.instruction_2(class="form-input auto-resize edit-recipe-instruction",
                     placeholder=recipe.instructions[loop.index0])}}
+                    <!-- After 2 inputs, render optional WTForm inputs -->
                     {% else %}
                     {{ form.instruction_optional(class="form-input auto-resize edit-recipe-instruction",
                     id="instruction_" + loop.index|string, placeholder=recipe.instructions[loop.index0])}}
@@ -193,8 +197,8 @@
             </div>
             <hr>
             <!-- IMAGE OPTIONS -->
-            <!-- If existing recipe image is default image -->
             {% if recipe.image_name == 'default-image' %}
+            <!-- Existing recipe image is default image -->
             <div class="row mx-auto">
                 <div class="col-12 mb-2">
                     <h6 class="form-details">Add an image (optional)</h6>
@@ -212,7 +216,7 @@
             </div>
             <div class="col-12 pb-4">
                 <div class="row mt-3 d-flex justify-content-center row-eq-height">
-                    <!-- Keep existing image -->
+                    <!-- KEEP EXISTING IMAGE -->
                     <div class="text-center col-10 col-sm-4 mb-3 d-flex">
                         <div id="keep-image-option" class="selected-image-option">
                             <input type="radio" name="image_options" id="keep_image" value="keep_image"
@@ -223,7 +227,7 @@
                             </label>
                         </div>
                     </div>
-                    <!-- Use default image -->
+                    <!-- USE DEFAULT IMAGE -->
                     <div class="text-center col-10 col-sm-4 mb-3 d-flex">
                         <div id="default-image-option" class="image-option">
                             <input type="radio" name="image_options" id="default_image" value="default_image"
@@ -233,7 +237,7 @@
                             </label>
                         </div>
                     </div>
-                    <!-- Add new image -->
+                    <!-- ADD A NEW IMAGE -->
                     <div class="text-center col-10 col-sm-4 mb-3 d-flex">
                         <div id="add-image-option" class="image-option pb-0 pl-0 pr-0">
                             <input type="radio" name="image_options" id="new_image" value="new_image"

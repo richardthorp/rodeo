@@ -22,10 +22,9 @@
         </div>
         <div class="col-10 col-md-9 col-lg-8 about-blurb">
             <p>Welcome to the home of RODEO HOT SAUCE - the best hot sauce available on the market!</p>
-            <p>We have made this website because we love hot sauce, and we want to share that love with as many people
-                as
-                possible. So get registered and begin sharing your love of the hot stuff by adding your own recipes and
-                saving your favourite recipes by others.
+            <p>We have made this website because we love hot sauce, and we want to share that love with as many
+                people as possible. So get registered and begin sharing your love of the hot stuff by adding your
+                own recipes and saving your favourite recipes by others.
             </p>
             <p>The only rule - it has to be hot! </p>
         </div>
@@ -43,14 +42,15 @@
             </div>
             <div class="row row-eq-height">
                 {% for recipe in recipes %}
-                <!-- Ensure current loop isn't loop 3 so cards will be displayed on all screen sizes -->
                 {% if loop.index != 3 %}
+                <!-- These are the first 2 recipe cards and will be shown on all screen sizes -->
                 <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center">
                     <div class="recipe-card">
                         <a href="{{url_for('recipe_page', recipe_id=recipe._id)}}">
                             <div class="recipe-image-container">
                                 {% if recipe.image_name == 'default-image' %}
-                                <img src="/static/images/default-image.jpg" alt="Illustration of Rodeo Hot Sauce bottle">
+                                <img src="/static/images/default-image.jpg"
+                                    alt="Illustration of Rodeo Hot Sauce bottle">
                                 {% else %}
                                 <img src="{{ url_for('get_image', image_name = recipe.image_name) }}" alt="">
                                 {% endif %}
@@ -61,26 +61,27 @@
                             <div class="col-6 text-center recipe-card-ratings">
                                 <h6 class="sub-header mt-3">Average<br>Rating</h6>
                                 <div class="ratings-container">
+                                    <!-- Stars rendered in scripts.js -->
                                     {{ recipe.average_rating }}
                                 </div>
                             </div>
                             <div class="col-6 text-center">
                                 <!-- ADD TO FAVOURITES SECTION -->
                                 <h6 class="sub-header mt-3">Favourite<br>Recipe?</h6>
-                                <!-- If user is logged in -->
                                 {% if session['username'] %}
+                                <!-- User is logged in -->
                                 <form class="trigger-form-send" method="POST"
                                     action="{{ url_for('toggle_favourite', recipe_id=recipe._id, return_page='index') }}">
-                                    <!-- If user has favourited this recipe previously, render solid heart icon -->
                                     {% if session['username'] in recipe.favourites %}
+                                    <!-- User has favourited this recipe previously, render solid heart icon -->
                                     <input type="checkbox" name="favourite" class="hidden-input"
                                         id="favourite-checkbox-checked-{{+ loop.index}}" value="delete_fav">
                                     <!-- TOOLTIP FROM BOOTSTRAP -->
                                     <label for="favourite-checkbox-checked-{{+ loop.index}}"><i class="fas fa-heart"
                                             data-toggle="tooltip" data-placement="bottom"
                                             title="Remove from favourites"></i></label>
-                                    <!-- If user has not favourited recipe, render outline heart icon -->
                                     {% else %}
+                                    <!-- User has not favourited recipe, render outline heart icon -->        
                                     <input type="checkbox" name="favourite" class="hidden-input"
                                         id="favourite-checkbox-unchecked-{{+ loop.index}}" value="add_fav">
                                     <!-- TOOLTIP FROM BOOTSTRAP -->
@@ -89,12 +90,11 @@
                                             title="Add to favourites"></i></label>
                                     {% endif %}
                                 </form>
-                                <!-- User not logged in - provide popover with links to log in and register  -->
                                 {% else %}
+                                <!-- User not logged in - provide popover with links to log in and register  -->
                                 <!-- POPOVER FROM BOOTSTRAP -->
                                 <a tabindex="0" class="sign-in-popover" role="button" data-toggle="popover"
-                                    data-trigger="focus" data-placement="bottom"
-                                    data-content="<a href='{{ url_for('login') }}'><b>LOG IN</b></a> or 
+                                    data-trigger="focus" data-placement="bottom" data-content="<a href='{{ url_for('login') }}'><b>LOG IN</b></a> or 
                                                   <a href='{{ url_for('register') }}'><b>REGISTER</b></a> 
                                                   to save recipes to your favourites!">
                                     <i class="far fa-heart"></i>
@@ -104,8 +104,8 @@
                         </div>
                     </div>
                 </div>
-                <!-- This is loop 3 - card is hidden on medium screen sizes -->
                 {% else %}
+                <!-- This is  the 3rd recipe card - card is hidden on medium screen sizes -->
                 <div class="col-12 col-lg-4 d-md-none d-lg-inline-flex d-flex justify-content-center">
                     <div class="recipe-card">
                         <a href="{{url_for('recipe_page', recipe_id=recipe._id)}}">
@@ -124,20 +124,20 @@
                             <div class="col-6 text-center">
                                 <!-- ADD TO FAVOURITES SECTION -->
                                 <h6 class="sub-header mt-3">Favourite<br>Recipe?</h6>
-                                <!-- If user is logged in -->
                                 {% if session['username'] %}
+                                <!-- User is logged in -->
                                 <form class="trigger-form-send" method="POST"
                                     action="{{ url_for('toggle_favourite', recipe_id=recipe._id, return_page='index') }}">
-                                    <!-- If user has favourited this recipe previously, render solid heart icon -->
                                     {% if session['username'] in recipe.favourites %}
+                                    <!-- User has favourited this recipe previously, render solid heart icon -->
                                     <input type="checkbox" name="favourite" class="hidden-input"
                                         id="favourite-checkbox-checked-{{+ loop.index}}" value="delete_fav">
                                     <!-- TOOLTIP FROM BOOTSTRAP -->
                                     <label for="favourite-checkbox-checked-{{+ loop.index}}"><i class="fas fa-heart"
                                             data-toggle="tooltip" data-placement="bottom"
                                             title="Remove from favourites"></i></label>
-                                    <!-- If user has not favourited recipe, render outline heart icon -->
                                     {% else %}
+                                    <!-- User has not favourited recipe, render outline heart icon -->        
                                     <input type="checkbox" name="favourite" class="hidden-input"
                                         id="favourite-checkbox-unchecked-{{+ loop.index}}" value="add_fav">
                                     <!-- TOOLTIP FROM BOOTSTRAP -->
@@ -146,12 +146,11 @@
                                             title="Add to favourites"></i></label>
                                     {% endif %}
                                 </form>
-                                <!-- User not logged in - provide popover with links to log in and register  -->
                                 {% else %}
+                                <!-- User not logged in - provide popover with links to log in and register  -->
                                 <!-- POPVER FROM BOOTSTRAP -->
                                 <a tabindex="0" class="sign-in-popover" role="button" data-toggle="popover"
-                                    data-trigger="focus" data-placement="bottom"
-                                    data-content="<a href='{{ url_for('login') }}'><b>LOG IN</b></a> or 
+                                    data-trigger="focus" data-placement="bottom" data-content="<a href='{{ url_for('login') }}'><b>LOG IN</b></a> or 
                                                   <a href='{{ url_for('register') }}'><b>REGISTER</b></a> 
                                                    to save recipes to your favourites!">
                                     <i class="far fa-heart"></i>
