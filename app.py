@@ -133,17 +133,17 @@ def get_recipes_paginated(return_route, page, sort_by, **kwargs):
         db_query = {'added_by': session['username']}
 
     # Query DB using the dict created above
-    if page == 1:  # This is page one, fetch the first 9 recipes
+    if page == 1:  # This is page one, fetch the first 12 recipes
         recipes = mongo.db.recipes.find(db_query).sort(
-            [(sort_by, -1), ('_id', -1)]).limit(9)
+            [(sort_by, -1), ('_id', -1)]).limit(12)
 
     else:  # This is not page one, skip forwards by required amount
         recipes = mongo.db.recipes.find(db_query).sort(
             [(sort_by, -1), ('_id', -1)]).skip(
-                (page - 1) * 9).limit(9)
+                (page - 1) * 12).limit(12)
 
     recipe_count = mongo.db.recipes.count_documents(db_query)
-    max_page = math.ceil(recipe_count / 9)
+    max_page = math.ceil(recipe_count / 12)
 
     return recipes, next_page, prev_page, recipe_count, max_page
 

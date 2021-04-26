@@ -14,9 +14,9 @@ body {
     font-family: 'Open Sans', Arial, Helvetica, sans-serif;
 }
 
-.block-content-container {
+/* .block-content-container {
     max-width: 2800px;
-}
+} */
 
 a:hover {
     text-decoration: none;
@@ -766,9 +766,6 @@ nav {
     .recipe-card-title {
         font-size: 2rem;
     }
-    .shrink-header {
-        font-size: 1.5rem;
-    }
     .recipe-card h6 {
         font-size: 0.8rem;
     }
@@ -946,18 +943,23 @@ nav {
     }
 }
 
-@media screen and (min-width: 1800px){
+@media (min-width: 1800px){
+    .block-content-container {
+        max-width: 2000px;
+    }
+    .col-xxl-3 {
+        flex: 0 0 25%;
+        position: relative;
+        width: 100%;
+        padding-right: 15px;
+        padding-left: 15px;
+
+    }
     .recipe-card {
         width: 80%;
         max-width: none;
     }
-    .recipe-card-title {
-        font-size: 3.5rem;
-        line-height: 90px;
-    }
-    .shrink-header {
-        font-size: 3rem;
-    }
+
     #slogan {
         font-size: 10rem;
         line-height: 220px;
