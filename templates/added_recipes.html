@@ -135,7 +135,7 @@
     <div class="row row-eq-height">
         {% for recipe in recipes %}
         <!-- RECIPE CARDS -->
-        <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center">
+        <div class="col-12 col-md-6 col-lg-4 col-xxl-3 d-flex justify-content-center">
             <div class="recipe-card added-recipe-card">
                 <a href="{{url_for('recipe_page', recipe_id=recipe._id, page=page, back_link='added_recipes', 
                     back_link_text='My Added Recipes', filters=filters, sort_by=sort_by)}}">
