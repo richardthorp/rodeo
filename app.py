@@ -323,6 +323,13 @@ def add_recipe():
             else:
                 formatted_recipe['image_name'] = 'default-image'
 
+            # Add 5 x 3 star ratings to level out average ratings
+            formatted_recipe['ratings'] = {"a": 3,
+                                           "b": 3,
+                                           "c": 3,
+                                           "d": 3,
+                                           "e": 3}
+
             # Insert recipe to DB
             recipe_id = mongo.db.recipes.insert_one(formatted_recipe)
             flash('Recipe added! Thank you!')
@@ -441,7 +448,7 @@ def format_recipe_data(form_data_dict):
         'instructions': instructions,
         'added_by': session['username'],
         'ratings': {},
-        'average_rating': 0,
+        'average_rating': 3,
         'favourites': []
         }
     return formatted_recipe
