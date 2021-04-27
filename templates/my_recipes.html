@@ -40,7 +40,7 @@
     <!-- SEARCH AND FILTER CONTAINER -->
     <div class="row search-container rounded-container mx-auto align-items-center p-1 p-md-2">
         <form method="POST" class="search-form"
-            action="{{ url_for('search_results', return_page='all_recipes', sort_by='average_rating')}}">
+            action="{{ url_for('search_results', return_page='my_recipes', sort_by='average_rating')}}">
             {{ form.hidden_tag() }}
             <div class="col-12 col-md-8 d-flex flex-nowrap mt-2 mt-md-0 align-items-center 
                 justify-content-end justify-content-md-start">
