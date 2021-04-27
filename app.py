@@ -587,7 +587,7 @@ def recipe_page(recipe_id):
 
         return redirect(url_for('recipe_page', recipe_id=recipe_id,
                                 sort_by=sort_by, filters=filters,
-                                back_link=back_link,
+                                back_link=back_link, page=page,
                                 back_link_text=back_link_text))
 
     return render_template("recipe_page.html", recipe=recipe,
