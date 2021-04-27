@@ -177,10 +177,11 @@ nav {
 
 .recipe-card hr {
     width: 80%;
+    margin: 0px auto 5px;
 }
 
 .recipe-card i {
-    font-size: 2rem;
+    font-size: 1.8rem;
 }
 
 .recipe-card form i {
@@ -219,18 +220,25 @@ nav {
 }
 
 .recipe-card .star {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
 }
 
 .recipe-card-title {
-    font-size: 2rem;
-    padding-top: 20px;
-    line-height: 50px;
+    font-size: 1.2rem;
+    margin: 0;
+    padding-top: 10px;
+    line-height: 40px;
+}
+
+.recipe-card h6 {
+    font-size: 0.8rem;
+    margin-top: 8px;
 }
 
 .shrink-header {
-    font-size: 1.5rem;
-    padding-top: 20px;
+    font-size: 1rem;
+    padding-top: 10px;
+    line-height: 35px;
 }
 
 /*------------------------------------------------------- RECIPE PAGE */
@@ -412,6 +420,7 @@ nav {
     border-radius: 10px;
     padding: 0 5px;
     cursor: pointer;
+    font-size: 0.8rem;
 }
 
 .custom-button {
@@ -760,15 +769,6 @@ nav {
     .recipe-card {
         padding: 10px;
     }
-    .recipe-card .star{
-        font-size: 1.5rem;
-    }
-    .recipe-card-title {
-        font-size: 2rem;
-    }
-    .recipe-card h6 {
-        font-size: 0.8rem;
-    }
     .recipe-header img {
         width: 90%;
     }
@@ -790,9 +790,6 @@ nav {
         -webkit-box-align: center;
             -ms-flex-align: center;
                 align-items: center;
-    }
-    .recipe-card-ratings .star i {
-        font-size: 1.2rem;
     }
 }
 
@@ -868,6 +865,32 @@ nav {
     }
     .about-row {
         min-height: 300px;
+    }
+    .recipe-card-title {
+        font-size: 2rem;
+        padding-top: 20px;
+        line-height: 50px;
+        margin-bottom: 10px;
+    }
+    .shrink-header {
+        font-size: 1.5rem;
+        padding-top: 20px;
+    }
+    .recipe-card h6 {
+        font-size: 1rem;
+        margin-top: 16px;
+    }
+    .recipe-card .star {
+        font-size: 1.8rem;
+    }
+    .recipe-card hr {
+        margin: 16px auto;
+    }
+    .recipe-card i {
+        font-size: 2rem;
+    }
+    .custom-button, .delete-button {
+        font-size: 1rem;
     }
     .login-form {
         height: 579.67px;
