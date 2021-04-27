@@ -119,10 +119,18 @@ This image shows the database schema for the app. Where a line runs from '1' - '
 <a name="features"></a>
 
 ## Features
-### Implemented Features
-
+### Features found throughout the website
 #### **Header and Footer**
-The header and footer elements are consistent throughout the website. To the left of the header is a clickable logo, which links to **/index**. This is standard practice in web design and expected by the user.
+* The header and footer elements are consistent and always available throughout the website.
+* The 'RODEO' logo acts as a link to **/index**
+* There are 3 links found at the right of the header
+    * These links change depending on whether the user is logged in or not.
+        * A logged out user is presented with **'ALL RECIPES'**, **'LOGIN'** and **'REGISTER'** 
+        * A logged in user is presented with **'ALL RECIPES'**, **'MY RECIPES'** and  **'LOG OUT'**
+* On screens larger than 768px wide, the same 3 links are available in the footer. On smaller screens, a link 'BACK TO TOP' is presented which returns the user to the top of the current page.
+* At the left of the footer is a copyright notice, which uses JavaScript to automatically update the year displayed.
+
+<!-- The header and footer elements are consistent throughout the website. To the left of the header is a clickable logo, which links to **/index**. This is standard practice in web design and expected by the user.
 
 To the right of the header on screen sizes of 768px wide or more, are three navigation links. On smaller screens, the links are contained in a dropdown menu which is triggered by a standard menu icon. Again, this is common in web design and the user will naturally understand the purpose of this icon. These links have clear 'hover' effects, that make the font slightly larger and brighter when the cursor is moved over them to reinforce to the user that these are clickable links.
 
@@ -130,10 +138,47 @@ The links themselves change depending on whether or not the user is logged in to
 
 At the right of the footer, the same 3 links are presented and are also dependent on the user being logged in or out. On screens smaller than 768px however, a link that reads **'BACK TO TOP'** is presented, which returns the user to the top of the current page.
 
-At the left of the footer is a copyright notice, which uses JavaScript to automatically update the year displayed.
+At the left of the footer is a copyright notice, which uses JavaScript to automatically update the year displayed. -->
 
-#### **/index**
-The **/index** landing page immediately presents to the user a striking and colourful illustration of a bottle of 'Rodeo Hot Sauce' as well as the tagline 'ADD SOME KICK TO YOUR COOK'. This serves to suggest to the user that this website is exciting and interesting - as well as belonging to the 'Rodeo Hot Sauce' brand.
+
+#### **Recipe Cards**
+* The recipe cards consist of an image, a recipe title, an average rating displayed by a star rating out of five, and a 'Favourite Recipe?' heart icon.
+* By clicking on the recipe cards image or recipe name, the user is taken to the page containing the actual recipe.
+* The font size for the recipe name is reduced with a JavaScript function if the title contains 28 or more characters, to keep all the content of the recipe cards within a similar size of each other across a row.
+* The 'Average Rating' for each recipe is displayed using up to 5 stars, and is rounded to the nearest 1/2 star.
+
+![A 2.5 star rating](static/images/readme-images/rating-stars.jpg 'A 2.5 star rating')
+
+* If a user attempts to click on the 'Favourite Recipe?' button without being logged in, a popover is presented which prompts the user to either **'LOG IN'** or **'REGISTER'** with those words acting as links to the relevant pages.
+* If the user is logged in, when hovering the cursor over the heart icons a tooltip is displayed which will suggest to the user either 'Add to favourites' or 'Remove from favourites' depending on whether or not the user has previously 'favourited' the recipe. 
+* If the recipe has been 'favourited', a solid heart icon is rendered, otherwise, a heart outline is rendered.
+
+![Favourite recipe icons](static/images/readme-images/favourite-icons.jpg '"Favourite recipe?" heart icons')
+
+* By clicking the 'Favourite Recipe' icon, the user can add or remove recipes from their **'MY RECIPES'** page. A message will slide down underneath the navigation bar and tell the user that the recipe has been successfully added or removed from their favourites.
+
+* If the user is not logged in, clicking on the heart icon will trigger a popover which prompts the user to register or login.
+
+#### **Search and Filter**
+* A text input that will match any words entered with text in the recipe names or ingredients found in the database
+* A 'View Filters' button which launches the filter modal.
+    * The modal enables the user to filter the recipes depending on recipe type (vegetarian, vegan and meat), as well as further filtering the recipes with options such as 'Healthy' and 'Gluten Free'.
+    * The filters can be used in conjunction with the search text input.
+
+#### **Pagination Links**
+* Can be found on any page which lists recipe cards where more than 12 recipes are available.
+* On the first page of available recipes, the 'Previous Page' link is grayed out and not clickable.
+* On the last page of available recipes, the 'Next Page' link is grayed out and not clickable.
+* If there are less than 12 available recipes, the pagination links will not be displayed.
+
+#### **Sort by: rating / newest links**
+* Available on all pages that list the recipes
+* By default, recipes are presented with the highest rated recipes first. 
+* The user can toggle between sorting by newest or highest rated using the links.
+* The sort by feature can be used in conjuction with the search and filter functionality
+
+
+<!-- The **/index** landing page immediately presents to the user a striking and colourful illustration of a bottle of 'Rodeo Hot Sauce' as well as the tagline 'ADD SOME KICK TO YOUR COOK'. This serves to suggest to the user that this website is exciting and interesting - as well as belonging to the 'Rodeo Hot Sauce' brand.
 
 Just below this is a small 'WELCOME' section, highlighted with a bright red background. This section succinctly explains to the user the purpose of the website and what a user can expect to gain by registering and using the website.
 
@@ -159,7 +204,12 @@ By clicking the 'Favourite Recipe' icon, the user can add or remove recipes from
 
 If the user is not logged in, clicking on the heart icon will trigger a popover which prompts the user to register or login (an [example of this popover](#recipe-page) can be viewed in the **/recipe_page** section.)
 
-These cards can be found on **/index**, **/all_recipes**, **/my_recipes** and **/added_recipies** and are always presented and function in the same way.
+These cards can be found on **/index**, **/all_recipes**, **/my_recipes** and **/added_recipies** and are always presented and function in the same way. -->
+
+#### **/index**
+* A responsive hero image that fills the width of the page up to 2000px wide
+* A short paragraph explaining the purpose of the website.
+* The 'SOME INSPIRATION' section features up to 4 recipe cards depending on the size of the users screen. This section displays the highest rated recipes available on the website.
 
 Below these recipe cards is a clickable button that says to the user 'CLICK HERE TO SEE MORE RECIPES'. This links to the **'ALL RECIPES'** page which displays all recipes on the website. 
 

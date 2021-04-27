@@ -37,6 +37,7 @@
 
 **To be able to quickly edit or delete recipes that I have contributed**
 * After submitting a recipe, the user is directed to that recipes **/recipe_page** page. At the top of the page are buttons to 'EDIT' and 'DELETE' the recipe.
+
 ![The 'EDIT' and 'DELETE' buttons in a recipe page](static/images/readme-images/testing-images/edit-delete-buttons.jpg "The 'EDIT' and 'DELETE' buttons in a recipe page")
 
 * The 'edit' and 'delete' buttons are also available to the user at the bottom of each recipe card in the **'/added_recipes'** page.
