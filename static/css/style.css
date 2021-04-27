@@ -955,6 +955,9 @@ nav {
         padding-left: 15px;
 
     }
+    .d-xxl-flex {
+        display: inline-flex !important;
+    }
     .recipe-card {
         width: 80%;
         max-width: none;
