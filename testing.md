@@ -7,7 +7,7 @@
 
 **To be able to register and sign in easily**
 * The navigation bar displays a link to the 'REGISTER' page which contains a very short registration form. 
-* Upon submition of the form, the user is automatically signed in and sent the the **/my_recipes** page.
+* Upon submission of the form, the user is automatically signed in and sent the the **/my_recipes** page.
 
 **To be able to navigate through the website intuitively and easily.**
 * The website has been designed following standard web design principles such as the the logo linking to the home page, and the navigation bar or menu icon being always accessible from the same place.
@@ -23,7 +23,7 @@
 
 ### As a returning user, I want:
 **To be able to log in easily**
-* The link to 'LOG IN' is always available via the navigation bar or menu icon. 
+* The link to 'LOG IN' is available via the navigation bar or menu icon. 
 
 **To be able to find new recipes easily**
 * All pages that display a list of recipe cards feature an option to view the newest recipes first.
@@ -62,12 +62,6 @@
 * The link to 'LOG OUT' is always available via the navigation bar or menu icon. 
 
 ![The log out button in the navigation bar](static/images/readme-images/testing-images/log-out-button.jpg "The log out button in the navigation bar")
-
-
-
-
-
-
 
 ## **Testing against Brand Objectives**
 ### **Increase brand awareness**
