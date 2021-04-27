@@ -36,17 +36,25 @@ The primary objectives of the website are to enable to brand to:
 As a user of this website, I am someone looking to find recipes or to contribute recipes to a community. I am an English speaker with an interest in cooking with hot sauce.
 
 ### User Stories
-As a user of the website, I want:
+#### As a first time user, I want:
+* To quickly understand the purpose of the website
+* To be able to register and sign in easily
 * To be able to navigate through the website intuitively and easily
 * To discover popular recipes involving hot sauce
-* To discover new recipes involving hot sauce
+
+#### As a returning user, I want:
+* To be able to log in easily
+* To be able to find new recipes easily
+
+#### Shared user requirements:
+As a user of the website, I want:
 * To be able to quickly and easily search the recipes to find specific ingredients or meal types
 * To contribute my own recipes to the website community
 * To be able to quickly edit or delete recipes that I have contributed
 * To be able to save recipes that interest me and be able to access them quickly
 * To be able to rate recipes and have those ratings influence the information hierarchy throughout the website
-* To be able to log in and log out of the website easily
 * For the data presented to me to be specific to me.
+* To be able to log out easily
 
 
 <a name="design"></a>
