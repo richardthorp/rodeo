@@ -119,7 +119,9 @@ This image shows the database schema for the app. Where a line runs from '1' - '
 <a name="features"></a>
 
 ## Features
-### Features found throughout the website
+<a name="shared-features"></a>
+
+### Shared Features
 #### **Header and Footer**
 * The header and footer elements are consistent and always available throughout the website.
 * The 'RODEO' logo acts as a link to **/index**
@@ -140,7 +142,6 @@ At the right of the footer, the same 3 links are presented and are also dependen
 
 At the left of the footer is a copyright notice, which uses JavaScript to automatically update the year displayed. -->
 
-
 #### **Recipe Cards**
 * The recipe cards consist of an image, a recipe title, an average rating displayed by a star rating out of five, and a 'Favourite Recipe?' heart icon.
 * By clicking on the recipe cards image or recipe name, the user is taken to the page containing the actual recipe.
@@ -159,11 +160,14 @@ At the left of the footer is a copyright notice, which uses JavaScript to automa
 
 * If the user is not logged in, clicking on the heart icon will trigger a popover which prompts the user to register or login.
 
-#### **Search and Filter**
+#### **Search and Filter Container**
 * A text input that will match any words entered with text in the recipe names or ingredients found in the database
 * A 'View Filters' button which launches the filter modal.
     * The modal enables the user to filter the recipes depending on recipe type (vegetarian, vegan and meat), as well as further filtering the recipes with options such as 'Healthy' and 'Gluten Free'.
     * The filters can be used in conjunction with the search text input.
+* If no results are returned from the search, the user is presented with text that states "NO RECIPES FOUND! Please adjust your search term or filters and try again." a well as a button to reset the page and clear the search terms.
+
+![The text displayed if no search results are found](static/images/readme-images/no-results.jpg 'The text displayed if no search results are found')
 
 #### **Pagination Links**
 * Can be found on any page which lists recipe cards where more than 12 recipes are available.
@@ -206,52 +210,80 @@ If the user is not logged in, clicking on the heart icon will trigger a popover 
 
 These cards can be found on **/index**, **/all_recipes**, **/my_recipes** and **/added_recipies** and are always presented and function in the same way. -->
 
+### Individual page features 
 #### **/index**
+This is the landing page for the website.
+
 * A responsive hero image that fills the width of the page up to 2000px wide
 * A short paragraph explaining the purpose of the website.
 * The 'SOME INSPIRATION' section features up to 4 recipe cards depending on the size of the users screen. This section displays the highest rated recipes available on the website.
-
-Below these recipe cards is a clickable button that says to the user 'CLICK HERE TO SEE MORE RECIPES'. This links to the **'ALL RECIPES'** page which displays all recipes on the website. 
-
-This button also has a cursor 'hover' effect to highlight that this is a clickable link.
+* A link to the **'ALL RECIPES'** page which displays all recipes on the website. This button has a mouseover effect to highlight that this is a clickable link.
 
 Normal link           |  Cursor hover link
 -------------------------:|:-------------------------
 ![Click Here to see more recipes button](static/images/readme-images/more-recipes-button.jpg 'Click Here to see more recipes button')  |  ![Click Here to see more recipes button](static/images/readme-images/more-recipes-button-hover.jpg 'Click Here to see more recipes button') 
 
-This button styling is found throughout the website for most clickable buttons to provide consistency and allow the user to quickly locate these interactive elements.
-
 #### **/recipe_page**
-The **/recipe_page** page holds a template that is used to render the actual recipes from the database. At the top left, if the user has navigated to the page from **/all_recipes**. **/my_recipes** or **/added_recipes** a 'back to...' link is rendered with the name of the page that the link directs to. If the user found the recipe page through any of the websites search features, the 'back to...' link will return the user to their search results to allow them to keep browsing them. 
+The **/recipe_page** page holds a template that is used to render the actual recipes from the database. 
 
-If the user viewing the page is also the user who added the recipe, an 'edit' and a 'delete' button are added to the top of the page. The 'edit' button allows the user to edit their recipe on **/edit_recipe** and the 'delete' button triggers a modal that double-checks that they wish to delete the recipe. These buttons are also made available to the admin user 'rodeo', so that any malicious or inappropriate content can be quickly removed. 
+* A 'BACK TO...' link. This link changes depending on where the user navigated to the recipe page from. 
+    * If the user found the recipe page using any search and filter functionality, or after paginating through recipe cards, this link will return the user to the search results and/or the correct page of paginated results.
+    * If the user navigated to the page from outside the website, no 'BACK TO...' link is presented.
+* If the user viewing the page is also the user who added the recipe, an 'edit' and a 'delete' button are added to the top of the page.
+    * The 'delete' button triggers a modal that asks the user to confirm that they wish to delete the recipe.
+* A list of recipe details, including the recipe type and how many people the recipe feeds.
+* A recipe image
+    * If the user uploaded an image when they submitted the recipe, this will be displayed.
+    * If no image was submitted with the recipe, a default image is presented here instead.
+![A recipe with the default image](static/images/readme-images/default-recipe-image.jpg 'A recipe with the default image')
 
-At the top of the page is the recipe name, in big bold font that matches that of the logo. Beneath this, there is a subtle line of text which reads 'Recipe added by' and then the username of whoever added the recipe.
+* An average rating score
+    * The average rating is rounded to the nearest half star.
+    * To prevent a single user rating resulting in the recipe being at the top or bottom of the average rating rankings, all recipes begin with 5 x 3 star ratings upon submission.
+* A user rating input
+    * If the user is logged in, they can submit their rating for the recipe by clicking on their chosen star rating and clicking the button directly below. 
+    * If the user is not logged in, clicking on the 'ADD RATING' button results in a popover that reads 'LOGIN or REGISTER to rate recipes' with links to **/login** and **/register**.
+    * If the user has already rated the recipe, their rating will be reflected in the number of coloured stars rendered when the page loads.
+    * When a user submits a rating, any existing rating for that recipe by that user will be replaced by the new rating. This means a user can only provide 1 rating for each recipe at a time.
+    * If the user hits the 'ADD RATING' button before a star rating is selected, a tooltip is rendered to instruct the user to "Please click on a star to submit a rating!".
+    * On screens smaller than 768px wide, these star rating features are replaced by a 'VIEW RATINGS' button which triggers a modal containing the average rating and user rating stars.
+    * Whenever a new rating is added, a message slides down from the navigation bar to thank the user for their rating.
+* A 'Favourite Recipe' heart icon toggle
+    * This works in the same way as [described in the shared features](#shared-features) section. 
+* A responsive 'Ingredients' container
+* A responsive 'Instructions' container
 
-Next, there are several details about the recipe, such as how many people the recipe serves, whether the recipe is vegan, vegetarian or meat and several other details which are selected by the user from a list when they add the recipe. This can be seen in the [**'/add_recipe'** section](#add-recipe)
 
-<a name="recipe-options-image"></a>
-![The recipe details rendered on a recipe page](static/images/readme-images/recipe-options.jpg 'The recipe details rendered on a recipe page')
+<!-- * At the top left, if the user has navigated to the page from **/all_recipes**. **/my_recipes** or **/added_recipes** a 'back to...' link is rendered with the name of the page that the link directs to. If the user found the recipe page through any of the websites search features, the 'back to...' link will return the user to their search results to allow them to keep browsing them.  -->
 
-These details also make up the filters available in the search functionality of **/all_recipes**, **/my_recipes** and **/added_recipes**.
+<!-- If the user viewing the page is also the user who added the recipe, an 'edit' and a 'delete' button are added to the top of the page. The 'edit' button allows the user to edit their recipe on **/edit_recipe** and the 'delete' button triggers a modal that double-checks that they wish to delete the recipe. These buttons are also made available to the admin user 'rodeo', so that any malicious or inappropriate content can be quickly removed.  -->
+
+<!-- At the top of the page is the recipe name, in big bold font that matches that of the logo. Beneath this, there is a subtle line of text which reads 'Recipe added by' and then the username of whoever added the recipe.
+
+Next, there are several details about the recipe, such as how many people the recipe serves, whether the recipe is vegan, vegetarian or meat and several other details which are selected by the user from a list when they add the recipe. This can be seen in the [**'/add_recipe'** section](#add-recipe) -->
+
+<!-- <a name="recipe-options-image"></a>
+![The recipe details rendered on a recipe page](static/images/readme-images/recipe-options.jpg 'The recipe details rendered on a recipe page') -->
+
+<!-- These details also make up the filters available in the search functionality of **/all_recipes**, **/my_recipes** and **/added_recipes**.
 
 Below this, the recipe image is displayed. If the user who added the recipe included an image then that image will be displayed, however, if no image was added a default image of an illustrated 'Rodeo Hot Sauce' bottle with patterns around it is inserted here instead.
 
-![A recipe with the default image](static/images/readme-images/default-recipe-image.jpg 'A recipe with the default image')
+![A recipe with the default image](static/images/readme-images/default-recipe-image.jpg 'A recipe with the default image') -->
 
-Under the image, the user can view the average rating for the recipe out of 5 stars, rounded to the nearest half star.
+<!-- Under the image, the user can view the average rating for the recipe out of 5 stars, rounded to the nearest half star. -->
 
 ![A 2.5 star rating](static/images/readme-images/rating-stars.jpg 'A 2.5 star rating')
 
-Next to the average rating stars are the user rating stars and the 'ADD RATING' button. If the user is logged in, they can submit their rating for the recipe by clicking on their chosen star rating and clicking the button directly below. If the user has already rated the recipe, their rating will be reflected in the number of coloured stars when the page loads. For instance, if the user has previously given the recipe a rating of 3/5, 3 of the stars will be coloured in when the recipe page is loaded.
+<!-- Next to the average rating stars are the user rating stars and the 'ADD RATING' button. If the user is logged in, they can submit their rating for the recipe by clicking on their chosen star rating and clicking the button directly below. If the user has already rated the recipe, their rating will be reflected in the number of coloured stars when the page loads. For instance, if the user has previously given the recipe a rating of 3/5, 3 of the stars will be coloured in when the recipe page is loaded.
 
 When a user submits a rating, any existing rating for that recipe by that user will be replaced by the new rating. This means a user can only provide 1 rating for each recipe at a time.
 
 If the user hits the 'ADD RATING' button before a star rating is selected, a tooltip is rendered to instruct the user to "Please click on a star to submit a rating!".
 
-On screens smaller than 768px wide, these star rating features are replaced by a 'VIEW RATINGS' button which triggers a modal containing the average rating and user rating stars.
+On screens smaller than 768px wide, these star rating features are replaced by a 'VIEW RATINGS' button which triggers a modal containing the average rating and user rating stars. -->
 
-![The ratings modal as seen on a mobile device](static/images/readme-images/rating-modal.jpg 'The ratings modal as seen on a mobile device')
+<!-- ![The ratings modal as seen on a mobile device](static/images/readme-images/rating-modal.jpg 'The ratings modal as seen on a mobile device')
 
 Whenever a new rating is added, a message slides down from the navigation bar to thank the user for their rating.
 
@@ -259,33 +291,49 @@ Next to the average and user rating stars is the 'FAVOURITE RECIPE' header and h
 
 If the user is logged in, this functions in the same way as the [heart icons on the recipe cards.](#heart-icons) 
 
-If the user is not logged in, neither the 'favourite recipe' nor 'user rating' features will work. Instead, if the user tries to interact with either of them, a popover is triggered which informs the user either 'LOGIN or REGISTER to save recipes to your favourites' or ''LOGIN or REGISTER to rate recipes'.
+If the user is not logged in, neither the 'favourite recipe' nor 'user rating' features will work. Instead, if the user tries to interact with either of them, a popover is triggered which informs the user either 'LOGIN or REGISTER to save recipes to your favourites' or ''LOGIN or REGISTER to rate recipes'. -->
 
 <a name="recipe-page"></a>
 
 ![The 'FAVOURITE RECIPE?' popover](static/images/readme-images/favourite-popover.jpg 'The "FAVOURITE RECIPE?" popover')
 
-Finally, the ingredients and instructions are presented. On larger screens, these are presented side by side, but below 992 pixels wide they are in a column. 
+<!-- Finally, the ingredients and instructions are presented. On larger screens, these are presented side by side, but below 992 pixels wide they are in a column.  -->
 
 ![Ingredients and instructions listed on a large screen](static/images/readme-images/ingredients-instructions.jpg 'Ingredients and instructions listed on a large screen')
 
 #### **/login**
-The **'LOG IN'** page features a simple form that has a text input that will accept either a users email address or username, a text input for the user's password and a submit button. If either of the text input fields are left blank, the form will not be validated and the user will be prompted to fill in the field.
+The **'LOG IN'** page features a simple form that allows a user to log in to the website.
+* A username/email input and a password input
+    * If either of the text input fields are left blank, the form will not be validated and the user will be prompted to fill in the field.
+    * If both fields are filled in, but the login details don't match details held in the database, a message slides down from the navigation bar to instruct the user "Login details incorrect, please try again."
+        * This instruction purposefully doesn't instruct the user which element of the form input is incorrect so as not to aid someone trying 'brute force' their way into the website with someone else's details.
+* On screens 768px wide or more, an illustration of a bottle of 'Rodeo Hot Sauce' is rendered to the right of the form.
+* A link to **/register** with the text "Need to sign up? Click here to register".
+
+ <!-- that has a text input that will accept either a users email address or username, a text input for the user's password and a submit button. If either of the text input fields are left blank, the form will not be validated and the user will be prompted to fill in the field.
 
 If both fields are filled in, but the login details don't match details held in the database, a message slides down from the navigation bar to instruct the user "Login details incorrect, please try again." This instruction purposefully doesn't instruct the user which element of the form input is incorrect so as not to aid someone trying 'brute force' their way into the website with someone else's details.
 
-On screens 768px wide or more, an illustration of a bottle of 'Rodeo Hot Sauce' is rendered to the right of the form to fill the space on the page.
+On screens 768px wide or more, an illustration of a bottle of 'Rodeo Hot Sauce' is rendered to the right of the form to fill the space on the page. -->
 
-Beneath the form, some text reads 'Need to sign up?' and then the line 'Click here to register' which acts as a link to the **'REGISTER'** page. This link is coloured with the blue shade that is typically found on links throughout the internet to make clear to a user that this is a link.
+<!-- Beneath the form, some text reads 'Need to sign up?' and then the line 'Click here to register' which acts as a link to the **'REGISTER'** page. This link is coloured with the blue shade that is typically found on links throughout the internet to make clear to a user that this is a link. -->
 
-After successful submission of the form, the user is sent to **'MY RECIPES'** and a message slides down from the navigation bar to say 'Welcome,' and then the user's username.
+<!-- After successful submission of the form, the user is sent to **'MY RECIPES'** and a message slides down from the navigation bar to say 'Welcome,' and then the user's username. -->
 
 ![A welcome message](static/images/readme-images/welcome.jpg)
 
 #### **/register**
-The **'REGISTER'** page features a form that contains 4 text input fields for the user's email address, preferred username, password and a 'retype password' input to ensure the user has entered their password choice correctly. If any of the text input fields are left blank, the form will not be validated and the user will be prompted to fill in the field.
+The **'REGISTER'** page features a form that allows users to register and gain access to the website main functionality.
+* 4 text input fields for the user's email address, preferred username, password and 'retype password'. 
+    * If any of the text input fields are left blank, the form will not be validated and the user will be prompted to fill in the field.
+    * If the username aleady exists on the database, a message displays "Sorry, that username is already taken".
+    * If the email address aleady exists on the database, a message displays "Sorry, that email address already has an account".
+    * If the password and 'retype password' inputs don't match on submit, a message displays "Please make sure the password fields match." 
+* On screens 768px wide or more, an illustration of a bottle of 'Rodeo Hot Sauce' is rendered to the right of the form.
+* A link to **/login** with the text "Already have an account? Click here to log in".
 
-Beneath the form, some text reads 'Already have an account?' and then the line 'Click here to log in' which acts as a link to the **'LOG IN'** page. This link is coloured with the blue shade that is typically found on links throughout the internet to make clear to a user that this is a link.
+
+<!-- Beneath the form, some text reads 'Already have an account?' and then the line 'Click here to log in' which acts as a link to the **'LOG IN'** page. This link is coloured with the blue shade that is typically found on links throughout the internet to make clear to a user that this is a link.
 
 The username and password fields have minimum and maximum input lengths which are stated clearly beneath the inputs. Should the user input not conform to these requirements, the form will not be validated and the user will be made aware of the problem and the input on which the problem has occurred. These validations occur on the front-end with the browser, but the back end is also checking these requirements and will reject the form data if any of the input data doesn't meet the requirements. 
 
@@ -295,11 +343,40 @@ Another validation check carried out by the back-end is to check whether the ema
 
 After successful submission of the form, the user is sent to **'MY RECIPES'** and a message slides down from the navigation bar to say 'Welcome to Rodeo,' and then the user's username.
 
-On screens 768px wide or more, an illustration of a bottle of 'Rodeo Hot Sauce' is rendered to the right of the form to fill the space on the page.
+On screens 768px wide or more, an illustration of a bottle of 'Rodeo Hot Sauce' is rendered to the right of the form to fill the space on the page. -->
+#### **/all_recipes**
+This page contains all the recipes available on the website.
+* The Search and Filter container
+* The 'Sort By:' links
+* 12 recipes cards per page, displayed on a responsive grid
+* Pagination links
+
 
 #### **/my_recipes**
-The **/my_recipes** page acts as a central hub for much of the app's functionality. This page presents to the user 3 buttons that can be used to navigate between **/my_recipes**, **/added_recipes** and **/add_recipe**. The buttons stay present on all three of the pages and act as a navigation bar within these pages. These buttons are styled in the same way as other buttons elements found throughout the website and include the same cursor hover effect to highlight that they are clickable links.
+The **/my_recipes** page acts as a central hub for much of the app's functionality. This is the page that users are routed to after logging in or registering. The page displays any recipes that the user has 'favourited' using the 'Favourite Recipe' heart icon toggle found on recipe cards and in recipe pages.
 
+* 3 buttons that can be used to navigate between **/my_recipes**, **/added_recipes** and **/add_recipe**. 
+    * The buttons stay present on all three of the pages and act as a navigation bar within these pages.
+
+![My Recipes buttons](static/images/readme-images/my-recipes-buttons.jpg 'My Recipes buttons')
+
+* The Search and Filter container
+* The 'Sort By:' links
+* 12 recipes cards per page, displayed on a responsive grid
+* Pagination links
+* If the user is yet to favourite any recipes, the page instucts the user to save their favourite recipes on this page by clicking on the heart icons found throughout the website.
+
+#### **/added_recipes**
+This page displays any recipes that the user has uploaded themselves.
+
+* The Search and Filter container
+* The 'Sort By:' links
+* 12 recipes cards per page, displayed on a responsive grid
+    * Each card has a 'EDIT' button and a 'DELETE' button at the bottom
+* Pagination links 
+* If the user is yet to add any recipes, the page instucts the user to add a recipe by clicking on the 'ADD A NEW RECIPE' button found on the page.
+
+<!-- 
 ![My Recipes buttons](static/images/readme-images/my-recipes-buttons.jpg 'My Recipes buttons')
 
 #### **/my_recipes, /all_recipes/ and /added_recipes**
@@ -323,7 +400,7 @@ Just below the search and filter section, if there are recipes to be displayed, 
 
 If there are more than 12 recipes returned from a search, or that fall within that page's remit (such as the user adding more than 12 recipes and viewing **/added_recipes**), pagination links are made available to move through the recipes 12 cards at a time. If the user is on the first or last page of results, this is signified by the pagination link becoming greyed out and the cursor no longer becoming a 'pointer' when hovered over the link. 
 
-![Pagination links on the first page of results](static/images/readme-images/pagination-links.jpg 'Pagination links on the first page of results')
+![Pagination links on the first page of results](static/images/readme-images/pagination-links.jpg 'Pagination links on the first page of results') -->
 
 <a name='add-recipe'></a>
 #### /add_recipe
