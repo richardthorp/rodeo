@@ -7,16 +7,16 @@
 
 **To be able to register and sign in easily**
 * The navigation bar displays a link to the 'REGISTER' page which contains a very short registration form. 
-* Upon submission of the form, the user is automatically signed in and sent the the **/my_recipes** page.
+* Upon submission of the form, the user is automatically signed in and sent to the **/my_recipes** page.
 
 **To be able to navigate through the website intuitively and easily.**
-* The website has been designed following standard web design principles such as the the logo linking to the home page, and the navigation bar or menu icon being always accessible from the same place.
+* The website has been designed following standard web design principles such as the logo linking to the home page, and the navigation bar or menu icon being always accessible from the same place.
 * The header and footer elements are found on every page and provide links to the most commonly used pages.
-* All clickable links and buttons feature hover effects to inform the user that they can be interated with.
+* All clickable links and buttons feature hover effects to inform the user that they can be interacted with.
 * Where appropriate, tooltips or popovers are added to elements to inform the user of their purpose.
 
 **To discover popular recipes involving hot sauce**
-* By default, all pages that display a list of recipe cards display the highest rated recipes first.
+* By default, all pages that display a list of recipe cards display the highest-rated recipes first.
 * In the 'SOME INSPIRATION' section of the **/index** page, up to 4 (depending on screen size) of the highest rated recipes are presented.
 
 ![The 3 highest rated recipes from the website displayed on /index](static/images/readme-images/testing-images/index-recipes.jpg "The 3 highest rated recipes from the website displayed on /index")
@@ -30,7 +30,7 @@
 
 ### Shared user requirements:
 **To be able to quickly and easily search the recipes to find specific ingredients or meal types**
-* All pages that display a list of recipe cards feature a text search input, as well the the option to filter recipes by a list of requirements.
+* All pages that display a list of recipe cards feature a text search input, as well the option to filter recipes by a list of requirements.
 
 **To contribute my own recipes to the website community**
 * Once on the **'/add_recipe'** page, a simple form is available for the user to fill out and submit their recipe to the database. This recipe is then immediately available to view on the website.
@@ -85,15 +85,18 @@ I feel that whilst these objectives have been met to some extent, as the focus o
 
 ## Validation
 ### HTML
-The HTML code has been validated against the [W3C Markup Validator](https://validator.w3.org/). This was done by copying the HTML code from Chrome Dev Tool once rendered in the browser, for all pages whilst both logged in and logged out of the website, and pasting the code into the validator. This was necessary to test the code in its final state after being processed by the Jinja templates. The HTML code contains no validity issues.
+The HTML code has been validated with the [W3C Markup Validator](https://validator.w3.org/). This was done by copying the HTML code from Chrome Dev Tools once rendered in the browser, for all pages whilst both logged in and logged out of the website, and pasting the code into the validator. This was necessary to test the code in its final state after being processed by the Jinja templates. The HTML code contains no validity issues.
 
 ### CSS and Javascript
-The CSS code has been validated against the [W3C CSS Validator](https://jigsaw.w3.org/css-validator/) and the JavaScript with the [JS Hint](https://jshint.com/) code analysis tool, with any issues highlighted by the validators fixed. The code contains no validity issues.
+The CSS code has been validated with the [W3C CSS Validator](https://jigsaw.w3.org/css-validator/) and the JavaScript with the [JS Hint](https://jshint.com/) code analysis tool, with any issues highlighted by the validators fixed. The code contains no validity issues.
 
 ### Python
-All Python code was written to be PEP 8 compliant. The only error message thrown by the Gitpod linter is 'Instance of 'Registration_form' has no 'errors' member'. I am unsure as to why this error is thrown as the function which uses the Registration_form.errors object has been tested and works as expected. The function has access to the data in the error object and uses the flash function to display a custom error message depending on the content of that object.
+All Python code was written to be PEP 8 compliant. There is an error message thrown by the Gitpod linter in the app.py file, which states 'Instance of 'Registration_form' has no 'errors' member'. I am unsure as to why this error is thrown as the function which uses the Registration_form.errors object has been tested and works as expected. The function has access to the data in the error object and uses the flash function to display a custom error message depending on the content of that object.
 
-![The route function which contains a pylint error](static/images/readme-images/testing-images/form-error.jpg "The route function which contains a pylint error")
+![A screenshot of the Registration_form error](static/images/readme-images/testing-images/form-error.jpg "A screenshot of the Registration_form error")
+
+There is another error being thrown in the forms.py file regarding the FieldsRequiredForm. This error states "Super of Meta has no render_field member". The code which this error concerns was copied from the WTForms GitHub repository in order to fix an issue with the 'required' attribute not being added to radio form inputs. The code does fix this issue, and no issues have been found during testing, therefore I have left the code with this error present.
+![A screenshot of the Registration_form error](static/images/readme-images/testing-images/FieldsRequiredForm-error.jpg "A screenshot of the Registration_form error")
 
 ## Responsive testing
 The website has been developed and tested to ensure a high level of responsiveness. This has been achieved using Google Chrome Dev Tools, testing on different physical devices as listed below and by viewing the site on [Am I Responsive?](http://ami.responsivedesign.is/).
@@ -117,21 +120,23 @@ The tests detailed in this section were all completed using the following web br
 ### Testing of site-wide features
 #### **Header and footer**
 ##### **Logged out user**
-1. Ensure navigation bar links read 'RECIPES', 'LOGIN' and 'REGISTER'.
-2. In the footer, check that the same links are visible on screens above 768px wide as well as the copyright information. 
-3. On a screen smaller than 768px wide, ensure that the copyright information is visible, and in place of the 3 navigation links there is one link to go 'BACK TO TOP'.
-4. Mouseover the 'RODEO' logo
+1. Ensure navigation bar links read 'ALL RECIPES', 'LOGIN' and 'REGISTER'.
+2. In the footer, check that the same links are visible on screens above 768px wide as well as the copyright information.
+3. On a screen smaller than 768px wide, ensure that the navigation links are hidden and replaced by the menu icon.
+    * Click on the menu icon and ensure that the dropdown menu is triggered and that the links are correct.
+4. On a screen smaller than 768px wide, ensure that the copyright information is visible, and in place of the 3 navigation links there is one link to go 'BACK TO TOP'.
+5. Mouseover the 'RODEO' logo
     * Ensure the cursor becomes a pointer.
-5. Click on the 'RODEO' logo
+6. Click on the 'RODEO' logo
     * Ensure logo links to /index.
-6. Mouseover footer links
+7. Mouseover footer links
     * Ensure the cursor becomes a pointer and the hover effect is triggered.
-7. Click on footer links
+8. Click on footer links
     * Ensure links direct to correct page.
 
 ##### **Logged in user**
-1. Ensure navigation bar links read 'RECIPES', 'MY RECIPES' and 'LOG OUT'. 
-2. Repeat steps 2 to 7 from **Logged out user** above
+1. Ensure navigation bar links read 'ALL RECIPES', 'MY RECIPES' and 'LOG OUT'. 
+2. Repeat steps 2 to 8 from **Logged out user** above
 
 *******************************************
 <a name="recipe-cards"></a>
@@ -166,37 +171,48 @@ The tests detailed in this section were all completed using the following web br
 2. Type text into the text input and click on 'SEARCH'
     * Ensure relevant search results are returned.
     * If no results are returned, ensure text reads 'NO RECIPES FOUND! Please adjust your search term or filters and try again.'
-    * If more than 9 results are returned, ensure pagination links are rendered at the bottom of the page (see pagination link testing below).
+    * If more than 12 results are returned, ensure pagination links are rendered at the bottom of the page (see pagination link testing below).
     * Ensure the 'REMOVE SEARCH TERMS AND FILTERS' button is rendered
         * Mouseover button and ensure hover effect is triggered.
         * Click on the button and ensure the button links back to the original page, and that all relevant recipes are displayed.
-3. Mouseover the  'FILTER' button
+3. Mouseover the 'VIEW FILTERS' button
     * Ensure the cursor becomes a pointer and the hover effect is triggered.
-4. Select different options, including a combination of recipe type (vegetarian, vegan, meat) and recipe options and click on the 'FILTER' button.
-    * Ensure relevant recipes are returned.
-    * If no results are returned, ensure text reads 'NO RECIPES FOUND! Please adjust your search term or filters and try again.'
-    * If more than 9 results are returned, ensure pagination links are rendered at the bottom of the page (see pagination link testing below).
-    * Ensure the 'REMOVE SEARCH TERMS AND FILTERS' button is rendered
-        * Mouseover button and ensure hover effect is triggered.
-        * Click on the button and ensure that the button links back to the original page and that all relevant recipes are displayed.
+
+4. Click on the 'VIEW FILTERS' button.
+    * Mouseover the 'CLOSE' button
+        * Ensure the cursor becomes a pointer and the hover effect is triggered.
+    * Click on the 'CLOSE' button
+        * Ensure that the modal is removed
+    * Click outside of the modal
+        * Ensure that the modal is removed
+    * Mouseover the 'ADD FILTERS' button
+        * Ensure the cursor becomes a pointer.
+    * Select different options, including a combination of recipe type (vegetarian, vegan, meat) and recipe options and click on the 'ADD FILTERS' button.
+        * Ensure relevant recipes are returned.
+        * Ensure the 'REMOVE SEARCH TERMS AND FILTERS' button is rendered
+            * Mouseover button and ensure hover effect is triggered.
+            * Click on the button and ensure that the button links back to the original page and that all relevant recipes are displayed.
+    * Enter a search query that returns no results
+        * Ensure text reads 'NO RECIPES FOUND! Please adjust your search term or filters and try again.'
+    * If more than 12 results are returned, ensure pagination links are rendered at the bottom of the page (see pagination link testing below).
 
 **************************
 #### **Pagination links**
 
 1. On the first page of available recipes
-    * Ensure that the 'PREVIOUS PAGE' link has greyed out effect and that moving the mouse over the link renders no change in the cursor.
+    * Ensure that the 'PREVIOUS PAGE' link has a greyed out effect and that moving the mouse over the link renders no change in the cursor.
     * Mouseover 'NEXT PAGE' link
         * Ensure hover effect is rendered.
     * Click on the 'NEXT PAGE' link
-        * Ensure that a new page of unique recipes are rendered. If paginating through search and filter results and/or have sorted the recipes by rating or newest, ensure that those conditions are still met.
-2. In the middle of available recipes (more than 18 recipes available)
+        * Ensure that a new page of unique recipes is rendered. If paginating through search and filter results and/or have sorted the recipes by rating or newest, ensure that those conditions are still met.
+2. In the middle of available recipes (more than 24 recipes available)
     * Ensure that both 'PREVIOUS PAGE' and 'NEXT PAGE' links are rendered.
     * Mouseover 'PREVIOUS PAGE' and 'NEXT PAGE' links
         * Ensure hover effect is rendered.
     * Click on 'PREVIOUS PAGE' and 'NEXT PAGE' links
-        * Ensure that the previous or a new page of unique recipes are rendered. If paginating through search and filter results and/or have sorted the recipes by rating or newest, ensure that those conditions are still met.
+        * Ensure that the previous or a new page of unique recipes is rendered. If paginating through search and filter results and/or have sorted the recipes by rating or newest, ensure that those conditions are still met.
 3. On the last page of available results
-    * Ensure that the 'NEXT PAGE' link has greyed out effect and that moving the mouse over the link renders no change in the cursor.
+    * Ensure that the 'NEXT PAGE' link has a greyed out effect and that moving the mouse over the link renders no change in the cursor.
     * Mouseover 'PREVIOUS PAGE' link
         * Ensure hover effect is rendered.
     * Click on the 'PREVIOUS PAGE' link
@@ -207,7 +223,7 @@ The tests detailed in this section were all completed using the following web br
 1. Add 5 recipes and give them descending numerical names (give the first recipe the name 'Five', the second 'Four' and so on), and give each recipe an ingredient named 'testing'
     * On the /all_recipes page, click on 'Sort by: newest' and ensure that the results presented are returned in numerical order.
 2. Add different ratings to recipes
-    * On the /all_recipes page, click on 'Sort by: ratings' and ensure that the results presented are returned with the highest rated recipes first.
+    * On the /all_recipes page, click on 'Sort by: ratings' and ensure that the results are returned with the highest rated recipes first.
 3. On the /all_recipes page, perform a search for 'testing' and repeat steps 1 and 2.
 4. Repeat tests 1 to 3 on the /my_recipes and /added_recipes pages.
 
@@ -216,7 +232,7 @@ The tests detailed in this section were all completed using the following web br
 #### /index**
 1. Test the recipe cards according to the tests written in ['Recipe Cards' above](#recipe-cards)
 2. Add and remove ratings to recipes
-    * Ensure that the recipe cards in the 'SOME INSPIRATION section are updated to show the 3 highest rated recipes.
+    * Ensure that the recipe cards in the 'SOME INSPIRATION section are updated to show the 4 highest rated recipes (depending on screen size).
 3. Mouseover 'CLICK HERE TO SEE MORE RECIPES' link
     * Ensure the cursor becomes a pointer and the hover effect is triggered.
 4. Click on the 'CLICK HERE TO SEE MORE RECIPES' link
@@ -280,7 +296,7 @@ The tests detailed in this section were all completed using the following web br
 7. Enter an invalid email address
     * Ensure 'Please include an @ in the email address' tooltip is presented on the email input.
 8. For each of the username and password inputs, enter text that does not conform to the length requirements
-    * Ensure 'Please lengthen/shorten this text...' tooltip is presented on the offending input.
+    * Ensure 'Please lengthen this text...' tooltip is presented on the offending input.
 9. Enter valid text into all inputs with an email address that already exists in the database
     * Ensure the 'Sorry, that email address already has an account' message slides in from the navigation bar, and then slides back up after 4 seconds.
 10. Enter valid text into all inputs with a username that already exists in the database
@@ -298,6 +314,7 @@ For all tests above that result in a validation error, ensure that no data is se
 
 **************************
 <a name="/recipe_page"></a>
+
 #### **/recipe_page**
 ##### **Logged in user**
 1. Test navigation bar and footer according to tests detailed in ["Testing of site-wide features"](#site-wide-features).
@@ -343,14 +360,14 @@ On a screen wider than 768px:
 4. Click on a user rating star and then click the 'ADD RATING' button
     * Check that the 'Thank you for your rating' message slides in from the navigation bar, and then slides back up after 4 seconds.
     * Check that the new rating is reflected in the 'Average Rating' stars on the page.
-    * Within the MongoDB website and in the 'rodeo' database, find the corresponding recipe document in the 'recipes' collection. Make sure that the ratings object in the document is updated accordingly.
+    * Within the MongoDB website and in the 'rodeo' database, find the corresponding recipe document in the 'recipes' collection. Make sure that the 'ratings' object in the document is updated accordingly.
 5. Commit a 'hard refresh' of the recipe page (to clear out any cached version stored in the browser)
     * Make sure that the user rating stars are coloured gold to correlate the rating given in step 5.
 6. Repeat steps 5 and 6
-    * Make sure that the ratings object for the recipe only contains one key-value pair for the username, and that the value has been updated.
+    * Make sure that the 'ratings' object for the recipe only contains one key-value pair for the username, and that the value has been updated.
 7. Click on the 'ADD RATING' button without first clicking on a star
     * Ensure a tooltip is rendered which states 'Please click on a star to submit a rating'
-    * Within the MongoDB website, find the corresponding recipe in the recipes collection and make sure no data has been added to the ratings object.
+    * Within the MongoDB website, find the corresponding recipe in the recipes collection and make sure no data has been added to the 'ratings' object.
 
 On a screen less than 768px wide:
 
@@ -381,7 +398,7 @@ On a screen less than 768px wide:
     * Ensure the cursor becomes a pointer and the hover effect is triggered.
 5. Test the search and filter functionality according to tests detailed in ["Testing of site-wide features"](#site-wide-features).
 6. Test the 'Sort recipes by:' links according to tests detailed in ["Testing of site-wide features"](#site-wide-features).
-7. On /all_recipes, add a selection of recipes to /my_recipes using the 'FAVOURITE RECIPE' heart icon (at least 19 recipes needed)
+7. On /all_recipes, add a selection of recipes to /my_recipes using the 'FAVOURITE RECIPE' heart icon (at least 25 recipes needed)
     * Navigate to /my_recipes and ensure that the correct recipes are present
     * Test the pagination links according to tests detailed in ["Testing of site-wide features"](#site-wide-features).
     * Using the 'FAVOURITE RECIPE' heart icon on the recipe cards, remove a selection of recipes from the list
@@ -397,7 +414,7 @@ On a screen less than 768px wide:
 3. Ensure the other 2 buttons ('VIEW MY FAVOURITE RECIPES', 'ADD A NEW RECIPE') have the standard 'my-recipe-buttons' CSS class
 4. Mouse over 'VIEW MY FAVOURITE RECIPES' and 'ADD A NEW RECIPE' buttons
     * Ensure the cursor becomes a pointer and the hover effect is triggered.
-5. Add a selection of recipes using /add_recipe (at least 19 recipes)
+5. Add a selection of recipes using /add_recipe (at least 25 recipes)
     * Ensure only those recipes are presented in /added_recipes
     * Test the pagination links according to tests detailed in ["Testing of site-wide features"](#site-wide-features).
     * Test the search and filter functionalilty according to tests detailed in ["Testing of site-wide features"](#site-wide-features).
@@ -425,7 +442,7 @@ On a screen less than 768px wide:
 7. For each of the required inputs (all except for recipe filter checkboxes and image file upload), fill out the form but leave that input blank
     * Ensure 'Please fill in this field' tooltip is presented on the empty input.
 8. For each of the inputs that have character length requirements, try to submit the form with invalid lengths
-    * Ensure 'Please lengthen/shorten this text...' tooltip is presented on the offending input.
+    * Ensure 'Please lengthen this text...' tooltip is presented on the offending input.
 9. With all available text boxes in the 'Ingredients' section containing text, click on the plus button
     * Ensure a new text input is rendered
         * Submit the form with data in the new input and ensure data is processed correctly (ie. the resulting recipe page contains all the data)
@@ -463,10 +480,10 @@ On a screen less than 768px wide:
     * Test navigation bar and footer according to tests detailed in ["Testing of site-wide features"](#site-wide-features).
 2. Navigate to /edit_recipe via the 'EDIT' button on a recipe card on the /added_recipes page
     * Ensure that the edit recipe form inputs are pre-populated with the existing recipe data
-3. Navigate to /edit_recipe using a recipe that does contain a user uploaded image
+3. Navigate to /edit_recipe using a recipe that contains a user uploaded image
     * Ensure that the 3 boxes for 'KEEP EXISTING IMAGE', 'USE DEFAULT IMAGE' and 'ADD A NEW IMAGE' are rendered
         * Ensure that the 'KEEP EXISTING IMAGE' is selected by default and that the image is rendered within the box
-        * Mouse over the other 2 boxes and ensure the cursor becomes a pointer and the hover effect is triggered.
+        * Mouse over the other 2 boxes and ensure that the cursor becomes a pointer and the hover effect is triggered.
     * Submit the form with 'KEEP EXISTING IMAGE' selected
         * Check that the image is still displayed on the resulting recipe page
     * Submit the form with 'USE DEFAULT IMAGE' selected
@@ -478,7 +495,7 @@ On a screen less than 768px wide:
     * Click on 'ADD A NEW IMAGE' but don't select an image in the file explorer
         * Make sure that the 'ADD A NEW IMAGE' input is not selected
     * Click on 'ADD A NEW IMAGE', select an image in the file explorer but then select a different option from 'USE DEFAULT IMAGE' or 'KEEP EXISTING IMAGE' and submit the form
-        * Make sure that the selected option is presented on the resulting recipe page
+        * Make sure that the selected option is presented on the resulting recipe page and that no new image data is sent to the database.
 
 **************************
 #### **/page_not_found (404 error)**
@@ -495,5 +512,5 @@ On a screen less than 768px wide:
 
 **************************
 #### **/request_entity_too_big (413 error)**
-It has not been possible to test this route function due to issues with running the app on the Flask Development server. When testing this function, the connection to the server cuts out and the 413 error is not returned. This issue has been noted on [Stack Overflow with users saying]("https://stackoverflow.com/questions/19911106/flask-file-upload-limit") that when the app is moved to a production server, the issue is resolved.
+It has not been possible to test this route function due to issues with running the app on a development server. When testing this function, the connection to the server cuts out and the 413 error is not returned. This issue has been noted on [Stack Overflow with users saying]("https://stackoverflow.com/questions/19911106/flask-file-upload-limit") that when the app is moved to a production server, the issue is resolved.
 
