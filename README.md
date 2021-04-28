@@ -1,3 +1,4 @@
+![Screenshot from http://ami.responsivedesign.is/](static/images/readme-images/responsive.jpg "Screenshot from http://ami.responsivedesign.is/")
 # Rodeo Hot Sauce
 This website has been created for a fictitious hot sauce brand, "RODEO HOT SAUCE". 
 
