@@ -102,11 +102,13 @@ a:hover {
 nav {
   background-color: #136F63;
   height: 120px;
+  flex-shrink: 0;
+  padding: 0px;
 }
 
-.navbar {
+/* .navbar {
     padding: 0px;
-}
+} */
 
 .navbar-collapse {
     background-color: #136F63;
