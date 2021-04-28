@@ -403,9 +403,23 @@ If there are more than 12 recipes returned from a search, or that fall within th
 ![Pagination links on the first page of results](static/images/readme-images/pagination-links.jpg 'Pagination links on the first page of results') -->
 
 <a name='add-recipe'></a>
-#### /add_recipe
-This page contains the form with which users can upload their own recipes and is only accessible to logged-in users. The form is validated by both the front and back-end and any requirements are clearly displayed to the user. The form is broken into sections in order to not overwhelm the user and allow the page to flow steadily.
+#### **/add_recipe**
+This page contains the form with which users can upload their own recipes and is only accessible to logged-in users. The form is broken into sections in order to not overwhelm the user and allow the page to flow steadily.
 
+* The form is validated by both the front and back-end and any requirements are clearly displayed to the user.
+* Additional inputs for 'Ingredients' and 'Instructions' can be rendered by clicking on the plus symbol.
+    * If any of the inputs are empty, no additional input is rendered and a tooltip appears that says 'Please use this input first.'
+    ![The tooltip that appears if the plus button is pressed early](static/images/readme-images/add-row-tooltip.jpg 'The tooltip that appears if the plus button is pressed early')
+* The 'Instructions' text inputs feature an auto-resize function (powered by JavaScript and written by James Padolsey http://james.padolsey.com) which makes the input grow as the user enters text. This makes it much easier for the user to look back at what they have written without the need to scroll.  
+![The auto-resize text box in action](static/images/readme-images/textbox-resize.jpg 'The auto-resize text box in action')
+* An optional file input
+    * The file type is validated at the back-end and will be rejected if the file extension isn't jpg, jpeg or png.
+    * The maximum allowed file size is 1MB.
+        * If the user adds a file that exceeds this limit, an alert is triggered that states 'File size too big, please choose a smaller file.' and the file is removed from the input.
+        * The back end will reject any request data greater than 1.2MB (the excess 0.2MB to allow for the rest of the form data)
+    * If valid file is selected, the file name is rendered next to the input to reassure the user that the file is selected.   
+    ![A file name next to the 'Select File' button](static/images/readme-images/selected-image.jpg "A file name next to the 'Select File' button")
+<!-- 
 The first section requires the user to add the recipe name, recipe type and any other details that apply to their recipe.
 
 ![The top of the add recipe form](static/images/readme-images/add-recipe-form-top.jpg 'The top of the add recipe form')
@@ -431,21 +445,29 @@ As well as the file type, the file size is also validated at both the front and 
 
 If a file is selected that meets both the file type and size requirements, the file name is rendered next to the input to reassure the user that the file is selected.
 
-![A file name next to the 'Select File' button](static/images/readme-images/selected-image.jpg "A file name next to the 'Select File' button")
+![A file name next to the 'Select File' button](static/images/readme-images/selected-image.jpg "A file name next to the 'Select File' button") -->
 
 #### /edit_recipe
-The **/edit_recipe** page contains mostly the same form as the **/add_recipe** page form, however, the inputs are pre-filled with the data from whichever recipe the user wishes to edit. 
+The **/edit_recipe** page contains the same form as the **/add_recipe** page form except for the 'Add and image' section. The inputs are pre-populated with the data from whichever recipe the user wishes to edit.
 
-The only other difference between the **/add_recipe** and **/edit_recipe** forms is the add image section. 
+* If the user has previously uploaded an image with the recipe, an option to keep that image is offered along with a preview of the image.
+    * Next to the preview, options to use the default image or to upload a new image are offered.
+        * If the default image or new image option is selected, the existing image is deleted from the database.
+    ![The image options if an image exists for the recipe](static/images/readme-images/image-options.jpg 'The image options if an image exists for the recipe')
+
+
+
+<!-- The only other difference between the **/add_recipe** and **/edit_recipe** forms is the add image section. 
 
 If the user has previously uploaded an image with the recipe, an option to keep that image is offered along with a preview of the image. Next to that are options to use the default image or to upload a new image. These options function as a radio input and therefore only one can be selected. If the default image option or the new image option is selected, the original image is deleted from the database and the new image presented in its place on the recipe page.
 
 ![The image options if an image exists for the recipe](static/images/readme-images/image-options.jpg 'The image options if an image exists for the recipe')
 
-If however, there wasn't an image attached to the recipe, the add image section looks and behaves the same as it does on **/add_recipe**.
+If however, there wasn't an image attached to the recipe, the add image section looks and behaves the same as it does on **/add_recipe**. -->
 
 #### /404
 The **404** page is displayed if the user tries to access a page that doesn't exist. For example, the user may try to access a recipe they have bookmarked in their browser, but the recipe has since been deleted. The **404** page simply states "It seems that whatever you're looking for isn't here" and then provides a link to **/all_recipes** with the text "Why not come look at some delicious recipes?". As with all other pages on the website, the header and footer are present to allow for easy access to the main pages of the website.
+
 #### /500
 Similar to the **404** page, the **500** page is displayed if the server runs into any issues, either due to a programming error or the server running into issues. This page states "It seems something has gone wrong!" and then provides a link to **/all_recipes** with the text "Why not come look at some delicious recipes?". Again, the header and footer are present to allow the user to easily navigate back through the website.
 
@@ -455,6 +477,11 @@ A very useful feature that is not currently available in the app is the ability 
 Another feature I would like to add is a dashboard available to the website admin, which could display statistics useful to the 'Rodeo Hot Sauce' brand. These statistics could highlight trends such as growing popularity of certain meal types which would be useful for marketing purposes.
 
 To further encourage users to register and contribute to the website, I would like to add the ability to add comments to the recipe pages. I believe this would be an effective way to boost the sense of community within the users of the website.
+
+In order to make the application more scalable, a cloud storage system to manage the images be highly beneficial. A service such as [Cloudinary](https://cloudinary.com/) would be ideal as this service can also process the images uploaded by users to manage the file sizes and other attributes.
+
+I would also like to add additional 'Sort by' options, including the ability to sort the recipes in order of how many users have added the recipe to their favourites.
+
 
 <a name="tech"></a>
 ## Languages and Technologies
