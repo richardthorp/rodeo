@@ -329,6 +329,8 @@ def add_recipe():
                                            "c": 3,
                                            "d": 3,
                                            "e": 3}
+            formatted_recipe['average_rating'] = 3
+            formatted_recipe['favourites'] = []
 
             # Insert recipe to DB
             recipe_id = mongo.db.recipes.insert_one(formatted_recipe)
@@ -447,9 +449,6 @@ def format_recipe_data(form_data_dict):
         'ingredients': ingredients,
         'instructions': instructions,
         'added_by': session['username'],
-        'ratings': {},
-        'average_rating': 3,
-        'favourites': []
         }
     return formatted_recipe
 

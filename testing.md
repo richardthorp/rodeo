@@ -495,6 +495,8 @@ On a screen less than 768px wide:
         * Make sure that the 'ADD A NEW IMAGE' input is not selected
     * Click on 'ADD A NEW IMAGE', select an image in the file explorer but then select a different option from 'USE DEFAULT IMAGE' or 'KEEP EXISTING IMAGE' and submit the form
         * Make sure that the selected option is presented on the resulting recipe page and that no new image data is sent to the database.
+    * Add a rating to a recipe and add the recipe to 'Favourites'
+        * Edit the recipe, and ensure the recipe rating still exists and that the recipe is still in the **/my_recipes** favourites section.
 
 **************************
 #### **/page_not_found (404 error)**
