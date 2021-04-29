@@ -139,7 +139,7 @@ This image shows the database schema for the app. Where a line runs from '1' - '
 * The recipe cards consist of an image, a recipe title, an average rating displayed by a star rating out of five, and a 'Favourite Recipe?' heart icon.
 * By clicking on the recipe card's image or recipe name, the user is taken to the page containing the actual recipe.
 * The font size for the recipe name is reduced with a JavaScript function if the title contains 28 or more characters, to keep all the content of the recipe cards within a similar size of each other across a row.
-* The 'Average Rating' for each recipe is displayed using up to 5 stars, and is rounded to the nearest 1/2 star.
+* The 'Average Rating' for each recipe is displayed using up to 5 stars and is rounded to the nearest 1/2 star.
 
 ![A 2.5 star rating](static/images/readme-images/rating-stars.jpg 'A 2.5 star rating')
 
@@ -166,15 +166,15 @@ This image shows the database schema for the app. Where a line runs from '1' - '
 #### **Pagination Links**
 ![The pagination links](static/images/readme-images/pagination-links.jpg "The pagination links")
 * Can be found on any page which lists recipe cards where more than 12 recipes are available.
-* On the first page of available recipes, the 'Previous Page' link is grayed out and not clickable.
-* On the last page of available recipes, the 'Next Page' link is grayed out and not clickable.
+* On the first page of available recipes, the 'Previous Page' link is greyed out and not clickable.
+* On the last page of available recipes, the 'Next Page' link is greyed out and not clickable.
 * If there are less than 12 available recipes, the pagination links will not be displayed.
 
 #### **Sort by: rating / newest links**
 * Available on all pages that list the recipes
 * By default, recipes are presented with the highest rated recipes first. 
 * The user can toggle between sorting by newest or highest rated using the links.
-* The sort by feature can be used in conjuction with the search and filter functionality
+* The sort by feature can be used in conjunction with the search and filter functionality
 
 ### Individual page features 
 #### **/index**
@@ -182,7 +182,7 @@ This is the landing page for the website.
 
 * A responsive hero image that fills the width of the page up to 2000px wide
 * A short paragraph explaining the purpose of the website.
-* The 'SOME INSPIRATION' section features up to 4 recipe cards depending on the size of the users screen. This section displays the highest rated recipes available on the website.
+* The 'SOME INSPIRATION' section features up to 4 recipe cards depending on the size of the user's screen. This section displays the highest rated recipes available on the website.
 * A link to the **'ALL RECIPES'** page which displays all recipes on the website. This button has a mouseover effect to highlight that this is a clickable link.
 
 Normal link           |  Cursor hover link
@@ -234,8 +234,8 @@ The **'LOG IN'** page features a simple form that allows a user to log in to the
 The **'REGISTER'** page features a form that allows users to register and gain access to the website's main functionality.
 * 4 text input fields for the user's email address, preferred username, password and 'retype password'. 
     * If any of the text input fields are left blank, the form will not be validated and the user will be prompted to fill in the field.
-    * If the username aleady exists on the database, a message displays "Sorry, that username is already taken".
-    * If the email address aleady exists on the database, a message displays "Sorry, that email address already has an account".
+    * If the username already exists on the database, a message displays "Sorry, that username is already taken".
+    * If the email address already exists on the database, a message displays "Sorry, that email address already has an account".
     * If the password and 'retype password' inputs don't match on submit, a message displays "Please make sure the password fields match."
 * On successful submission, the password is hashed and the hashed version stored in the database.
 * On screens 768px wide or more, an illustration of a bottle of 'Rodeo Hot Sauce' is rendered to the right of the form.
@@ -246,7 +246,7 @@ This page contains all the recipes available on the website.
 * The Search and Filter container
 * The 'Sort By:' links
 * 12 recipes cards per page, displayed on a responsive grid
-    * On screens of up to 768px wide, th cards are displayed in a column
+    * On screens of up to 768px wide, the cards are displayed in a column
     * Between 768px and 992px wide, the cards are displayed in 6 x 2 card rows
     * Between 992px and 1800px wide, the cards are displayed in 4 x 3 card rows
     * Over 1800px wide, the cards are displayed in 3 x 4 card rows
@@ -263,9 +263,9 @@ The **/my_recipes** page acts as a central hub for much of the app's functionali
 
 * The Search and Filter container
 * The 'Sort By:' links
-* 12 recipes cards per page, displayed on a responsive grid as descibed in the **/all_recipes** section.
+* 12 recipes cards per page, displayed on a responsive grid as described in the **/all_recipes** section.
 * Pagination links
-* If the user is yet to favourite any recipes, the page instucts the user to save their favourite recipes on this page by clicking on the heart icons found throughout the website.
+* If the user is yet to favourite any recipes, the page instructs the user to save their favourite recipes on this page by clicking on the heart icons found throughout the website.
 ![The My Recipes page with no favourite recipes](static/images/readme-images/add-fav-recipes.jpg "The My Recipes page with no favourite recipes")
 
 #### **/added_recipes**
@@ -273,15 +273,15 @@ This page displays any recipes that the user has uploaded themselves.
 
 * The Search and Filter container
 * The 'Sort By:' links
-* 12 recipes cards per page, displayed on a responsive grid as descibed in the **/all_recipes** section.
+* 12 recipes cards per page, displayed on a responsive grid as described in the **/all_recipes** section.
     * Each card has a 'EDIT' button and a 'DELETE' button at the bottom
 * Pagination links 
-* If the user is yet to add any recipes, the page instucts the user to add a recipe by clicking on the 'ADD A NEW RECIPE' button found on the page.
+* If the user is yet to add any recipes, the page instructs the user to add a recipe by clicking on the 'ADD A NEW RECIPE' button found on the page.
 ![The /added_recipes page with no recipes](static/images/readme-images/add-your-recipes.jpg "The /added_recipes page with no recipes")
 
 <a name='add-recipe'></a>
 #### **/add_recipe**
-This page contains the form with which users can upload their own recipes and is only accessible to logged-in users. If a non logged in user trues to tload the page, they are redirected to **/login**. The form is broken into sections in order to not overwhelm the user and allow the page to flow steadily.
+This page contains the form with which users can upload their own recipes and is only accessible to logged-in users. If a non logged in user tries to load the page, they are redirected to **/login**. The form is broken into sections in order to not overwhelm the user and allow the page to flow steadily.
 
 * The form is validated by both the front and back-end and any requirements are clearly displayed to the user.
 * Additional inputs for 'Ingredients' and 'Instructions' can be rendered by clicking on the plus symbol.
@@ -292,7 +292,7 @@ This page contains the form with which users can upload their own recipes and is
     * The maximum allowed file size is 1MB.
         * If the user adds a file that exceeds this limit, an alert is triggered using JavaScript that states 'File size too big, please choose a smaller file.' and the file is removed from the input.
         * The back end will reject any request data greater than 1.2MB (the excess 0.2MB to allow for the rest of the form data)
-    * If valid file is selected, the file name is rendered next to the input to reassure the user that the file has been selected.   
+    * If a valid file is selected, the file name is rendered next to the input to reassure the user that the file has been selected.   
     ![A file name next to the 'Select File' button](static/images/readme-images/selected-image.jpg "A file name next to the 'Select File' button")
 
 #### /edit_recipe
@@ -310,19 +310,19 @@ The **404** page is displayed if the user tries to access a page that doesn't ex
 Similar to the **404** page, the **500** page is displayed if the server runs into any issues, either due to a programming error or the server running into issues. This page states "It seems something has gone wrong!" and then provides a link to **/all_recipes** with the text "Why not come look at some delicious recipes?". Again, the header and footer are present to allow the user to easily navigate back through the website.
 
 #### Security Features
-* All sensitive information related to the running of the app is hidden in enviroment variables. These variables have been included in the .gitignore file to ensire they are never uploaded to the remote repository.
+* All sensitive information related to the running of the app is hidden in environment variables. These variables have been included in the .gitignore file to ensure they are never uploaded to the remote repository.
 * All user passwords are stored in the database after being hashed by the Werkzeug security package.
 * No sensitive information is presented in the README.
 * Any pages that require the user to be logged in will redirect a not logged in user to the **/login** page.
-* The file inputs found in **/add_recipe** and **/edit_recipe** will reject any data that is not a vaild image file.
+* The file inputs found in **/add_recipe** and **/edit_recipe** will reject any data that is not a valid image file.
 * If logged in a user 'rodeo', any recipe can be edited or deleted by viewing the recipe on the **/recipe_page** page.
 
 #### Potential Future Features
 * A requirement for users to confirm their email address before being granted access to the full website.
 * To allow users to update their password
-* An admin dashboard which could display statistics useful to the 'Rodeo Hot Sauce' brand. These statistics could highlight trends such as growing popularity of certain meal types
+* An admin dashboard that could display statistics useful to the 'Rodeo Hot Sauce' brand. These statistics could highlight trends such as the growing popularity of certain meal types
 * To allow users to comment underneath recipes. I believe this would be an effective way to boost the sense of community within the users of the website.
-* A cloud storage system to manage the images such as [Cloudinary](https://cloudinary.com/). This would make the application more scalable, and would be useful to process the images uploaded by users (such as managing the file size)
+* A cloud storage system to manage the images such as [Cloudinary](https://cloudinary.com/). This would make the application more scalable and would be useful to process the images uploaded by users (such as managing the file size)
 * Additional options to sort the recipes
     * The ability to sort the recipes in order of how many users have added the recipe to their favourites.
 
@@ -364,7 +364,7 @@ The front-end of the website is built with HTML, CSS and JavaScript and the back
    * A MongoDB driver. Used to enable the Python code to interact with MongoDB.
 
 * [WTForms](https://wtforms.readthedocs.io/)
-   * Used to create the form elements of the website with Python and add form validation to the back end. WTForms also provides protection from CSRF attacks.
+   * Used to create the form elements of the website with Python and add form validation to the back end. WTForms also protects from CSRF attacks.
 
 #### Design and Fonts
 * [Balsamiq](https://balsamiq.com/)
@@ -495,14 +495,14 @@ The CSS used to render the user rating stars in the recipe pages was written by 
 
 The FieldsRequiredForm class found in forms.py was copied from the [WTForms Github Repository](https://github.com/wtforms/wtforms/issues/477) and provided by user [chivalry](https://github.com/chivalry)
 
-There was an issue with the navigation links pushing neighboring links across the page when the hover pseudo class added a bold effect. A fix for this issue was found [here](https://pupungbp.com/how-to-give-bold-on-hover-without-shifting-another-element/)
+There was an issue with the navigation links pushing neighbouring links across the page when the hover pseudo class added a bold effect. A fix for this issue was found [here](https://pupungbp.com/how-to-give-bold-on-hover-without-shifting-another-element/)
 
 [This video](https://www.youtube.com/watch?v=DsgAuceHha4&ab_channel=PrettyPrinted) by Pretty Printed was invaluable in showing me how to upload files to MongoDB, and [this article](https://javascript.info/file) helped me understand how to access file data from a file input.
 
 
 
 ### Content
-The illustrations of the Rodeo Hot Sauce bottle found on the index, login and register pages was provided by [Ellie Fulcher](https://www.instagram.com/ellie.f.illustration/) 
+The illustrations of the Rodeo Hot Sauce bottle found on the index, login and register pages were provided by [Ellie Fulcher](https://www.instagram.com/ellie.f.illustration/) 
 
 The image of soup found in the mockups was taken by [calamaffia](https://unsplash.com/@calajay)
 
@@ -527,4 +527,4 @@ Huge thanks to my mentor Maranatha Ilesanmi for all his help and guidance on the
 
 Thank you to Ellie Fulcher for providing the Rodeo Hot Sauce bottle illustration.
 
-And thanks to the Code Institute Slack community for being such a helpful and supportive bunch, in particular users Stuart Saint and Sean Mc for their feedback in #peer-code-review.
+And thanks to the Code Institute Slack community for being such a helpful and supportive bunch, in particular, users Stuart Saint and Sean Mc for their feedback in #peer-code-review.
