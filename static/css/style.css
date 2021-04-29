@@ -14,10 +14,6 @@ body {
     font-family: 'Open Sans', Arial, Helvetica, sans-serif;
 }
 
-/* .block-content-container {
-    max-width: 2800px;
-} */
-
 a:hover {
     text-decoration: none;
 }
@@ -139,7 +135,9 @@ nav {
 
 .custom-nav-links:hover, .footer-links:hover {
   color: #FFF;
-  font-weight: bolder;
+  -webkit-text-fill-color: #fff;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #fff;
 }
 
 .custom-footer {
