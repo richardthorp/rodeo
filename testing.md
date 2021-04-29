@@ -103,7 +103,6 @@ The website has been developed and tested to ensure a high level of responsivene
 ### Responsive testing procedure
 Check that text, images and all other elements load with correct styles and spacing on all pages. On mobile and tablet, rotate the screen to landscape orientation and repeat the checks. Whilst testing on a laptop, using each browsers developer tools, resize the page and ensure all elements respond to the screen size accordingly.
 
-## Manual testing of all elements throughout the website
 The tests detailed in this section were all completed using the following web browsers and hardware:
 |                            | Chrome             | Edge             | Firefox            | Safari |
 | -------------             |:------------------:| -----------------:|-------------------:|--------:|
@@ -115,6 +114,7 @@ The tests detailed in this section were all completed using the following web br
 
 **********************
 
+## Manual testing of all elements throughout the website
 <a name="site-wide-features"></a>
 
 ### Testing of site-wide features
