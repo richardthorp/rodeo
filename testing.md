@@ -45,7 +45,7 @@
 ![The 'EDIT' and 'DELETE' buttons in /added_recipes](static/images/readme-images/testing-images/recipe-card-edit-delete.jpg "The 'EDIT' and 'DELETE' buttons in /added_recipes")
 
 **To be able to save recipes that interest me and be able to access them quickly**
-* If the user is logged in, any page that displays a recipe or recipe cards features the 'FAVOURITE RECIPE?' heart icon. Once clicked, the recipe can be accessed quickly through the 'MY RECIPES' link in the navigation bar or footer. 
+* If the user is logged in, any page that displays a recipe or recipe cards features the 'FAVOURITE RECIPE?' heart icon. Once clicked, the recipe can be accessed through the 'MY RECIPES' link in the navigation bar or footer. 
 * If the recipe is already in the users 'MY RECIPES' page, clicking the heart icon will remove the recipe from the list. 
 
 ![The heart icon as seen in a recipe page](static/images/readme-images/testing-images/heart-icon.jpg "The heart icon as seen in a recipe page")
@@ -124,7 +124,7 @@ The tests detailed in this section were all completed using the following web br
 2. In the footer, check that the same links are visible on screens above 768px wide as well as the copyright information.
 3. On a screen smaller than 768px wide, ensure that the navigation links are hidden and replaced by the menu icon.
     * Click on the menu icon and ensure that the dropdown menu is triggered and that the links are correct.
-4. On a screen smaller than 768px wide, ensure that the copyright information is visible, and in place of the 3 navigation links there is one link to go 'BACK TO TOP'.
+4. On a screen smaller than 768px wide, in the footer ensure that the copyright information is visible, and in place of the 3 navigation links there is one link to go 'BACK TO TOP'.
 5. Mouseover the 'RODEO' logo
     * Ensure the cursor becomes a pointer.
 6. Click on the 'RODEO' logo
@@ -516,6 +516,6 @@ On a screen less than 768px wide:
 It has not been possible to test this route function due to issues with running the app on a development server. When testing this function, the connection to the server cuts out and the 413 error is not returned. This issue has been noted on [Stack Overflow with users saying]("https://stackoverflow.com/questions/19911106/flask-file-upload-limit") that when the app is moved to a production server, the issue is resolved.
 
 ### Found Bugs
-A bug was found where adding more than 8 instruction text inputs on **/add_recipe** and **/edit_recipe** would make the browser window unresponsive. The problem was due to a conflict between the function used to render new instruction rows in scripts.js and a jQuery plugin that was being used to make the ingredient text boxes automatically grow to accomodate any text inserted into the input. The jQuery plugin has now been removed from the app and the problem has been resolved.
+A bug was found where adding more than 8 instruction text inputs on **/add_recipe** and **/edit_recipe** would make the browser window unresponsive. The problem was due to a conflict between the function used to render new instruction rows in scripts.js and a jQuery plugin that was being used to make the ingredient text boxes automatically grow to accommodate any text inserted into the input. The jQuery plugin has now been removed from the app and the problem has been resolved.
 
 A user reported an issue with adding an image to a recipe, despite the image conforming to the size and file requirements. This was using a 2015 Macbook Pro running OS Sierra 10.12.6 and Chrome (version 90.0.4430.85). The file upload functionality has been extensively tested on several other devices and it has not been able to reproduce the issue.
