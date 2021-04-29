@@ -201,7 +201,7 @@ nav {
 }
 
 .recipe-card-ratings .star i {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     position: relative;
     bottom: 5px;
 }
@@ -691,65 +691,84 @@ nav {
         line-height: 50px;
         margin: 15px 0;
     }
+
     .sub-header {
         font-size: 1rem;
     }
+
     #logo {
         font-size: 3rem;
     }
+
     #bars-icon {
         font-size: 1.4rem;
     }
+
     .custom-nav-links {
         font-size: 1.5rem;
         padding: 20px 0;
     }
+
     .flashed-messages {
         font-size: 1rem;
     }
+
     .about-row {
         min-height: 165px;
     }
+
     .about-title {
         font-size: 3rem;
         margin-left: 10px;
     }
+
     .about-blurb {
         font-size: 0.8rem;
     }
+
     .pagination-link {
         font-size: 0.6rem;
         width: 130px;
     }
+
     .footer-links, .copyright {
         font-size: 0.8rem;
     }
+
     .form-header{
         font-size: 0.7rem;
     }
+
     .form-input-label, .form-details {
         font-size: 0.7rem;
     }
+
     .form-requirement {
         font-size: 0.7rem;
     }
+
     .my-recipe-buttons {
         border-width: 2px;
         width: 95%;
     }
+
     .my-recipe-buttons p {
         font-size: 0.6rem;
     }
+
     .my-recipe-buttons i {
         font-size: 2rem;
     }
+
     .rounded-container {
         margin-top: 10px;
         width: 100%;
     }
+
     .search-container {
         max-width: 350px;
     }
+
     .search-container .custom-button {
         font-size: 0.7rem;
     }
@@ -757,37 +776,47 @@ nav {
     .filters-modal ul li, .filters-modal-checkbox {
         display: block;
     }
+
     .recipe-type-filters .filter-option, .recipe-type-radio ul li {
         display: block;
         text-align: left;
         padding-left: 20px;
     }
+
     .form-input {
         font-size: 0.8rem;
     }
+
     #add-recipe-button {
         font-size: 1.5rem;
     }
+
     .recipe-card {
         padding: 10px;
     }
+
     .recipe-header img {
         width: 90%;
     }
+
     .recipe-details-list li {
         font-size: 0.8rem;
         margin: 5px;   
     }
+
     .recipe-header h6 {
         font-size: 0.8rem;
     }
+
     .back-links {
         font-size: 0.8rem;
     }
+
     .serves-details {
         font-size: 1.2rem;
         margin: 20px 0;
     }
+
     .rating-row {
         -webkit-box-align: center;
             -ms-flex-align: center;
@@ -799,51 +828,66 @@ nav {
     #logo {
         font-size: 3.5rem;
     }
+
     #bars-icon {
         font-size: 1.6rem;
     }
+
     .header {
         font-size: 3rem;
     }
+
     .custom-nav-links {
         font-size: 2rem;
         padding: 20px 0;
     }
+
     .about-title {
         font-size: 4rem;
     }
+
     .about-blurb {
         font-size: 1.2rem;
     }
+
     .form-input-label {
         font-size: 1.2rem;
     }
+
     .form-input {
         font-size: 0.8rem;
     }
+
     .form-requirement {
         font-size: 0.8rem;
     }
+
     .my-recipe-buttons i {
         font-size: 2.5rem;
     }
+
     .my-recipe-buttons p {
         font-size: 1rem;
         border-width: 3px;
     }
+
     .search-container {
         max-width: 350px;
     }
+
     .rounded-container {
         margin-top: 20px;
     }
+
     .select-file-button {
         padding: 5px;
     }
+
     .recipe-header img {
         width: 90%;
         height: 400px;
     }
+
     .rating-row {
         -webkit-box-align: center;
             -ms-flex-align: center;
@@ -855,48 +899,62 @@ nav {
     #logo {
         font-size: 3.5rem;
     }
+
     .navbar-collapse {
         position: initial;
     }
+
     .custom-nav-links {
+       
         font-size: 1.5rem;
     }
+
     .footer-links {
         padding: 0;
     }
+
     .about-title {
         left: 30%;
         font-size: 4rem;
     }
+
     .about-row {
         min-height: 300px;
     }
+
     .recipe-card-title {
         font-size: 2rem;
         padding-top: 20px;
         line-height: 50px;
         margin-bottom: 10px;
     }
+
     .shrink-header {
         font-size: 1.5rem;
         padding-top: 20px;
     }
+
     .recipe-card h6 {
         font-size: 1rem;
         margin-top: 16px;
     }
+
     .recipe-card .star {
         font-size: 1.8rem;
     }
+
     .recipe-card hr {
         margin: 16px auto;
     }
+
     .recipe-card i {
         font-size: 2rem;
     }
+
     .custom-button, .delete-button {
         font-size: 1rem;
     }
+
     .login-form {
         height: 579.67px;
         display: -webkit-box;
@@ -910,23 +968,29 @@ nav {
             -ms-flex-pack: center;
                 justify-content: center;
     }
+
     .form-requirement {
         font-size: 1rem;
     }
+
     .search-container {
         width: 90%;
         max-width: 600px;
     }
+
     .select-file-button {
         font-size: 0.8rem;
     }
+
     .form-input {
         font-size: 1rem;
     }
+
     .recipe-header img {
         width: 90%;
         height: 500px;
     }
+
     .rating-row {
         -webkit-box-align: initial;
             -ms-flex-align: initial;
@@ -938,24 +1002,30 @@ nav {
     #logo {
         font-size: 5rem;
     }
+
     #slogan {
         font-size: 5.5rem;
         line-height: 120px;
     }
+
     .custom-nav-links {
         font-size: 2rem;
     }
+
     .about-row {
         min-height: 350px;
     }
+
     .header {
         font-size: 4.5rem;
         line-height: 100px;
         margin: 40px 0;
     }
+
     .my-recipe-buttons i {
         font-size: 4rem;
     }
+
     .my-recipe-buttons p {
         font-size: 1.5rem;
         border-width: 4px;
@@ -966,6 +1036,7 @@ nav {
     #slogan {
         font-size: 6rem;
     }
+
     .recipe-card-ratings {
         left: 0;
     }
@@ -975,6 +1046,7 @@ nav {
     .block-content-container {
         max-width: 2000px;
     }
+    
     .col-xxl-3 {
         flex: 0 0 25%;
         position: relative;
@@ -983,9 +1055,11 @@ nav {
         padding-left: 15px;
 
     }
+    
     .d-xxl-flex {
         display: inline-flex !important;
     }
+    
     .recipe-card {
         width: 80%;
         max-width: none;
@@ -995,19 +1069,24 @@ nav {
         font-size: 10rem;
         line-height: 220px;
     }
+    
     .about-title {
         font-size: 8rem;
     }
+    
     .about-blurb {
         font-size: 2rem;
     }
+    
     .about-row {
         min-height: 650px;
     }
+    
     .header {
         font-size: 6rem;
         line-height: 120px;
     }
+    
     .more-recipes-link {
         font-size: 2.5rem;
     }
