@@ -287,8 +287,6 @@ This page contains the form with which users can upload their own recipes and is
 * Additional inputs for 'Ingredients' and 'Instructions' can be rendered by clicking on the plus symbol.
     * If any of the inputs are empty, no additional input is rendered and a tooltip appears that says 'Please use this input first.'
     ![The tooltip that appears if the plus button is pressed early](static/images/readme-images/add-row-tooltip.jpg 'The tooltip that appears if the plus button is pressed early')
-* The 'Instructions' text inputs feature an auto-resize function (powered by JavaScript and written by James Padolsey http://james.padolsey.com) which makes the input grow as the user enters text. This makes it much easier for the user to look back at what they have written without the need to scroll.  
-![The auto-resize text box in action](static/images/readme-images/textbox-resize.jpg 'The auto-resize text box in action')
 * An optional file input
     * The file type is validated at the back-end and will be rejected if the file extension isn't jpg, jpeg or png.
     * The maximum allowed file size is 1MB.
@@ -492,8 +490,6 @@ With the code required to run the app all stored in a repository with Github, de
 
 ### Code
 All dropdown menus, tooltips, popovers and modals found in the website were provided by [Bootstrap](https://getbootstrap.com/). Bootstrap was also used to add some CSS styling and for the responsive grid.
-
-The text-box autoresize function found in the add and edit recipe forms was written by [James Padolsey](http://james.padolsey.com)
 
 The CSS used to render the user rating stars in the recipe pages was written by Codepen user [@hesguru](https://codepen.io/hesguru)
 
