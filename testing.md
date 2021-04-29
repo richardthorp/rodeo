@@ -454,17 +454,16 @@ On a screen less than 768px wide:
     * Delete some of the text in the inputs and submit the form
         * Ensure that the resulting recipe page is free of empty ingredient list items
 14. Repeat step 13 but using the 'Instructions' text inputs.
-15. Add lots of text to an instruction input and ensure that the text box grows in size to accommodate the text.
-16. Add a negative number to the 'How many people does it feed?' number input and submit the form
+15. Add a negative number to the 'How many people does it feed?' number input and submit the form
     * Ensure 'Value must be equal to or greater than 1' tooltip is rendered.
-17. Select an image under 1MB in size in the file input
+16. Select an image under 1MB in size in the file input
     * Ensure that the image name is rendered next to the 'SELECT FILE' button.
     * Submit the recipe and ensure the correct image is displayed on the recipe page.
-18. Select an image over 1MB in size in the file input
+17. Select an image over 1MB in size in the file input
     * Ensure that an alert is triggered that reads 'File size too big, please choose a smaller file.'
     * Submit the form
         * Ensure no image was sent with the form by checking that the resulting recipe page displays the default image.
-19. Select a file that is not an image in the file input and submit the form
+18. Select a file that is not an image in the file input and submit the form
     * Ensure that the form data is not sent to the database and that a message that states 'Sorry, there was an issue with the form data. Please try again'.
 
 ##### **Logged out user**
@@ -514,3 +513,7 @@ On a screen less than 768px wide:
 #### **/request_entity_too_big (413 error)**
 It has not been possible to test this route function due to issues with running the app on a development server. When testing this function, the connection to the server cuts out and the 413 error is not returned. This issue has been noted on [Stack Overflow with users saying]("https://stackoverflow.com/questions/19911106/flask-file-upload-limit") that when the app is moved to a production server, the issue is resolved.
 
+### Found Bugs
+A bug was found where adding more than 8 instruction text inputs on **/add_recipe** and **/edit_recipe** would make the browser window unresponsive. The problem was due to a conflict between the function used to render new instruction rows in scripts.js and a jQuery plugin that was being used to make the ingredient text boxes automatically grow to accomodate any text inserted into the input. The jQuery plugin has now been removed from the app and the problem has been resolved.
+
+A user reported an issue with adding an image to a recipe, despite the image conforming to the size and file requirements. This was using a 2015 Macbook Pro running OS Sierra 10.12.6 and Chrome (version 90.0.4430.85). The file upload functionality has been extensively tested on several other devices and it has not been able to reproduce the issue.
