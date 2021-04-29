@@ -1,7 +1,3 @@
-/* autoResize jQuery plugin written by James Padolsey http://james.padolsey.com 
-   autoResize() used to make textarea input expand with text input*/
-$(".auto-resize").autoResize();
-
 /* RENDER NEW ROWS IN ADD_RECIPE AND EDIT RECIPE FORMS WHEN PLUS BUTTON CLICKED */
 $("#add-ingredient-button").on('click', function () {
     const ingredientItems = $(".ingredients-container .form-input");
@@ -22,10 +18,9 @@ $("#add-ingredient-button").on('click', function () {
     $(".ingredients-container").append(ingredientHTMLString);
 });
 
-/* This function is the same as above, but the jQuery selector needs to target textarea inputs with an id attribute
-   due to the autoResize plugin creating hidden textarea inputs when called  */
+/* This function is the same as above, but for the ingredients section  */
 $("#add-instruction-button").on('click', function () {
-    const instructionItems = $(".instructions-container .form-input").siblings('textarea[id]');
+    const instructionItems = $(".instructions-container .form-input");
     for (let i = 0; i < instructionItems.length; i += 1) {
         if (instructionItems[i].value == "") {
             $(instructionItems[i]).tooltip({
@@ -36,11 +31,10 @@ $("#add-instruction-button").on('click', function () {
         }
     }
     const inputNumber = instructionItems.length + 1;
-    const instructionHTMLString = `<textarea class="form-input auto-resize" id="instruction_${inputNumber}" 
+    const instructionHTMLString = `<textarea class="form-input" id="instruction_${inputNumber}" 
                            name="instruction_${inputNumber}" placeholder="Please enter step ${inputNumber}..."
                            style="resize: none; overflow-y: hidden;"></textarea>`;
     $(".instructions-container").append(instructionHTMLString);
-    $(".auto-resize").autoResize();
 });
 
 /* After 2.5 seconds, clear any tooltips */
