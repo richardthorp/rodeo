@@ -850,6 +850,10 @@ nav {
         font-size: 1.2rem;
     }
 
+    .more-recipes-link {
+        font-size: 1.2rem;
+    }
+
     .form-input-label {
         font-size: 1.2rem;
     }
@@ -1014,6 +1018,10 @@ nav {
 
     .about-row {
         min-height: 350px;
+    }
+
+    .more-recipes-link {
+        font-size: 1.5rem;
     }
 
     .header {
