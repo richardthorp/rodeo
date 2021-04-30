@@ -171,14 +171,14 @@
                     {% for instruction in recipe.instructions %}
                     <!-- For first 2 inputs, render respective WTForm input -->
                     {% if loop.index0 == 0 %}
-                    {{ form.instruction_1(class="form-input auto-resize edit-recipe-instruction",
+                    {{ form.instruction_1(class="form-input edit-recipe-instruction",
                     placeholder=recipe.instructions[loop.index0])}}
                     {% elif loop.index0 == 1 %}
-                    {{ form.instruction_2(class="form-input auto-resize edit-recipe-instruction",
+                    {{ form.instruction_2(class="form-input edit-recipe-instruction",
                     placeholder=recipe.instructions[loop.index0])}}
                     <!-- After 2 inputs, render optional WTForm inputs -->
                     {% else %}
-                    {{ form.instruction_optional(class="form-input auto-resize edit-recipe-instruction",
+                    {{ form.instruction_optional(class="form-input edit-recipe-instruction",
                     id="instruction_" + loop.index|string, placeholder=recipe.instructions[loop.index0])}}
                     {% endif %}
                     {% endfor %}
