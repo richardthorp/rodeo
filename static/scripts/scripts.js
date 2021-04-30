@@ -92,7 +92,7 @@ $("#picture_upload").change(function () {
         (this).value = null;
         alert('File size too big, please choose a smaller file.');
     } else {
-        /* The file is below 1mb. Get the name of the file selected in the file input on 
+        /* The file is below 1mb. Get the name of the file selected in the file input 
         and render to page */
         $("#selected-file").text($("#picture_upload").val().split("\\").pop());
     }
@@ -219,7 +219,8 @@ $("#rating-submit").on('click', (event) => {
         }).tooltip('show');
         clearTooltip($(".user-rating"));
     }
-})
+});
+
 /* Same as above but for ratings modal */
 $("#modal-rating-submit").on('click', (event) => {
     if ($(".modal-star:checked").val() == undefined){
@@ -230,7 +231,7 @@ $("#modal-rating-submit").on('click', (event) => {
         }).tooltip('show');
         clearTooltip($(".user-rating-modal"));
     }
-})
+});
 
 /* GET CURRENT YEAR AND RENDER IN COPYRIGHT SECTION OF FOOTER */
 $(".copyright span").text(function () {
